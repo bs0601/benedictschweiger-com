@@ -1,0 +1,75 @@
+baseURL: "https://benedictschweiger.com/"
+languageCode: "en"
+title: "Benedict Schweiger — Marketing Systems & Pricing Strategy"
+theme: "PaperMod"
+
+# SEO defaults
+params:
+  description: "Marketing that runs without constant direction. Pricing built around actual willingness-to-pay. The smarter architecture always wins over the bigger budget."
+  author: "Benedict Schweiger"
+  images:
+    - "/images/og-default.png"
+  keywords:
+    - "B2B SaaS Pricing"
+    - "Pricing Strategy"
+    - "Marketing Systems"
+    - "Benedict Schweiger"
+    - "ToplineXperts"
+
+  # Site stats — updated by website_flow.py update_stats()
+  stats:
+    organic_views: "5.8M"
+    roas_built: "8→20"
+    youtube_share: "34%"
+    audit_roi: "+463%"
+
+  # Social
+  socialIcons:
+    - name: linkedin
+      url: "https://www.linkedin.com/in/benedictschweiger"
+    - name: youtube
+      url: "https://www.youtube.com/channel/UCoCNyB7omxposyGloac8cA"
+    - name: email
+      url: "mailto:benedictschweiger@gmail.com"
+
+  # PaperMod blog config
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  defaultTheme: "light"
+  disableThemeToggle: true
+
+  homeInfoParams:
+    Title: ""
+    Content: ""
+
+  label:
+    text: "Benedict Schweiger"
+    icon: ""
+    iconHeight: 32
+
+# Blog section
+menu:
+  main:
+    - name: Blog
+      url: /blog/
+      weight: 10
+    - name: Free Diagnostic
+      url: "#diagnostics"
+      weight: 20
+
+# Blog content lives in content/blog/
+permalinks:
+  blog: "/blog/:slug/"
+
+outputs:
+  home:
+    - HTML
+    - RSS
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

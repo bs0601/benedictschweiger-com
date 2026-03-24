@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#ffffff"/>
+<title>{{ .Site.Title }}</title>
+<meta name="description" content="{{ .Site.Params.description }}"/>
+<meta property="og:title" content="{{ .Site.Title }}"/>
+<meta property="og:description" content="{{ .Site.Params.description }}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="{{ .Site.BaseURL }}"/>
+{{ with (index .Site.Params.images 0) }}<meta property="og:image" content="{{ . }}"/>{{ end }}
+<link rel="canonical" href="{{ .Site.BaseURL }}"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-icon">
+      <svg viewBox="0 0 16 16"><path d="M3 8h10M8 3l3 5-3 5"/></svg>
+    </div>
+    <span class="nav-name">Benedict Schweiger</span>
+  </a>
+  <a href="#diagnostics" class="nav-cta">Free Diagnostic</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge"><span class="bdot"></span>Marketing Systems · Pricing Strategy · São Paulo</div>
+  <h1 class="hero-h">The smarter architecture always wins over the <em>bigger budget.</em></h1>
+  <p class="hero-sub">
+    Most companies leave money on the table — not from lack of effort, but from lack of structure. Marketing that depends on the person running it. Pricing that doesn't reflect what customers actually value.<br><br>
+    <strong>The work is in closing that gap.</strong>
+  </p>
+
+  <!-- Bio with photo -->
+  <div class="bio-card">
+    <img
+      class="bio-photo"
+      src="https://media.licdn.com/dms/image/v2/D4D03AQGE2W_Dspy2rQ/profile-displayphoto-crop_800_800/B4DZg3iAfNGQAI-/0/1753278319178?e=1775692800&v=beta&t=A40RQtRuWSIJ5zzz6jZuPSU46vrEt4YhEuvdwsDl7lI"
+      alt="Benedict Schweiger"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+    />
+    <div class="bio-photo-fallback" style="display:none">BS</div>
+    <div class="bio-text">
+      <div class="bio-name">Benedict Schweiger</div>
+      <div class="bio-roles">CMO at <span>ALTHERR</span> · Ex-<span>Simon-Kucher</span> · São Paulo</div>
+    </div>
+  </div>
+
+  <!-- Stats from config.yaml -->
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-v">{{ .Site.Params.stats.organic_views }}</span>
+      <span class="stat-l">Organic views</span>
+    </div>
+    <div class="stat">
+      <span class="stat-v">{{ .Site.Params.stats.roas_built }}</span>
+      <span class="stat-l">ROAS built</span>
+    </div>
+    <div class="stat">
+      <span class="stat-v">{{ .Site.Params.stats.youtube_share }}</span>
+      <span class="stat-l">YouTube #1</span>
+    </div>
+    <div class="stat">
+      <span class="stat-v">{{ .Site.Params.stats.audit_roi }}</span>
+      <span class="stat-l">Audit ROI</span>
+    </div>
+  </div>
+
+  <p class="cta-label">Two free diagnostics — pick yours</p>
+  <div class="cta-pair">
+    <a href="#diagnostics" class="btn-primary">Marketing Autonomy Score →</a>
+    <a href="#diagnostics" class="btn-secondary">Pricing Diagnostic →</a>
+  </div>
+</div>
+
+<!-- CONTENT / BLOG — dynamic from Hugo content/blog/ -->
+<div class="content-section">
+  <div class="w">
+    <div class="divider"></div>
+    <p class="section-title">Latest Writing</p>
+
+    {{ $posts := where .Site.RegularPages "Section" "blog" }}
+    {{ range first 4 $posts }}
+    <a href="{{ .RelPermalink }}" class="post-card{{ if .Params.featured }} featured{{ end }}">
+      <div class="post-meta">
+        {{ with .Params.pillar }}
+        {{ $pillarClass := "pillar-pricing" }}
+        {{ if eq . "marketing" }}{{ $pillarClass = "pillar-marketing" }}{{ end }}
+        {{ if eq . "systems" }}{{ $pillarClass = "pillar-systems" }}{{ end }}
+        {{ if eq . "leadership" }}{{ $pillarClass = "pillar-leadership" }}{{ end }}
+        <span class="post-pillar {{ $pillarClass }}">{{ . | humanize }}</span>
+        {{ end }}
+        <span class="post-date">{{ .Date.Format "Jan 2006" }}</span>
+      </div>
+      <div class="post-title">{{ .Title }}</div>
+      <div class="post-excerpt">{{ .Params.excerpt | default .Summary }}</div>
+      <div class="post-read">Read →</div>
+    </a>
+    {{ end }}
+
+    {{ if gt (len $posts) 0 }}
+    <a href="/blog/" class="content-cta">All articles →</a>
+    {{ end }}
+  </div>
+</div>
+
+<!-- DIAGNOSTICS -->
+<div class="diagnostics-section" id="diagnostics">
+  <div class="diagnostics-inner">
+    <p class="section-title">Two free diagnostics</p>
+
+    <a href="https://diagnose.benedictschweiger.com" class="path-card d2c">
+      <div class="path-tag green">D2C Brands · Moltke Score</div>
+      <div class="path-title">Marketing Autonomy Score</div>
+      <p class="path-desc">14 questions. 3 dimensions. See your marketing from the outside — the way an investor or competitor sees it.</p>
+      <div class="path-meta">
+        <div class="path-row">
+          <span class="path-row-icon">◈</span>
+          <div>
+            <div class="path-row-label">Entry to</div>
+            <div class="path-row-value">Agentic Marketing Cohort · €2,500</div>
+          </div>
+          <span class="path-row-badge badge-green">6 min</span>
+        </div>
+        <div class="path-row">
+          <span class="path-row-icon">◈</span>
+          <div>
+            <div class="path-row-label">For</div>
+            <div class="path-row-value">D2C Brands · €1M–€20M Revenue</div>
+          </div>
+        </div>
+      </div>
+      <button class="path-btn dark">Start Moltke Score →</button>
+    </a>
+
+    <a href="https://benedictschweiger.com/pricing-diagnostic" class="path-card saas">
+      <div class="path-tag orange">B2B SaaS · Pricing</div>
+      <div class="path-title">Pricing Architecture Diagnostic</div>
+      <p class="path-desc">15 questions. 6 minutes. Find out where your pricing is leaving ARR on the table — quantified in euros.</p>
+      <div class="path-meta">
+        <div class="path-row">
+          <span class="path-row-icon">◈</span>
+          <div>
+            <div class="path-row-label">Entry to</div>
+            <div class="path-row-value">Pricing Architecture Audit · €9,500</div>
+          </div>
+          <span class="path-row-badge badge-orange">6 min</span>
+        </div>
+        <div class="path-row">
+          <span class="path-row-icon">◈</span>
+          <div>
+            <div class="path-row-label">For</div>
+            <div class="path-row-value">Series A/B · >€2M ARR · PE-backed</div>
+          </div>
+        </div>
+      </div>
+      <button class="path-btn orange">Start Pricing Diagnostic →</button>
+    </a>
+  </div>
+</div>
+
+<!-- PROOF -->
+<div class="proof-section">
+  <div class="proof-inner">
+    <p class="section-title">Proven results — ALTHERR</p>
+    <div class="proof-grid">
+      <div class="proof-item">
+        <div class="proof-metric">5.8<span>M</span></div>
+        <div class="proof-source">YouTube · 2025</div>
+        <div class="proof-desc">Organic views. In-house. No agency.</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-metric">8<span>→20</span></div>
+        <div class="proof-source">ROAS · 20 months</div>
+        <div class="proof-desc">7 structural changes. No agency dependency.</div>
+      </div>
+      <div class="proof-item full">
+        <div class="proof-metric">34<span>%</span></div>
+        <div class="proof-source">YouTube as #1 acquisition channel</div>
+        <div class="proof-desc">628 of 1,834 new customers named YouTube as first touchpoint — ahead of Google, ahead of paid. n=1,834, NPS ≈ 64.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BELIEFS -->
+<div class="beliefs-section">
+  <div class="beliefs-inner">
+    <p class="section-title">What I believe — and others don't</p>
+    <div class="belief-list">
+      <div class="belief">
+        <div class="belief-num">01</div>
+        <div class="belief-text">Organic reach is an asset. Paid reach is a recurring cost.</div>
+        <div class="belief-sub">Most D2C brands build on rented land. ALTHERR proved over 5 years that it doesn't have to work that way.</div>
+      </div>
+      <div class="belief">
+        <div class="belief-num">02</div>
+        <div class="belief-text">Price increases don't fail because of the market. They fail because of missing conviction.</div>
+        <div class="belief-sub">The most common reason: no data that can be defended in front of a board or investor. We deliver that data.</div>
+      </div>
+      <div class="belief">
+        <div class="belief-num">03</div>
+        <div class="belief-text">Systems over heroics. Compounding over linear. Autonomy as the goal.</div>
+        <div class="belief-sub">Marketing that depends on the person running it isn't a system. It's a dependency.</div>
+      </div>
+      <div class="belief">
+        <div class="belief-num">04</div>
+        <div class="belief-text">"It depends" is not an answer. It's an excuse.</div>
+        <div class="belief-sub">We give a recommendation. With reasoning. If two options are equal — pick one anyway and explain why.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="exp-section">
+  <div class="exp-inner">
+    <p class="section-title">Background</p>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-logo">
+          <img src="https://media.licdn.com/dms/image/v2/C4E0BAQFlsQvzrGYDEw/company-logo_200_200/company-logo_200_200/0/1657706902341/altherr_logo?e=1775692800&v=beta&t=6ybYA-EfZxDqozVJr0kxzh1MxhtT4pPNYFa_KSKvOk0" alt="ALTHERR" onerror="this.parentElement.innerHTML='A'"/>
+        </div>
+        <div class="exp-body">
+          <div class="exp-company">ALTHERR</div>
+          <div class="exp-role">Chief Marketing Officer · 2020 – Present · Cologne / São Paulo</div>
+          <div class="exp-desc">Built data infrastructure, content-as-pre-sale system, and performance-driven channel mix across DACH. 5.8M organic views. ROAS 8→20. YouTube as #1 acquisition channel ahead of Google and all paid channels.</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-logo">
+          <img src="https://media.licdn.com/dms/image/v2/D4E0BAQE3BKkKJed3Uw/company-logo_200_200/company-logo_200_200/0/1688374962412/simon_kucher_logo?e=1775692800&v=beta&t=E6oHc8eayOJHnfJyueEyHU_Z60josGuy3pmmYPkIqB0" alt="Simon-Kucher" onerror="this.parentElement.innerHTML='SK'"/>
+        </div>
+        <div class="exp-body">
+          <div class="exp-company">Simon-Kucher & Partners</div>
+          <div class="exp-role">Manager → Senior Consultant → Consultant · 2016 – 2020 · Bonn</div>
+          <div class="exp-desc">Financial services pricing — Van Westendorp, Conjoint, Willingness-to-Pay for banks, insurers, and asset managers. The methodological foundation for everything I do today.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Education -->
+    <div class="edu-row">
+      <div class="edu-item">
+        <div class="edu-logo">
+          <img src="https://media.licdn.com/dms/image/v2/D4E0BAQEmSCEZZRJBCA/company-logo_200_200/B4EZgPEnLdHoAM-/0/1752599525247/whu_otto_beisheim_school_of_management_logo?e=1775692800&v=beta&t=PSCJWMK3msTz0wHhrvdnjZHtVY4WJMtEljUwWXEAiRU" alt="WHU" onerror="this.parentElement.innerHTML='W'"/>
+        </div>
+        <div class="edu-text">
+          <div class="edu-name">WHU Otto Beisheim</div>
+          <div class="edu-degree">MSc Management · 2014–2016</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-logo">
+          <img src="https://media.licdn.com/dms/image/v2/C4E0BAQH415qlDBkj8Q/company-logo_200_200/company-logo_200_200/0/1630608877834/universityofbc_logo?e=1775692800&v=beta&t=YOf-Dw8IxmpDPNkKljCQ9KDjx56kO8ahI3wbvrbb2l0" alt="UBC" onerror="this.parentElement.innerHTML='UBC'"/>
+        </div>
+        <div class="edu-text">
+          <div class="edu-name">UBC Vancouver</div>
+          <div class="edu-degree">BCom · 2010–2014</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-section">
+  <div class="newsletter-inner">
+    <div class="nl-card">
+      <div class="nl-badge">The Autonomy Brief</div>
+      <div class="nl-title">Once a week. No filler.</div>
+      <p class="nl-sub">One pricing insight. One marketing system. One data point from the field. What I'm building — and what's actually working.</p>
+      <input type="email" class="nl-input" placeholder="your@email.com"/>
+      <button class="nl-btn">Subscribe →</button>
+      <p class="nl-note">No spam. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Benedict <span>Schweiger</span></div>
+  <div class="footer-links">
+    {{ range .Site.Params.socialIcons }}
+    <a href="{{ .url }}" target="_blank">{{ .name | humanize }}</a>
+    {{ end }}
+  </div>
+  <div class="footer-copy">&copy; {{ now.Year }} Benedict Schweiger</div>
+</footer>
+
+</body>
+</html>
