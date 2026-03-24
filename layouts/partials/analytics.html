@@ -1,0 +1,34 @@
+<script>
+(function(){
+  var sid = sessionStorage.getItem('sid') ||
+    Math.random().toString(36).slice(2);
+  sessionStorage.setItem('sid', sid);
+  fetch('https://openclaws-mac-studio.tail5e1d58.ts.net/track', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      page: location.pathname,
+      referrer: document.referrer,
+      user_agent: navigator.userAgent,
+      session_id: sid,
+      event_type: 'pageview'
+    })
+  }).catch(function(){});
+
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-track]');
+    if(!btn) return;
+    fetch('https://openclaws-mac-studio.tail5e1d58.ts.net/track', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        page: location.pathname,
+        referrer: document.referrer,
+        user_agent: navigator.userAgent,
+        session_id: sid,
+        event_type: btn.dataset.track
+      })
+    }).catch(function(){});
+  });
+})();
+</script>

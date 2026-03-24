@@ -52,22 +52,22 @@
     </div>
   </div>
 
-  <!-- Stats from config.yaml -->
+  <!-- Stats from data/stats.yaml -->
   <div class="stats">
     <div class="stat">
-      <span class="stat-v">{{ .Site.Params.stats.organic_views }}</span>
+      <span class="stat-v">{{ hugo.Data.stats.youtube_views }}</span>
       <span class="stat-l">Organic views</span>
     </div>
     <div class="stat">
-      <span class="stat-v">{{ .Site.Params.stats.roas_built }}</span>
+      <span class="stat-v">{{ hugo.Data.stats.roas_built }}</span>
       <span class="stat-l">ROAS built</span>
     </div>
     <div class="stat">
-      <span class="stat-v">{{ .Site.Params.stats.youtube_share }}</span>
+      <span class="stat-v">{{ hugo.Data.stats.youtube_acquisition }}</span>
       <span class="stat-l">YouTube #1</span>
     </div>
     <div class="stat">
-      <span class="stat-v">{{ .Site.Params.stats.audit_roi }}</span>
+      <span class="stat-v">{{ hugo.Data.stats.audit_roi }}</span>
       <span class="stat-l">Audit ROI</span>
     </div>
   </div>
@@ -105,7 +105,7 @@
     {{ end }}
 
     {{ if gt (len $posts) 0 }}
-    <a href="/blog/" class="content-cta">All articles →</a>
+    <a href="/blog/" class="content-cta" data-track="click_blog">All articles →</a>
     {{ end }}
   </div>
 </div>
@@ -136,7 +136,7 @@
           </div>
         </div>
       </div>
-      <button class="path-btn dark">Start Moltke Score →</button>
+      <button class="path-btn dark" data-track="click_moltke">Start Moltke Score →</button>
     </a>
 
     <a href="https://benedictschweiger.com/pricing-diagnostic" class="path-card saas">
@@ -160,7 +160,7 @@
           </div>
         </div>
       </div>
-      <button class="path-btn orange">Start Pricing Diagnostic →</button>
+      <button class="path-btn orange" data-track="click_pricing">Start Pricing Diagnostic →</button>
     </a>
   </div>
 </div>
@@ -281,7 +281,7 @@
       <div class="nl-title">Once a week. No filler.</div>
       <p class="nl-sub">One pricing insight. One marketing system. One data point from the field. What I'm building — and what's actually working.</p>
       <input type="email" class="nl-input" placeholder="your@email.com"/>
-      <button class="nl-btn">Subscribe →</button>
+      <button class="nl-btn" data-track="click_newsletter">Subscribe →</button>
       <p class="nl-note">No spam. Unsubscribe anytime.</p>
     </div>
   </div>
@@ -298,5 +298,6 @@
   <div class="footer-copy">&copy; {{ now.Year }} Benedict Schweiger</div>
 </footer>
 
+{{ partial "analytics.html" . }}
 </body>
 </html>
