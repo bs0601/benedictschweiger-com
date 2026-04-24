@@ -235,28 +235,39 @@
 <!-- GA4: track Brevo form success as conversion -->
 <script>
 (function() {
-  var form = document.getElementById('sib-form');
-  if (!form) return;
   var fired = false;
-  form.addEventListener('submit', function() {
-    // Poll for success message visibility after submit
-    var attempts = 0;
-    var poll = setInterval(function() {
-      var success = document.getElementById('success-message');
-      attempts++;
-      if (success && getComputedStyle(success).display !== 'none') {
-        if (!fired) {
-          fired = true;
-          gtag('event', 'newsletter_signup', {
-            'event_category': 'engagement',
-            'event_label': 'The Autonomy Brief'
-          });
-        }
-        clearInterval(poll);
-      }
-      if (attempts > 20) clearInterval(poll);
-    }, 500);
-  });
+  function fireSignup() {
+    if (fired) return;
+    fired = true;
+    gtag('event', 'newsletter_signup', {
+      'event_category': 'engagement',
+      'event_label': 'The Autonomy Brief'
+    });
+  }
+  // Watch the success message for ANY DOM/attribute change (Brevo uses fetch internally)
+  function attachObserver() {
+    var success = document.getElementById('success-message');
+    if (!success) return;
+    new MutationObserver(function() {
+      if (getComputedStyle(success).display !== 'none') fireSignup();
+    }).observe(success, { attributes: true, childList: true, subtree: true, attributeFilter: ['style','class'] });
+    // Also poll as fallback
+    var btn = document.querySelector('.sib-form-block__button');
+    if (btn) {
+      btn.addEventListener('click', function() {
+        var attempts = 0;
+        var poll = setInterval(function() {
+          if (getComputedStyle(success).display !== 'none') { fireSignup(); clearInterval(poll); }
+          if (++attempts > 30) clearInterval(poll);
+        }, 300);
+      });
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachObserver);
+  } else {
+    attachObserver();
+  }
 })();
 </script>
 
