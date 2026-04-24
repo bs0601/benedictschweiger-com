@@ -13,6 +13,14 @@
 {{ with (index .Site.Params.images 0) }}<meta property="og:image" content="{{ . }}"/>{{ end }}
 <link rel="canonical" href="{{ .Site.BaseURL }}"/>
 <meta name="google-site-verification" content="7RnS4tjpQeypda85lNiyDy5uhDeJUuTLmvVpIPxNsRE"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JKPM4ZFFWH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JKPM4ZFFWH');
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/css/style.css"/>
 </head>
