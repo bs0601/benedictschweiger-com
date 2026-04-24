@@ -232,41 +232,26 @@
 .brevo-form-wrap iframe { border: none !important; }
 </style>
 
-<!-- GA4: track Brevo form success as conversion -->
+<!-- GA4: track newsletter signup — fires on submit click before page redirect -->
 <script>
 (function() {
-  var fired = false;
-  function fireSignup() {
-    if (fired) return;
-    fired = true;
-    gtag('event', 'newsletter_signup', {
-      'event_category': 'engagement',
-      'event_label': 'The Autonomy Brief'
+  function attach() {
+    var btn = document.querySelector('.sib-form-block__button');
+    var email = document.getElementById('EMAIL');
+    if (!btn) return;
+    btn.addEventListener('click', function() {
+      if (!email || !email.value.includes('@')) return;
+      gtag('event', 'newsletter_signup', {
+        'event_category': 'engagement',
+        'event_label': 'The Autonomy Brief',
+        'transport_type': 'beacon'
+      });
     });
   }
-  // Watch the success message for ANY DOM/attribute change (Brevo uses fetch internally)
-  function attachObserver() {
-    var success = document.getElementById('success-message');
-    if (!success) return;
-    new MutationObserver(function() {
-      if (getComputedStyle(success).display !== 'none') fireSignup();
-    }).observe(success, { attributes: true, childList: true, subtree: true, attributeFilter: ['style','class'] });
-    // Also poll as fallback
-    var btn = document.querySelector('.sib-form-block__button');
-    if (btn) {
-      btn.addEventListener('click', function() {
-        var attempts = 0;
-        var poll = setInterval(function() {
-          if (getComputedStyle(success).display !== 'none') { fireSignup(); clearInterval(poll); }
-          if (++attempts > 30) clearInterval(poll);
-        }, 300);
-      });
-    }
-  }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', attachObserver);
+    document.addEventListener('DOMContentLoaded', attach);
   } else {
-    attachObserver();
+    attach();
   }
 })();
 </script>
