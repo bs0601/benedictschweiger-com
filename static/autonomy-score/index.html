@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#ffffff"/>
+<title>Marketing Autonomy Score</title>
+<style>html,body{background:#fff}</style>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{height:100%;background:#fff}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;height:100%;overflow:hidden;-webkit-font-smoothing:antialiased}
+:root{
+  --s:#C4622D;--slt:#F5EBE4;--smd:#E8D0C2;
+  --blk:#1a1a1a;--dg:#484848;--mg:#717171;--lg:#e0e0e0;--bg:#f7f7f7;--w:#fff;
+  --sh:0 2px 8px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --sh2:0 4px 20px rgba(0,0,0,.10),0 2px 6px rgba(0,0,0,.06);
+  --r:16px;--rs:12px;
+  --st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);
+}
+#pf{position:fixed;inset:0;background:#fff;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .3s}
+#pf.out{opacity:0;pointer-events:none}
+.pfd{width:8px;height:8px;border-radius:50%;background:var(--s);animation:dot 1.1s ease-in-out infinite}
+@keyframes dot{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.2)}}
+#app{position:fixed;inset:0;height:100svh;overflow:hidden;opacity:0;transition:opacity .3s ease .1s}
+#app.rdy{opacity:1}
+.scr{position:absolute;inset:0;height:100svh;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .2s;overflow:hidden}
+.scr.on{opacity:1;pointer-events:all}
+
+/* LANDING */
+#sl{overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--w);padding-top:calc(var(--st) + 20px)}
+.lw{max-width:430px;margin:0 auto;padding:0 20px calc(var(--sb) + 32px)}
+.ll{display:flex;align-items:center;gap:8px;margin-bottom:32px}
+.li{width:32px;height:32px;border-radius:8px;background:var(--s);display:flex;align-items:center;justify-content:center}
+.li svg{width:16px;height:16px;stroke:#fff;stroke-width:2.2;fill:none;stroke-linecap:round}
+.ln{font-size:15px;font-weight:800;color:var(--blk)}
+.lbadge{display:inline-flex;align-items:center;gap:6px;background:var(--slt);color:var(--s);font-size:11px;font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:20px;width:fit-content;text-transform:uppercase;letter-spacing:.05em}
+.lbdot{width:5px;height:5px;border-radius:50%;background:var(--s);animation:dot 1.4s ease-in-out infinite}
+.lh{font-size:clamp(28px,8vw,40px);font-weight:800;line-height:1.06;letter-spacing:-.035em;color:var(--blk);margin-bottom:16px}
+.lh em{color:var(--s);font-style:normal}
+.lsub{font-size:15px;line-height:1.72;color:var(--mg);margin-bottom:16px}
+.lfriction{list-style:none;margin:0 0 24px;display:flex;flex-direction:column;gap:9px}
+.lfriction li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--dg);line-height:1.5}
+.lfdash{color:var(--s);font-weight:700;flex-shrink:0}
+.lcard{background:var(--bg);border-radius:var(--r);padding:18px 20px;margin-bottom:24px}
+.lqt{font-size:14px;font-style:italic;line-height:1.65;color:var(--dg);margin-bottom:7px}
+.lqc{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mg)}
+.lstats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:24px}
+.statb{background:var(--bg);border-radius:var(--rs);padding:12px 8px;text-align:center}
+.statv{font-size:16px;font-weight:800;color:var(--blk);letter-spacing:-.02em;display:block;margin-bottom:2px}
+.statl{font-size:10px;color:var(--mg);line-height:1.3}
+.lnamewrap{margin-bottom:14px}
+.lnamelabel{font-size:12px;font-weight:700;color:var(--mg);letter-spacing:.04em;text-transform:uppercase;margin-bottom:7px;display:block}
+.lnameinput{width:100%;border:2px solid var(--lg);border-radius:var(--rs);padding:14px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:600;color:var(--blk);background:var(--w);outline:none;-webkit-appearance:none;transition:border-color .2s}
+.lnameinput::placeholder{color:var(--mg);font-weight:400}
+.lnameinput:focus{border-color:var(--s)}
+.lnameerr{font-size:12px;color:#e53e3e;margin-top:5px;display:none}
+.lnameerr.show{display:block}
+.btnstart{width:100%;background:var(--s);color:#fff;border:none;border-radius:var(--rs);padding:16px 20px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px;min-height:52px;transition:background .15s}
+.btnstart:active{background:#a84f24}
+.btnrestart{width:100%;background:none;border:1.5px solid var(--lg);border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:var(--dg);padding:13px;cursor:pointer;min-height:46px;margin-top:8px}
+.lnote{text-align:center;font-size:12px;color:var(--mg);margin-top:12px}
+
+/* QUIZ */
+#sq{background:var(--w);padding-top:calc(var(--st) + 16px)}
+.qbar{flex-shrink:0;padding:0 20px 12px}
+.qbartop{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.qlogo{font-size:14px;font-weight:800;color:var(--blk)}
+.qnum{font-size:13px;font-weight:700;color:var(--s)}
+.prog{height:3px;background:var(--lg);border-radius:2px;overflow:hidden}
+.progf{height:100%;background:var(--s);border-radius:2px;transition:width .35s ease;width:0%}
+.qdim{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mg);margin-top:8px}
+.qdiv{height:1px;background:var(--lg);flex-shrink:0}
+.qstage{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 20px 8px}
+@keyframes qin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.qstem{font-size:clamp(17px,4.2vw,22px);font-weight:700;line-height:1.28;letter-spacing:-.02em;color:var(--blk);margin-bottom:18px;animation:qin .22s ease}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--w);border:none;border-radius:var(--rs);box-shadow:var(--sh);padding:0 14px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;width:100%;height:64px;transition:box-shadow .15s,background .15s;overflow:hidden}
+.opt:active{background:var(--slt)}
+.opt.sel{background:var(--slt)}
+.oradio{width:20px;height:20px;flex-shrink:0;border:2px solid var(--lg);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.opt.sel .oradio{border-color:var(--s);background:var(--s)}
+.oradinner{width:8px;height:8px;border-radius:50%;background:#fff;opacity:0;transition:opacity .15s}
+.opt.sel .oradinner{opacity:1}
+.otext{font-size:13px;font-weight:500;color:var(--dg);line-height:1.35;flex:1;transition:color .15s;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.opt.sel .otext{color:var(--blk)}
+.qfoot{flex-shrink:0;padding:10px 20px calc(var(--sb) + 10px);border-top:1px solid var(--lg);background:var(--w);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.btnback{background:none;border:1.5px solid var(--lg);border-radius:var(--rs);color:var(--dg);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;padding:11px 16px;cursor:pointer;transition:all .15s;min-height:46px}
+.btnback:disabled{opacity:.28;cursor:not-allowed}
+.btnnext{background:var(--s);color:#fff;border:none;border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;padding:11px 20px;cursor:pointer;transition:all .15s;opacity:.28;pointer-events:none;min-height:46px;min-width:100px}
+.btnnext.on{opacity:1;pointer-events:all}
+.btnnext.on:active{transform:scale(.97)}
+
+/* DEMOGRAPHICS */
+#sd{background:var(--bg);padding-top:calc(var(--st) + 16px)}
+.dbar{flex-shrink:0;padding:0 20px 12px;background:var(--w)}
+.dbartop{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.ddiv{height:1px;background:var(--lg)}
+.dstage{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 20px 8px}
+.dwrap{animation:qin .22s ease}
+.dpage-title{font-size:18px;font-weight:800;letter-spacing:-.02em;color:var(--blk);margin-bottom:4px}
+.dpage-sub{font-size:13px;color:var(--mg);line-height:1.6;margin-bottom:20px}
+.mcard{background:var(--w);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh);margin-bottom:12px}
+.mcard-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px}
+.mlabel{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mg)}
+.mvalue{font-size:18px;font-weight:800;color:var(--s);letter-spacing:-.02em;text-align:right}
+.mhelp{font-size:12px;color:var(--mg);line-height:1.5;margin-bottom:12px;font-style:italic}
+.mslider{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:var(--lg);outline:none;cursor:pointer;margin-bottom:4px}
+.mslider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--s);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.mslider::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--s);cursor:pointer;border:none;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.mrange{display:flex;justify-content:space-between;font-size:11px;color:var(--mg)}
+.dcard{background:var(--w);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:12px;overflow:hidden}
+.dcardrow{display:flex;align-items:center;padding:14px 18px;cursor:pointer;gap:12px}
+.dcardrow:not(:last-child){border-bottom:1px solid var(--lg)}
+.dcardlabel{flex:1}
+.dcardname{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mg);margin-bottom:3px}
+.dcardval{font-size:15px;font-weight:600;color:var(--mg);transition:color .15s}
+.dcardrow.filled .dcardval{color:var(--blk)}
+.dcardrow.filled .dcardname{color:var(--s)}
+.dcardarrow{font-size:16px;color:var(--lg);transition:color .15s}
+.dcardrow.filled .dcardarrow{color:var(--s)}
+.dfoot{flex-shrink:0;padding:10px 20px calc(var(--sb) + 10px);border-top:1px solid var(--lg);background:var(--w)}
+.btndsee{width:100%;background:var(--s);color:#fff;border:none;border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;padding:11px 20px;cursor:pointer;opacity:.28;pointer-events:none;min-height:46px;transition:all .15s}
+.btndsee.on{opacity:1;pointer-events:all}
+.btndsee.on:active{transform:scale(.98)}
+
+/* BOTTOM SHEET */
+.sbg{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:500;opacity:0;pointer-events:none;transition:opacity .2s}
+.sbg.open{opacity:1;pointer-events:all}
+.spanel{position:absolute;bottom:0;left:0;right:0;background:var(--w);border-radius:22px 22px 0 0;padding-bottom:calc(var(--sb) + 6px);transform:translateY(100%);transition:transform .28s cubic-bezier(.32,.72,0,1);max-height:72svh;display:flex;flex-direction:column}
+.sbg.open .spanel{transform:translateY(0)}
+.shandle{width:36px;height:4px;background:var(--lg);border-radius:2px;margin:12px auto 0;flex-shrink:0}
+.stitle{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mg);padding:13px 20px 10px;flex-shrink:0;border-bottom:1px solid var(--lg)}
+.sopts{overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
+.sopt{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;border-bottom:1px solid var(--lg);cursor:pointer;font-size:15px;font-weight:500;color:var(--dg);min-height:52px}
+.sopt:active{background:var(--bg)}
+.sopt.sel{color:var(--blk)}
+.scheck{width:22px;height:22px;border-radius:50%;background:var(--s);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s;flex-shrink:0}
+.sopt.sel .scheck{opacity:1}
+.scheck svg{width:11px;height:11px;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* BREAK SCREENS */
+.brk-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--blk);padding-bottom:calc(var(--sb) + 32px)}
+.brk-top{padding:calc(var(--st) + 28px) 22px 0}
+.brk-eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--s);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.brk-eyebrow-line{flex:1;height:1px;background:rgba(255,255,255,.1)}
+.brk-headline{font-size:clamp(20px,5.5vw,28px);font-weight:800;line-height:1.18;letter-spacing:-.025em;color:#fff;margin-bottom:12px}
+.brk-headline em{color:var(--s);font-style:normal}
+.brk-body{font-size:14px;line-height:1.75;color:rgba(255,255,255,.6);margin-bottom:24px}
+.brk-prog{display:flex;gap:5px;justify-content:center;margin-bottom:22px}
+.brk-progdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2)}
+.brk-progdot.done{background:var(--s)}
+.brk-progdot.cur{background:#fff}
+.brk-dims{background:rgba(255,255,255,.06);border-radius:var(--r);padding:18px 18px 14px;margin:0 22px 20px}
+.brk-dims-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:14px}
+.brk-dimbar{margin-bottom:13px}
+.brk-dimbar:last-child{margin-bottom:0}
+.brk-dimt{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.brk-dimname{font-size:13px;font-weight:600;color:rgba(255,255,255,.85)}
+.brk-dimscore{font-size:13px;font-weight:700;color:var(--s)}
+.brk-dimtrack{height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+.brk-dimfill{height:100%;border-radius:3px;width:0%;transition:width .8s ease}
+.brk-dimfill.g{background:#34a85a}
+.brk-dimfill.m{background:#f5a623}
+.brk-dimfill.l{background:var(--s)}
+.brk-next-preview{padding:0 22px;margin-bottom:24px}
+.brk-next-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px}
+.brk-next-pills{display:flex;flex-wrap:wrap;gap:7px}
+.brk-pill{background:rgba(255,255,255,.08);border-radius:20px;padding:6px 13px;font-size:12px;font-weight:600;color:rgba(255,255,255,.5)}
+.brk-foot{padding:0 22px calc(var(--sb) + 16px)}
+.brk-btn{width:100%;background:var(--s);color:#fff;border:none;border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;padding:15px;cursor:pointer;min-height:52px;transition:background .15s}
+.brk-btn:active{background:#a84f24}
+
+/* SPECTRUM */
+.spectrum-wrap{margin:0 22px 22px}
+.spectrum-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px}
+.spectrum-track{position:relative;height:10px;border-radius:5px;background:linear-gradient(to right,#c0392b 0%,#f5a623 33%,#3b82f6 60%,#34a85a 100%);margin-bottom:8px}
+.spectrum-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.5);border:3px solid var(--s);transition:left .6s ease}
+.spectrum-zones{display:flex;justify-content:space-between}
+.spectrum-zone{font-size:9px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+.spectrum-delta-dark{text-align:center;font-size:12px;color:rgba(255,255,255,.4);margin-top:8px}
+.spectrum-delta-dark strong{color:var(--s)}
+/* Light version for results */
+.spectrum-wrap-light{margin-bottom:4px}
+.spectrum-label-light{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mg);margin-bottom:10px}
+.spectrum-track-light{position:relative;height:10px;border-radius:5px;overflow:hidden;margin-bottom:8px;background:var(--lg)}
+.spectrum-track-light-fill{position:absolute;inset:0;border-radius:5px;background:linear-gradient(to right,#fca5a5 0%,#fcd34d 33%,#93c5fd 60%,#6ee7b7 100%);opacity:.7}
+.spectrum-marker-light{position:absolute;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;background:var(--w);box-shadow:var(--sh2);border:3px solid var(--s);transition:left .8s ease}
+.spectrum-zones-light{display:flex;justify-content:space-between}
+.spectrum-zone-light{font-size:9px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--mg)}
+.spectrum-delta{text-align:center;font-size:12px;color:var(--mg);margin-top:8px}
+.spectrum-delta strong{color:var(--s)}
+
+/* RESULTS */
+#sr{background:var(--bg)}
+#sp{background:var(--bg)}
+.rscroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--sb) + 32px)}
+.rhero{background:var(--w);padding:calc(var(--st) + 24px) 20px 24px;text-align:center;border-bottom:1px solid var(--lg)}
+.rlogo{font-size:11px;font-weight:700;color:var(--mg);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.scorecircle{width:112px;height:112px;border-radius:50%;background:var(--slt);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 12px}
+.scorenum{font-size:38px;font-weight:800;color:var(--s);letter-spacing:-.04em;line-height:1}
+.scoredenom{font-size:11px;color:var(--mg);margin-top:4px;font-weight:500}
+.scorelevel{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:12px}
+.scorelevel.lo{background:#e8f5ee;color:#2a7a4e}
+.scorelevel.md{background:#e8f0fe;color:#2563eb}
+.scorelevel.low-md{background:#fff3e0;color:#b87a14}
+.scorelevel.hi{background:#fdecea;color:#c0392b}
+.rheadline{font-size:18px;font-weight:800;line-height:1.25;color:var(--blk);margin-bottom:6px;letter-spacing:-.02em}
+.rsubline{font-size:14px;color:var(--mg);line-height:1.6}
+.rstory{background:var(--w);margin:10px 0;padding:20px}
+.rstory-title{font-size:16px;font-weight:800;color:var(--blk);letter-spacing:-.02em;line-height:1.3;margin-bottom:10px}
+.rstory-body{font-size:14px;color:var(--dg);line-height:1.75}
+.rsec{background:var(--w);margin:10px 0;padding:18px 20px}
+.rseciconrow{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.rsecicon{width:28px;height:28px;border-radius:8px;background:var(--slt);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rsecicon svg{width:14px;height:14px;stroke:var(--s);stroke-width:2;fill:none;stroke-linecap:round}
+.rsect{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mg)}
+.rsecicon-red{background:#fdecea}.rsecicon-red svg{stroke:#c0392b}
+.rsecicon-amber{background:#fff3e0}.rsecicon-amber svg{stroke:#b87a14}
+.kpigrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kpicard{background:var(--bg);border-radius:var(--rs);padding:13px 13px 11px}
+.kpicard.kpifull{grid-column:1/-1;padding:14px 16px}
+.kpiname{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mg);margin-bottom:4px}
+.kpisub{font-size:10px;color:var(--mg);margin-bottom:6px;font-style:italic}
+.kpival{font-size:20px;font-weight:800;color:var(--blk);letter-spacing:-.02em;margin-bottom:4px}
+.kpibench{font-size:11px;color:var(--mg);line-height:1.4}
+.kpibench em{font-style:normal;font-weight:700}
+.kpibench.ok em{color:#2a7a4e}.kpibench.warn em{color:#b87a14}.kpibench.bad em{color:#c0392b}
+.dimbar{margin-bottom:14px}
+.dimt{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.dimname{font-size:13px;font-weight:600;color:var(--blk)}
+.dimscore{font-size:13px;font-weight:700;color:var(--s)}
+.dimsub{font-size:11px;color:var(--mg);margin-top:3px}
+.dimtrack{height:6px;background:var(--lg);border-radius:3px;overflow:hidden}
+.dimfill{height:100%;border-radius:3px;width:0%;transition:width .7s ease}
+.dimfill.g{background:#34a85a}.dimfill.m{background:#f5a623}.dimfill.l{background:var(--s)}
+.insightcard{border-radius:var(--rs);padding:15px;background:var(--w);box-shadow:var(--sh);margin-bottom:9px}
+.insighttop{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.insightbadge{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:20px;flex-shrink:0}
+.badge-red{background:#fdecea;color:#c0392b}
+.badge-green{background:#e8f5ee;color:#2a7a4e}
+.badge-amber{background:#fff3e0;color:#b87a14}
+.insightdim{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mg)}
+.insighttitle{font-size:14px;font-weight:700;color:var(--blk);margin-bottom:5px;line-height:1.3}
+.insightdesc{font-size:13px;color:var(--mg);line-height:1.62}
+.optincard{background:var(--w);border-radius:var(--r);padding:22px 20px;margin:10px 14px;box-shadow:var(--sh2)}
+.optineyebrow{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--s);margin-bottom:8px}
+.optintitle{font-size:18px;font-weight:800;color:var(--blk);letter-spacing:-.025em;line-height:1.2;margin-bottom:7px}
+.optinsub{font-size:14px;color:var(--mg);line-height:1.65;margin-bottom:14px}
+.optinperks{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.optinperk{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--dg);line-height:1.45}
+.perkico{width:18px;height:18px;border-radius:50%;background:var(--slt);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.perkico svg{width:9px;height:9px;stroke:var(--s);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.optininput{width:100%;border:1.5px solid var(--lg);border-radius:var(--rs);padding:13px 15px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:var(--blk);background:var(--w);outline:none;margin-bottom:9px;-webkit-appearance:none;transition:border-color .15s}
+.optininput::placeholder{color:var(--mg)}
+.optininput:focus{border-color:var(--s)}
+.optinerr{font-size:12px;color:#e53e3e;margin-bottom:9px;display:none}
+.optinerr.show{display:block}
+.btnsend{width:100%;background:var(--s);color:#fff;border:none;border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;padding:15px;cursor:pointer;min-height:52px;transition:background .15s}
+.btnsend:active{background:#a84f24}
+.optinfine{text-align:center;font-size:11px;color:var(--mg);margin-top:8px}
+</style>
+</head>
+<body>
+<div id="pf"><div class="pfd"></div></div>
+<div id="app">
+
+<div class="scr on" id="sl">
+<div class="lw">
+  <div class="ll">
+    <div class="li"><svg viewBox="0 0 16 16"><path d="M2 8h12M2 4l4 4-4 4M10 4l4 4-4 4"/></svg></div>
+    <span class="ln">Benedict Schweiger</span>
+  </div>
+  <div class="lbadge"><span class="lbdot"></span>Marketing Diagnostic</div>
+  <h1 class="lh"><em>Fire yourself</em><br>as the Operator.</h1>
+  <p class="lsub">Ambition gets your E-Commerce brand to €5M. Systems scale it to €20M+.</p>
+  <ul class="lfriction">
+    <li><span class="lfdash">—</span><span>Does content and budget still require your personal approval?</span></li>
+    <li><span class="lfdash">—</span><span>Is embedding AI still a "dream" buried under layers of manual debt?</span></li>
+  </ul>
+  <p class="lsub" style="margin-bottom:24px">Stop being the motor. Uncover how dependent your business growth is on your energy — and start building intelligent marketing systems.</p>
+  <div class="lcard">
+    <p class="lqt">"No plan survives first contact with the enemy. Build commanders who can decide without you."</p>
+    <span class="lqc">Benedict Schweiger · CMO ALTHERR · Ex-Simon-Kucher</span>
+  </div>
+  <div class="lstats">
+    <div class="statb"><span class="statv">14</span><span class="statl">Questions to expose your manual debt</span></div>
+    <div class="statb"><span class="statv">6′</span><span class="statl">To audit your scaling engine</span></div>
+    <div class="statb"><span class="statv">3</span><span class="statl">Dimensions scored</span></div>
+    <div class="statb"><span class="statv">Free</span><span class="statl">Instant score + action plan</span></div>
+  </div>
+  <div class="lnamewrap">
+    <label class="lnamelabel" for="lname">Before we begin — your first name</label>
+    <input class="lnameinput" type="text" id="lname" placeholder="First name" autocomplete="given-name" autocapitalize="words" onkeydown="if(event.key==='Enter')startDiagnostic()"/>
+    <div class="lnameerr" id="lnameerr">Please enter your name to begin.</div>
+  </div>
+  <button class="btnstart" onclick="startDiagnostic()">→ Run the diagnostic</button>
+  <button class="btnrestart" id="btnresume" onclick="resumeDiagnostic()" style="display:none; margin-top:8px;">↻ Continue where you left off</button>
+  <p class="lnote">Your score is visible without email</p>
+</div>
+</div>
+
+<div class="scr" id="sq">
+  <div class="qbar">
+    <div class="qbartop"><span class="qlogo">Autonomy Score</span><span class="qnum" id="qnum">1 / 14</span></div>
+    <div class="prog"><div class="progf" id="progf"></div></div>
+    <div class="qdim" id="qdim"></div>
+  </div>
+  <div class="qdiv"></div>
+  <div class="qstage"><div id="qwrap"></div></div>
+  <div class="qfoot">
+    <button class="btnback" id="btnback" onclick="prevQ()" disabled>← Back</button>
+    <button class="btnnext" id="btnnext" onclick="nextQ()">Next →</button>
+  </div>
+</div>
+
+<div class="scr" id="sb1"><div class="brk-scroll" id="b1scroll"></div></div>
+<div class="scr" id="sb2"><div class="brk-scroll" id="b2scroll"></div></div>
+
+<div class="scr" id="sd">
+  <div class="dbar">
+    <div class="dbartop"><span class="qlogo">Autonomy Score</span><span class="qnum">Context</span></div>
+    <div class="prog"><div class="progf" style="width:100%"></div></div>
+  </div>
+  <div class="ddiv"></div>
+  <div class="dstage"><div id="dwrap"></div></div>
+  <div class="dfoot"><button class="btndsee" id="btndsee" onclick="demoNext()">Continue →</button></div>
+</div>
+
+<div class="scr" id="sr"><div class="rscroll" id="rscroll"></div></div>
+<div class="scr" id="sp"><div class="rscroll" id="pscroll"></div></div>
+
+</div>
+
+<div class="sbg" id="sbg" onclick="closeSheet(event)">
+  <div class="spanel">
+    <div class="shandle"></div>
+    <div class="stitle" id="stitle">Select</div>
+    <div class="sopts" id="sopts"></div>
+  </div>
+</div>
+
+<script>
+const DIMS={
+  CO:{name:'Command & Operations',   sub:'Can your operation run without you?',         max:300},
+  IE:{name:'Intelligence & Economics',sub:'Do you know what\'s working and why?',        max:600},
+  GA:{name:'Growth Architecture',    sub:'Is your growth structure built to compound?',  max:500},
+};
+const TOTAL_MAX=1400;
+const BREAK1_AFTER=2; // fire break after answering Q index 2 (Q3)
+const BREAK2_AFTER=8; // fire break after answering Q index 8 (Q9)
+
+const QS=[
+  {dim:'CO',phase:'Command',stem:'Could your marketing function without you for 3 months?',
+   opts:[{t:'No. It lives entirely in my head.',pts:0},{t:'Barely. The team requires my constant direction.',pts:30},{t:'Yes. Documented processes and a capable team are in place.',pts:80},{t:'Better. The system runs more efficiently without my involvement.',pts:100}]},
+  {dim:'CO',phase:'Command',stem:'What is your relationship with external partners — agencies or freelancers?',
+   opts:[{t:'Total dependence. They hold the keys to our execution.',pts:10},{t:'Confusion. We pay them but don\'t fully understand their output.',pts:30},{t:'Tactical. We use them for specific tasks and can replace them.',pts:70},{t:'Optional. Core skills are in-house. Agencies are a choice.',pts:100}]},
+  {dim:'CO',phase:'Command',stem:'How does your team communicate and operate day-to-day?',
+   opts:[{t:'Reactive chaos. Most of the day is unplanned calls and firefighting.',pts:0},{t:'Message-heavy. Constant pings without clear ownership or outcomes.',pts:30},{t:'Structured. Set weekly meetings and tools — but sync is still the default.',pts:60},{t:'Async-first. Recorded updates and written docs. Meetings are the exception.',pts:100}]},
+  {dim:'IE',phase:'Intelligence',stem:'To what extent is AI integrated into your daily workflow?',
+   opts:[{t:'None. We haven\'t started.',pts:0},{t:'Fragmented. A few individuals use tools, but there is no system.',pts:30},{t:'Functional. AI assists in specific areas like copy or analysis.',pts:60},{t:'Strategic. AI is a core engine that saves significant time daily.',pts:100}]},
+  {dim:'IE',phase:'Intelligence',stem:'How does the team track performance when you aren\'t looking?',
+   opts:[{t:'They don\'t. We only check when something breaks.',pts:0},{t:'Manually. I pull reports and explain them to the team.',pts:30},{t:'Passively. We have a dashboard, but no one acts on it alone.',pts:60},{t:'Autonomously. The team runs a live scorecard without me.',pts:100}]},
+  {dim:'IE',phase:'Intelligence',stem:'Do you trust your Customer Acquisition Cost (CAC) and Lifetime Value (LTV)?',
+   opts:[{t:'No. We don\'t track these numbers.',pts:0},{t:'Partially. Rough estimates — nothing we fully trust.',pts:30},{t:'Mostly. We track them but don\'t use them to shift budget.',pts:70},{t:'Absolutely. Precise data drives every Euro of spend.',pts:100}]},
+  {dim:'IE',phase:'Intelligence',stem:'How do you know what your customers actually want?',
+   opts:[{t:'Assumptions. We haven\'t formally asked.',pts:0},{t:'Anecdotes. Occasional feedback, but not a process.',pts:30},{t:'Surveys. We measure satisfaction but rarely act on it.',pts:60},{t:'Systems. Regular NPS and win/loss analysis drive our decisions.',pts:100}]},
+  {dim:'IE',phase:'Intelligence',stem:'Can you see which marketing activity actually drove each sale?',
+   opts:[{t:'No. It\'s a black box.',pts:0},{t:'Blurry. We have tracking, but the numbers don\'t add up.',pts:30},{t:'Clear. We understand last-click reasonably well.',pts:70},{t:'Unified. We see the full journey from first touch to conversion.',pts:100}]},
+  {dim:'IE',phase:'Intelligence',stem:'How fast do you test new creative and messaging?',
+   opts:[{t:'Stagnant. We run the same ads until they stop working.',pts:0},{t:'Reactive. We create new ads only when performance drops.',pts:30},{t:'Consistent. We launch 2–5 new creative tests every month.',pts:70},{t:'Industrial. We test 10+ new concepts or hooks every week.',pts:100}]},
+  {dim:'GA',phase:'Architecture',stem:'Is your revenue dangerously dependent on a single source or channel?',
+   opts:[{t:'Yes. If one channel dies, the business is in serious trouble.',pts:0},{t:'Mostly. One dominant channel with a few minor ones.',pts:30},{t:'No. Two or three channels each contribute meaningfully.',pts:80},{t:'Never. We have no single point of failure.',pts:100}]},
+  {dim:'GA',phase:'Architecture',stem:'What is the status of your organic content today?',
+   opts:[{t:'Non-existent. We only grow if we pay for ads.',pts:0},{t:'Inconsistent. We post only when we have spare time.',pts:30},{t:'Emerging. It is starting to generate real leads.',pts:70},{t:'Dominant. It actively reduces our dependency on paid.',pts:100}]},
+  {dim:'GA',phase:'Architecture',stem:'Do you have an automated system to bring customers back?',
+   opts:[{t:'No. Every sale is a standalone event.',pts:0},{t:'Manual. We send occasional emails when we remember.',pts:30},{t:'Basic. A welcome flow and abandoned cart are running.',pts:60},{t:'Advanced. Full lifecycle automation — winback, loyalty, post-purchase.',pts:100}]},
+  {dim:'GA',phase:'Architecture',stem:'How would you describe your revenue growth today?',
+   opts:[{t:'Linear. We start from zero every month.',pts:0},{t:'Fragile. Some repeat customers, but nothing systematic.',pts:30},{t:'Stable. Our recurring base is growing steadily.',pts:75},{t:'Compounding. Acquisition and retention actively feed each other.',pts:100}]},
+  {dim:'GA',phase:'Architecture',stem:'How actively do you test and iterate on pricing, offers, and bundle structures?',
+   opts:[{t:'We set prices once. They haven\'t changed.',pts:0},{t:'Reactive. We only adjust when a competitor drops price or a campaign dies.',pts:20},{t:'Seasonal. We run planned promotions but rarely test structure.',pts:50},{t:'Systematic. We test pricing and bundle changes regularly, based on conversion and margin data.',pts:100}]},
+];
+
+const INS={
+  CO:{t:'Fire yourself as the Media Buyer & Operator',d:'Your DTC brand isn\'t scaling because everything goes through your desk. Every day you spend approving ads or digging in the Shopify backend is a day lost for strategic growth. Action: Define a clear decision matrix (based on MER & Blended CAC) and hand over campaign control to your team. Measure them on profitability, not just tasks.'},
+  IE:{t:'Stop flying blind: Build a real-time intelligence layer',d:'If you don\'t know your 60-day LTV or which creative actually drives new customers, you are bleeding margin to Meta and Google. Action: Implement an automated live dashboard (e.g., TripleWhale or a custom data studio). From today, budget scaling decisions must be based on hard unit economics—not gut feeling.'},
+  GA:{t:'Stop the margin bleed with true retention architecture',d:'Customer acquisition is too expensive to rely solely on the first purchase. True, exponential growth comes from returning customers. Action: Fully automate your post-purchase journey. Build aggressive win-back flows, test dynamic pricing models to increase AOV, and systematically reduce your dependency on expensive paid traffic.'},
+};
+
+const SHEET_OPTS={
+  margin:['Under 15%','15 – 20%','20 – 25%','25 – 30%','30 – 35%','35 – 40%','40 – 45%','45 – 50%','50 – 60%','60%+'],
+};
+
+const DEMO_PAGES=[
+  {title:'Your Business Numbers',sub:'Four numbers. This is what powers your benchmark analysis — MER, Cost per Order, and Break-Even.',fields:[
+    {key:'revenue',label:'Monthly Revenue (€)',logMin:30000,logMax:4000000,roundTo:10000,fmt:v=>`€${(v/1000).toFixed(0)}k`},
+    {key:'adspend',label:'Monthly Ad Spend (€)',logMin:3000,logMax:300000,roundTo:1000,fmt:v=>`€${(v/1000).toFixed(0)}k`},
+    {key:'aov',label:'Avg. Order Value (€)',logMin:10,logMax:10000,roundTo:5,fmt:v=>`€${v}`},
+    {key:'margin',label:'Gross Margin',type:'sheet'},
+  ]},
+];
+
+let founderName='';
+let cur=0,ans=new Array(QS.length).fill(null);
+let demoPage=0;
+let dm={revenue:346410,adspend:30000,aov:316,revenue_raw:50,adspend_raw:50,aov_raw:50,margin:null};
+
+// --- STATE MANAGEMENT ---
+function saveState() {
+  const state = { cur, ans, dm, founderName, demoPage };
+  localStorage.setItem('masState', JSON.stringify(state));
+}
+
+function resumeDiagnostic() {
+  const saved = localStorage.getItem('masState');
+  if (saved) {
+    const state = JSON.parse(saved);
+    cur = state.cur; ans = state.ans; dm = state.dm;
+    founderName = state.founderName; demoPage = state.demoPage;
+    
+    document.getElementById('lname').value = founderName;
+    document.getElementById('lnameerr').classList.remove('show');
+    
+    if (cur < QS.length) {
+      show('sq');
+      renderQ();
+    } else {
+      show('sd');
+      renderDemoPage();
+    }
+  }
+}
+
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('pf').classList.add('out');
+    document.getElementById('app').classList.add('rdy');
+  },600);
+  
+  if (localStorage.getItem('masState')) {
+    document.getElementById('btnresume').style.display = 'block';
+  }
+});
+
+function show(id){
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const el=document.getElementById(id);
+  const sc=el.querySelector('.rscroll,.brk-scroll');
+  if(sc)sc.scrollTop=0;
+}
+
+function startDiagnostic(){
+  const raw=(document.getElementById('lname').value||'').trim();
+  if(!raw){document.getElementById('lnameerr').classList.add('show');document.getElementById('lname').focus();return;}
+  document.getElementById('lnameerr').classList.remove('show');
+  founderName=raw.split(' ')[0];
+  saveState();
+  show('sq');renderQ();
+}
+
+function calcDimScores(){
+  const s={CO:0,IE:0,GA:0};
+  QS.forEach((q,i)=>{if(ans[i]!==null)s[q.dim]+=q.opts[ans[i]].pts;});
+  return s;
+}
+function calcTotal(){return QS.reduce((s,q,i)=>s+(ans[i]!==null?q.opts[ans[i]].pts:0),0);}
+function totalPct(t){return Math.round(t/TOTAL_MAX*100);}
+function dimPct(dim,scores){return Math.round(scores[dim]/DIMS[dim].max*100);}
+
+function getZone(pct){
+  if(pct>=75)return{lc:'lo',label:'System-Driven'};
+  if(pct>=50)return{lc:'md',label:'System-Forming'};
+  if(pct>=25)return{lc:'low-md',label:'Transitioning'};
+  return{lc:'hi',label:'Founder-Led'};
+}
+function nextZone(pct){
+  if(pct>=75)return null;
+  if(pct>=50)return{label:'System-Driven',threshold:75};
+  if(pct>=25)return{label:'System-Forming',threshold:50};
+  return{label:'Transitioning',threshold:25};
+}
+
+function spectrumDark(pct){
+  const nz=nextZone(pct);
+  const ml=Math.max(3,Math.min(97,pct));
+  return`<div class="spectrum-wrap">
+    <div class="spectrum-label">Your position</div>
+    <div class="spectrum-track"><div class="spectrum-marker" style="left:${ml}%"></div></div>
+    <div class="spectrum-zones">
+      <span class="spectrum-zone">Founder-Led</span><span class="spectrum-zone">Transitioning</span>
+      <span class="spectrum-zone">System-Forming</span><span class="spectrum-zone">System-Driven</span>
+    </div>
+    <div class="spectrum-delta-dark">${nz?`<strong>+${nz.threshold-pct} pts</strong> to reach ${nz.label}`:'<strong>Top stage.</strong> Focus on compounding.'}</div>
+  </div>`;
+}
+
+function spectrumLight(pct){
+  const nz=nextZone(pct);
+  const ml=Math.max(3,Math.min(97,pct));
+  return`<div class="spectrum-wrap-light">
+    <div class="spectrum-label-light">Your position on the spectrum</div>
+    <div class="spectrum-track-light">
+      <div class="spectrum-track-light-fill"></div>
+      <div class="spectrum-marker-light" style="left:${ml}%"></div>
+    </div>
+    <div class="spectrum-zones-light">
+      <span class="spectrum-zone-light">Founder-Led</span><span class="spectrum-zone-light">Transitioning</span>
+      <span class="spectrum-zone-light">System-Forming</span><span class="spectrum-zone-light">System-Driven</span>
+    </div>
+    <div class="spectrum-delta">${nz?`<strong>+${nz.threshold-pct} pts</strong> to reach ${nz.label}`:'<strong>Top stage reached.</strong> Focus on compounding.'}</div>
+  </div>`;
+}
+
+function renderQ(){
+  const q=QS[cur],tot=QS.length;
+  document.getElementById('qnum').textContent=`${cur+1} / ${tot}`;
+  document.getElementById('progf').style.width=`${Math.round(cur/tot*100)}%`;
+  document.getElementById('qdim').textContent=DIMS[q.dim].name;
+  const wrap=document.getElementById('qwrap');
+  wrap.innerHTML=`<div class="qstem">${q.stem}</div>
+    <div class="opts">${q.opts.map((o,i)=>`
+      <button class="opt${ans[cur]===i?' sel':''}" onclick="selectOpt(${i})">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">${o.t}</span>
+      </button>`).join('')}</div>`;
+  document.getElementById('btnback').disabled=(cur===0);
+  const nb=document.getElementById('btnnext');
+  nb.classList.toggle('on',ans[cur]!==null);
+  nb.textContent=cur===tot-1?'See context →':'Next →';
+}
+
+function selectOpt(i){
+  ans[cur]=i;
+  saveState();
+  document.querySelectorAll('.opt').forEach((el,j)=>el.classList.toggle('sel',j===i));
+  document.getElementById('btnnext').classList.add('on');
+  setTimeout(()=>nextQ(), 320);
+}
+
+function nextQ(){
+  if(ans[cur]===null)return;
+  if(cur===BREAK1_AFTER){buildBreak1();show('sb1');return;}
+  if(cur===BREAK2_AFTER){buildBreak2();show('sb2');return;}
+  if(cur<QS.length-1){cur++;saveState();renderQ();}
+  else{demoPage=0;saveState();renderDemoPage();show('sd');}
+}
+function prevQ(){if(cur>0){cur--;saveState();renderQ();}}
+function resumeFromBreak(nextIdx){cur=nextIdx;saveState();show('sq');renderQ();}
+
+function buildBreak1(){
+  const scores=calcDimScores();
+  const pct=dimPct('CO',scores);
+  const runPct=totalPct(calcTotal());
+  const zone=getZone(pct);
+  const msgs={
+    hi:{h:`${founderName}, you are still the engine.`,b:`Every decision routes back to you. That is not a criticism — it is the starting point. Acts II and III will show exactly where to build the first handoffs.`},
+    'low-md':{h:`${founderName}, the command structure is forming.`,b:`There are systems in place, but you are still the decision layer. The next two acts show where intelligence and architecture gaps are compounding your workload.`},
+    md:{h:`${founderName}, your operation is taking shape.`,b:`Processes and a capable team exist. The next two acts reveal whether your intelligence layer and growth architecture are keeping pace — or creating a new ceiling.`},
+    lo:{h:`${founderName}, command is not your bottleneck.`,b:`Your operation runs without you. Acts II and III will show whether data, economics, and growth structure are operating at the same level.`},
+  };
+  const m=msgs[zone.lc]||msgs.hi;
+  document.getElementById('b1scroll').innerHTML=`
+    <div class="brk-top">
+      <div class="brk-eyebrow">Act I Complete <div class="brk-eyebrow-line"></div></div>
+      <div class="brk-headline">${m.h}</div>
+      <div class="brk-body">${m.b}</div>
+    </div>
+    <div class="brk-prog"><div class="brk-progdot done"></div><div class="brk-progdot cur"></div><div class="brk-progdot"></div></div>
+    <div class="brk-dims">
+      <div class="brk-dims-title">Command & Operations</div>
+      <div class="brk-dimbar">
+        <div class="brk-dimt"><span class="brk-dimname">Your score</span><span class="brk-dimscore">${pct}%</span></div>
+        <div class="brk-dimtrack"><div class="brk-dimfill ${pct>=75?'g':pct>=50?'m':'l'}" data-w="${pct}"></div></div>
+      </div>
+    </div>
+    ${spectrumDark(runPct)}
+    <div class="brk-next-preview">
+      <div class="brk-next-label">Act II — Intelligence & Economics</div>
+      <div class="brk-next-pills">
+        <div class="brk-pill">AI Integration</div><div class="brk-pill">Performance Tracking</div>
+        <div class="brk-pill">CAC & LTV</div><div class="brk-pill">Attribution</div><div class="brk-pill">Creative Velocity</div>
+      </div>
+    </div>
+    <div class="brk-foot"><button class="brk-btn" onclick="resumeFromBreak(${BREAK1_AFTER+1})">Continue to Act II →</button></div>`;
+  setTimeout(()=>{document.querySelectorAll('#b1scroll .brk-dimfill').forEach(el=>{el.style.width=el.dataset.w+'%';});},100);
+}
+
+function buildBreak2(){
+  const scores=calcDimScores();
+  const coPct=dimPct('CO',scores);
+  const iePct=dimPct('IE',scores);
+  const runPct=totalPct(calcTotal());
+  const zone=getZone(runPct);
+  const msgs={
+    hi:{h:`${founderName}, significant gaps are visible.`,b:`Your data and intelligence infrastructure have room to grow. Act III is where these gaps become the most expensive — relying heavily on top-of-funnel Meta Ads instead of compounding your LTV.`},
+    'low-md':{h:`${founderName}, the intelligence layer is emerging.`,b:`Tracking and AI are in place in parts, but not end-to-end. Act III will show whether your growth structure can compound — or still relies on brute force top-of-funnel spend.`},
+    md:{h:`${founderName}, your intelligence layer is solid.`,b:`Data, tracking, and creative testing are working. Now the question is whether the architecture — channels, retention, pricing — can sustain compounding growth.`},
+    lo:{h:`${founderName}, you know your numbers.`,b:`Data and intelligence at this level is genuinely rare. Act III will show whether your growth architecture is operating at the same standard.`},
+  };
+  const m=msgs[zone.lc]||msgs.hi;
+  document.getElementById('b2scroll').innerHTML=`
+    <div class="brk-top">
+      <div class="brk-eyebrow">Act II Complete <div class="brk-eyebrow-line"></div></div>
+      <div class="brk-headline">${m.h}</div>
+      <div class="brk-body">${m.b}</div>
+    </div>
+    <div class="brk-prog"><div class="brk-progdot done"></div><div class="brk-progdot done"></div><div class="brk-progdot cur"></div></div>
+    <div class="brk-dims">
+      <div class="brk-dims-title">Scores so far</div>
+      ${[['CO','Command & Operations',coPct],['IE','Intelligence & Economics',iePct]].map(([,name,pct])=>`
+      <div class="brk-dimbar">
+        <div class="brk-dimt"><span class="brk-dimname">${name}</span><span class="brk-dimscore">${pct}%</span></div>
+        <div class="brk-dimtrack"><div class="brk-dimfill ${pct>=75?'g':pct>=50?'m':'l'}" data-w="${pct}"></div></div>
+      </div>`).join('')}
+    </div>
+    ${spectrumDark(runPct)}
+    <div class="brk-next-preview">
+      <div class="brk-next-label">Act III — Growth Architecture</div>
+      <div class="brk-next-pills">
+        <div class="brk-pill">Channel Dependency</div><div class="brk-pill">Organic Content</div>
+        <div class="brk-pill">Retention Automation</div><div class="brk-pill">Revenue Model</div><div class="brk-pill">Pricing Strategy</div>
+      </div>
+    </div>
+    <div class="brk-foot"><button class="brk-btn" onclick="resumeFromBreak(${BREAK2_AFTER+1})">Continue to Act III →</button></div>`;
+  setTimeout(()=>{document.querySelectorAll('#b2scroll .brk-dimfill').forEach(el=>{el.style.width=el.dataset.w+'%';});},100);
+}
+
+function renderDemoPage(){
+  const pg=DEMO_PAGES[demoPage];
+  let html=`<div class="dwrap"><div class="dpage-title">${pg.title}</div><div class="dpage-sub">${pg.sub}</div>`;
+  pg.fields.forEach(f=>{
+    if(f.type==='sheet'){
+      const val=dm[f.key];
+      html+=`<div class="dcard"><div class="dcardrow${val?' filled':''}" id="dc-${f.key}" onclick="openSheet('${f.key}','${f.label}')">
+        <div class="dcardlabel"><div class="dcardname">${f.label}</div><div class="dcardval" id="dv-${f.key}">${val||'Select →'}</div></div>
+        <span class="dcardarrow">›</span></div></div>`;
+    }else{
+      const rk=f.key+'_raw';
+      const cr=dm[rk]!==undefined?dm[rk]:50;
+      html+=`<div class="mcard">
+        <div class="mcard-top"><span class="mlabel">${f.label}</span><span class="mvalue" id="mv-${f.key}">${f.fmt(dm[f.key])}</span></div>
+        <input class="mslider" type="range" min="0" max="100" step="${f.step||1}" value="${cr}" oninput="sliderChange('${f.key}',this.value)"/>
+        <div class="mrange"><span>${f.fmt(f.logMin||f.min)}</span><span>${f.fmt(f.logMax||f.max)}</span></div>
+      </div>`;
+    }
+  });
+  html+='<p class="optinfine" style="margin-top:14px; text-align:center;">Your data is calculated locally and not stored without your permission.</p></div>';
+  document.getElementById('dwrap').innerHTML=html;
+  checkDemoReady();
+  if(demoPage===0)renderKPIPreview();
+}
+
+function renderKPIPreview(){
+  const kpis=calcKPIs().slice(0,3);
+  if(!kpis.length)return;
+  let p=document.getElementById('kpi-preview');
+  if(!p){p=document.createElement('div');p.id='kpi-preview';p.style.cssText='margin-top:16px';const ref=document.querySelector('#dwrap .optinfine');if(ref)ref.parentNode.insertBefore(p,ref);else document.getElementById('dwrap').appendChild(p);}
+  p.innerHTML=`<div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mg);margin-bottom:10px">Live Preview</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      ${kpis.map(k=>`<div style="background:var(--bg);border-radius:var(--rs);padding:12px 13px;${k.full?'grid-column:1/-1':''}">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mg);margin-bottom:3px">${k.name}</div>
+        <div style="font-size:18px;font-weight:800;color:var(--blk);letter-spacing:-.02em;margin-bottom:3px">${k.val}</div>
+        <div style="font-size:11px;color:var(--mg)"><span style="font-weight:700;color:${k.status==='ok'?'#2a7a4e':k.status==='bad'?'#c0392b':'#b87a14'}">${k.bench}</span>${k.note?` · ${k.note}`:''}</div>
+      </div>`).join('')}
+    </div>`;
+}
+
+function logVal(pos,logMin,logMax,roundTo){
+  if(pos<=0)return logMin;if(pos>=100)return logMax;
+  const raw=logMin*Math.pow(logMax/logMin,pos/100);
+  const r=roundTo||1;
+  return Math.round(raw/r)*r;
+}
+
+function sliderChange(key,rawPos){
+  const pg=DEMO_PAGES[demoPage];const field=pg.fields.find(f=>f.key===key);if(!field)return;
+  const pos=parseFloat(rawPos);dm[key+'_raw']=pos;
+  let val;
+  if(field.linear){
+    val=Math.round((field.min+(field.max-field.min)*(pos/100))/(field.step||5))*(field.step||5);
+  }else{
+    val=logVal(pos,field.logMin,field.logMax,field.roundTo||1);
+  }
+  dm[key]=val;document.getElementById('mv-'+key).textContent=field.fmt(val);
+  saveState();
+  if(demoPage===0)renderKPIPreview();
+}
+
+function checkDemoReady(){
+  const pg=DEMO_PAGES[demoPage];
+  const allFilled=pg.fields.filter(f=>f.type==='sheet').every(f=>dm[f.key]!==null);
+  const isLast=demoPage===DEMO_PAGES.length-1;
+  const btn=document.getElementById('btndsee');
+  btn.textContent=isLast?'See my score →':'Continue →';
+  btn.classList.toggle('on',allFilled);
+}
+
+function demoNext(){
+  if(demoPage<DEMO_PAGES.length-1){demoPage++;saveState();renderDemoPage();}
+  else{buildResults();}
+}
+
+let activeKey=null;
+function openSheet(key,title){
+  activeKey=key;
+  document.getElementById('stitle').textContent=title;
+  document.getElementById('sopts').innerHTML=(SHEET_OPTS[key]||[]).map(o=>`
+    <div class="sopt${dm[key]===o?' sel':''}" onclick="pickSheet(this)">
+      <span>${o}</span><div class="scheck"><svg viewBox="0 0 11 11"><polyline points="1.5,5.5 4,8.5 9.5,2.5"/></svg></div>
+    </div>`).join('');
+  document.getElementById('sbg').classList.add('open');
+}
+function pickSheet(el){
+  const val=el.querySelector('span').textContent;dm[activeKey]=val;
+  const dv=document.getElementById('dv-'+activeKey);const dc=document.getElementById('dc-'+activeKey);
+  if(dv)dv.textContent=val;if(dc)dc.classList.add('filled');
+  saveState();
+  closeSheet();checkDemoReady();if(demoPage===0)renderKPIPreview();
+}
+function closeSheet(e){
+  if(e&&e.target!==document.getElementById('sbg'))return;
+  document.getElementById('sbg').classList.remove('open');activeKey=null;
+}
+
+function marginToDecimal(str){
+  if(!str)return null;
+  return{'Under 15%':0.10,'15 – 20%':0.175,'20 – 25%':0.225,'25 – 30%':0.275,'30 – 35%':0.325,'35 – 40%':0.375,'40 – 45%':0.425,'45 – 50%':0.475,'50 – 60%':0.55,'60%+':0.65}[str]||null;
+}
+
+function calcKPIs(){
+  const kpis=[];
+  const rev=dm.revenue||0,ads=dm.adspend||0,aov=dm.aov||1;
+  const md=marginToDecimal(dm.margin);
+  // MER — the primary efficiency metric
+  if(ads>0&&rev>0){
+    const m=parseFloat((rev/ads).toFixed(1));
+    const st=m>=5?'ok':m>=3?'ok':m>=2?'warn':'bad';
+    const bn=m>=5?'Strong':m>=3?'Healthy':m>=2?'Moderate':'Under pressure';
+    kpis.push({name:'MER',val:`${m.toFixed(1)}×`,bench:bn,note:'revenue ÷ ad spend',status:st,sub:'Marketing Efficiency Ratio',full:true});
+  }
+  // Ad Spend Share
+  if(ads>0&&rev>0){
+    const pct=Math.round(ads/rev*100);
+    const st=pct<=20?'ok':pct<=35?'warn':'bad';
+    const bn=pct<=20?'Very efficient':pct<=35?'Healthy range':'High — watch margin';
+    kpis.push({name:'Ad Spend Share',val:`${pct}%`,bench:bn,note:'ad spend ÷ revenue',status:st,sub:''});
+  }
+  // Cost per Order (ad-spend-only CAC proxy)
+  if(ads>0&&rev>0&&aov>0){
+    const orders=Math.max(1,Math.round(rev/aov));
+    const cpo=Math.round(ads/orders);
+    const ratio=cpo/aov;
+    const st=ratio<0.3?'ok':ratio<0.6?'warn':'bad';
+    const bn=ratio<0.3?'Strong — well below AOV':ratio<0.6?'Manageable':'Tight — watch margin';
+    kpis.push({name:'Cost per Order',val:cpo>=1000?`€${(cpo/1000).toFixed(1)}k`:`€${cpo}`,bench:bn,note:'ad spend ÷ estimated orders',status:st,sub:'Ad spend only'});
+  }
+  // Orders to Break Even
+  if(ads>0&&rev>0&&aov>0&&md){
+    const orders=Math.max(1,Math.round(rev/aov));
+    const cpo=ads/orders;
+    const be=cpo/(aov*md);
+    const bs=be<1?'ok':be<=2?'ok':be<=4?'warn':'bad';
+    const bb=be<1?'Profitable immediately':be<=2?'Recovers fast':be<=4?'Needs retention':'High risk';
+    kpis.push({name:'Orders to Break Even',val:be.toFixed(1)+'×',bench:bb,note:'cost per order ÷ (AOV × margin)',status:bs,sub:''});
+  }
+  return kpis;
+}
+
+function buildResults(){
+  const total=calcTotal(),pct=totalPct(total);
+  const scores=calcDimScores(),zone=getZone(pct),kpis=calcKPIs();
+
+  let headline,subline,storyTitle,storyBody;
+  if(pct>=75){
+    headline=`${founderName}, you are building a compounding machine.`;
+    subline='The architecture is in place. The question now is how fast you compound it.';
+    storyTitle='From founder-driven to system-driven — you are across the line.';
+    storyBody='You have built what most founders never reach: an operation that runs, measures, and grows without your constant involvement. The next chapter is not about fixing gaps — it is about adding leverage. AI deeper into your strongest workflows. A second channel before you need it. Retention flows that turn acquisition cost into lifetime profit. The compounding has already started.';
+  }else if(pct>=50){
+    headline=`${founderName}, the system is forming — and gaining momentum.`;
+    subline='You are past the hardest part of the transition. Here is where to focus next.';
+    storyTitle='You are not building from zero. You are closing the final gaps.';
+    storyBody='The infrastructure exists. Channels are working, processes are documented, and the team can operate in defined areas without you. The remaining gaps are specific and closable — not about effort, but about architecture. Each dimension you move from amber to green removes a decision from your plate and adds to a system that runs while you sleep.';
+  }else if(pct>=25){
+    headline=`${founderName}, the transition has started. The ceiling is visible.`;
+    subline='You have real assets. And a clear picture of what is still holding you back.';
+    storyTitle='The gap between founder-dependent and founder-free is smaller than it looks.';
+    storyBody='You have channels that work, a team that tries, and some structure in place. But in the areas that matter most, decisions still route back to you. That is the ceiling — not a lack of effort, but a missing layer of systems. The shift happens dimension by dimension: one scorecard, one automated flow, one documented process at a time. Each one removes you from a bottleneck. Each one adds to something that compounds.';
+  }else{
+    headline=`${founderName}, right now you are the business.`;
+    subline='That is your greatest strength — and your most important constraint to address.';
+    storyTitle='Every founder-led business hits the same ceiling. You can see it from here.';
+    storyBody='When you are the engine, you feel the friction every day — decisions only you can make, campaigns that stall when you step away, growth that requires more of you to produce more output. This is not a permanent state. The businesses that break through do not do it by working harder. They systematise what works, remove themselves from the execution loop, and let retention, data, and channel architecture do the heavy lifting. Your plan screen shows you exactly where to start.';
+  }
+
+  function bc(p){return p>=75?'g':p>=50?'m':'l';}
+
+  const dimRows=Object.entries(DIMS).map(([key,dim])=>{
+    const p=dimPct(key,scores);
+    return`<div class="dimbar">
+      <div class="dimt"><span class="dimname">${dim.name}</span><span class="dimscore">${p}%</span></div>
+      <div class="dimtrack"><div class="dimfill ${bc(p)}" data-w="${p}"></div></div>
+      <div class="dimsub">${dim.sub}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('rscroll').innerHTML=`
+    <div class="rhero">
+      <div class="rlogo">Marketing Autonomy Score · Benedict Schweiger</div>
+      <div class="scorecircle"><span class="scorenum" id="snum">0</span><span class="scoredenom">out of 100</span></div>
+      <div class="scorelevel ${zone.lc}">${zone.label}</div>
+      <div class="rheadline">${headline}</div>
+      <div class="rsubline">${subline}</div>
+      <div style="margin-top:18px">${spectrumLight(pct)}</div>
+    </div>
+    <div class="rstory">
+      <div class="rstory-title">${storyTitle}</div>
+      <div class="rstory-body">${storyBody}</div>
+    </div>
+    <div class="rsec">
+      <div class="rseciconrow">
+        <div class="rsecicon"><svg viewBox="0 0 14 14"><rect x="1" y="1" width="12" height="12" rx="2"/><path d="M4 7h6M4 4.5h6M4 9.5h4" stroke-linecap="round"/></svg></div>
+        <span class="rsect">Score by Dimension</span>
+      </div>
+      ${dimRows}
+    </div>
+    ${kpis.length>0?`<div class="rsec">
+      <div class="rseciconrow">
+        <div class="rsecicon"><svg viewBox="0 0 14 14"><path d="M1 10l3-3 3 3 3-4 3 4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="rsect">Your Business Benchmarks</span>
+      </div>
+      <div class="kpigrid">${kpis.map(k=>k.full
+        ?`<div class="kpicard kpifull"><div class="kpiname">${k.name}</div>${k.sub?`<div class="kpisub">${k.sub}</div>`:''}<div class="kpival">${k.val}</div><div class="kpibench ${k.status}"><em>${k.bench}</em>${k.note?` · ${k.note}`:''}</div></div>`
+        :`<div class="kpicard"><div class="kpiname">${k.name}</div>${k.sub?`<div class="kpisub">${k.sub}</div>`:''}<div class="kpival">${k.val}</div><div class="kpibench ${k.status}"><em>${k.bench}</em>${k.note?` · ${k.note}`:''}</div></div>`
+      ).join('')}</div>
+    </div>`:''}
+    <div class="optincard">
+      <div class="optineyebrow">YOUR BREAKDOWN IS READY</div>
+      <div class="optintitle">${founderName}, here is exactly where your score breaks down.</div>
+      <p class="optinsub">Your ${pct}/100 tells you where you are. Your dimension breakdown shows you precisely why — and the one move to make first. Enter your email to unlock it.</p>
+      <div id="optinform">
+        <input class="optininput" type="email" id="oiemail" placeholder="Your best email" autocomplete="email"/>
+        <div class="optinerr" id="oierr">Please enter a valid email address.</div>
+        <textarea class="optininput" id="oiobstacle" placeholder="If you had a magic wand, which specific daily marketing task would you permanently delegate tomorrow? (optional)" style="height:88px;resize:none;line-height:1.55;padding-top:13px"></textarea>
+        <button class="btnsend" onclick="submitOptin()">Show me my breakdown →</button>
+        <p class="optinfine">No spam. No pitch. Unsubscribe anytime.</p>
+      </div>
+    </div>`;
+
+  show('sr');
+  animScore(pct);
+  setTimeout(()=>{document.querySelectorAll('#rscroll .dimfill').forEach((el,i)=>{setTimeout(()=>{el.style.width=el.dataset.w+'%';},i*100);});},300);
+}
+
+function animScore(target){
+  let n=0;const el=document.getElementById('snum');if(!el)return;
+  const step=Math.max(1,Math.round(target/40));
+  const t=setInterval(()=>{n=Math.min(n+step,target);el.textContent=n;if(n>=target)clearInterval(t);},30);
+}
+
+function submitOptin(){
+  const email=(document.getElementById('oiemail')||{}).value||'';
+  const err=document.getElementById('oierr');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())){err.classList.add('show');return;}
+  err.classList.remove('show');
+  const obstacle=(document.getElementById('oiobstacle')||{}).value||'';
+  const total=calcTotal();
+  const pct=totalPct(total);
+  const scores=calcDimScores();
+  const zone=getZone(pct);
+  fetch('/.netlify/functions/subscribe',{
+    method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      // Identity
+      timestamp:new Date().toISOString(),
+      name:founderName,
+      email:email.trim(),
+      // Scores
+      score:pct,
+      zone:zone.label,
+      score_co:dimPct('CO',scores),
+      score_ie:dimPct('IE',scores),
+      score_ga:dimPct('GA',scores),
+      // Key question signals
+      q1:ans[0]!==null?QS[0].opts[ans[0]].pts:null,
+      q4:ans[3]!==null?QS[3].opts[ans[3]].pts:null,
+      q8:ans[7]!==null?QS[7].opts[ans[7]].pts:null,
+      q12:ans[11]!==null?QS[11].opts[ans[11]].pts:null,
+      q14:ans[13]!==null?QS[13].opts[ans[13]].pts:null,
+      // Demographics
+      revenue:dm.revenue,
+      adspend:dm.adspend,
+      aov:dm.aov,
+      margin:dm.margin,
+      // Open signal
+      biggest_obstacle:obstacle.trim(),
+      source:'moltke-diagnostic',
+    })
+  }).catch(()=>{});
+  buildPlan();show('sp');
+}
+
+function buildPlan(){
+  const pct=totalPct(calcTotal());
+  const scores=calcDimScores();
+  const sorted=Object.entries(DIMS).map(([key,dim])=>({key,dim,p:dimPct(key,scores)})).sort((a,b)=>a.p-b.p);
+  const urgent=sorted.filter(d=>d.p<50);
+  const priority=sorted.filter(d=>d.p>=50&&d.p<75);
+  const strong=sorted.filter(d=>d.p>=75);
+
+  function card(d,badge,cls){
+    const ins=INS[d.key];
+    return`<div class="insightcard">
+      <div class="insighttop">
+        <div class="insightbadge ${cls}">${badge}</div>
+        <span class="insightdim">${d.dim.name} · ${d.p}%</span>
+      </div>
+      <div class="insighttitle">${ins.t}</div>
+      <div class="insightdesc">${ins.d}</div>
+    </div>`;
+  }
+
+  document.getElementById('pscroll').innerHTML=`
+    <div class="rhero" style="text-align:left">
+      <div class="rlogo">Marketing Autonomy Score · Your Action Plan</div>
+      <div class="rheadline" style="margin-top:10px">${founderName}, here is where to focus.</div>
+      <div class="rsubline">Score: <strong>${pct}/100</strong> · First email on its way.</div>
+    </div>
+    ${urgent.length?`<div class="rsec">
+      <div class="rseciconrow"><div class="rsecicon rsecicon-red"><svg viewBox="0 0 14 14"><path d="M7 2v5M7 10v1" stroke-linecap="round"/></svg></div><span class="rsect">Act First — Below 50%</span></div>
+      ${urgent.map(d=>card(d,'Urgent','badge-red')).join('')}</div>`:''}
+    ${priority.length?`<div class="rsec">
+      <div class="rseciconrow"><div class="rsecicon rsecicon-amber"><svg viewBox="0 0 14 14"><path d="M2 10l3-3 2 2 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="rsect">Build This Quarter — 50–74%</span></div>
+      ${priority.map(d=>card(d,'Priority','badge-amber')).join('')}</div>`:''}
+    ${strong.length?`<div class="rsec">
+      <div class="rseciconrow"><div class="rsecicon" style="background:#e8f5ee"><svg viewBox="0 0 14 14" style="stroke:#2a7a4e"><path d="M2 8l3 3 7-7" stroke-linecap="round" stroke-linejoin:round"/></svg></div><span class="rsect">Already Working — Protect These</span></div>
+      ${strong.map(d=>card(d,'Strength','badge-green')).join('')}</div>`:''}
+    <div style="padding:10px 20px 48px">
+      <div style="background:var(--bg);border-radius:var(--r);padding:18px 20px;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--s);margin-bottom:8px">Next Step</div>
+        <div style="font-size:16px;font-weight:800;letter-spacing:-.02em;color:var(--blk);margin-bottom:6px">eComm Marketing Audit · Executive Briefing</div>
+        <div style="font-size:13px;line-height:1.6;color:var(--mg);margin-bottom:14px">30 minutes. We review your growth architecture, identify your biggest manual bottlenecks, and map out exactly what to build next. Zero agency pitches. Pure strategy.</div>
+        <button class="brk-btn" style="background:#1a1a1a;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,0.25);" onclick="window.location.href='https://benedictschweiger.com'">
+          Book your Executive Briefing →
+        </button>
+      </div>
+      <button class="btnrestart" style="margin-top: 0;" onclick="show('sr')">← Back to my score</button>
+      <button class="btnrestart" onclick="restart()">Restart the diagnostic</button>
+    </div>`;
+}
+
+function restart(){
+  localStorage.removeItem('masState');
+  founderName='';cur=0;ans=new Array(QS.length).fill(null);
+  dm={revenue:346410,adspend:30000,aov:316,revenue_raw:50,adspend_raw:50,aov_raw:50,margin:null};
+  const ln=document.getElementById('lname');if(ln)ln.value='';
+  document.getElementById('btnresume').style.display = 'none';
+  show('sl');
+}
+</script>
+</body>
+</html>

@@ -6,8 +6,11 @@ exports.handler = async function(event) {
   let email, firstName;
   try {
     const body = JSON.parse(event.body);
+    // Support both homepage form {email, firstName} and diagnostic {email, name}
     email = body.email;
-    firstName = body.firstName || "";
+    firstName = body.firstName || body.name || "";
+    // Strip to first name only if full name given
+    if (firstName.includes(" ")) firstName = firstName.split(" ")[0];
   } catch {
     return { statusCode: 400, body: JSON.stringify({ error: "Invalid JSON" }) };
   }
@@ -34,8 +37,7 @@ exports.handler = async function(event) {
     return { statusCode: 200, body: JSON.stringify({ success: true }) };
   }
 
-  const err = await res.json();
-  // Already subscribed = treat as success
+  const err = await res.json().catch(() => ({}));
   if (err.code === "duplicate_parameter") {
     return { statusCode: 200, body: JSON.stringify({ success: true }) };
   }
