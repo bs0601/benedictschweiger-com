@@ -235,18 +235,28 @@
 <!-- GA4: track Brevo form success as conversion -->
 <script>
 (function() {
-  var success = document.getElementById('success-message');
-  if (!success) return;
-  var observer = new MutationObserver(function() {
-    if (success.style.display !== 'none' && success.offsetParent !== null) {
-      gtag('event', 'newsletter_signup', {
-        'event_category': 'engagement',
-        'event_label': 'The Autonomy Brief'
-      });
-      observer.disconnect();
-    }
+  var form = document.getElementById('sib-form');
+  if (!form) return;
+  var fired = false;
+  form.addEventListener('submit', function() {
+    // Poll for success message visibility after submit
+    var attempts = 0;
+    var poll = setInterval(function() {
+      var success = document.getElementById('success-message');
+      attempts++;
+      if (success && getComputedStyle(success).display !== 'none') {
+        if (!fired) {
+          fired = true;
+          gtag('event', 'newsletter_signup', {
+            'event_category': 'engagement',
+            'event_label': 'The Autonomy Brief'
+          });
+        }
+        clearInterval(poll);
+      }
+      if (attempts > 20) clearInterval(poll);
+    }, 500);
   });
-  observer.observe(success, { attributes: true, attributeFilter: ['style'] });
 })();
 </script>
 
