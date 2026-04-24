@@ -232,6 +232,24 @@
 .brevo-form-wrap iframe { border: none !important; }
 </style>
 
+<!-- GA4: track Brevo form success as conversion -->
+<script>
+(function() {
+  var success = document.getElementById('success-message');
+  if (!success) return;
+  var observer = new MutationObserver(function() {
+    if (success.style.display !== 'none' && success.offsetParent !== null) {
+      gtag('event', 'newsletter_signup', {
+        'event_category': 'engagement',
+        'event_label': 'The Autonomy Brief'
+      });
+      observer.disconnect();
+    }
+  });
+  observer.observe(success, { attributes: true, attributeFilter: ['style'] });
+})();
+</script>
+
 {{ partial "analytics.html" . }}
 </body>
 </html>
