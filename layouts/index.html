@@ -59,10 +59,11 @@
     <div class="nl-card">
       <div class="nl-badge">The Autonomy Brief</div>
       <div class="nl-title">Once a week. No filler.</div>
-      <p class="nl-sub">One marketing system. One data point from the field. What I'm building with AI — and what's actually working at ALTHERR.</p>
-      <input type="email" class="nl-input" id="nl-email" placeholder="your@email.com" autocomplete="email"/>
-      <button class="nl-btn" id="nl-submit">Subscribe →</button>
-      <p class="nl-note" id="nl-msg">No spam. Unsubscribe anytime.</p>
+      <p class="nl-sub">One marketing system. One data point from the field. What I'm building with AI — and what's actually working.</p>
+      <div class="brevo-form-wrap">
+        <iframe width="540" height="305" src="https://74ff9f79.sibforms.com/serve/MUIFAEkLEDqePqM6ry5thQSkYTbFz5AP9q7a3-K_s_hALeM8i9uk1YvkZl9_OTo969Wb_urqM1ipepmIbiai4VPublNP_gjkyDBeZRJjeL0xaLtL82b1BdXTUelbxmeEXA3LNxI_t5a22OMZn1A7CSajOOzrG5qJ2HpjMv8n7hG9ddhDk_w5EaZb-cXMuRZ-eYx4H-Zh61pVvl9d2w==" frameborder="0" scrolling="auto" allowfullscreen style="display:block;margin:0 auto;max-width:100%;border:none;"></iframe>
+      </div>
+      <p class="nl-note">No spam. Unsubscribe anytime.</p>
     </div>
   </div>
 </div>
@@ -109,65 +110,11 @@
   <div class="footer-copy">&copy; {{ now.Year }} Benedict Schweiger</div>
 </footer>
 
-<!-- Newsletter subscribe via Brevo API (List ID: 8) -->
-<script>
-(function() {
-  // To activate: set your Brevo API key below.
-  // Keep this page served over HTTPS. For production, consider a serverless proxy.
-  var BREVO_API_KEY = ""; // <-- paste your Brevo v3 API key here
-
-  var btn = document.getElementById("nl-submit");
-  var input = document.getElementById("nl-email");
-  var msg = document.getElementById("nl-msg");
-
-  btn.addEventListener("click", function() {
-    var email = input.value.trim();
-    if (!email || !email.includes("@")) {
-      msg.textContent = "Please enter a valid email address.";
-      msg.style.color = "#c0392b";
-      return;
-    }
-    btn.disabled = true;
-    btn.textContent = "Subscribing…";
-
-    fetch("https://api.brevo.com/v3/contacts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": BREVO_API_KEY
-      },
-      body: JSON.stringify({
-        email: email,
-        listIds: [8],
-        updateEnabled: true
-      })
-    })
-    .then(function(res) {
-      if (res.ok || res.status === 204) {
-        msg.textContent = "You're in. See you in your inbox.";
-        msg.style.color = "#2a7a4e";
-        input.value = "";
-        btn.textContent = "Subscribed ✓";
-      } else {
-        return res.json().then(function(data) {
-          throw new Error(data.message || "Something went wrong.");
-        });
-      }
-    })
-    .catch(function(err) {
-      msg.textContent = err.message || "Couldn't subscribe. Try again.";
-      msg.style.color = "#c0392b";
-      btn.disabled = false;
-      btn.textContent = "Subscribe →";
-    });
-  });
-
-  // Allow Enter key to submit
-  input.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") btn.click();
-  });
-})();
-</script>
+<!-- Brevo iframe style overrides -->
+<style>
+.brevo-form-wrap { margin: 20px 0 0; }
+.brevo-form-wrap iframe { border: none !important; }
+</style>
 
 {{ partial "analytics.html" . }}
 </body>
