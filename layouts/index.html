@@ -232,29 +232,6 @@
 .brevo-form-wrap iframe { border: none !important; }
 </style>
 
-<!-- GA4: track newsletter signup — fires on submit click before page redirect -->
-<script>
-(function() {
-  function attach() {
-    var btn = document.querySelector('.sib-form-block__button');
-    var email = document.getElementById('EMAIL');
-    if (!btn) return;
-    btn.addEventListener('click', function() {
-      if (!email || !email.value.includes('@')) return;
-      gtag('event', 'newsletter_signup', {
-        'event_category': 'engagement',
-        'event_label': 'The Autonomy Brief',
-        'transport_type': 'beacon'
-      });
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', attach);
-  } else {
-    attach();
-  }
-})();
-</script>
 
 {{ partial "analytics.html" . }}
 </body>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>You're in — Benedict Schweiger</title>
+<meta name="robots" content="noindex"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BE73N9F42M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BE73N9F42M');
+  // Fire conversion on page load — this page only loads after successful signup
+  gtag('event', 'newsletter_signup', {
+    'event_category': 'engagement',
+    'event_label': 'The Autonomy Brief'
+  });
+</script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:480px;width:100%;text-align:center}
+  .icon{width:64px;height:64px;background:#F5EBE4;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px}
+  .icon svg{width:28px;height:28px;stroke:#C4622D;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#C4622D;background:#F5EBE4;padding:5px 14px;border-radius:20px;margin-bottom:20px}
+  h1{font-size:clamp(28px,6vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
+  p{font-size:16px;color:#717171;line-height:1.75;margin-bottom:32px}
+  .divider{width:40px;height:2px;background:#C4622D;border-radius:2px;margin:0 auto 32px}
+  .what-to-expect{background:#f7f7f7;border-radius:16px;padding:24px;text-align:left;margin-bottom:32px}
+  .wte-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#717171;margin-bottom:16px}
+  .wte-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+  .wte-item:last-child{margin-bottom:0}
+  .wte-dot{width:6px;height:6px;border-radius:50%;background:#C4622D;flex-shrink:0;margin-top:7px}
+  .wte-text{font-size:14px;color:#484848;line-height:1.6}
+  .btn{display:inline-block;background:#1a1a1a;color:#fff;text-decoration:none;font-size:15px;font-weight:700;padding:14px 28px;border-radius:12px;transition:background .15s}
+  .btn:hover{background:#333}
+  .fine{margin-top:20px;font-size:12px;color:#717171}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="icon">
+    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  </div>
+  <span class="badge">The Autonomy Brief</span>
+  <h1>You're in.</h1>
+  <p>First issue lands in your inbox shortly. In the meantime — here's what you signed up for.</p>
+  <div class="divider"></div>
+  <div class="what-to-expect">
+    <div class="wte-title">What to expect</div>
+    <div class="wte-item"><div class="wte-dot"></div><div class="wte-text"><strong>Once a week</strong> — every Friday morning, no filler.</div></div>
+    <div class="wte-item"><div class="wte-dot"></div><div class="wte-text"><strong>One marketing system</strong> — from real work at a scaling D2C brand.</div></div>
+    <div class="wte-item"><div class="wte-dot"></div><div class="wte-text"><strong>One data point</strong> — what's actually working with AI and agentic marketing.</div></div>
+    <div class="wte-item"><div class="wte-dot"></div><div class="wte-text"><strong>One thing to implement</strong> — not inspiration, but a move you can make this week.</div></div>
+  </div>
+  <a href="/" class="btn">Read the blog →</a>
+  <p class="fine">Check your spam folder if you don't see the welcome email within a few minutes.</p>
+</div>
+</body>
+</html>
