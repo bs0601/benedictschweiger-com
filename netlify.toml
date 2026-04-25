@@ -8,6 +8,11 @@
 [context.production.environment]
   HUGO_ENV = "production"
 
+[[redirects]]
+  from = "/resources"
+  to = "/resources/"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
