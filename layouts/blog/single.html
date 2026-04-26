@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#ffffff"/>
+<title>{{ .Title }} — {{ .Site.Title }}</title>
+<meta name="description" content="{{ .Params.excerpt | default .Summary }}"/>
+<meta property="og:title" content="{{ .Title }}"/>
+<meta property="og:description" content="{{ .Params.excerpt | default .Summary }}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="{{ .Permalink }}"/>
+{{ with (index .Site.Params.images 0) }}<meta property="og:image" content="{{ . }}"/>{{ end }}
+<link rel="canonical" href="{{ .Permalink }}"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BE73N9F42M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BE73N9F42M');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<style>
+/* ── ARTICLE PROSE ── */
+.article-wrap{max-width:600px;margin:0 auto;padding:32px 20px 48px}
+.article-header{margin-bottom:28px}
+.article-meta{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.article-title{font-size:clamp(26px,7vw,36px);font-weight:800;line-height:1.12;letter-spacing:-.03em;color:var(--blk);margin-bottom:0}
+.article-excerpt{font-size:15px;line-height:1.7;color:var(--mg);margin-top:12px}
+
+/* Prose */
+.prose{font-size:16px;line-height:1.78;color:var(--dg)}
+.prose h2{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--blk);margin:36px 0 12px;line-height:1.2}
+.prose h3{font-size:18px;font-weight:700;letter-spacing:-.015em;color:var(--blk);margin:28px 0 10px;line-height:1.25}
+.prose p{margin:0 0 18px}
+.prose a{color:var(--s);text-decoration:underline;text-underline-offset:2px}
+.prose a:hover{color:#a84f24}
+.prose strong{color:var(--blk);font-weight:600}
+.prose em{font-style:italic}
+.prose ul,.prose ol{margin:0 0 18px;padding-left:24px}
+.prose li{margin-bottom:6px}
+.prose li::marker{color:var(--s)}
+.prose blockquote{border-left:3px solid var(--s);padding:2px 0 2px 18px;margin:24px 0;color:var(--mg);font-style:italic}
+.prose blockquote p{margin-bottom:0}
+.prose code{font-size:14px;background:var(--bg);padding:2px 6px;border-radius:4px}
+.prose pre{background:var(--bg);border-radius:var(--rs);padding:16px;overflow-x:auto;margin:0 0 18px}
+.prose pre code{background:none;padding:0}
+.prose hr{border:none;height:1px;background:var(--lg);margin:32px 0}
+.prose img{max-width:100%;border-radius:var(--rs);margin:18px 0}
+.prose table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+.prose th,.prose td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--lg)}
+.prose th{font-weight:700;color:var(--blk)}
+
+/* Back nav CTA */
+.nav-back{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--s);text-decoration:none;white-space:nowrap}
+.nav-back svg{width:16px;height:16px;stroke:var(--s);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.nav-back:hover{color:#a84f24}
+.nav-back:hover svg{stroke:#a84f24}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-icon">
+      <svg viewBox="0 0 16 16"><path d="M3 8h10M8 3l3 5-3 5"/></svg>
+    </div>
+    <span class="nav-name">Benedict Schweiger</span>
+  </a>
+  <a href="/" class="nav-back">
+    <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5"/></svg>
+    Back
+  </a>
+</nav>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+  <header class="article-header">
+    <div class="article-meta">
+      {{ with .Params.pillar }}
+      {{ $pillarClass := "pillar-pricing" }}
+      {{ if eq . "marketing" }}{{ $pillarClass = "pillar-marketing" }}{{ end }}
+      {{ if eq . "systems" }}{{ $pillarClass = "pillar-systems" }}{{ end }}
+      {{ if eq . "leadership" }}{{ $pillarClass = "pillar-leadership" }}{{ end }}
+      {{ if eq . "agentic" }}{{ $pillarClass = "pillar-agentic" }}{{ end }}
+      <span class="post-pillar {{ $pillarClass }}">{{ . | humanize }}</span>
+      {{ end }}
+      <span class="post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+    </div>
+    <h1 class="article-title">{{ .Title }}</h1>
+    {{ with .Params.excerpt }}
+    <p class="article-excerpt">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</article>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/benedictschweiger" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.youtube.com/channel/UCoCNyB7omxposyGloac8cA" target="_blank" rel="noopener">YouTube</a>
+    <a href="mailto:benedictschweiger@gmail.com">Email</a>
+  </div>
+  <div class="footer-copy">&copy; {{ now.Year }} Benedict Schweiger</div>
+</footer>
+
+{{ partial "analytics.html" . }}
+</body>
+</html>
