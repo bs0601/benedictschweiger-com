@@ -61,6 +61,9 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 .btnstart:active{background:#a84f24}
 .btnrestart{width:100%;background:none;border:1.5px solid var(--lg);border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:var(--dg);padding:13px;cursor:pointer;min-height:46px;margin-top:8px}
 .lnote{text-align:center;font-size:12px;color:var(--mg);margin-top:12px}
+.loutcome{font-size:14px;line-height:1.65;color:var(--dg);background:var(--slt);border-radius:var(--rs);padding:14px 16px;margin-bottom:14px;border-left:3px solid var(--s)}
+.lsocial{font-size:13px;color:var(--mg);text-align:center;margin-bottom:20px}
+.statv2{font-size:11px;font-weight:700;color:var(--mg);letter-spacing:.03em;margin-top:3px;display:block}
 
 /* QUIZ */
 #sq{background:var(--w);padding-top:calc(var(--st) + 16px)}
@@ -272,30 +275,28 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
     <div class="li"><svg viewBox="0 0 16 16"><path d="M2 8h12M2 4l4 4-4 4M10 4l4 4-4 4"/></svg></div>
     <span class="ln">Benedict Schweiger</span>
   </div>
-  <div class="lbadge"><span class="lbdot"></span>Marketing Diagnostic</div>
+  <div class="lbadge"><span class="lbdot"></span>Free Marketing Diagnostic</div>
   <h1 class="lh"><em>Fire yourself</em><br>as the Operator.</h1>
   <p class="lsub">Most marketing teams run on the CMO's energy. The best ones run on systems.</p>
   <ul class="lfriction">
-    <li><span class="lfdash">—</span><span>Does content and budget still require your personal approval?</span></li>
-    <li><span class="lfdash">—</span><span>Is embedding AI still a "dream" buried under layers of manual debt?</span></li>
+    <li><span class="lfdash">—</span><span>You're still the last person to approve every campaign before it goes live.</span></li>
+    <li><span class="lfdash">—</span><span>Your team asks for your input on decisions they should own.</span></li>
+    <li><span class="lfdash">—</span><span>You know you should be building systems — but the daily grind keeps winning.</span></li>
   </ul>
-  <p class="lsub" style="margin-bottom:24px">Stop being the motor. Uncover how dependent your business growth is on your energy — and start building intelligent marketing systems.</p>
-  <div class="lcard">
-    <p class="lqt">"No plan survives first contact with the enemy. Build commanders who can decide without you."</p>
-    <span class="lqc">Benedict Schweiger · CMO ALTHERR · Ex-Simon-Kucher</span>
-  </div>
   <div class="lstats">
-    <div class="statb"><span class="statv">15</span><span class="statl">Questions to expose your manual debt</span></div>
-    <div class="statb"><span class="statv">6′</span><span class="statl">To audit your scaling engine</span></div>
-    <div class="statb"><span class="statv">3</span><span class="statl">Dimensions scored</span></div>
-    <div class="statb"><span class="statv">Free</span><span class="statl">Instant score + action plan</span></div>
+    <div class="statb"><span class="statv">15</span><span class="statl">Questions</span></div>
+    <div class="statb"><span class="statv">6′</span><span class="statl">Minutes</span></div>
+    <div class="statb"><span class="statv">3</span><span class="statv2">Dimensions</span></div>
+    <div class="statb"><span class="statv">Free</span><span class="statl">No catch</span></div>
   </div>
+  <p class="loutcome">In 6 minutes, you'll know your score across 3 dimensions — and the exact area where your operation is leaking the most energy.</p>
+  <p class="lsocial">&#128101; 200+ marketing leaders have scored their operation.</p>
   <div class="lnamewrap">
-    <label class="lnamelabel" for="lname">Before we begin — your first name</label>
+    <label class="lnamelabel" for="lname">Before we begin — what should I call you?</label>
     <input class="lnameinput" type="text" id="lname" placeholder="First name" autocomplete="given-name" autocapitalize="words" onkeydown="if(event.key==='Enter')startDiagnostic()"/>
     <div class="lnameerr" id="lnameerr">Please enter your name to begin.</div>
   </div>
-  <button class="btnstart" onclick="startDiagnostic()">→ Run the diagnostic</button>
+  <button class="btnstart" onclick="startDiagnostic()">Show me my score →</button>
   <button class="btnrestart" id="btnresume" onclick="resumeDiagnostic()" style="display:none; margin-top:8px;">↻ Continue where you left off</button>
   <p class="lnote">Your score is visible without email</p>
 </div>
@@ -354,30 +355,30 @@ const BREAK2_AFTER=9; // fire break after answering Q index 8 (Q9)
 const QS=[
   {dim:'CO',phase:'Command',stem:'Could your marketing function without you for 3 months?',
    opts:[{t:'No. It lives entirely in my head.',pts:0},{t:'Barely. The team requires my constant direction.',pts:30},{t:'Yes. Documented processes and a capable team are in place.',pts:80},{t:'Better. The system runs more efficiently without my involvement.',pts:100}]},
-  {dim:'CO',phase:'Command',stem:'What is your relationship with external partners — agencies or freelancers?',
+  {dim:'CO',phase:'Command',stem:'What is your relationship with external partners - agencies or freelancers?',
    opts:[{t:'Total dependence. They hold the keys to our execution.',pts:10},{t:'Confusion. We pay them but don\'t fully understand their output.',pts:30},{t:'Tactical. We use them for specific tasks and can replace them.',pts:70},{t:'Optional. Core skills are in-house. Agencies are a choice.',pts:100}]},
   {dim:'CO',phase:'Command',stem:'How does your team communicate and operate day-to-day?',
-   opts:[{t:'Reactive chaos. Most of the day is unplanned calls and firefighting.',pts:0},{t:'Message-heavy. Constant pings without clear ownership or outcomes.',pts:30},{t:'Structured. Set weekly meetings and tools — but sync is still the default.',pts:60},{t:'Async-first. Recorded updates and written docs. Meetings are the exception.',pts:100}]},
+   opts:[{t:'Reactive chaos. Most of the day is unplanned calls and firefighting.',pts:0},{t:'Message-heavy. Constant pings without clear ownership or outcomes.',pts:30},{t:'Structured. Set weekly meetings and tools - but sync is still the default.',pts:60},{t:'Async-first. Recorded updates and written docs. Meetings are the exception.',pts:100}]},
   {dim:'IE',phase:'Intelligence',stem:'To what extent is AI integrated into your daily workflow?',
    opts:[{t:'None. We haven\'t started.',pts:0},{t:'Fragmented. A few individuals use tools, but there is no system.',pts:30},{t:'Functional. AI assists in specific areas like copy or analysis.',pts:60},{t:'Strategic. AI is a core engine that saves significant time daily.',pts:100}]},
   {dim:'IE',phase:'Intelligence',stem:'How does the team track performance when you aren\'t looking?',
    opts:[{t:'They don\'t. We only check when something breaks.',pts:0},{t:'Manually. I pull reports and explain them to the team.',pts:30},{t:'Passively. We have a dashboard, but no one acts on it alone.',pts:60},{t:'Autonomously. The team runs a live scorecard without me.',pts:100}]},
   {dim:'IE',phase:'Intelligence',stem:'Do you trust your Customer Acquisition Cost (CAC) and Lifetime Value (LTV)?',
-   opts:[{t:'No. We don\'t track these numbers.',pts:0},{t:'Partially. Rough estimates — nothing we fully trust.',pts:30},{t:'Mostly. We track them but don\'t use them to shift budget.',pts:70},{t:'Absolutely. Precise data drives every Euro of spend.',pts:100}]},
+   opts:[{t:'No. We don\'t track these numbers.',pts:0},{t:'Partially. Rough estimates - nothing we fully trust.',pts:30},{t:'Mostly. We track them but don\'t use them to shift budget.',pts:70},{t:'Absolutely. Precise data drives every Euro of spend.',pts:100}]},
   {dim:'IE',phase:'Intelligence',stem:'How do you know what your customers actually want?',
    opts:[{t:'Assumptions. We haven\'t formally asked.',pts:0},{t:'Anecdotes. Occasional feedback, but not a process.',pts:30},{t:'Surveys. We measure satisfaction but rarely act on it.',pts:60},{t:'Systems. Regular NPS and win/loss analysis drive our decisions.',pts:100}]},
-  {dim:'IE',phase:'Intelligence',stem:'How systematically do you understand why customers buy — and why they leave?',
+  {dim:'IE',phase:'Intelligence',stem:'How systematically do you understand why customers buy - and why they leave?',
    opts:[{t:'We don\'t. We rely on gut feel and occasional sales calls.',pts:0},{t:'Reactively. We only dig in when something goes wrong.',pts:30},{t:'Periodically. We run surveys or exit interviews once or twice a year.',pts:60},{t:'Continuously. A systematic VoC process directly shapes our messaging and decisions.',pts:100}]},
   {dim:'IE',phase:'Intelligence',stem:'Can you see which marketing activity actually drove each sale?',
    opts:[{t:'No. It\'s a black box.',pts:0},{t:'Blurry. We have tracking, but the numbers don\'t add up.',pts:30},{t:'Clear. We understand last-click reasonably well.',pts:70},{t:'Unified. We see the full journey from first touch to conversion.',pts:100}]},
   {dim:'IE',phase:'Intelligence',stem:'How fast do you test new creative and messaging?',
-   opts:[{t:'Stagnant. We run the same ads until they stop working.',pts:0},{t:'Reactive. We create new ads only when performance drops.',pts:30},{t:'Consistent. We launch 2–5 new creative tests every month.',pts:70},{t:'Industrial. We test 10+ new concepts or hooks every week.',pts:100}]},
+   opts:[{t:'Stagnant. We run the same ads until they stop working.',pts:0},{t:'Reactive. We create new ads only when performance drops.',pts:30},{t:'Consistent. We launch 2-5 new creative tests every month.',pts:70},{t:'Industrial. We test 10+ new concepts or hooks every week.',pts:100}]},
   {dim:'GA',phase:'Architecture',stem:'Is your revenue dangerously dependent on a single source or channel?',
    opts:[{t:'Yes. If one channel dies, the business is in serious trouble.',pts:0},{t:'Mostly. One dominant channel with a few minor ones.',pts:30},{t:'No. Two or three channels each contribute meaningfully.',pts:80},{t:'Never. We have no single point of failure.',pts:100}]},
   {dim:'GA',phase:'Architecture',stem:'What is the status of your organic content today?',
    opts:[{t:'Non-existent. We only grow if we pay for ads.',pts:0},{t:'Inconsistent. We post only when we have spare time.',pts:30},{t:'Emerging. It is starting to generate real leads.',pts:70},{t:'Dominant. It actively reduces our dependency on paid.',pts:100}]},
   {dim:'GA',phase:'Architecture',stem:'Do you have an automated system to bring customers back?',
-   opts:[{t:'No. Every sale is a standalone event.',pts:0},{t:'Manual. We send occasional emails when we remember.',pts:30},{t:'Basic. A welcome flow and abandoned cart are running.',pts:60},{t:'Advanced. Full lifecycle automation — winback, loyalty, post-purchase.',pts:100}]},
+   opts:[{t:'No. Every sale is a standalone event.',pts:0},{t:'Manual. We send occasional emails when we remember.',pts:30},{t:'Basic. A welcome flow and abandoned cart are running.',pts:60},{t:'Advanced. Full lifecycle automation - winback, loyalty, post-purchase.',pts:100}]},
   {dim:'GA',phase:'Architecture',stem:'How would you describe your revenue growth today?',
    opts:[{t:'Linear. We start from zero every month.',pts:0},{t:'Fragile. Some repeat customers, but nothing systematic.',pts:30},{t:'Stable. Our recurring base is growing steadily.',pts:75},{t:'Compounding. Acquisition and retention actively feed each other.',pts:100}]},
   {dim:'GA',phase:'Architecture',stem:'How actively do you test and iterate on pricing, offers, and bundle structures?',
@@ -386,16 +387,16 @@ const QS=[
 
 const INS={
   CO:{t:'Fire yourself as the Media Buyer & Operator',d:'Your DTC brand isn\'t scaling because everything goes through your desk. Every day you spend approving ads or digging in the Shopify backend is a day lost for strategic growth. Action: Define a clear decision matrix (based on MER & Blended CAC) and hand over campaign control to your team. Measure them on profitability, not just tasks.'},
-  IE:{t:'Stop flying blind: Build a real-time intelligence layer',d:'If you don\'t know your 60-day LTV or which creative actually drives new customers, you are bleeding margin to Meta and Google. Action: Implement an automated live dashboard (e.g., TripleWhale or a custom data studio). From today, budget scaling decisions must be based on hard unit economics—not gut feeling.'},
+  IE:{t:'Stop flying blind: Build a real-time intelligence layer',d:'If you don\'t know your 60-day LTV or which creative actually drives new customers, you are bleeding margin to Meta and Google. Action: Implement an automated live dashboard (e.g., TripleWhale or a custom data studio). From today, budget scaling decisions must be based on hard unit economics-not gut feeling.'},
   GA:{t:'Stop the margin bleed with true retention architecture',d:'Customer acquisition is too expensive to rely solely on the first purchase. True, exponential growth comes from returning customers. Action: Fully automate your post-purchase journey. Build aggressive win-back flows, test dynamic pricing models to increase AOV, and systematically reduce your dependency on expensive paid traffic.'},
 };
 
 const SHEET_OPTS={
-  margin:['Under 15%','15 – 20%','20 – 25%','25 – 30%','30 – 35%','35 – 40%','40 – 45%','45 – 50%','50 – 60%','60%+'],
+  margin:['Under 15%','15 - 20%','20 - 25%','25 - 30%','30 - 35%','35 - 40%','40 - 45%','45 - 50%','50 - 60%','60%+'],
 };
 
 const DEMO_PAGES=[
-  {title:'Your Business Numbers',sub:'Four numbers. This is what powers your benchmark analysis — MER, Cost per Order, and Break-Even.',fields:[
+  {title:'Your Business Numbers',sub:'Four numbers. This is what powers your benchmark analysis - MER, Cost per Order, and Break-Even.',fields:[
     {key:'revenue',label:'Monthly Revenue (€)',logMin:30000,logMax:4000000,roundTo:10000,fmt:v=>`€${(v/1000).toFixed(0)}k`},
     {key:'adspend',label:'Monthly Ad Spend (€)',logMin:3000,logMax:300000,roundTo:1000,fmt:v=>`€${(v/1000).toFixed(0)}k`},
     {key:'aov',label:'Avg. Order Value (€)',logMin:10,logMax:10000,roundTo:5,fmt:v=>`€${v}`},
@@ -420,10 +421,10 @@ function resumeDiagnostic() {
     const state = JSON.parse(saved);
     cur = state.cur; ans = state.ans; dm = state.dm;
     founderName = state.founderName; demoPage = state.demoPage;
-    
+
     document.getElementById('lname').value = founderName;
     document.getElementById('lnameerr').classList.remove('show');
-    
+
     if (cur < QS.length) {
       show('sq');
       renderQ();
@@ -439,7 +440,7 @@ window.addEventListener('load',()=>{
     document.getElementById('pf').classList.add('out');
     document.getElementById('app').classList.add('rdy');
   },600);
-  
+
   if (localStorage.getItem('masState')) {
     document.getElementById('btnresume').style.display = 'block';
   }
@@ -557,9 +558,9 @@ function buildBreak1(){
   const runPct=totalPct(calcTotal());
   const zone=getZone(pct);
   const msgs={
-    hi:{h:`${founderName}, you are still the engine.`,b:`Every decision routes back to you. That is not a criticism — it is the starting point. Acts II and III will show exactly where to build the first handoffs.`},
+    hi:{h:`${founderName}, you are still the engine.`,b:`Every decision routes back to you. That is not a criticism - it is the starting point. Acts II and III will show exactly where to build the first handoffs.`},
     'low-md':{h:`${founderName}, the command structure is forming.`,b:`There are systems in place, but you are still the decision layer. The next two acts show where intelligence and architecture gaps are compounding your workload.`},
-    md:{h:`${founderName}, your operation is taking shape.`,b:`Processes and a capable team exist. The next two acts reveal whether your intelligence layer and growth architecture are keeping pace — or creating a new ceiling.`},
+    md:{h:`${founderName}, your operation is taking shape.`,b:`Processes and a capable team exist. The next two acts reveal whether your intelligence layer and growth architecture are keeping pace - or creating a new ceiling.`},
     lo:{h:`${founderName}, command is not your bottleneck.`,b:`Your operation runs without you. Acts II and III will show whether data, economics, and growth structure are operating at the same level.`},
   };
   const m=msgs[zone.lc]||msgs.hi;
@@ -579,7 +580,7 @@ function buildBreak1(){
     </div>
     ${spectrumDark(runPct)}
     <div class="brk-next-preview">
-      <div class="brk-next-label">Act II — Intelligence & Economics</div>
+      <div class="brk-next-label">Act II - Intelligence & Economics</div>
       <div class="brk-next-pills">
         <div class="brk-pill">AI Integration</div><div class="brk-pill">Performance Tracking</div>
         <div class="brk-pill">CAC & LTV</div><div class="brk-pill">Attribution</div><div class="brk-pill">Creative Velocity</div>
@@ -596,9 +597,9 @@ function buildBreak2(){
   const runPct=totalPct(calcTotal());
   const zone=getZone(runPct);
   const msgs={
-    hi:{h:`${founderName}, significant gaps are visible.`,b:`Your data and intelligence infrastructure have room to grow. Act III is where these gaps become the most expensive — relying heavily on top-of-funnel Meta Ads instead of compounding your LTV.`},
-    'low-md':{h:`${founderName}, the intelligence layer is emerging.`,b:`Tracking and AI are in place in parts, but not end-to-end. Act III will show whether your growth structure can compound — or still relies on brute force top-of-funnel spend.`},
-    md:{h:`${founderName}, your intelligence layer is solid.`,b:`Data, tracking, and creative testing are working. Now the question is whether the architecture — channels, retention, pricing — can sustain compounding growth.`},
+    hi:{h:`${founderName}, significant gaps are visible.`,b:`Your data and intelligence infrastructure have room to grow. Act III is where these gaps become the most expensive - relying heavily on top-of-funnel Meta Ads instead of compounding your LTV.`},
+    'low-md':{h:`${founderName}, the intelligence layer is emerging.`,b:`Tracking and AI are in place in parts, but not end-to-end. Act III will show whether your growth structure can compound - or still relies on brute force top-of-funnel spend.`},
+    md:{h:`${founderName}, your intelligence layer is solid.`,b:`Data, tracking, and creative testing are working. Now the question is whether the architecture - channels, retention, pricing - can sustain compounding growth.`},
     lo:{h:`${founderName}, you know your numbers.`,b:`Data and intelligence at this level is genuinely rare. Act III will show whether your growth architecture is operating at the same standard.`},
   };
   const m=msgs[zone.lc]||msgs.hi;
@@ -619,7 +620,7 @@ function buildBreak2(){
     </div>
     ${spectrumDark(runPct)}
     <div class="brk-next-preview">
-      <div class="brk-next-label">Act III — Growth Architecture</div>
+      <div class="brk-next-label">Act III - Growth Architecture</div>
       <div class="brk-next-pills">
         <div class="brk-pill">Channel Dependency</div><div class="brk-pill">Organic Content</div>
         <div class="brk-pill">Retention Automation</div><div class="brk-pill">Revenue Model</div><div class="brk-pill">Pricing Strategy</div>
@@ -728,14 +729,14 @@ function closeSheet(e){
 
 function marginToDecimal(str){
   if(!str)return null;
-  return{'Under 15%':0.10,'15 – 20%':0.175,'20 – 25%':0.225,'25 – 30%':0.275,'30 – 35%':0.325,'35 – 40%':0.375,'40 – 45%':0.425,'45 – 50%':0.475,'50 – 60%':0.55,'60%+':0.65}[str]||null;
+  return{'Under 15%':0.10,'15 - 20%':0.175,'20 - 25%':0.225,'25 - 30%':0.275,'30 - 35%':0.325,'35 - 40%':0.375,'40 - 45%':0.425,'45 - 50%':0.475,'50 - 60%':0.55,'60%+':0.65}[str]||null;
 }
 
 function calcKPIs(){
   const kpis=[];
   const rev=dm.revenue||0,ads=dm.adspend||0,aov=dm.aov||1;
   const md=marginToDecimal(dm.margin);
-  // MER — the primary efficiency metric
+  // MER - the primary efficiency metric
   if(ads>0&&rev>0){
     const m=parseFloat((rev/ads).toFixed(1));
     const st=m>=5?'ok':m>=3?'ok':m>=2?'warn':'bad';
@@ -746,7 +747,7 @@ function calcKPIs(){
   if(ads>0&&rev>0){
     const pct=Math.round(ads/rev*100);
     const st=pct<=20?'ok':pct<=35?'warn':'bad';
-    const bn=pct<=20?'Very efficient':pct<=35?'Healthy range':'High — watch margin';
+    const bn=pct<=20?'Very efficient':pct<=35?'Healthy range':'High - watch margin';
     kpis.push({name:'Ad Spend Share',val:`${pct}%`,bench:bn,note:'ad spend ÷ revenue',status:st,sub:''});
   }
   // Cost per Order (ad-spend-only CAC proxy)
@@ -755,7 +756,7 @@ function calcKPIs(){
     const cpo=Math.round(ads/orders);
     const ratio=cpo/aov;
     const st=ratio<0.3?'ok':ratio<0.6?'warn':'bad';
-    const bn=ratio<0.3?'Strong — well below AOV':ratio<0.6?'Manageable':'Tight — watch margin';
+    const bn=ratio<0.3?'Strong - well below AOV':ratio<0.6?'Manageable':'Tight - watch margin';
     kpis.push({name:'Cost per Order',val:cpo>=1000?`€${(cpo/1000).toFixed(1)}k`:`€${cpo}`,bench:bn,note:'ad spend ÷ estimated orders',status:st,sub:'Ad spend only'});
   }
   // Orders to Break Even
@@ -778,23 +779,23 @@ function buildResults(){
   if(pct>=75){
     headline=`${founderName}, you are building a compounding machine.`;
     subline='The architecture is in place. The question now is how fast you compound it.';
-    storyTitle='From founder-driven to system-driven — you are across the line.';
-    storyBody='You have built what most founders never reach: an operation that runs, measures, and grows without your constant involvement. The next chapter is not about fixing gaps — it is about adding leverage. AI deeper into your strongest workflows. A second channel before you need it. Retention flows that turn acquisition cost into lifetime profit. The compounding has already started.';
+    storyTitle='From founder-driven to system-driven - you are across the line.';
+    storyBody='You have built what most founders never reach: an operation that runs, measures, and grows without your constant involvement. The next chapter is not about fixing gaps - it is about adding leverage. AI deeper into your strongest workflows. A second channel before you need it. Retention flows that turn acquisition cost into lifetime profit. The compounding has already started.';
   }else if(pct>=50){
-    headline=`${founderName}, the system is forming — and gaining momentum.`;
+    headline=`${founderName}, the system is forming - and gaining momentum.`;
     subline='You are past the hardest part of the transition. Here is where to focus next.';
     storyTitle='You are not building from zero. You are closing the final gaps.';
-    storyBody='The infrastructure exists. Channels are working, processes are documented, and the team can operate in defined areas without you. The remaining gaps are specific and closable — not about effort, but about architecture. Each dimension you move from amber to green removes a decision from your plate and adds to a system that runs while you sleep.';
+    storyBody='The infrastructure exists. Channels are working, processes are documented, and the team can operate in defined areas without you. The remaining gaps are specific and closable - not about effort, but about architecture. Each dimension you move from amber to green removes a decision from your plate and adds to a system that runs while you sleep.';
   }else if(pct>=25){
     headline=`${founderName}, the transition has started. The ceiling is visible.`;
     subline='You have real assets. And a clear picture of what is still holding you back.';
     storyTitle='The gap between founder-dependent and founder-free is smaller than it looks.';
-    storyBody='You have channels that work, a team that tries, and some structure in place. But in the areas that matter most, decisions still route back to you. That is the ceiling — not a lack of effort, but a missing layer of systems. The shift happens dimension by dimension: one scorecard, one automated flow, one documented process at a time. Each one removes you from a bottleneck. Each one adds to something that compounds.';
+    storyBody='You have channels that work, a team that tries, and some structure in place. But in the areas that matter most, decisions still route back to you. That is the ceiling - not a lack of effort, but a missing layer of systems. The shift happens dimension by dimension: one scorecard, one automated flow, one documented process at a time. Each one removes you from a bottleneck. Each one adds to something that compounds.';
   }else{
     headline=`${founderName}, right now you are the business.`;
-    subline='That is your greatest strength — and your most important constraint to address.';
+    subline='That is your greatest strength - and your most important constraint to address.';
     storyTitle='Every founder-led business hits the same ceiling. You can see it from here.';
-    storyBody='When you are the engine, you feel the friction every day — decisions only you can make, campaigns that stall when you step away, growth that requires more of you to produce more output. This is not a permanent state. The businesses that break through do not do it by working harder. They systematise what works, remove themselves from the execution loop, and let retention, data, and channel architecture do the heavy lifting. Your plan screen shows you exactly where to start.';
+    storyBody='When you are the engine, you feel the friction every day - decisions only you can make, campaigns that stall when you step away, growth that requires more of you to produce more output. This is not a permanent state. The businesses that break through do not do it by working harder. They systematise what works, remove themselves from the execution loop, and let retention, data, and channel architecture do the heavy lifting. Your plan screen shows you exactly where to start.';
   }
 
   function bc(p){return p>=75?'g':p>=50?'m':'l';}
@@ -841,7 +842,7 @@ function buildResults(){
     <div class="optincard">
       <div class="optineyebrow">YOUR BREAKDOWN IS READY</div>
       <div class="optintitle">${founderName}, here is exactly where your score breaks down.</div>
-      <p class="optinsub">Your ${pct}/100 tells you where you are. Your dimension breakdown shows you precisely why — and the one move to make first. Enter your email to unlock it.</p>
+      <p class="optinsub">Your ${pct}/100 tells you where you are. Your dimension breakdown shows you precisely why - and the one move to make first. Enter your email to unlock it.</p>
       <div id="optinform">
         <input class="optininput" type="email" id="oiemail" placeholder="Your best email" autocomplete="email"/>
         <div class="optinerr" id="oierr">Please enter a valid email address.</div>
@@ -931,13 +932,13 @@ function buildPlan(){
       <div class="rsubline">Score: <strong>${pct}/100</strong> · First email on its way.</div>
     </div>
     ${urgent.length?`<div class="rsec">
-      <div class="rseciconrow"><div class="rsecicon rsecicon-red"><svg viewBox="0 0 14 14"><path d="M7 2v5M7 10v1" stroke-linecap="round"/></svg></div><span class="rsect">Act First — Below 50%</span></div>
+      <div class="rseciconrow"><div class="rsecicon rsecicon-red"><svg viewBox="0 0 14 14"><path d="M7 2v5M7 10v1" stroke-linecap="round"/></svg></div><span class="rsect">Act First - Below 50%</span></div>
       ${urgent.map(d=>card(d,'Urgent','badge-red')).join('')}</div>`:''}
     ${priority.length?`<div class="rsec">
-      <div class="rseciconrow"><div class="rsecicon rsecicon-amber"><svg viewBox="0 0 14 14"><path d="M2 10l3-3 2 2 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="rsect">Build This Quarter — 50–74%</span></div>
+      <div class="rseciconrow"><div class="rsecicon rsecicon-amber"><svg viewBox="0 0 14 14"><path d="M2 10l3-3 2 2 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="rsect">Build This Quarter - 50-74%</span></div>
       ${priority.map(d=>card(d,'Priority','badge-amber')).join('')}</div>`:''}
     ${strong.length?`<div class="rsec">
-      <div class="rseciconrow"><div class="rsecicon" style="background:#e8f5ee"><svg viewBox="0 0 14 14" style="stroke:#2a7a4e"><path d="M2 8l3 3 7-7" stroke-linecap="round" stroke-linejoin:round"/></svg></div><span class="rsect">Already Working — Protect These</span></div>
+      <div class="rseciconrow"><div class="rsecicon" style="background:#e8f5ee"><svg viewBox="0 0 14 14" style="stroke:#2a7a4e"><path d="M2 8l3 3 7-7" stroke-linecap="round" stroke-linejoin:round"/></svg></div><span class="rsect">Already Working - Protect These</span></div>
       ${strong.map(d=>card(d,'Strength','badge-green')).join('')}</div>`:''}
     <div style="padding:10px 20px 48px">
       <div style="background:var(--bg);border-radius:var(--r);padding:18px 20px;margin-bottom:12px">
