@@ -274,7 +274,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
   </div>
   <div class="lbadge"><span class="lbdot"></span>Marketing Diagnostic</div>
   <h1 class="lh"><em>Fire yourself</em><br>as the Operator.</h1>
-  <p class="lsub">Ambition gets your E-Commerce brand to €5M. Systems scale it to €20M+.</p>
+  <p class="lsub">Most marketing teams run on the CMO's energy. The best ones run on systems.</p>
   <ul class="lfriction">
     <li><span class="lfdash">—</span><span>Does content and budget still require your personal approval?</span></li>
     <li><span class="lfdash">—</span><span>Is embedding AI still a "dream" buried under layers of manual debt?</span></li>
@@ -285,7 +285,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
     <span class="lqc">Benedict Schweiger · CMO ALTHERR · Ex-Simon-Kucher</span>
   </div>
   <div class="lstats">
-    <div class="statb"><span class="statv">14</span><span class="statl">Questions to expose your manual debt</span></div>
+    <div class="statb"><span class="statv">15</span><span class="statl">Questions to expose your manual debt</span></div>
     <div class="statb"><span class="statv">6′</span><span class="statl">To audit your scaling engine</span></div>
     <div class="statb"><span class="statv">3</span><span class="statl">Dimensions scored</span></div>
     <div class="statb"><span class="statv">Free</span><span class="statl">Instant score + action plan</span></div>
@@ -344,12 +344,12 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 <script>
 const DIMS={
   CO:{name:'Command & Operations',   sub:'Can your operation run without you?',         max:300},
-  IE:{name:'Intelligence & Economics',sub:'Do you know what\'s working and why?',        max:600},
+  IE:{name:'Intelligence & Economics',sub:'Do you know what\'s working and why?',        max:700},
   GA:{name:'Growth Architecture',    sub:'Is your growth structure built to compound?',  max:500},
 };
-const TOTAL_MAX=1400;
+const TOTAL_MAX=1500;
 const BREAK1_AFTER=2; // fire break after answering Q index 2 (Q3)
-const BREAK2_AFTER=8; // fire break after answering Q index 8 (Q9)
+const BREAK2_AFTER=9; // fire break after answering Q index 8 (Q9)
 
 const QS=[
   {dim:'CO',phase:'Command',stem:'Could your marketing function without you for 3 months?',
@@ -366,6 +366,8 @@ const QS=[
    opts:[{t:'No. We don\'t track these numbers.',pts:0},{t:'Partially. Rough estimates — nothing we fully trust.',pts:30},{t:'Mostly. We track them but don\'t use them to shift budget.',pts:70},{t:'Absolutely. Precise data drives every Euro of spend.',pts:100}]},
   {dim:'IE',phase:'Intelligence',stem:'How do you know what your customers actually want?',
    opts:[{t:'Assumptions. We haven\'t formally asked.',pts:0},{t:'Anecdotes. Occasional feedback, but not a process.',pts:30},{t:'Surveys. We measure satisfaction but rarely act on it.',pts:60},{t:'Systems. Regular NPS and win/loss analysis drive our decisions.',pts:100}]},
+  {dim:'IE',phase:'Intelligence',stem:'How systematically do you understand why customers buy — and why they leave?',
+   opts:[{t:'We don\'t. We rely on gut feel and occasional sales calls.',pts:0},{t:'Reactively. We only dig in when something goes wrong.',pts:30},{t:'Periodically. We run surveys or exit interviews once or twice a year.',pts:60},{t:'Continuously. A systematic VoC process directly shapes our messaging and decisions.',pts:100}]},
   {dim:'IE',phase:'Intelligence',stem:'Can you see which marketing activity actually drove each sale?',
    opts:[{t:'No. It\'s a black box.',pts:0},{t:'Blurry. We have tracking, but the numbers don\'t add up.',pts:30},{t:'Clear. We understand last-click reasonably well.',pts:70},{t:'Unified. We see the full journey from first touch to conversion.',pts:100}]},
   {dim:'IE',phase:'Intelligence',stem:'How fast do you test new creative and messaging?',
