@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#ffffff"/>
+<title>Blog — {{ .Site.Title }}</title>
+<meta name="description" content="{{ .Params.description | default .Site.Params.description }}"/>
+<meta property="og:title" content="Blog — {{ .Site.Title }}"/>
+<meta property="og:description" content="{{ .Params.description | default .Site.Params.description }}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="{{ .Permalink }}"/>
+{{ with (index .Site.Params.images 0) }}<meta property="og:image" content="{{ . }}"/>{{ end }}
+<link rel="canonical" href="{{ .Permalink }}"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BE73N9F42M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BE73N9F42M');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-icon">
+      <svg viewBox="0 0 16 16"><path d="M3 8h10M8 3l3 5-3 5"/></svg>
+    </div>
+    <span class="nav-name">Benedict Schweiger</span>
+  </a>
+  <a href="/#newsletter" class="nav-cta">Get the newsletter</a>
+</nav>
+
+<!-- HEADER -->
+<div class="hero" style="padding-bottom:24px">
+  <div class="badge"><span class="bdot"></span>All Articles</div>
+  <h1 class="hero-h" style="font-size:clamp(32px,9vw,44px)">{{ .Title }}</h1>
+  {{ with .Params.description }}
+  <p class="hero-sub">{{ . }}</p>
+  {{ end }}
+</div>
+
+<!-- POST LIST -->
+<div class="content-section">
+  <div class="w">
+    <div class="divider" style="margin-top:0"></div>
+
+    {{ range .Pages }}
+    <a href="{{ .RelPermalink }}" class="post-card{{ if .Params.featured }} featured{{ end }}">
+      <div class="post-meta">
+        {{ with .Params.pillar }}
+        {{ $pillarClass := "pillar-pricing" }}
+        {{ if eq . "marketing" }}{{ $pillarClass = "pillar-marketing" }}{{ end }}
+        {{ if eq . "systems" }}{{ $pillarClass = "pillar-systems" }}{{ end }}
+        {{ if eq . "leadership" }}{{ $pillarClass = "pillar-leadership" }}{{ end }}
+        {{ if eq . "agentic" }}{{ $pillarClass = "pillar-agentic" }}{{ end }}
+        <span class="post-pillar {{ $pillarClass }}">{{ . | humanize }}</span>
+        {{ end }}
+        <span class="post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+        {{ with .Params.readingTime }}<span class="post-date">· {{ . }} min</span>{{ end }}
+      </div>
+      <div class="post-title">{{ .Title }}</div>
+      <div class="post-excerpt">{{ .Params.excerpt | default .Summary }}</div>
+      <div class="post-read">Read →</div>
+    </a>
+    {{ end }}
+
+    {{ if eq (len .Pages) 0 }}
+    <p style="color:var(--mg);font-size:15px;padding:24px 0">No posts yet — check back soon.</p>
+    {{ end }}
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/benedictschweiger" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.youtube.com/channel/UCoCNyB7omxposyGloac8cA" target="_blank" rel="noopener">YouTube</a>
+    <a href="mailto:benedictschweiger@gmail.com">Email</a>
+  </div>
+  <div class="footer-copy">&copy; {{ now.Year }} Benedict Schweiger</div>
+</footer>
+
+{{ partial "analytics.html" . }}
+</body>
+</html>
