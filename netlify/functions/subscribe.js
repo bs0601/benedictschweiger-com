@@ -35,6 +35,14 @@ exports.handler = async function(event) {
     if (body.q12_label)       attributes.Q12_LABEL       = body.q12_label;
     if (body.q14_label)       attributes.Q14_LABEL       = body.q14_label;
     if (body.biggest_obstacle) attributes.BIGGEST_OBSTACLE = body.biggest_obstacle;
+
+    // Compute weakest dimension for Brevo automation branching
+    const dimScores = { CO: body.score_co, IE: body.score_ie, GA: body.score_ga };
+    const defined = Object.entries(dimScores).filter(([,v]) => v !== undefined && v !== null && v !== "");
+    if (defined.length > 0) {
+      const weakest = defined.reduce((a, b) => Number(a[1]) <= Number(b[1]) ? a : b);
+      attributes.WEAKEST_DIM = weakest[0]; // 'CO', 'IE', or 'GA'
+    }
   }
 
   const res = await fetch("https://api.brevo.com/v3/contacts", {
