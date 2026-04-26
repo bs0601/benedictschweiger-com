@@ -885,12 +885,12 @@ function submitOptin(){
       score_co:dimPct('CO',scores),
       score_ie:dimPct('IE',scores),
       score_ga:dimPct('GA',scores),
-      // Key question signals
-      q1:ans[0]!==null?QS[0].opts[ans[0]].pts:null,
-      q4:ans[3]!==null?QS[3].opts[ans[3]].pts:null,
-      q8:ans[7]!==null?QS[7].opts[ans[7]].pts:null,
-      q12:ans[11]!==null?QS[11].opts[ans[11]].pts:null,
-      q14:ans[13]!==null?QS[13].opts[ans[13]].pts:null,
+      // Key question signals (label text → Brevo attributes)
+      q1_label:ans[0]!==null?QS[0].opts[ans[0]].t:null,
+      q4_label:ans[3]!==null?QS[3].opts[ans[3]].t:null,
+      q8_label:ans[7]!==null?QS[7].opts[ans[7]].t:null,
+      q12_label:ans[12]!==null?QS[12].opts[ans[12]].t:null,
+      q14_label:ans[14]!==null?QS[14].opts[ans[14]].t:null,
       // Demographics
       revenue:dm.revenue,
       adspend:dm.adspend,
@@ -898,7 +898,7 @@ function submitOptin(){
       margin:dm.margin,
       // Open signal
       biggest_obstacle:obstacle.trim(),
-      source:'moltke-diagnostic',
+      source:'autonomy-score',
     })
   }).catch(()=>{});
   buildPlan();show('sp');

@@ -3,20 +3,38 @@ exports.handler = async function(event) {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
-  let email, firstName;
+  let body;
   try {
-    const body = JSON.parse(event.body);
-    // Support both homepage form {email, firstName} and diagnostic {email, name}
-    email = body.email;
-    firstName = body.firstName || body.name || "";
-    // Strip to first name only if full name given
-    if (firstName.includes(" ")) firstName = firstName.split(" ")[0];
+    body = JSON.parse(event.body);
   } catch {
     return { statusCode: 400, body: JSON.stringify({ error: "Invalid JSON" }) };
   }
 
+  // Support both homepage form {email, firstName} and diagnostic {email, name}
+  const email = (body.email || "").trim();
+  let firstName = body.firstName || body.name || "";
+  if (firstName.includes(" ")) firstName = firstName.split(" ")[0];
+
   if (!email || !email.includes("@")) {
     return { statusCode: 400, body: JSON.stringify({ error: "Invalid email" }) };
+  }
+
+  // Base attributes
+  const attributes = { FIRSTNAME: firstName };
+
+  // Diagnostic attributes — only set if this is a diagnostic submission
+  if (body.score !== undefined) {
+    attributes.SCORE      = body.score;
+    attributes.ZONE       = body.zone       || "";
+    attributes.SCORE_CO   = body.score_co   ?? "";
+    attributes.SCORE_IE   = body.score_ie   ?? "";
+    attributes.SCORE_GA   = body.score_ga   ?? "";
+    if (body.q1_label)        attributes.Q1_LABEL        = body.q1_label;
+    if (body.q4_label)        attributes.Q4_LABEL        = body.q4_label;
+    if (body.q8_label)        attributes.Q8_LABEL        = body.q8_label;
+    if (body.q12_label)       attributes.Q12_LABEL       = body.q12_label;
+    if (body.q14_label)       attributes.Q14_LABEL       = body.q14_label;
+    if (body.biggest_obstacle) attributes.BIGGEST_OBSTACLE = body.biggest_obstacle;
   }
 
   const res = await fetch("https://api.brevo.com/v3/contacts", {
@@ -27,7 +45,7 @@ exports.handler = async function(event) {
     },
     body: JSON.stringify({
       email,
-      attributes: { FIRSTNAME: firstName },
+      attributes,
       listIds: [8],
       updateEnabled: true
     })
