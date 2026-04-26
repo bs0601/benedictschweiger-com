@@ -62,6 +62,24 @@ body.article-page nav{background:rgba(250,250,247,0.96)}
 .nav-back svg{width:16px;height:16px;stroke:var(--s);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .nav-back:hover{color:#a84f24}
 .nav-back:hover svg{stroke:#a84f24}
+
+/* ── DIAGNOSTIC CTA BLOCKS ── */
+.diag-inline{background:var(--slt);border:1.5px solid var(--smd);border-radius:var(--r);padding:18px 20px;margin:28px 0;display:block;text-decoration:none}
+.diag-inline-badge{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--s);margin-bottom:7px}
+.diag-inline-title{font-size:16px;font-weight:800;color:var(--blk);line-height:1.25;margin-bottom:5px;letter-spacing:-.02em}
+.diag-inline-sub{font-size:13px;color:var(--dg);line-height:1.55;margin-bottom:12px}
+.diag-inline-btn{display:inline-flex;align-items:center;gap:6px;background:var(--s);color:#fff;font-size:13px;font-weight:700;padding:9px 16px;border-radius:var(--rs)}
+
+.diag-end{background:var(--blk);border-radius:var(--r);padding:28px 24px;margin:40px 0 0;text-decoration:none;display:block}
+.diag-end-badge{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:10px}
+.diag-end-title{font-size:clamp(20px,5vw,26px);font-weight:800;line-height:1.18;letter-spacing:-.025em;color:#fff;margin-bottom:8px}
+.diag-end-title em{color:var(--s);font-style:normal}
+.diag-end-sub{font-size:14px;line-height:1.65;color:rgba(255,255,255,.6);margin-bottom:20px}
+.diag-end-stats{display:flex;gap:20px;margin-bottom:20px}
+.diag-end-stat{display:flex;flex-direction:column}
+.diag-end-stat span:first-child{font-size:18px;font-weight:800;color:var(--s)}
+.diag-end-stat span:last-child{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+.diag-end-btn{display:inline-flex;align-items:center;gap:8px;background:var(--s);color:#fff;font-size:14px;font-weight:700;padding:14px 22px;border-radius:var(--rs)}
 </style>
 </head>
 <body class="article-page">
@@ -100,10 +118,41 @@ body.article-page nav{background:rgba(250,250,247,0.96)}
     {{ end }}
   </header>
 
-  <div class="prose">
+  <div class="prose" id="prose-body">
     {{ .Content }}
   </div>
+
+  <!-- END CTA -->
+  <a href="/autonomy-score/" class="diag-end">
+    <div class="diag-end-badge">Free · 3 min · Instant results</div>
+    <div class="diag-end-title"><em>Fire yourself</em> as the Operator.</div>
+    <p class="diag-end-sub">14 questions. A score across 3 dimensions. You'll know exactly where your marketing team is stuck — and what to fix first.</p>
+    <div class="diag-end-stats">
+      <div class="diag-end-stat"><span>14</span><span>Questions</span></div>
+      <div class="diag-end-stat"><span>3</span><span>Dimensions</span></div>
+      <div class="diag-end-stat"><span>Free</span><span>No catch</span></div>
+    </div>
+    <div class="diag-end-btn">Get your Autonomy Score →</div>
+  </a>
 </article>
+
+<script>
+// Inject compact CTA after 3rd paragraph
+(function(){
+  var prose = document.getElementById('prose-body');
+  if (!prose) return;
+  var paras = prose.querySelectorAll('p');
+  if (paras.length < 3) return;
+  var cta = document.createElement('a');
+  cta.href = '/autonomy-score/';
+  cta.className = 'diag-inline';
+  cta.innerHTML = '<div class="diag-inline-badge">Free Diagnostic · 3 min</div>' +
+    '<div class="diag-inline-title">How autonomous is your marketing team?</div>' +
+    '<div class="diag-inline-sub">Most teams score lower than they expect. 14 questions, instant score across 3 dimensions.</div>' +
+    '<div class="diag-inline-btn">Take the Autonomy Score →</div>';
+  paras[2].insertAdjacentElement('afterend', cta);
+})();
+</script>
 
 <!-- FOOTER -->
 <footer>
