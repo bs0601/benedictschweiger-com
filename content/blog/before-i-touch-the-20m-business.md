@@ -21,7 +21,7 @@ That's what the last few weeks have been.
 
 **The stack I've built**
 
-The anchor is a Mac Studio M3 Ultra with 96GB of unified memory. That machine runs large language models locally — no API calls, no per-token costs, no data leaving the building. Right now it's running Gemma 4 (31B, Google's latest), Qwen 3.5 at 27B and 35B, and DeepSeek R1 at 70B for heavier reasoning tasks. The 70B model running locally on consumer hardware was unthinkable two years ago.
+The anchor is a [Mac Studio M3 Ultra with 96GB of unified memory](https://www.apple.com/mac-studio/). That machine runs large language models locally — no API calls, no per-token costs, no data leaving the building. Right now it's running [Gemma 4](https://deepmind.google/models/gemma/gemma-4/) (31B, Google's latest), [Qwen 3.5](https://qwenlm.github.io/) at 27B and 35B, and [DeepSeek R1](https://www.deepseek.com/) at 70B for heavier reasoning tasks. The 70B model running locally on consumer hardware was unthinkable two years ago.
 
 What surprised me: I'm not missing the hosted models much. Gemma 4 handles most daily work well enough that I'm not reaching for Claude by default anymore. That's a real shift.
 
@@ -47,7 +47,7 @@ None of this required hiring. It took a few weeks of focused tinkering and a wil
 
 **Why this order matters**
 
-The business I work for has N8N automations, LLM integrations, a custom data warehouse, and a team that's already partly agentic. But what I'm running personally is more advanced than what's in production there, and that's deliberate.
+The business I work for has [N8N](https://n8n.io) automations, LLM integrations, a custom data warehouse, and a team that's already partly agentic. But what I'm running personally is more advanced than what's in production there, and that's deliberate.
 
 Think about how SpaceX developed the [Raptor engine](https://www.spacex.com/vehicles/starship/). Before Raptor 3 — the clean, production-ready engine that powers Starship today — there was Raptor 1. Exposed plumbing, rough welds, looked like a science project. SpaceX didn't test it by strapping it to the rocket. They ran it on a test stand in Boca Chica, pushed it to failure, learned exactly what broke, and iterated until it was ready for flight.
 
