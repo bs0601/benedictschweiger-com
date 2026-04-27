@@ -25,7 +25,7 @@ The anchor is a Mac Studio M3 Ultra with 96GB of unified memory. That machine ru
 
 What surprised me: I'm not missing the hosted models much. Gemma 4 handles most daily work well enough that I'm not reaching for Claude by default anymore. That's a real shift.
 
-On top of the local models, I'm running OpenClaw — an open-source AI operations platform that turns a language model into a persistent partner rather than a stateless chatbot. It has memory across sessions, access to my files, calendar, web search, and publishing tools. It can draft a blog post, commit it to GitHub, and push it live without me touching a terminal. It reads my past decisions before answering questions. It pushes back when I'm wrong.
+On top of the local models, I'm running [OpenClaw](https://openclaw.ai) — an open-source AI operations platform that turns a language model into a persistent partner rather than a stateless chatbot. It has memory across sessions, access to my files, calendar, web search, and publishing tools. It can draft a blog post, commit it to GitHub, and push it live without me touching a terminal. It reads my past decisions before answering questions. It pushes back when I'm wrong.
 
 The difference between this and "using ChatGPT" is roughly the difference between hiring a contractor for a one-off task and having a colleague who shows up every day, remembers what you talked about last week, and has context on what actually matters.
 
@@ -36,7 +36,7 @@ The difference between this and "using ChatGPT" is roughly the difference betwee
 This website exists because of that stack. In the last few weeks:
 
 - Built and launched benedictschweiger.com (Hugo + PaperMod, hosted on Netlify, auto-deploys from GitHub)
-- Built the Autonomy Score diagnostic — a 15-question tool that tells marketers where they are on the path to agentic operations, with automated Brevo integration for follow-up
+- Built the [Autonomy Score diagnostic](https://benedictschweiger.com/autonomy-score/) — a 15-question tool that tells marketers where they are on the path to agentic operations, with automated Brevo integration for follow-up
 - Set up a LinkedIn publishing pipeline: I review drafts, approve, and my AI partner publishes via API
 - Established a newsletter format and defined the content system around it
 - Set up voice input workflows so I can think out loud and have the output captured, organized, and acted on
@@ -49,7 +49,7 @@ None of this required hiring. It took a few weeks of focused tinkering and a wil
 
 The business I work for has N8N automations, LLM integrations, a custom data warehouse, and a team that's already partly agentic. But what I'm running personally is more advanced than what's in production there, and that's deliberate.
 
-Think about how SpaceX developed the Raptor engine. Before Raptor 3 — the clean, production-ready engine that powers Starship today — there was Raptor 1. Exposed plumbing, rough welds, looked like a science project. SpaceX didn't test it by strapping it to the rocket. They ran it on a test stand in Boca Chica, pushed it to failure, learned exactly what broke, and iterated until it was ready for flight.
+Think about how SpaceX developed the [Raptor engine](https://www.spacex.com/vehicles/starship/). Before Raptor 3 — the clean, production-ready engine that powers Starship today — there was Raptor 1. Exposed plumbing, rough welds, looked like a science project. SpaceX didn't test it by strapping it to the rocket. They ran it on a test stand in Boca Chica, pushed it to failure, learned exactly what broke, and iterated until it was ready for flight.
 
 That's the only responsible way to develop something powerful.
 
@@ -71,4 +71,4 @@ The lab is open.
 
 ---
 
-*Hugo is my AI operations partner, running on OpenClaw. He helped draft this post, manages this site, and keeps the infrastructure running. He's part of the story, not a footnote.*
+*Hugo is my AI operations partner, running on [OpenClaw](https://openclaw.ai). He helped draft this post, manages this site, and keeps the infrastructure running. He's part of the story, not a footnote.*
