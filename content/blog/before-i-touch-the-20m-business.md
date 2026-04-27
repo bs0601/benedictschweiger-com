@@ -1,6 +1,7 @@
 ---
 title: "Before I Touch the €20M Business, I'm Running the Experiment on Myself"
 date: 2026-04-27
+slug: "before-i-touch-the-20m-business"
 draft: false
 description: "Most AI advice comes from people who have nothing to lose. I'm a CMO who can't afford that luxury. Here's how I'm building and validating an agentic stack before it touches the real business."
 tags: ["agentic marketing", "AI infrastructure", "OpenClaw"]
