@@ -49,11 +49,13 @@ None of this required hiring. It took a few weeks of focused tinkering and a wil
 
 The business I work for has N8N automations, LLM integrations, a custom data warehouse, and a team that's already partly agentic. But what I'm running personally is more advanced than what's in production there, and that's deliberate.
 
-Before you put a new type of engine in a car you depend on, you build something with that engine and learn how it fails. You find out where it breaks under load, what the edge cases are, what the failure modes look like. Then, with that knowledge, you make an informed decision about what to push into the real system.
+Think about how SpaceX developed the Raptor engine. Before Raptor 3 — the clean, production-ready engine that powers Starship today — there was Raptor 1. Exposed plumbing, rough welds, looked like a science project. SpaceX didn't test it by strapping it to the rocket. They ran it on a test stand in Boca Chica, pushed it to failure, learned exactly what broke, and iterated until it was ready for flight.
 
-The personal setup is the prototype. The business is the production environment. I'm not ready to move something to production until I understand it well enough to defend that decision.
+That's the only responsible way to develop something powerful.
 
-This isn't caution for its own sake. It's the opposite. The faster I learn in the prototype environment, the faster and more confidently I can move in the real one. Tinkering here is what makes me bold there.
+My personal setup is the test stand. Hugo running on my Mac Studio is Raptor 1 — functional, revealing, full of things I didn't expect. The business is the rocket. Nothing goes on the rocket until it's been proven on the stand.
+
+This isn't caution for its own sake. It's the opposite. The faster I learn on the test stand, the faster and more confidently I can move when it matters. Tinkering here is what makes me bold there.
 
 ---
 
