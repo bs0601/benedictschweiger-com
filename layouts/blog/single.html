@@ -64,10 +64,9 @@ body.article-page nav{background:rgba(250,250,247,0.96)}
 .nav-back:hover svg{stroke:#a84f24}
 
 /* ── DIAGNOSTIC CTA BLOCKS ── */
-.diag-inline{background:var(--slt);border:1.5px solid var(--smd);border-radius:var(--r);padding:18px 20px;margin:28px 0;display:block;text-decoration:none}
-.diag-inline-badge{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--s);margin-bottom:7px}
-.diag-inline-title{font-size:16px;font-weight:800;color:var(--blk);line-height:1.25;margin-bottom:5px;letter-spacing:-.02em}
-.diag-inline-sub{font-size:13px;color:var(--dg);line-height:1.55;margin-bottom:12px}
+.diag-inline{background:var(--slt);border:1.5px solid var(--smd);border-radius:var(--r);padding:20px 22px;margin:28px 0;display:block;text-decoration:none}
+.diag-inline-title{font-size:17px;font-weight:800;color:var(--blk);line-height:1.25;margin-bottom:6px;letter-spacing:-.02em}
+.diag-inline-sub{font-size:13px;color:var(--dg);line-height:1.5;margin-bottom:14px}
 .diag-inline-btn{display:inline-flex;align-items:center;gap:6px;background:var(--s);color:#fff;font-size:13px;font-weight:700;padding:9px 16px;border-radius:var(--rs)}
 
 .diag-end{background:var(--blk);border-radius:var(--r);padding:28px 24px;margin:40px 0 0;text-decoration:none;display:block}
@@ -146,10 +145,9 @@ body.article-page nav{background:rgba(250,250,247,0.96)}
   var cta = document.createElement('a');
   cta.href = '/autonomy-score/';
   cta.className = 'diag-inline';
-  cta.innerHTML = '<div class="diag-inline-badge">Free Diagnostic · 3 min</div>' +
-    '<div class="diag-inline-title">How autonomous is your marketing team?</div>' +
-    '<div class="diag-inline-sub">Most teams score lower than they expect. 15 questions, instant score across 3 dimensions.</div>' +
-    '<div class="diag-inline-btn">Take the Autonomy Score →</div>';
+  cta.innerHTML = '<div class="diag-inline-title">How autonomous is your marketing?</div>' +
+    '<div class="diag-inline-sub">3 minutes. Instant score. No pitch at the end.</div>' +
+    '<div class="diag-inline-btn">Get your score →</div>';
   paras[2].insertAdjacentElement('afterend', cta);
 })();
 </script>
