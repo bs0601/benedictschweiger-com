@@ -2,7 +2,7 @@
 title: "Marketing Automation AI: What It Actually Does to Your Team"
 date: 2026-05-01
 slug: "marketing-automation-ai-team"
-draft: false
+draft: true
 description: "28,400 marketing roles eliminated in Q1 2026. The honest version of what marketing automation AI does to headcount — and who survives it."
 tags: ["agentic marketing", "marketing automation AI", "marketing team", "AI marketing strategy"]
 ---
