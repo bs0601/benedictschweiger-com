@@ -5,6 +5,7 @@ slug: "before-i-touch-the-20m-business"
 draft: false
 description: "I run marketing for a €20M business. Before deploying agentic AI there, I'm validating the full stack on myself first. Here's what I've built so far."
 tags: ["agentic marketing", "AI infrastructure", "OpenClaw"]
+excerpt: "Most AI advice comes from people who have nothing to lose. I run marketing for a €20M business. Before deploying the agentic stack there, I’m validating it on myself first."
 ---
 
 Most AI advice comes from people who have nothing to lose.

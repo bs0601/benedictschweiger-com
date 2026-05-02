@@ -1,9 +1,7 @@
 ---
 title: "What Is Agentic Marketing?"
 date: 2026-04-25
-pillar: "agentic"
 excerpt: "Most marketing teams are built around a problem that no longer exists. Agentic marketing is the redesign."
-featured: true
 draft: false
 ---
 
