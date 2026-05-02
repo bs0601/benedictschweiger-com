@@ -1,20 +1,20 @@
 baseURL: "https://benedictschweiger.com/"
 languageCode: "en"
-title: "Benedict Schweiger — Marketing Systems & Pricing Strategy"
+title: "Benedict Schweiger — Agentic Marketing"
 theme: "PaperMod"
 
 # SEO defaults
 params:
-  description: "Marketing that runs without constant direction. Pricing built around actual willingness-to-pay. The smarter architecture always wins over the bigger budget."
+  description: "Building the Agentic Marketing OS in public. Real systems, real numbers, what actually compounds. CMO, ex-Simon-Kucher."
   author: "Benedict Schweiger"
   images:
     - "/images/og-default.png"
   keywords:
-    - "B2B SaaS Pricing"
-    - "Pricing Strategy"
-    - "Marketing Systems"
+    - "agentic marketing"
+    - "marketing automation AI"
+    - "marketing systems"
+    - "AI marketing team"
     - "Benedict Schweiger"
-    - "ToplineXperts"
 
   # Site stats — updated by website_flow.py update_stats()
   stats:
