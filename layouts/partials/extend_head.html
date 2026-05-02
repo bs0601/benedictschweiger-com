@@ -1,0 +1,38 @@
+{{- if and .IsPage (eq .Section "blog") }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ .Title | jsonify }},
+  "datePublished": "{{ .Date | time.Format "2006-01-02" }}",
+  "dateModified": "{{ .Lastmod | time.Format "2006-01-02" }}",
+  "author": {
+    "@type": "Person",
+    "name": "Benedict Schweiger",
+    "url": "https://benedictschweiger.com"
+  },
+  "url": {{ .Permalink | jsonify }}
+}
+</script>
+{{- end }}
+
+{{- if and .IsPage (eq .Section "blog") .Params.hasFAQ }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{- range $i, $faq := .Params.faq }}{{ if $i }},{{ end }}
+    {
+      "@type": "Question",
+      "name": {{ $faq.question | jsonify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ $faq.answer | jsonify }}
+      }
+    }
+    {{- end }}
+  ]
+}
+</script>
+{{- end }}
