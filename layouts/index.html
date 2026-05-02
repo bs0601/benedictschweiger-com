@@ -192,9 +192,6 @@
 <!-- LATEST WRITING -->
 <div class="content-section">
   <div class="w">
-    <div class="divider"></div>
-    <p class="section-title">From the Build Log</p>
-
     {{ $posts := where .Site.RegularPages "Section" "blog" }}
     {{ range first 4 $posts }}
     <a href="{{ .RelPermalink }}" class="post-card{{ if .Params.featured }} featured{{ end }}">
