@@ -4,6 +4,7 @@ date: 2026-05-01
 slug: "will-ai-replace-marketing-jobs"
 draft: false
 description: "36% of CMOs plan to cut marketing headcount in the next 2 years. I already made 3 exits. Here's exactly what determined who stayed."
+excerpt: "Three people left my marketing team last year — not by choice, but because the functions they were hired to perform no longer required a human in the loop. Here's exactly what determined who stayed."
 tags: ["agentic marketing", "marketing automation AI", "marketing team", "AI marketing strategy"]
 hasFAQ: true
 faq:
