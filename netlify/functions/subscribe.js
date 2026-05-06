@@ -59,14 +59,30 @@ exports.handler = async function(event) {
     })
   });
 
-  if (res.status === 201 || res.status === 204) {
-    return { statusCode: 200, body: JSON.stringify({ success: true }) };
+  const isSuccess = res.status === 201 || res.status === 204;
+  if (!isSuccess) {
+    const err = await res.json().catch(() => ({}));
+    if (err.code !== "duplicate_parameter") {
+      return { statusCode: 500, body: JSON.stringify({ error: "Subscription failed" }) };
+    }
   }
 
-  const err = await res.json().catch(() => ({}));
-  if (err.code === "duplicate_parameter") {
-    return { statusCode: 200, body: JSON.stringify({ success: true }) };
+  // Send welcome email for /resources signups (not diagnostic)
+  const source = (body.source || "").toLowerCase();
+  const isResourcesSignup = !body.score && source !== "autonomy-score";
+  if (isResourcesSignup) {
+    await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        "api-key": process.env.BREVO_API_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        templateId: 45,
+        to: [{ email, name: firstName || email }]
+      })
+    }).catch(() => {}); // fire-and-forget, don't fail the signup if email fails
   }
 
-  return { statusCode: 500, body: JSON.stringify({ error: "Subscription failed" }) };
+  return { statusCode: 200, body: JSON.stringify({ success: true }) };
 };
