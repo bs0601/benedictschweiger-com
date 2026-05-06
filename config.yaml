@@ -68,6 +68,7 @@ outputs:
   home:
     - HTML
     - RSS
+    - Sitemap
 
 markup:
   goldmark:
