@@ -55,6 +55,8 @@ Agentic marketing introduces reasoning. An agent tasked with growing email open 
 
 The practical implication: automation scales what you already know how to do. Agents discover things you have not thought to look for.
 
+{{< pullquote >}}Automation scales what you already know how to do. Agents discover things you have not thought to look for.{{< /pullquote >}}
+
 ## What does agentic marketing look like in a real team?
 
 At [ALTHERR](https://www.altherr.de) — a luxury watch retailer where I have been CMO since January 2020 — we run a marketing team of six. In December last year, we reduced from eight to six. Not by cutting output. By replacing two roles with agents.
@@ -111,6 +113,8 @@ It requires knowing which tasks deserve human attention and which do not. Most c
 Agentic marketing forces the question. When you can hand a task to an agent, you have to decide whether you should. That decision reveals a lot about what your team actually values versus what it does out of habit.
 
 At ALTHERR, Instagram was a hygiene factor — a channel we needed to maintain, not one that drove deals. The moment we named it that, automating it became obvious. We were not replacing creativity. We were freeing it.
+
+{{< callout type="decision" >}}Automated Instagram entirely with N8N, Google Drive, and an LLM. Setup: one week. Reason: Instagram was a hygiene factor — a channel we needed to maintain, not one that drove deals. Naming it that made the decision obvious.{{< /callout >}}
 
 The marketers building real leverage right now are the ones who can make those distinctions clearly, design systems around them, and evaluate agent output with the same rigour they used to apply to human work.
 

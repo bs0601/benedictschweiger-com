@@ -44,9 +44,13 @@ The short answer is: it depends which jobs you mean, and the industry data is st
 
 [Spencer Stuart's 2026 survey of CMOs](https://www.spencerstuart.com/research-and-insight/the-ai-reckoning-why-marketers-think-2026-is-a-make-or-break-year) found that 36% of respondents expect to reduce marketing headcount in the next 12 to 24 months, using AI or eliminating roles made redundant by it. Just 17% have already made cuts — which means the wave is still building, not cresting.
 
+{{< callout type="number" >}}36% of CMOs expect to cut marketing headcount in the next 12–24 months. Only 17% already have. The wave is building, not cresting — which means the window for a managed transition is still open.{{< /callout >}}
+
 [BCG's 2026 analysis](https://www.bcg.com/publications/2026/ai-will-reshape-more-jobs-than-it-replaces) argues that AI will reshape more jobs than it replaces outright — estimating that 50 to 55% of US jobs will be meaningfully transformed in the next two to three years. The [World Economic Forum's 2025 Future of Jobs report](https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf) models 92 million displaced roles globally by 2030 alongside 170 million new ones — a net positive, but unevenly distributed.
 
 Here is what those numbers do not say clearly enough: the displacement and the creation are not happening to the same people. The roles that get automated and the roles that get created require fundamentally different orientations. Most job transition programmes assume the gap is skills. In practice, the gap is something harder to train.
+
+{{< pullquote >}}The displacement and the creation are not happening to the same people.{{< /pullquote >}}
 
 ## Which marketing roles are most at risk?
 

@@ -75,11 +75,15 @@ None of this required hiring. It required a few weeks of focused building and a 
 
 What has it proved? Mostly that the failure modes are where the value is. The HeyGen video experiment failed — AI-generated video avatars do not pass a quality bar that human presence clears. That lesson came from a two-week test that cost nothing except time. Running that experiment inside the €20M business would have cost trust that takes months to rebuild.
 
+{{< callout type="decision" >}}Rejected HeyGen video avatars despite their scalability appeal. Reason: AI-generated presence does not clear the quality bar that human presence sets — viewers notice, and the cost is trust you cannot quickly rebuild. Two-week test. Zero regret.{{< /callout >}}
+
 ## Why does the order of deployment matter?
 
 Think about how SpaceX developed the [Raptor engine](https://www.spacex.com/vehicles/starship/). Before Raptor 3 — the clean, production-ready engine powering Starship today — there was Raptor 1. Exposed plumbing, rough welds, looked like a science project. SpaceX did not test it by strapping it to the rocket. They ran it on a test stand in Boca Chica, pushed it to failure, learned exactly what broke, and iterated until it was ready for flight.
 
 The personal brand is the test stand. The €20M business is the rocket. Nothing goes on the rocket until it has been proved on the stand.
+
+{{< pullquote >}}The personal brand is the test stand. The €20M business is the rocket. Nothing goes on the rocket until it has been proved on the stand.{{< /pullquote >}}
 
 This is not caution for its own sake. It is the opposite. The faster I learn on the test stand, the faster and more confidently I can move when the stakes are real. The test stand work compresses the learning curve before it matters.
 

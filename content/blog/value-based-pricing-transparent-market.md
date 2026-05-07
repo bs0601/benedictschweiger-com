@@ -97,6 +97,8 @@ Since then, Rainer has spent over €20,000 with ALTHERR. He has driven 300 kilo
 
 This is value-based pricing achieved through relationship rather than through product differentiation. The grey market has the same watches. It does not have the relationship.
 
+{{< pullquote >}}The grey market has the same watches. It does not have the relationship.{{< /pullquote >}}
+
 The content built that relationship. And the relationship is the margin.
 
 ---
@@ -118,6 +120,8 @@ The email list doubles repeat purchase frequency.
 The emails do not contain exclusive deals or limited-time offers. They are content: what is happening in the market, what references are worth watching, historical context on a brand or a movement. Value without the ask. The mechanism is the same as the Rainer case: consistent, non-commercial presence between transactions keeps ALTHERR trusted and top of mind. When the customer is ready to buy again — or to upgrade, or to trade in — the relationship is already warm.
 
 17% becomes 34%. In a market where you cannot raise prices, that is the pricing lever.
+
+{{< callout type="number" >}}34% repeat purchase rate for email subscribers vs 17% for the full customer base. Consistent, non-promotional content doubles return frequency — in a market where raising prices is not an option.{{< /callout >}}
 
 The conversion rate data reinforces this. ALTHERR converts 30–40% of marketing-generated enquiries. That figure exists because by the time a customer enquires, the marketing has already done pre-sale relationship work. They are not arriving cold.
 
