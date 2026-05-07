@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Content Review — Benedict Schweiger</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: #F5F4F0; color: #1a1a1a; min-height: 100vh; }
+  header { background: #1a1a1a; color: #fff; padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
+  header h1 { font-size: 18px; font-weight: 600; }
+  header span { background: #C4622D; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
+  .container { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+  .empty { text-align: center; padding: 80px 0; color: #888; font-size: 15px; }
+  .empty strong { display: block; font-size: 22px; color: #1a1a1a; margin-bottom: 8px; }
+  .items { display: flex; flex-direction: column; gap: 12px; }
+  .item { background: #fff; border-radius: 10px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; border: 2px solid transparent; transition: border-color .15s; }
+  .item:hover { border-color: #C4622D; }
+  .badge { font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+  .badge-blog { background: #e8f0fe; color: #3949ab; }
+  .badge-linkedin { background: #e3f2fd; color: #1565c0; }
+  .badge-carousel { background: #fef3e2; color: #e65100; }
+  .badge-newsletter { background: #e8f5ee; color: #2a7a4e; }
+  .item-info { flex: 1; }
+  .item-title { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .item-meta { font-size: 12px; color: #888; }
+  .arrow { color: #ccc; font-size: 18px; }
+  .section-title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #888; margin-bottom: 12px; margin-top: 32px; }
+  .section-title:first-child { margin-top: 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Content Review</h1>
+  <span id="count">Loading…</span>
+</header>
+<div class="container" id="app">
+  <p style="color:#888;font-size:14px">Loading pending reviews…</p>
+</div>
+<script>
+const BADGE = {
+  blog: 'badge-blog',
+  linkedin: 'badge-linkedin',
+  carousel: 'badge-carousel',
+  newsletter: 'badge-newsletter'
+};
+
+async function load() {
+  try {
+    const res = await fetch('/review/pending.json?t=' + Date.now());
+    if (!res.ok) throw new Error('No pending items');
+    const items = await res.json();
+    render(items);
+  } catch(e) {
+    document.getElementById('app').innerHTML = `
+      <div class="empty">
+        <strong>All clear ✓</strong>
+        Nothing pending review right now.
+      </div>`;
+    document.getElementById('count').textContent = '0 pending';
+  }
+}
+
+function render(items) {
+  const count = items.length;
+  document.getElementById('count').textContent = count + ' pending';
+  if (!count) {
+    document.getElementById('app').innerHTML = `<div class="empty"><strong>All clear ✓</strong>Nothing pending review right now.</div>`;
+    return;
+  }
+  const app = document.getElementById('app');
+  app.innerHTML = '<div class="section-title">Awaiting your review</div><div class="items"></div>';
+  const list = app.querySelector('.items');
+  items.forEach(item => {
+    const el = document.createElement('a');
+    el.className = 'item';
+    el.href = `/review/${item.slug}/`;
+    const badgeClass = BADGE[item.type] || 'badge-blog';
+    el.innerHTML = `
+      <span class="badge ${badgeClass}">${item.type}</span>
+      <div class="item-info">
+        <div class="item-title">${item.title}</div>
+        <div class="item-meta">${item.pillar || ''} · ${item.created || ''}</div>
+      </div>
+      <span class="arrow">›</span>`;
+    list.appendChild(el);
+  });
+}
+
+load();
+</script>
+</body>
+</html>
