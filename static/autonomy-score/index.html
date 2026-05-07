@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BE73N9F42M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BE73N9F42M');
+</script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <meta name="theme-color" content="#ffffff"/>
@@ -276,20 +284,20 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
     <span class="ln">Benedict Schweiger</span>
   </div>
   <div class="lbadge"><span class="lbdot"></span>Free Marketing Diagnostic</div>
-  <h1 class="lh"><em>Fire yourself</em><br>as the Operator.</h1>
-  <p class="lsub">Most marketing teams run on the CMO's energy. The best ones run on systems.</p>
+  <h1 class="lh"><em>Which of your<br>marketing roles</em><br>is AI replacing first?</h1>
+  <p class="lsub">Most teams won't know until it's already happened.</p>
   <ul class="lfriction">
-    <li><span class="lfdash">—</span><span>You're still the last person to approve every campaign before it goes live.</span></li>
-    <li><span class="lfdash">—</span><span>Your team asks for your input on decisions they should own.</span></li>
-    <li><span class="lfdash">—</span><span>You know you should be building systems — but the daily grind keeps winning.</span></li>
+    <li><span class="lfdash">—</span><span>Some of your team's tasks are already automatable. You don't know which ones.</span></li>
+    <li><span class="lfdash">—</span><span>The companies restructuring their marketing teams right now will have a 12-month head start.</span></li>
+    <li><span class="lfdash">—</span><span>Most CMOs won't be asked about AI readiness until after the decision's already been made.</span></li>
   </ul>
   <div class="lstats">
-    <div class="statb"><span class="statv">15</span><span class="statl">Questions</span></div>
-    <div class="statb"><span class="statv">6′</span><span class="statl">Minutes</span></div>
+    <div class="statb"><span class="statv">7</span><span class="statl">Questions</span></div>
+    <div class="statb"><span class="statv">3′</span><span class="statl">Minutes</span></div>
     <div class="statb"><span class="statv">3</span><span class="statv2">Dimensions</span></div>
     <div class="statb"><span class="statv">Free</span><span class="statl">No catch</span></div>
   </div>
-  <p class="loutcome">In 6 minutes, you'll know your score across 3 dimensions — and the exact area where your operation is leaking the most energy.</p>
+  <p class="loutcome">In 3 minutes, you'll know exactly which marketing functions on your team are most exposed to automation — and what to fix first.</p>
   <p class="lsocial">&#128101; 200+ marketing leaders have scored their operation.</p>
   <div class="lnamewrap">
     <label class="lnamelabel" for="lname">Before we begin — what should I call you?</label>
@@ -344,45 +352,29 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 
 <script>
 const DIMS={
-  CO:{name:'Command & Operations',   sub:'Can your operation run without you?',         max:300},
-  IE:{name:'Intelligence & Economics',sub:'Do you know what\'s working and why?',        max:700},
-  GA:{name:'Growth Architecture',    sub:'Is your growth structure built to compound?',  max:500},
+  CO:{name:'Command & Operations',   sub:'Can your operation run without you?',         max:200},
+  IE:{name:'Intelligence & Economics',sub:'Do you know what\'s working and why?',        max:300},
+  GA:{name:'Growth Architecture',    sub:'Is your growth structure built to compound?',  max:200},
 };
-const TOTAL_MAX=1500;
-const BREAK1_AFTER=2; // fire break after answering Q index 2 (Q3)
-const BREAK2_AFTER=9; // fire break after answering Q index 8 (Q9)
+const TOTAL_MAX=700;
+const BREAK1_AFTER=99; // disabled
+const BREAK2_AFTER=99; // disabled
 
 const QS=[
-  {dim:'CO',phase:'Command',stem:'Could your marketing function without you for 3 months?',
+  {dim:'CO',stem:'Could your marketing function without you for 3 months?',
    opts:[{t:'No. It lives entirely in my head.',pts:0},{t:'Barely. The team requires my constant direction.',pts:30},{t:'Yes. Documented processes and a capable team are in place.',pts:80},{t:'Better. The system runs more efficiently without my involvement.',pts:100}]},
-  {dim:'CO',phase:'Command',stem:'What is your relationship with external partners - agencies or freelancers?',
-   opts:[{t:'Total dependence. They hold the keys to our execution.',pts:10},{t:'Confusion. We pay them but don\'t fully understand their output.',pts:30},{t:'Tactical. We use them for specific tasks and can replace them.',pts:70},{t:'Optional. Core skills are in-house. Agencies are a choice.',pts:100}]},
-  {dim:'CO',phase:'Command',stem:'How does your team communicate and operate day-to-day?',
+  {dim:'CO',stem:'How does your team communicate and operate day-to-day?',
    opts:[{t:'Reactive chaos. Most of the day is unplanned calls and firefighting.',pts:0},{t:'Message-heavy. Constant pings without clear ownership or outcomes.',pts:30},{t:'Structured. Set weekly meetings and tools - but sync is still the default.',pts:60},{t:'Async-first. Recorded updates and written docs. Meetings are the exception.',pts:100}]},
-  {dim:'IE',phase:'Intelligence',stem:'To what extent is AI integrated into your daily workflow?',
+  {dim:'IE',stem:'To what extent is AI integrated into your daily workflow?',
    opts:[{t:'None. We haven\'t started.',pts:0},{t:'Fragmented. A few individuals use tools, but there is no system.',pts:30},{t:'Functional. AI assists in specific areas like copy or analysis.',pts:60},{t:'Strategic. AI is a core engine that saves significant time daily.',pts:100}]},
-  {dim:'IE',phase:'Intelligence',stem:'How does the team track performance when you aren\'t looking?',
-   opts:[{t:'They don\'t. We only check when something breaks.',pts:0},{t:'Manually. I pull reports and explain them to the team.',pts:30},{t:'Passively. We have a dashboard, but no one acts on it alone.',pts:60},{t:'Autonomously. The team runs a live scorecard without me.',pts:100}]},
-  {dim:'IE',phase:'Intelligence',stem:'Do you trust your Customer Acquisition Cost (CAC) and Lifetime Value (LTV)?',
+  {dim:'IE',stem:'Do you trust your Customer Acquisition Cost (CAC) and Lifetime Value (LTV)?',
    opts:[{t:'No. We don\'t track these numbers.',pts:0},{t:'Partially. Rough estimates - nothing we fully trust.',pts:30},{t:'Mostly. We track them but don\'t use them to shift budget.',pts:70},{t:'Absolutely. Precise data drives every Euro of spend.',pts:100}]},
-  {dim:'IE',phase:'Intelligence',stem:'How do you know what your customers actually want?',
-   opts:[{t:'Assumptions. We haven\'t formally asked.',pts:0},{t:'Anecdotes. Occasional feedback, but not a process.',pts:30},{t:'Surveys. We measure satisfaction but rarely act on it.',pts:60},{t:'Systems. Regular NPS and win/loss analysis drive our decisions.',pts:100}]},
-  {dim:'IE',phase:'Intelligence',stem:'How systematically do you understand why customers buy - and why they leave?',
-   opts:[{t:'We don\'t. We rely on gut feel and occasional sales calls.',pts:0},{t:'Reactively. We only dig in when something goes wrong.',pts:30},{t:'Periodically. We run surveys or exit interviews once or twice a year.',pts:60},{t:'Continuously. A systematic VoC process directly shapes our messaging and decisions.',pts:100}]},
-  {dim:'IE',phase:'Intelligence',stem:'Can you see which marketing activity actually drove each sale?',
+  {dim:'IE',stem:'Can you see which marketing activity actually drove each sale?',
    opts:[{t:'No. It\'s a black box.',pts:0},{t:'Blurry. We have tracking, but the numbers don\'t add up.',pts:30},{t:'Clear. We understand last-click reasonably well.',pts:70},{t:'Unified. We see the full journey from first touch to conversion.',pts:100}]},
-  {dim:'IE',phase:'Intelligence',stem:'How fast do you test new creative and messaging?',
-   opts:[{t:'Stagnant. We run the same ads until they stop working.',pts:0},{t:'Reactive. We create new ads only when performance drops.',pts:30},{t:'Consistent. We launch 2-5 new creative tests every month.',pts:70},{t:'Industrial. We test 10+ new concepts or hooks every week.',pts:100}]},
-  {dim:'GA',phase:'Architecture',stem:'Is your revenue dangerously dependent on a single source or channel?',
+  {dim:'GA',stem:'Is your revenue dangerously dependent on a single source or channel?',
    opts:[{t:'Yes. If one channel dies, the business is in serious trouble.',pts:0},{t:'Mostly. One dominant channel with a few minor ones.',pts:30},{t:'No. Two or three channels each contribute meaningfully.',pts:80},{t:'Never. We have no single point of failure.',pts:100}]},
-  {dim:'GA',phase:'Architecture',stem:'What is the status of your organic content today?',
-   opts:[{t:'Non-existent. We only grow if we pay for ads.',pts:0},{t:'Inconsistent. We post only when we have spare time.',pts:30},{t:'Emerging. It is starting to generate real leads.',pts:70},{t:'Dominant. It actively reduces our dependency on paid.',pts:100}]},
-  {dim:'GA',phase:'Architecture',stem:'Do you have an automated system to bring customers back?',
+  {dim:'GA',stem:'Do you have an automated system to bring customers back?',
    opts:[{t:'No. Every sale is a standalone event.',pts:0},{t:'Manual. We send occasional emails when we remember.',pts:30},{t:'Basic. A welcome flow and abandoned cart are running.',pts:60},{t:'Advanced. Full lifecycle automation - winback, loyalty, post-purchase.',pts:100}]},
-  {dim:'GA',phase:'Architecture',stem:'How would you describe your revenue growth today?',
-   opts:[{t:'Linear. We start from zero every month.',pts:0},{t:'Fragile. Some repeat customers, but nothing systematic.',pts:30},{t:'Stable. Our recurring base is growing steadily.',pts:75},{t:'Compounding. Acquisition and retention actively feed each other.',pts:100}]},
-  {dim:'GA',phase:'Architecture',stem:'How actively do you test and iterate on pricing, offers, and bundle structures?',
-   opts:[{t:'We set prices once. They haven\'t changed.',pts:0},{t:'Reactive. We only adjust when a competitor drops price or a campaign dies.',pts:20},{t:'Seasonal. We run planned promotions but rarely test structure.',pts:50},{t:'Systematic. We test pricing and bundle changes regularly, based on conversion and margin data.',pts:100}]},
 ];
 
 const INS={
@@ -406,6 +398,22 @@ const DEMO_PAGES=[
 
 let founderName='';
 let cur=0,ans=new Array(QS.length).fill(null);
+
+// UTM capture
+const _utmParams=(function(){
+  const p=new URLSearchParams(window.location.search);
+  return{
+    utm_source:p.get('utm_source')||'',
+    utm_medium:p.get('utm_medium')||'',
+    utm_campaign:p.get('utm_campaign')||'',
+    utm_content:p.get('utm_content')||'',
+  };
+})();
+
+// GA4 helper
+function _track(event,params){
+  if(typeof gtag==='function')gtag('event',event,params||{});
+}
 let demoPage=0;
 let dm={revenue:346410,adspend:30000,aov:316,revenue_raw:50,adspend_raw:50,aov_raw:50,margin:null};
 
@@ -455,6 +463,7 @@ function show(id){
 }
 
 function startDiagnostic(){
+  _track('diagnostic_started');
   const raw=(document.getElementById('lname').value||'').trim();
   if(!raw){document.getElementById('lnameerr').classList.add('show');document.getElementById('lname').focus();return;}
   document.getElementById('lnameerr').classList.remove('show');
@@ -547,7 +556,7 @@ function nextQ(){
   if(cur===BREAK1_AFTER){buildBreak1();show('sb1');return;}
   if(cur===BREAK2_AFTER){buildBreak2();show('sb2');return;}
   if(cur<QS.length-1){cur++;saveState();renderQ();}
-  else{demoPage=0;saveState();renderDemoPage();show('sd');}
+  else{demoPage=0;saveState();_track('diagnostic_completed',{score:totalPct(calcTotal())});renderDemoPage();show('sd');}
 }
 function prevQ(){if(cur>0){cur--;saveState();renderQ();}}
 function resumeFromBreak(nextIdx){cur=nextIdx;saveState();show('sq');renderQ();}
@@ -873,6 +882,7 @@ function submitOptin(){
   const pct=totalPct(total);
   const scores=calcDimScores();
   const zone=getZone(pct);
+  _track('email_submitted',{score:pct,zone:zone.label});
   fetch('/.netlify/functions/subscribe',{
     method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
@@ -888,10 +898,12 @@ function submitOptin(){
       score_ga:dimPct('GA',scores),
       // Key question signals (label text → Brevo attributes)
       q1_label:ans[0]!==null?QS[0].opts[ans[0]].t:null,
+      q2_label:ans[1]!==null?QS[1].opts[ans[1]].t:null,
+      q3_label:ans[2]!==null?QS[2].opts[ans[2]].t:null,
       q4_label:ans[3]!==null?QS[3].opts[ans[3]].t:null,
-      q8_label:ans[7]!==null?QS[7].opts[ans[7]].t:null,
-      q12_label:ans[12]!==null?QS[12].opts[ans[12]].t:null,
-      q14_label:ans[14]!==null?QS[14].opts[ans[14]].t:null,
+      q5_label:ans[4]!==null?QS[4].opts[ans[4]].t:null,
+      q6_label:ans[5]!==null?QS[5].opts[ans[5]].t:null,
+      q7_label:ans[6]!==null?QS[6].opts[ans[6]].t:null,
       // Demographics
       revenue:dm.revenue,
       adspend:dm.adspend,
@@ -900,6 +912,10 @@ function submitOptin(){
       // Open signal
       biggest_obstacle:obstacle.trim(),
       source:'autonomy-score',
+      utm_source:_utmParams.utm_source,
+      utm_medium:_utmParams.utm_medium,
+      utm_campaign:_utmParams.utm_campaign,
+      utm_content:_utmParams.utm_content,
     })
   }).catch(()=>{});
   buildPlan();show('sp');
