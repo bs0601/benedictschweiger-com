@@ -80,6 +80,44 @@ body.article-page nav{background:rgba(250,250,247,0.96)}
 .diag-end-stat span:last-child{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
 .diag-end-btn{display:inline-flex;align-items:center;gap:8px;background:var(--s);color:#fff;font-size:14px;font-weight:700;padding:14px 22px;border-radius:var(--rs)}
 
+/* ── MINI DIAGNOSTIC WIDGET ── */
+.mq-widget{background:var(--blk);border-radius:var(--r);padding:28px 24px;margin:40px 0 0;color:#fff}
+.mq-hidden{display:none!important}
+.mq-state{display:block}
+.mq-badge{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px}
+.mq-headline{font-size:clamp(20px,5vw,26px);font-weight:800;line-height:1.18;letter-spacing:-.025em;color:#fff;margin-bottom:12px}
+.mq-headline em{color:var(--s);font-style:normal}
+.mq-sub{font-size:14px;line-height:1.65;color:rgba(255,255,255,.6);margin-bottom:22px}
+.mq-btn-start{background:var(--s);color:#fff;border:none;border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;padding:14px 22px;cursor:pointer;width:100%}
+
+.mq-progress{height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-bottom:16px;overflow:hidden}
+.mq-progress-fill{height:100%;background:var(--s);border-radius:2px;transition:width .3s}
+.mq-qnum{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px}
+.mq-stem{font-size:18px;font-weight:700;line-height:1.35;letter-spacing:-.015em;color:#fff;margin-bottom:20px}
+.mq-opts{display:flex;flex-direction:column;gap:10px}
+.mq-opt{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:10px;padding:13px 16px;font-size:14px;font-weight:500;line-height:1.4;color:rgba(255,255,255,.8);cursor:pointer;text-align:left;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;width:100%}
+.mq-opt:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25)}
+.mq-opt.selected{background:var(--s);border-color:var(--s);color:#fff}
+
+.mq-result-eyebrow{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px}
+.mq-result-score{font-size:64px;font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--s);display:inline}
+.mq-result-label{font-size:20px;font-weight:700;color:rgba(255,255,255,.4);display:inline;margin-left:4px}
+.mq-result-zone{font-size:17px;font-weight:700;color:#fff;margin:10px 0 8px;line-height:1.3}
+.mq-result-sub{font-size:14px;line-height:1.65;color:rgba(255,255,255,.6);margin-bottom:20px}
+.mq-email-wrap{display:flex;flex-direction:column;gap:8px}
+.mq-email-input{border:2px solid rgba(255,255,255,.15);border-radius:var(--rs);padding:14px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:500;color:#fff;background:rgba(255,255,255,.08);outline:none;-webkit-appearance:none;transition:border-color .2s}
+.mq-email-input::placeholder{color:rgba(255,255,255,.35)}
+.mq-email-input:focus{border-color:var(--s)}
+.mq-email-err{font-size:12px;color:#fc8181}
+.mq-btn-submit{background:var(--s);color:#fff;border:none;border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;padding:14px 22px;cursor:pointer;width:100%}
+.mq-fine{font-size:11px;color:rgba(255,255,255,.3);text-align:center}
+
+.mq-done-icon{font-size:32px;margin-bottom:12px}
+.mq-done-title{font-size:20px;font-weight:800;line-height:1.25;color:#fff;margin-bottom:10px;letter-spacing:-.02em}
+.mq-done-sub{font-size:14px;line-height:1.65;color:rgba(255,255,255,.6);margin-bottom:20px}
+.mq-btn-full{display:block;text-align:center;background:transparent;border:1.5px solid rgba(255,255,255,.25);color:#fff;border-radius:var(--rs);padding:13px 22px;font-size:14px;font-weight:700;text-decoration:none;transition:border-color .2s}
+.mq-btn-full:hover{border-color:var(--s);color:var(--s)}
+
 /* ── SHORTCODES ── */
 /* Pull quote */
 .pullquote{border-left:4px solid var(--s);padding:12px 0 12px 24px;margin:36px 0}
@@ -137,18 +175,47 @@ body.article-page nav{background:rgba(250,250,247,0.96)}
     {{ .Content }}
   </div>
 
-  <!-- END CTA -->
-  <a href="/autonomy-score/" class="diag-end">
-    <div class="diag-end-badge">Free · 3 min · Instant results</div>
-    <div class="diag-end-title"><em>Fire yourself</em> as the Operator.</div>
-    <p class="diag-end-sub">15 questions. A score across 3 dimensions. You'll know exactly where your marketing team is stuck — and what to fix first.</p>
-    <div class="diag-end-stats">
-      <div class="diag-end-stat"><span>15</span><span>Questions</span></div>
-      <div class="diag-end-stat"><span>3</span><span>Dimensions</span></div>
-      <div class="diag-end-stat"><span>Free</span><span>No catch</span></div>
+  <!-- MINI DIAGNOSTIC WIDGET -->
+  <div class="mq-widget" id="mqWidget">
+    <!-- State 0: Intro -->
+    <div class="mq-state" id="mqs0">
+      <div class="mq-badge">2-min check · free · instant result</div>
+      <div class="mq-headline">Which of your marketing roles<br>is AI replacing first?</div>
+      <p class="mq-sub">Most teams won't know until it's already happened. Answer 3 questions and see where your operation is exposed.</p>
+      <button class="mq-btn-start" onclick="mqStart()">Check my exposure →</button>
     </div>
-    <div class="diag-end-btn">Get your Autonomy Score →</div>
-  </a>
+
+    <!-- States 1–3: Questions (rendered by JS) -->
+    <div class="mq-state mq-hidden" id="mqs1">
+      <div class="mq-progress"><div class="mq-progress-fill" id="mqProgFill" style="width:0%"></div></div>
+      <div class="mq-qnum" id="mqQNum">1 / 3</div>
+      <div class="mq-stem" id="mqStem"></div>
+      <div class="mq-opts" id="mqOpts"></div>
+    </div>
+
+    <!-- State 4: Teaser result + email gate -->
+    <div class="mq-state mq-hidden" id="mqs4">
+      <div class="mq-result-eyebrow" id="mqEyebrow"></div>
+      <div class="mq-result-score" id="mqScoreNum"></div>
+      <div class="mq-result-label">/ 100</div>
+      <div class="mq-result-zone" id="mqZone"></div>
+      <p class="mq-result-sub" id="mqResultSub"></p>
+      <div class="mq-email-wrap">
+        <input class="mq-email-input" type="email" id="mqEmail" placeholder="Your best email" autocomplete="email"/>
+        <div class="mq-email-err mq-hidden" id="mqEmailErr">Enter a valid email address.</div>
+        <button class="mq-btn-submit" onclick="mqSubmit()">See my full breakdown →</button>
+        <p class="mq-fine">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+
+    <!-- State 5: Post-submit -->
+    <div class="mq-state mq-hidden" id="mqs5">
+      <div class="mq-done-icon">✓</div>
+      <div class="mq-done-title" id="mqDoneTitle"></div>
+      <p class="mq-done-sub">Your full breakdown is on its way. Want the complete picture across all 3 dimensions?</p>
+      <a class="mq-btn-full" id="mqFullLink" href="/autonomy-score/">Take the full diagnostic →</a>
+    </div>
+  </div>
 </article>
 
 <script>
@@ -159,13 +226,141 @@ body.article-page nav{background:rgba(250,250,247,0.96)}
   var paras = prose.querySelectorAll('p');
   if (paras.length < 3) return;
   var cta = document.createElement('a');
-  cta.href = '/autonomy-score/';
+  cta.href = '/autonomy-score/?utm_source=blog&utm_medium=inline-cta&utm_campaign=mid-article';
   cta.className = 'diag-inline';
-  cta.innerHTML = '<div class="diag-inline-title">How autonomous is your marketing?</div>' +
-    '<div class="diag-inline-sub">3 minutes. Instant score. No pitch at the end.</div>' +
-    '<div class="diag-inline-btn">Get your score →</div>';
+  cta.innerHTML = '<div class="diag-inline-title">Which of your marketing roles is AI replacing first?</div>' +
+    '<div class="diag-inline-sub">3 questions. See where your team is exposed.</div>' +
+    '<div class="diag-inline-btn">Check your exposure →</div>';
   paras[2].insertAdjacentElement('afterend', cta);
 })();
+
+// ── MINI DIAGNOSTIC WIDGET ──
+var MQ_QS = [
+  {stem:'To what extent is AI integrated into your daily workflow?',
+   opts:['None. We haven\'t started.','Fragmented. A few individuals use tools, but there is no system.','Functional. AI assists in specific areas like copy or analysis.','Strategic. AI is a core engine that saves significant time daily.'],
+   pts:[0,30,60,100]},
+  {stem:'Could your marketing function without you for 3 months?',
+   opts:['No. It lives entirely in my head.','Barely. The team requires my constant direction.','Yes. Documented processes and a capable team are in place.','Better. The system runs more efficiently without my involvement.'],
+   pts:[0,30,80,100]},
+  {stem:'Is your revenue dangerously dependent on a single source or channel?',
+   opts:['Yes. If one channel dies, the business is in serious trouble.','Mostly. One dominant channel with a few minor ones.','No. Two or three channels each contribute meaningfully.','Never. We have no single point of failure.'],
+   pts:[0,30,80,100]}
+];
+var mqCur = 0, mqAns = [null, null, null];
+
+function mqShow(id) {
+  ['mqs0','mqs1','mqs4','mqs5'].forEach(function(s){ document.getElementById(s).classList.add('mq-hidden'); });
+  document.getElementById(id).classList.remove('mq-hidden');
+}
+
+function mqStart() {
+  mqCur = 0; mqAns = [null, null, null];
+  mqRenderQ();
+  mqShow('mqs1');
+}
+
+function mqRenderQ() {
+  var q = MQ_QS[mqCur];
+  document.getElementById('mqQNum').textContent = (mqCur + 1) + ' / 3';
+  document.getElementById('mqProgFill').style.width = ((mqCur / 3) * 100) + '%';
+  document.getElementById('mqStem').textContent = q.stem;
+  var optsEl = document.getElementById('mqOpts');
+  optsEl.innerHTML = '';
+  q.opts.forEach(function(opt, i) {
+    var btn = document.createElement('button');
+    btn.className = 'mq-opt';
+    btn.textContent = opt;
+    if (mqAns[mqCur] === i) btn.classList.add('selected');
+    btn.onclick = function() { mqSelect(i); };
+    optsEl.appendChild(btn);
+  });
+}
+
+function mqSelect(i) {
+  mqAns[mqCur] = i;
+  // highlight selection
+  document.querySelectorAll('.mq-opt').forEach(function(b, idx) {
+    b.classList.toggle('selected', idx === i);
+  });
+  // auto-advance after short delay
+  setTimeout(function() {
+    if (mqCur < 2) {
+      mqCur++;
+      mqRenderQ();
+    } else {
+      mqShowResult();
+    }
+  }, 280);
+}
+
+function mqScore() {
+  return mqAns.reduce(function(sum, a, i) {
+    return sum + (a !== null ? MQ_QS[i].pts[a] : 0);
+  }, 0);
+}
+
+function mqShowResult() {
+  var raw = mqScore();
+  var pct = Math.round(raw / 300 * 100);
+  document.getElementById('mqProgFill').style.width = '100%';
+
+  var zone, sub;
+  if (pct < 34) {
+    zone = 'High exposure.';
+    sub = 'AI is already automating tasks your team does manually. The window to get ahead of it is still open — but it\'s closing.';
+  } else if (pct < 67) {
+    zone = 'In transition.';
+    sub = 'Some functions are protected. Others aren\'t. The full diagnostic shows you which is which.';
+  } else {
+    zone = 'Well-positioned.';
+    sub = 'Your operation has the right scaffolding. The full diagnostic identifies where to fortify before the next wave.';
+  }
+
+  document.getElementById('mqEyebrow').textContent = 'YOUR SCORE';
+  document.getElementById('mqScoreNum').textContent = pct;
+  document.getElementById('mqZone').textContent = zone;
+  document.getElementById('mqResultSub').textContent = sub;
+  mqShow('mqs4');
+}
+
+function mqSubmit() {
+  var email = (document.getElementById('mqEmail').value || '').trim();
+  var err = document.getElementById('mqEmailErr');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    err.classList.remove('mq-hidden');
+    return;
+  }
+  err.classList.add('mq-hidden');
+
+  var pct = Math.round(mqScore() / 300 * 100);
+  var slug = window.location.pathname.replace(/\//g, '-').replace(/^-|-$/g, '') || 'blog';
+
+  // fire GA4 event if available
+  if (typeof gtag === 'function') gtag('event', 'mini_diagnostic_submitted', {score: pct, source: slug});
+
+  fetch('/.netlify/functions/subscribe', {
+    method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      timestamp: new Date().toISOString(),
+      email: email,
+      score: pct,
+      zone: pct < 34 ? 'high-exposure' : pct < 67 ? 'in-transition' : 'well-positioned',
+      source: 'blog-mini-diagnostic',
+      utm_source: 'blog',
+      utm_medium: 'end-card',
+      utm_campaign: slug,
+      q1_label: mqAns[0] !== null ? MQ_QS[0].opts[mqAns[0]] : null,
+      q2_label: mqAns[1] !== null ? MQ_QS[1].opts[mqAns[1]] : null,
+      q3_label: mqAns[2] !== null ? MQ_QS[2].opts[mqAns[2]] : null,
+    })
+  }).catch(function(){});
+
+  var scoreEl = document.getElementById('mqDoneTitle');
+  scoreEl.textContent = 'You scored ' + pct + '/100. Check your inbox.';
+  var fullLink = document.getElementById('mqFullLink');
+  fullLink.href = '/autonomy-score/?utm_source=blog&utm_medium=mini-diagnostic&utm_campaign=' + slug;
+  mqShow('mqs5');
+}
 </script>
 
 <!-- FOOTER -->
