@@ -7,7 +7,7 @@
  */
 
 const TELEGRAM_BOT_TOKEN = process.env.GARY_TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHAT_ID   = process.env.BENE_TELEGRAM_CHAT_ID || "7542560867";
+const TELEGRAM_CHAT_ID   = process.env.BENE_TELEGRAM_CHAT_ID;
 
 exports.handler = async function(event) {
   if (event.httpMethod === "OPTIONS") {
