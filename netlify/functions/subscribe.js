@@ -21,6 +21,11 @@ exports.handler = async function(event) {
 
   // Base attributes
   const attributes = { FIRSTNAME: firstName };
+  if (body.source) attributes.SOURCE = body.source;
+  if (body.utm_source)   attributes.UTM_SOURCE   = body.utm_source;
+  if (body.utm_medium)   attributes.UTM_MEDIUM   = body.utm_medium;
+  if (body.utm_campaign) attributes.UTM_CAMPAIGN = body.utm_campaign;
+  if (body.utm_content)  attributes.UTM_CONTENT  = body.utm_content;
 
   // Diagnostic attributes — only set if this is a diagnostic submission
   if (body.score !== undefined) {
@@ -29,8 +34,14 @@ exports.handler = async function(event) {
     attributes.SCORE_CO   = body.score_co   ?? "";
     attributes.SCORE_IE   = body.score_ie   ?? "";
     attributes.SCORE_GA   = body.score_ga   ?? "";
+    // Q labels — support both old (q1/q4/q8/q12/q14) and new (q1–q7) indices
     if (body.q1_label)        attributes.Q1_LABEL        = body.q1_label;
+    if (body.q2_label)        attributes.Q2_LABEL        = body.q2_label;
+    if (body.q3_label)        attributes.Q3_LABEL        = body.q3_label;
     if (body.q4_label)        attributes.Q4_LABEL        = body.q4_label;
+    if (body.q5_label)        attributes.Q5_LABEL        = body.q5_label;
+    if (body.q6_label)        attributes.Q6_LABEL        = body.q6_label;
+    if (body.q7_label)        attributes.Q7_LABEL        = body.q7_label;
     if (body.q8_label)        attributes.Q8_LABEL        = body.q8_label;
     if (body.q12_label)       attributes.Q12_LABEL       = body.q12_label;
     if (body.q14_label)       attributes.Q14_LABEL       = body.q14_label;
