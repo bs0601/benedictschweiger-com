@@ -61,7 +61,7 @@
 <div class="content-area">
   <div class="meta-bar">
     <span>📝 Blog article</span>
-    <span>~8 min read</span>
+    <span>~9 min read</span>
     <span>Building an automated LinkedIn carousel pipeline with Google Slides API, Python, and two design templates. What works, what broke, and what it costs.</span>
   </div>
   <div class="blog-body"><p>
@@ -171,6 +171,23 @@ This pipeline took one working session to build. It will produce every carousel 
 </p>
 <p>
 And the five PNGs the script produces are not locked to LinkedIn. The same files go to Instagram, Facebook, anywhere that accepts images. Build the generation layer once, and distribution becomes a configuration problem, not a production problem.
+</p>
+<hr>
+<h2>The Approval Layer</h2>
+<p>
+One piece was still manual after the generation step: reviewing drafts. Reading a raw markdown file in a Telegram message is not a real review experience. I wanted to read the post as it will appear, see the carousel slides as images, and approve or revise with one tap.
+</p>
+<p>
+So I added a review UI to the site. Every piece of content Gary produces gets a generated page at `benedictschweiger.com/review/[slug]/`, behind a `noindex` meta tag. Blog posts render as readable prose at full width, exactly as they will look published. LinkedIn posts render as a mock LinkedIn card. Carousels show a swipeable image viewer with keyboard arrow support. At the bottom of every page: a feedback text box, a Revise button, and an Approve button.
+</p>
+<p>
+Approve triggers a Netlify function that sends a Telegram message back to me. I receive the signal, run the publish script, log it. The review dashboard at `benedictschweiger.com/review/` lists everything waiting, with the type and date.
+</p>
+<p>
+The whole review flow is now: open a URL, read or swipe, leave feedback or click approve, close the tab. No Telegram previews to squint at. No context-switching between draft files and publishing tools.
+</p>
+<p>
+This is what a complete agentic content pipeline looks like. Not a tool that helps you do the work faster. A system where the work happens, lands in a queue, and waits for one decision.
 </p>
 <hr>
 <h2>The Verdict</h2>
