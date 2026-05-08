@@ -76,11 +76,12 @@ exports.handler = async function(event) {
   }
 
   // Step 2: Write decision to Google Drive queue file
+  let driveError = null;
   try {
     await writeToDriveQueue({ action, slug, type, feedback, timestamp: new Date().toISOString() });
   } catch(e) {
     console.error('Drive queue write failed:', e.message);
-    // Non-fatal — Telegram already sent, log and continue
+    driveError = e.message;
   }
 
   return {
@@ -89,20 +90,16 @@ exports.handler = async function(event) {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ ok: true, action, slug })
+    body: JSON.stringify({ ok: true, action, slug, driveQueued: !driveError, driveError })
   };
 };
 
 async function getGoogleAccessToken() {
+  const params = `client_id=${encodeURIComponent(GOOGLE_CLIENT_ID)}&client_secret=${encodeURIComponent(GOOGLE_CLIENT_SECRET)}&refresh_token=${encodeURIComponent(GOOGLE_REFRESH_TOKEN)}&grant_type=refresh_token`;
   const res = await fetch('https://oauth2.googleapis.com/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      client_id: GOOGLE_CLIENT_ID,
-      client_secret: GOOGLE_CLIENT_SECRET,
-      refresh_token: GOOGLE_REFRESH_TOKEN,
-      grant_type: 'refresh_token'
-    })
+    body: params
   });
   const data = await res.json();
   if (!data.access_token) throw new Error('Failed to get Google token: ' + JSON.stringify(data));
