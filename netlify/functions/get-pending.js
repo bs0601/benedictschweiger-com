@@ -33,13 +33,16 @@ exports.handler = async function(event) {
   }
 
   try {
-    // Fetch pending.json from /pending.json — outside /review/* auth guard
-    const baseUrl = process.env.URL || 'https://www.benedictschweiger.com';
-    const res = await fetch(`${baseUrl}/review-queue.json?t=${Date.now()}`);
-    if (!res.ok) {
-      return { statusCode: 200, headers, body: JSON.stringify([]) };
+    // Read pending items directly from Netlify Blobs — no HTTP, no CDN, no auth issues
+    const { getStore } = require('@netlify/blobs');
+    const store = getStore('review-pending');
+    let items = [];
+    try {
+      const raw = await store.get('items');
+      if (raw) items = JSON.parse(raw);
+    } catch (e) {
+      console.error('Blobs read error:', e.message);
     }
-    const items = await res.json();
 
     // Load dismissed slugs from Blobs
     let dismissed = new Set();
