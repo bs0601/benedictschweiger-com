@@ -122,6 +122,75 @@ The script checks all mandatory frontmatter fields and exits non-zero on errors.
 
 Do not commit a post that fails validation.
 
+---
+
+# Social Post Spec — Carousel Publishing
+
+## Image files
+
+Place 5 PNG slides at:
+```
+static/images/carousels/[slug]/slide-01.png
+static/images/carousels/[slug]/slide-02.png
+static/images/carousels/[slug]/slide-03.png
+static/images/carousels/[slug]/slide-04.png
+static/images/carousels/[slug]/slide-05.png
+```
+
+## pending.json entry
+
+Add this object to `static/review/pending.json`:
+```json
+{
+  "slug": "carousel-slug-here",
+  "title": "Carousel: Post Title",
+  "type": "social",
+  "platforms": ["linkedin", "instagram"],
+  "caption_linkedin": "Full LinkedIn caption text here...",
+  "caption_instagram": "Instagram caption text #hashtags #here",
+  "images": [
+    "/images/carousels/carousel-slug-here/slide-01.png",
+    "/images/carousels/carousel-slug-here/slide-02.png",
+    "/images/carousels/carousel-slug-here/slide-03.png",
+    "/images/carousels/carousel-slug-here/slide-04.png",
+    "/images/carousels/carousel-slug-here/slide-05.png"
+  ],
+  "created": "May 08, 2026"
+}
+```
+
+## Generate the review page
+
+```bash
+node scripts/generate-social-review.js static/review/pending.json [slug]
+```
+
+This creates `static/review/[slug]/index.html` with LinkedIn and Instagram previews plus the approval bar.
+
+## LinkedIn caption guidelines
+
+- 150–300 characters
+- Hook in the first line — this is what shows before "...see more"
+- No hashtags (LinkedIn penalizes them in reach)
+- End with a question or observation that invites engagement
+- Professional but conversational tone
+
+## Instagram caption guidelines
+
+- 100–150 characters visible before "...more"
+- Hashtags go in the first comment, not in the caption itself
+- Casual, personal tone
+- Can use emoji sparingly
+
+## What happens on approval
+
+1. Bene clicks ✅ Approve on the review page
+2. `social-publish` function posts to LinkedIn (multi-image post) and Instagram (carousel)
+3. Telegram confirmation sent to Bene with per-platform status
+4. Slug marked as dismissed — disappears from review dashboard
+
+---
+
 ## What Gary must NOT do
 - Commit `draft: false` directly
 - Skip FAQs or hasFAQ
