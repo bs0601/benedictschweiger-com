@@ -35,7 +35,7 @@ exports.handler = async function(event) {
   try {
     // Fetch pending.json from /pending.json — outside /review/* auth guard
     const baseUrl = process.env.URL || 'https://www.benedictschweiger.com';
-    const res = await fetch(`${baseUrl}/pending.json?t=${Date.now()}`);
+    const res = await fetch(`${baseUrl}/review-queue.json?t=${Date.now()}`);
     if (!res.ok) {
       return { statusCode: 200, headers, body: JSON.stringify([]) };
     }
