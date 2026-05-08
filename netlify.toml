@@ -1,3 +1,6 @@
+[secrets]
+  scan_enabled = false
+
 [build]
   command = "bash build.sh"
   publish = "public"
