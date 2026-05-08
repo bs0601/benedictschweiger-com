@@ -19,6 +19,15 @@
  */
 
 const { getStore } = require('@netlify/blobs');
+const crypto = require('crypto');
+
+function isAuthorized(event) {
+  const password = process.env.REVIEW_PASSWORD;
+  if (!password) return true;
+  const expected = crypto.createHash('sha256').update(password + 'review-salt-2026').digest('hex');
+  const cookies = event.headers.cookie || '';
+  return cookies.split(';').some(c => c.trim() === `review_auth=${expected}`);
+}
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = 'bs0601/benedictschweiger-com';
@@ -128,6 +137,10 @@ exports.handler = async function(event) {
 
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
+  }
+
+  if (!isAuthorized(event)) {
+    return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorized' }) };
   }
 
   let body;

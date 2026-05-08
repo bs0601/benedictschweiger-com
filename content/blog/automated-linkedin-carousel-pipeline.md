@@ -3,7 +3,7 @@ title: "How I Built a Carousel Factory (And What Broke Along the Way)"
 date: 2026-05-07
 slug: "automated-linkedin-carousel-pipeline"
 draft: false
-description: "I automated LinkedIn carousel production with Google Slides API and Python, then wired a full approval-to-publish pipeline with GitHub API and Google Indexing API. Everything that broke."
+description: "Google Slides API and Python: JSON brief in, five PNGs out. Then I wired approval-to-publish with GitHub API and Google Indexing. Everything that broke."
 author: "Benedict Schweiger"
 tags: ["agentic marketing", "linkedin carousels", "content automation", "google slides api", "marketing automation AI"]
 keywords: ["linkedin carousel automation", "google slides api python", "automate linkedin content", "agentic marketing pipeline", "netlify github api auto-publish", "google indexing api netlify"]
@@ -51,7 +51,7 @@ The standard advice for scaling carousel content is to invest in templates. Make
 
 Both approaches have the same structural flaw: they reduce time per unit but keep a human in the loop for every unit. You are optimizing a manual process instead of replacing it.
 
-The tool landscape reflects this. [Canva](https://canva.com) dominates manual carousel design. [Supergrow](https://supergrow.ai) and [PostNitro](https://postnitro.ai) position themselves as end-to-end LinkedIn content tools with AI-generated carousels. Taplio bundles carousel creation into a LinkedIn growth suite. ContentIn focuses on personal branding workflows. Every tool that claims to automate this still requires a human in the loop for every single output.
+The tools reflect this. [Canva](https://canva.com) dominates manual carousel design. [Supergrow](https://supergrow.ai) and [PostNitro](https://postnitro.ai) position themselves as end-to-end LinkedIn content tools with AI-generated carousels. Taplio bundles carousel creation into a LinkedIn growth suite. ContentIn focuses on personal branding workflows. Every tool that claims to automate this still requires a human in the loop for every single output.
 
 The [agentic marketing](/blog/what-is-agentic-marketing/) approach is different. You build the system once, encode your design decisions into a template, and let the pipeline handle production. The human reviews output, not process.
 

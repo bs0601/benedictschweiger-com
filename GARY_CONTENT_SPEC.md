@@ -110,6 +110,18 @@ When Gary adds to `static/review/pending.json`:
 7. Telegram confirmation sent to Bene
 8. Slug marked as dismissed — disappears from review dashboard
 
+## Validation (mandatory before every commit)
+
+Before committing any post, Gary must run:
+
+```bash
+node scripts/validate-post.js content/blog/{slug}.md
+```
+
+The script checks all mandatory frontmatter fields and exits non-zero on errors. Fix all errors before committing. Warnings are advisory but should be addressed where possible.
+
+Do not commit a post that fails validation.
+
 ## What Gary must NOT do
 - Commit `draft: false` directly
 - Skip FAQs or hasFAQ

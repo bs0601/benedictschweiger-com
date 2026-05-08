@@ -8,16 +8,28 @@
  */
 
 const { getStore } = require('@netlify/blobs');
+const crypto = require('crypto');
+
+function isAuthorized(event) {
+  const password = process.env.REVIEW_PASSWORD;
+  if (!password) return true; // not configured — open (dev)
+  const expected = crypto.createHash('sha256').update(password + 'review-salt-2026').digest('hex');
+  const cookies = event.headers.cookie || '';
+  return cookies.split(';').some(c => c.trim() === `review_auth=${expected}`);
+}
 
 exports.handler = async function(event) {
   const headers = {
-    'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
     'Cache-Control': 'no-store'
   };
 
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+    return { statusCode: 200, headers: { ...headers, 'Access-Control-Allow-Origin': '*' }, body: '' };
+  }
+
+  if (!isAuthorized(event)) {
+    return { statusCode: 401, headers, body: JSON.stringify({ error: 'Unauthorized' }) };
   }
 
   try {

@@ -1,6 +1,7 @@
 [build]
   command = "bash build.sh"
   publish = "public"
+  edge_functions = "netlify/edge-functions"
 
 [build.environment]
   HUGO_VERSION = "0.159.0"
