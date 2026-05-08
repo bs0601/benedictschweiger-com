@@ -212,6 +212,39 @@ exports.handler = async function(event) {
 
   const { action, slug, type, feedback } = body;
 
+  // --- Queue management actions (no slug required) ---
+  if (action === 'queue-seed' || action === 'queue-add' || action === 'queue-remove' || action === 'queue-get') {
+    try {
+      const qStore = getStore('review-pending');
+      let items = [];
+      const raw = await qStore.get('items');
+      if (raw) items = JSON.parse(raw);
+
+      if (action === 'queue-get') {
+        return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(items) };
+      }
+      if (action === 'queue-seed') {
+        items = body.items || [];
+        await qStore.set('items', JSON.stringify(items));
+        return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ok: true, count: items.length }) };
+      }
+      if (action === 'queue-add') {
+        if (!body.item || !body.item.slug) return { statusCode: 400, body: JSON.stringify({ error: 'item.slug required' }) };
+        const idx = items.findIndex(i => i.slug === body.item.slug);
+        if (idx >= 0) items[idx] = body.item; else items.push(body.item);
+        await qStore.set('items', JSON.stringify(items));
+        return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ok: true, count: items.length }) };
+      }
+      if (action === 'queue-remove') {
+        items = items.filter(i => i.slug !== slug);
+        await qStore.set('items', JSON.stringify(items));
+        return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ok: true, count: items.length }) };
+      }
+    } catch (e) {
+      return { statusCode: 500, body: JSON.stringify({ error: e.message }) };
+    }
+  }
+
   if (!action || !slug) {
     return { statusCode: 400, body: JSON.stringify({ error: "Missing action or slug" }) };
   }
