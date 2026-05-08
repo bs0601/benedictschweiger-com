@@ -213,7 +213,18 @@ exports.handler = async function(event) {
   const { action, slug, type, feedback } = body;
 
   // --- Queue management actions (no slug required) ---
-  if (action === 'queue-seed' || action === 'queue-add' || action === 'queue-remove' || action === 'queue-get') {
+  // Accepts either cookie-based auth (browser) or secret-in-body auth (local scripts)
+  const queueActions = ['queue-seed', 'queue-add', 'queue-remove', 'queue-get'];
+  if (queueActions.includes(action)) {
+    const pw = process.env.REVIEW_PASSWORD;
+    const bodySecret = body.secret;
+    const cookieOk = isAuthorized(event);
+    const secretOk = pw ? bodySecret === pw : true;
+    if (!cookieOk && !secretOk) {
+      return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorized' }) };
+    }
+  }
+  if (queueActions.includes(action)) {
     try {
       const qStore = getStore('review-pending');
       let items = [];
