@@ -1,13 +1,6 @@
 #!/bin/bash
 # Build script for Netlify
 
-# Install function dependencies
-if [ -f netlify/functions/package.json ]; then
-  echo "Installing function dependencies..."
-  cd netlify/functions && npm install --quiet && cd ../..
-  echo "✓ Function dependencies installed"
-fi
-
 # Build Hugo site
 hugo
 

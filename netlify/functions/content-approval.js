@@ -7,10 +7,9 @@
  * 2. Writes decision to Netlify Blobs so Hugo can poll and act on it
  */
 
-const { getStore } = require('@netlify/blobs');
-
 const TELEGRAM_BOT_TOKEN = process.env.GARY_TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID   = process.env.BENE_TELEGRAM_CHAT_ID;
+const BREVO_API_KEY      = process.env.BREVO_API_KEY;
 
 exports.handler = async function(event) {
   if (event.httpMethod === "OPTIONS") {
@@ -68,18 +67,33 @@ exports.handler = async function(event) {
     return { statusCode: 502, body: JSON.stringify({ error: "Telegram delivery failed" }) };
   }
 
-  // Step 2: Write to Netlify Blobs queue
+  // Step 2: Send approval decision to Hugo via email (Brevo → Gmail)
   let queued = false;
   let queueError = null;
   try {
-    const store = getStore("approvals");
-    const existing = await store.get("queue", { type: "json" }).catch(() => []);
-    const queue = Array.isArray(existing) ? existing : [];
-    queue.push({ action, slug, type, feedback, timestamp: new Date().toISOString() });
-    await store.setJSON("queue", queue);
-    queued = true;
+    const emailBody = JSON.stringify({ action, slug, type, feedback }, null, 2);
+    const brevoRes = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': BREVO_API_KEY
+      },
+      body: JSON.stringify({
+        sender: { name: 'Gary (Content Agent)', email: 'noreply@benedictschweiger.com' },
+        to: [{ email: 'info@benedictschweiger.com', name: 'Hugo' }],
+        subject: `HUGO_APPROVAL:${action}:${slug}`,
+        textContent: emailBody
+      })
+    });
+    if (brevoRes.ok) {
+      queued = true;
+    } else {
+      const err = await brevoRes.text();
+      queueError = `Brevo error: ${err}`;
+      console.error(queueError);
+    }
   } catch(e) {
-    console.error("Blobs write failed:", e.message);
+    console.error('Email queue failed:', e.message);
     queueError = e.message;
   }
 
