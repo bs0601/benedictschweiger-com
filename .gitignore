@@ -3,3 +3,4 @@ resources/
 !static/resources/
 .hugo_build.lock
 benedictschweiger_v4.html
+.DS_Store
