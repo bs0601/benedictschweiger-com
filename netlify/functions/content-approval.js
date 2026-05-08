@@ -7,8 +7,6 @@
  * 2. Writes decision to Netlify Blobs so Hugo can poll and act on it
  */
 
-import { getStore } from '@netlify/blobs';
-
 const TELEGRAM_BOT_TOKEN = process.env.GARY_TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID   = process.env.BENE_TELEGRAM_CHAT_ID;
 
@@ -52,17 +50,13 @@ exports.handler = async function(event) {
     return { statusCode: 400, body: JSON.stringify({ error: "Unknown action" }) };
   }
 
-  // Send via Gary bot to Bene's chat
+  // Step 1: Send Telegram confirmation to Bene
   const tgRes = await fetch(
     `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text,
-        parse_mode: "HTML"
-      })
+      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: "HTML" })
     }
   );
 
@@ -72,17 +66,20 @@ exports.handler = async function(event) {
     return { statusCode: 502, body: JSON.stringify({ error: "Telegram delivery failed" }) };
   }
 
-  // Step 2: Write decision to Netlify Blobs queue
-  let driveError = null;
+  // Step 2: Write to Netlify Blobs queue
+  let queued = false;
+  let queueError = null;
   try {
-    const store = getStore('approvals');
-    const existing = await store.get('queue', { type: 'json' }).catch(() => []);
+    const { getStore } = await import("@netlify/blobs");
+    const store = getStore("approvals");
+    const existing = await store.get("queue", { type: "json" }).catch(() => []);
     const queue = Array.isArray(existing) ? existing : [];
     queue.push({ action, slug, type, feedback, timestamp: new Date().toISOString() });
-    await store.setJSON('queue', queue);
+    await store.setJSON("queue", queue);
+    queued = true;
   } catch(e) {
-    console.error('Blobs queue write failed:', e.message);
-    driveError = e.message;
+    console.error("Blobs write failed:", e.message);
+    queueError = e.message;
   }
 
   return {
@@ -91,8 +88,6 @@ exports.handler = async function(event) {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ ok: true, action, slug, queued: !driveError, queueError: driveError })
+    body: JSON.stringify({ ok: true, action, slug, queued, queueError })
   };
 };
-
-
