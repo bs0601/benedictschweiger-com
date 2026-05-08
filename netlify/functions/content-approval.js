@@ -199,10 +199,7 @@ exports.handler = async function(event) {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
-  if (!isAuthorized(event)) {
-    return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorized' }) };
-  }
-
+  // Parse body first so queue ops can authenticate via body secret
   let body;
   try {
     body = JSON.parse(event.body);
@@ -211,19 +208,19 @@ exports.handler = async function(event) {
   }
 
   const { action, slug, type, feedback } = body;
-
-  // --- Queue management actions (no slug required) ---
-  // Accepts either cookie-based auth (browser) or secret-in-body auth (local scripts)
   const queueActions = ['queue-seed', 'queue-add', 'queue-remove', 'queue-get'];
+
   if (queueActions.includes(action)) {
+    // Queue ops: accept cookie auth OR body secret
     const pw = process.env.REVIEW_PASSWORD;
-    const bodySecret = body.secret;
-    const cookieOk = isAuthorized(event);
-    const secretOk = pw ? bodySecret === pw : true;
-    if (!cookieOk && !secretOk) {
+    const secretOk = pw ? body.secret === pw : true;
+    if (!isAuthorized(event) && !secretOk) {
       return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorized' }) };
     }
+  } else if (!isAuthorized(event)) {
+    return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorized' }) };
   }
+
   if (queueActions.includes(action)) {
     try {
       const qStore = getStore('review-pending');
