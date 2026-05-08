@@ -4,7 +4,7 @@ description: "I had ideas but no time to develop them at scale. So I built a pip
 slug: "agentic-content-pipeline"
 date: 2026-05-08
 author: "Benedict Schweiger"
-draft: true
+draft: false
 tags:
   - Agentic Marketing
   - Content Automation
