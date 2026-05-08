@@ -221,6 +221,7 @@ The tools exist. The APIs are free. The only cost is the willingness to treat co
     </div>
     <button class="btn btn-revise" onclick="sendDecision('revise')">🔄 Request revision</button>
     <button class="btn btn-approve" data-approve onclick="sendDecision('approve')">✅ Approve & publish</button>
+    <button class="btn btn-delete" onclick="sendDecision('delete')" title="Remove from pipeline" style="background:#f5f5f5;color:#888;border:1.5px solid #ddd">🗑 Delete</button>
   </div>
 </div>
 <script>
@@ -244,10 +245,22 @@ async function sendDecision(action) {
 
   const toast = document.getElementById('toast');
   if (res.ok) {
-    toast.textContent = action === 'approve' ? '✅ Approved — Hugo will publish shortly.' : '🔄 Revision requested — Hugo will follow up.';
-    toast.classList.add('show');
-    document.querySelectorAll('.btn').forEach(b => b.disabled = true);
-    setTimeout(() => { toast.classList.remove('show'); }, 4000);
+    if (action === 'approve') {
+      toast.textContent = '✅ Approved — Hugo will publish shortly.';
+      toast.classList.add('show');
+      document.querySelectorAll('.btn').forEach(b => b.disabled = true);
+      setTimeout(() => { window.location.href = '/review/'; }, 1800);
+    } else if (action === 'delete') {
+      toast.textContent = '🗑 Removed from pipeline.';
+      toast.classList.add('show');
+      document.querySelectorAll('.btn').forEach(b => b.disabled = true);
+      setTimeout(() => { window.location.href = '/review/'; }, 1200);
+    } else {
+      toast.textContent = '🔄 Revision requested — Hugo will follow up.';
+      toast.classList.add('show');
+      document.querySelectorAll('.btn').forEach(b => b.disabled = true);
+      setTimeout(() => { toast.classList.remove('show'); }, 4000);
+    }
   } else {
     toast.textContent = '⚠️ Something went wrong. Try again.';
     toast.classList.add('show');

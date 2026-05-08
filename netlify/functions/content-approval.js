@@ -1,11 +1,15 @@
 /**
- * content-approval.js — handles approve/revise decisions from the review UI.
+ * content-approval.js — handles approve/revise/delete decisions from the review UI.
  *
- * POST body: { action: "approve"|"revise", slug, type, feedback }
+ * POST body: { action: "approve"|"revise"|"delete", slug, type, feedback }
  *
- * 1. Sends confirmation to Bene via Gary bot (UX confirmation)
- * 2. Writes decision to Netlify Blobs so Hugo can poll and act on it
+ * approve/delete — marks slug as dismissed in Netlify Blobs (removes from dashboard)
+ * approve        — also sends Telegram + Brevo email to Hugo to trigger publish
+ * revise         — sends Telegram + Brevo email with feedback
+ * delete         — silently removes from pipeline, no notification
  */
+
+const { getStore } = require('@netlify/blobs');
 
 const TELEGRAM_BOT_TOKEN = process.env.GARY_TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID   = process.env.BENE_TELEGRAM_CHAT_ID;
@@ -39,6 +43,30 @@ exports.handler = async function(event) {
 
   if (!action || !slug) {
     return { statusCode: 400, body: JSON.stringify({ error: "Missing action or slug" }) };
+  }
+
+  // For approve and delete: mark slug as dismissed in Blobs
+  if (action === 'approve' || action === 'delete') {
+    try {
+      const store = getStore('review-dismissed');
+      const raw = await store.get('dismissed-slugs');
+      const existing = raw ? JSON.parse(raw) : [];
+      if (!existing.includes(slug)) {
+        existing.push(slug);
+      }
+      await store.set('dismissed-slugs', JSON.stringify(existing));
+    } catch (e) {
+      console.error('Blobs write error (non-fatal):', e.message);
+    }
+  }
+
+  // Delete is silent — no Telegram/email, just dismiss
+  if (action === 'delete') {
+    return {
+      statusCode: 200,
+      headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ok: true, action, slug })
+    };
   }
 
   // Build Telegram message
