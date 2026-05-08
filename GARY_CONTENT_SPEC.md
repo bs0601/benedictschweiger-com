@@ -110,6 +110,21 @@ When Gary adds to `static/review/pending.json`:
 7. Telegram confirmation sent to Bene
 8. Slug marked as dismissed — disappears from review dashboard
 
+## TLDR (mandatory for every blog post)
+
+Every article must open with a **TLDR** as a bullet list, placed before the first paragraph. Format:
+
+```markdown
+**TLDR**
+- [key point 1]
+- [key point 2]
+- [key point 3]
+- [key point 4]
+- [key point 5 — optional]
+```
+
+4–6 bullets. Each one is a standalone takeaway a reader could act on or remember. Not teaser copy — actual substance.
+
 ## Validation (mandatory before every commit)
 
 Before committing any post, Gary must run:

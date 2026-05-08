@@ -34,6 +34,14 @@ faq:
     answer: "A content approval workflow is the gate between AI-generated drafts and published content. In an agentic setup, the AI can produce and publish autonomously — the approval gate is what keeps that from being a disaster. It's where you check for false claims, verify the angle is right, and confirm the post would genuinely interest your audience. It's not editing; it's a final judgment call. That distinction matters: if you're rewriting paragraphs at approval, the generation step failed."
 ---
 
+**TLDR**
+- Ideas are not the bottleneck. Time to develop and distribute them is.
+- An AI agent (Gary) handles research, writing, formatting, and publishing. I handle one step: approval.
+- The interview is what keeps the content original — Gary asks questions based on keyword research, I answer from real experience, it writes from those answers.
+- The approval gate is not editing. It's a pass/fail check: no false claims, good flow, would I read this.
+- From approval to live post across blog, LinkedIn, and Instagram: under 60 seconds.
+- Templates constrain creative range — more variety is the fix, not abandoning the system.
+
 The gap between having an idea and having a published post is where most content goes to die.
 
 I have ideas. What I don't have is time to develop every one into a post, design the creative, write the caption, format for two platforms, and hit publish — all while running marketing for a [watch retailer](https://www.altherr.de) doing eight figures in revenue. Something has to give.
