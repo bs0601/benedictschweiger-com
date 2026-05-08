@@ -147,14 +147,24 @@ This is the v2 output — X/Twitter style, Inter font, circular avatar — gener
 <p style="font-size:13px;color:#888;margin-top:-8px">↔ Scroll to see all five slides — generated from one JSON brief, zero manual design work.</p>
 </p>
 <p>
-And the v1 hook — same brief, photo template, full-bleed cover fill calculated programmatically:
+And the v1 output — same brief, photo template, full-bleed cover fill calculated programmatically:
 </p>
 <p>
-<div style="margin:24px 0">
+<div style="display:flex;gap:10px;overflow-x:auto;padding:16px 0;margin:24px 0;scrollbar-width:thin">
  
-<img src="/images/carousel-example/v1-slide-01.png" alt="Template v1 — Photo hook slide" style="max-width:280px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.18)">
+<img src="/images/carousel-example/v1-slide-01.png" alt="Slide 1 — Hook" style="height:260px;width:auto;flex-shrink:0;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.18)">
+ 
+<img src="/images/carousel-example/v1-slide-02.png" alt="Slide 2 — Tension" style="height:260px;width:auto;flex-shrink:0;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.18)">
+ 
+<img src="/images/carousel-example/v1-slide-03.png" alt="Slide 3 — Proof" style="height:260px;width:auto;flex-shrink:0;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.18)">
+ 
+<img src="/images/carousel-example/v1-slide-04.png" alt="Slide 4 — Reframe" style="height:260px;width:auto;flex-shrink:0;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.18)">
+ 
+<img src="/images/carousel-example/v1-slide-05.png" alt="Slide 5 — CTA" style="height:260px;width:auto;flex-shrink:0;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.18)">
  
 </div>
+ 
+<p style="font-size:13px;color:#888;margin-top:-8px">↔ Scroll to see all five slides — photo template, full-bleed cover fill calculated programmatically.</p>
 </p>
 <p>
 The tech stack is deliberately minimal. Python 3, urllib, <a href="https://pillow.readthedocs.io" target="_blank">Pillow</a> for image processing, and OAuth 2 with a refresh token for all Google APIs. No external frameworks. No paid services. Total API cost per carousel: zero. Google Slides API has no per-request fee. Drive storage runs on free tier.
