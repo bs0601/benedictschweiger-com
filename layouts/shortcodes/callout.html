@@ -1,1 +1,1 @@
-<div class="callout callout--{{ .Get "type" }}"><span class="callout__label">{{ .Get "type" }}</span><p>{{ .Inner }}</p></div>
+<div class="callout callout--{{ .Get "type" }}"><span class="callout__label">{{ with .Get "label" }}{{ . }}{{ else }}{{ .Get "type" }}{{ end }}</span><p>{{ .Inner }}</p></div>
