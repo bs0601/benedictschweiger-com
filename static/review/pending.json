@@ -55,5 +55,12 @@
       "slide_04.png",
       "slide_05.png"
     ]
+  },
+  {
+    "slug": "content-atom-pipeline",
+    "title": "The content atom pipeline: one article feeds every platform",
+    "type": "blog",
+    "pillar": "Agentic Marketing",
+    "created": "May 08, 2026"
   }
 ]
