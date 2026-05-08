@@ -3,8 +3,26 @@ title: "How I Built a Carousel Factory (And What Broke Along the Way)"
 date: 2026-05-07
 slug: "automated-linkedin-carousel-pipeline"
 draft: false
-description: "Building an automated LinkedIn carousel pipeline with Google Slides API, Python, and two design templates. What works, what broke, and what it costs."
+description: "I automated LinkedIn carousel production with Google Slides API and Python. JSON brief in, five PNGs out. 45 minutes became 2. Here's exactly what I built and what broke."
+author: "Benedict Schweiger"
 tags: ["agentic marketing", "linkedin carousels", "content automation", "google slides api", "marketing automation AI"]
+keywords: ["linkedin carousel automation", "google slides api python", "automate linkedin content", "agentic marketing pipeline", "content automation tools"]
+cover:
+  image: "/images/og-default.png"
+  alt: "Automated LinkedIn carousel pipeline — Google Slides API and Python"
+  relative: false
+hasFAQ: true
+faq:
+  - question: "Can you automate LinkedIn carousel creation?"
+    answer: "Yes. Using the Google Slides API and Python, you can clone a template, replace text placeholders via batchUpdate, and export five PNGs automatically. A JSON brief with five fields goes in — hook, tension, proof, reframe, CTA — and the slide files come out. Human time per carousel: about 2 minutes to write the brief."
+  - question: "What is the Google Slides API batchUpdate?"
+    answer: "batchUpdate is the primary write operation in the Google Slides API. It accepts an array of requests — replacing text, inserting images, changing formatting — and applies them atomically to a presentation. For carousel automation, you use it to swap placeholder text like {{HOOK}} and {{CTA_HEADLINE}} with the actual content from your brief."
+  - question: "Why use Google Slides instead of Canva for automated carousels?"
+    answer: "Google Slides has a free, documented API with no per-request cost. Canva's API is limited for programmatic use. With Google Slides, you design the template once in the UI, then clone and populate it via code indefinitely. The API handles text replacement and PNG export. Drive handles storage. Total cost: zero."
+  - question: "How do you export Google Slides as PNG?"
+    answer: "The Slides API thumbnail endpoint exports individual slides as PNG: GET /v1/presentations/{presentationId}/pages/{pageObjectId}/thumbnail. You can request specific sizes. The export is server-side, so no browser or headless Chrome is required. One API call per slide."
+  - question: "What LinkedIn post format gets the most engagement?"
+    answer: "Carousels (document posts) consistently outperform other formats on LinkedIn. Median engagement rate for carousels runs around 21.77%, compared to 7.35% for video and 3% for standard images. The format forces sequential attention — each slide is a micro-commitment that increases time spent and signals engagement to the algorithm."
 ---
 
 **TL;DR:** I automated LinkedIn carousel production using the Google Slides API and Python. A JSON brief goes in — hook, tension, proof, reframe, CTA. Five PNGs and a PDF come out, ready to publish. Human time per carousel: 2 minutes. API cost: zero. Five things broke during the build; each one is worth knowing about. Here is the whole thing.
