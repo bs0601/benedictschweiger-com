@@ -215,7 +215,7 @@ exports.handler = async function(event) {
     const pw = process.env.REVIEW_PASSWORD;
     const secretOk = pw ? body.secret === pw : true;
     if (!isAuthorized(event) && !secretOk) {
-      return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorized' }) };
+      return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorized', debug: { pwSet: !!pw, pwLen: pw ? pw.length : 0, secretLen: body.secret ? body.secret.length : 0 } }) };
     }
   } else if (!isAuthorized(event)) {
     return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorized' }) };
