@@ -7,6 +7,8 @@
  * 2. Writes decision to Netlify Blobs so Hugo can poll and act on it
  */
 
+const { getStore } = require('@netlify/blobs');
+
 const TELEGRAM_BOT_TOKEN = process.env.GARY_TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID   = process.env.BENE_TELEGRAM_CHAT_ID;
 
@@ -70,7 +72,6 @@ exports.handler = async function(event) {
   let queued = false;
   let queueError = null;
   try {
-    const { getStore } = await import("@netlify/blobs");
     const store = getStore("approvals");
     const existing = await store.get("queue", { type: "json" }).catch(() => []);
     const queue = Array.isArray(existing) ? existing : [];

@@ -5,9 +5,10 @@
  * POST /.netlify/functions/get-approvals  → returns queue AND clears it
  */
 
+const { getStore } = require('@netlify/blobs');
+
 exports.handler = async function(event) {
   try {
-    const { getStore } = await import("@netlify/blobs");
     const store = getStore("approvals");
 
     const existing = await store.get("queue", { type: "json" }).catch(() => []);
