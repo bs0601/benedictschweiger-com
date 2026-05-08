@@ -25,7 +25,9 @@ echo "Running weekly content review..."
 REVIEW_OUTPUT=$(node scripts/weekly-content-review.js)
 
 # 3. Send to Bene via Telegram
-CHAT_ID="7542560867"
+# Load BENE_TELEGRAM_CHAT_ID from credentials.env
+source "${HOME}/.openclaw/workspace/memory/credentials.env" 2>/dev/null
+CHAT_ID="${BENE_TELEGRAM_CHAT_ID}"
 BOT_TOKEN="$GARY_TELEGRAM_BOT_TOKEN"
 
 echo "Sending weekly review to Bene via Telegram..."
