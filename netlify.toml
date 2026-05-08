@@ -2,6 +2,9 @@
   command = "bash build.sh"
   publish = "public"
 
+[functions]
+  node_bundler = "esbuild"
+
 [build.environment]
   HUGO_VERSION = "0.159.0"
 

@@ -4,16 +4,13 @@
  * POST body: { action: "approve"|"revise", slug, type, feedback }
  *
  * 1. Sends confirmation to Bene via Gary bot (UX confirmation)
- * 2. Writes decision to Google Drive queue file so Hugo can act on it
+ * 2. Writes decision to Netlify Blobs so Hugo can poll and act on it
  */
 
-const TELEGRAM_BOT_TOKEN    = process.env.GARY_TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHAT_ID      = process.env.BENE_TELEGRAM_CHAT_ID;
-const GOOGLE_CLIENT_ID      = process.env.GOOGLE_CLIENT_ID;
-const GOOGLE_CLIENT_SECRET  = process.env.GOOGLE_CLIENT_SECRET;
-const GOOGLE_REFRESH_TOKEN  = process.env.GOOGLE_REFRESH_TOKEN;
-// Drive file ID for the approvals queue JSON
-const APPROVALS_QUEUE_FILE  = process.env.APPROVALS_QUEUE_FILE_ID;
+import { getStore } from '@netlify/blobs';
+
+const TELEGRAM_BOT_TOKEN = process.env.GARY_TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID   = process.env.BENE_TELEGRAM_CHAT_ID;
 
 exports.handler = async function(event) {
   if (event.httpMethod === "OPTIONS") {
@@ -75,12 +72,16 @@ exports.handler = async function(event) {
     return { statusCode: 502, body: JSON.stringify({ error: "Telegram delivery failed" }) };
   }
 
-  // Step 2: Write decision to Google Drive queue file
+  // Step 2: Write decision to Netlify Blobs queue
   let driveError = null;
   try {
-    await writeToDriveQueue({ action, slug, type, feedback, timestamp: new Date().toISOString() });
+    const store = getStore('approvals');
+    const existing = await store.get('queue', { type: 'json' }).catch(() => []);
+    const queue = Array.isArray(existing) ? existing : [];
+    queue.push({ action, slug, type, feedback, timestamp: new Date().toISOString() });
+    await store.setJSON('queue', queue);
   } catch(e) {
-    console.error('Drive queue write failed:', e.message);
+    console.error('Blobs queue write failed:', e.message);
     driveError = e.message;
   }
 
@@ -90,72 +91,8 @@ exports.handler = async function(event) {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ ok: true, action, slug, driveQueued: !driveError, driveError })
+    body: JSON.stringify({ ok: true, action, slug, queued: !driveError, queueError: driveError })
   };
 };
 
-async function getGoogleAccessToken() {
-  const params = `client_id=${encodeURIComponent(GOOGLE_CLIENT_ID)}&client_secret=${encodeURIComponent(GOOGLE_CLIENT_SECRET)}&refresh_token=${encodeURIComponent(GOOGLE_REFRESH_TOKEN)}&grant_type=refresh_token`;
-  const res = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: params
-  });
-  const data = await res.json();
-  if (!data.access_token) throw new Error('Failed to get Google token: ' + JSON.stringify(data));
-  return data.access_token;
-}
 
-async function writeToDriveQueue(decision) {
-  const token = await getGoogleAccessToken();
-
-  // Read current queue
-  let queue = [];
-  if (APPROVALS_QUEUE_FILE) {
-    try {
-      const readRes = await fetch(
-        `https://www.googleapis.com/drive/v3/files/${APPROVALS_QUEUE_FILE}?alt=media`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      if (readRes.ok) queue = await readRes.json();
-    } catch(e) { /* start fresh if unreadable */ }
-  }
-
-  // Append new decision
-  queue.push(decision);
-
-  const body = JSON.stringify(queue, null, 2);
-  const fileId = APPROVALS_QUEUE_FILE;
-
-  if (fileId) {
-    // Update existing file
-    await fetch(
-      `https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`,
-      {
-        method: 'PATCH',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body
-      }
-    );
-  } else {
-    // Create new file (first run — log the ID so we can save it)
-    const meta = await fetch('https://www.googleapis.com/drive/v3/files', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: 'gary-approvals-queue.json', mimeType: 'application/json' })
-    });
-    const { id } = await meta.json();
-    await fetch(
-      `https://www.googleapis.com/upload/drive/v3/files/${id}?uploadType=media`,
-      {
-        method: 'PATCH',
-        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-        body
-      }
-    );
-    console.log(`APPROVALS_QUEUE_FILE created: ${id} — save this as Netlify env var APPROVALS_QUEUE_FILE_ID`);
-  }
-}
