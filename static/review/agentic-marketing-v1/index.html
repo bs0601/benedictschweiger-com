@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Review: Agentic Marketing — What It Actually Means (V1)</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: #F5F4F0; color: #1a1a1a; min-height: 100vh; }
+  .top-bar { background: #1a1a1a; color: #fff; padding: 14px 24px; display: flex; align-items: center; gap: 12px; }
+  .top-bar a { color: #aaa; text-decoration: none; font-size: 13px; }
+  .top-bar a:hover { color: #fff; }
+  .top-bar h2 { font-size: 15px; font-weight: 600; flex: 1; }
+  .badge { font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
+  .badge-social { background: #fef3e2; color: #e65100; }
+  .content-area { max-width: 900px; margin: 0 auto; padding: 32px 24px 120px; }
+  .platform-section { margin-bottom: 40px; }
+  .platform-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+
+  /* LinkedIn preview */
+  .li-card { background: #fff; border-radius: 8px; border: 1px solid #e0e0e0; max-width: 560px; overflow: hidden; }
+  .li-header { display: flex; align-items: flex-start; padding: 16px 16px 0; gap: 10px; }
+  .li-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .li-meta { flex: 1; }
+  .li-name { font-size: 14px; font-weight: 700; color: #000; }
+  .li-name .li-degree { font-weight: 400; color: #666; font-size: 13px; }
+  .li-headline { font-size: 12px; color: #666; line-height: 1.3; }
+  .li-time { font-size: 12px; color: #999; margin-top: 1px; }
+  .li-follow { background: none; border: none; color: #0a66c2; font-size: 14px; font-weight: 700; cursor: default; padding: 4px 0; white-space: nowrap; }
+  .li-caption { padding: 12px 16px 0; font-size: 14px; line-height: 1.5; color: #000; white-space: pre-wrap; word-wrap: break-word; }
+  .li-carousel { display: flex; gap: 10px; overflow-x: auto; padding: 12px 16px; scrollbar-width: thin; scroll-snap-type: x mandatory; }
+  .li-carousel img { height: 260px; width: auto; flex-shrink: 0; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,.18); scroll-snap-align: start; }
+  .li-actions { display: flex; border-top: 1px solid #e0e0e0; padding: 4px 0; }
+  .li-actions button { flex: 1; background: none; border: none; padding: 12px 0; font-size: 13px; font-weight: 600; color: #666; cursor: default; }
+
+  /* Instagram preview */
+  .ig-card { background: #fff; border-radius: 8px; border: 1px solid #dbdbdb; max-width: 400px; overflow: hidden; }
+  .ig-top { display: flex; align-items: center; padding: 12px; gap: 10px; }
+  .ig-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+  .ig-username { font-size: 14px; font-weight: 600; color: #262626; flex: 1; }
+  .ig-menu { font-size: 18px; color: #262626; cursor: default; letter-spacing: 2px; }
+  .ig-viewer { position: relative; width: 100%; aspect-ratio: 1/1; background: #000; overflow: hidden; }
+  .ig-viewer img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .2s; }
+  .ig-viewer img.active { opacity: 1; }
+  .ig-tap { position: absolute; top: 0; bottom: 0; width: 50%; cursor: pointer; z-index: 2; }
+  .ig-tap-left { left: 0; }
+  .ig-tap-right { right: 0; }
+  .ig-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; z-index: 3; }
+  .ig-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.4); }
+  .ig-dot.active { background: #0095f6; }
+  .ig-icons { display: flex; align-items: center; padding: 12px; gap: 14px; }
+  .ig-icons span { font-size: 22px; cursor: default; }
+  .ig-icons .ig-save { margin-left: auto; }
+  .ig-caption-area { padding: 0 12px 12px; font-size: 14px; line-height: 1.5; color: #262626; }
+  .ig-caption-area .ig-cap-user { font-weight: 600; }
+  .ig-comments { padding: 0 12px 12px; font-size: 13px; color: #999; }
+
+  /* Approval bar */
+  .approval-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #e5e5e5; padding: 16px 24px; display: flex; gap: 12px; align-items: flex-end; z-index: 100; box-shadow: 0 -4px 24px rgba(0,0,0,.08); }
+  .approval-bar .inner { max-width: 900px; margin: 0 auto; width: 100%; display: flex; gap: 12px; align-items: flex-end; }
+  .feedback-wrap { flex: 1; }
+  .feedback-wrap label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: .06em; text-transform: uppercase; display: block; margin-bottom: 6px; }
+  .feedback-wrap textarea { width: 100%; border: 1.5px solid #e5e5e5; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: inherit; resize: vertical; min-height: 44px; max-height: 120px; outline: none; color: #1a1a1a; transition: border-color .15s; }
+  .feedback-wrap textarea:focus { border-color: #C4622D; }
+  .btn { border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; padding: 12px 20px; white-space: nowrap; transition: opacity .15s; }
+  .btn:hover { opacity: .85; }
+  .btn-approve { background: #2a7a4e; color: #fff; }
+  .btn-revise { background: #fef3e2; color: #e65100; border: 1.5px solid #e65100; }
+  .toast { position: fixed; top: 24px; right: 24px; background: #1a1a1a; color: #fff; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 200; }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a href="/review/">← All drafts</a>
+  <h2>Agentic Marketing — What It Actually Means (V1)</h2>
+  <span class="badge badge-social">social</span>
+</div>
+<div class="toast" id="toast"></div>
+<div class="content-area">
+
+  <!-- LinkedIn Preview -->
+  <div class="platform-section">
+    <div class="platform-label">LinkedIn Preview</div>
+    <div class="li-card">
+      <div class="li-header">
+        <img class="li-avatar" src="/images/og-default.png" alt="Avatar">
+        <div class="li-meta">
+          <div class="li-name">Benedict Schweiger <span class="li-degree">· 1st</span></div>
+          <div class="li-headline">Head of Marketing at ALTHERR</div>
+          <div class="li-time">Just now · 🌐</div>
+        </div>
+        <span class="li-follow">+ Follow</span>
+      </div>
+      <div class="li-caption">The question is not whether AI can do the job. It is whether the job deserves a human.
+
+We asked that at ALTHERR for every role on the team. Most answers were uncomfortable.
+
+Instagram publishing: a hygiene channel. We needed it consistent, not creative. An N8N workflow with an LLM handles it now. Setup was one week. That role did not get refilled when we restructured.
+
+SEO execution: one strategist with AI tooling does what two people did before. Not because the work matters less, but because most of it is pattern recognition, and models are built for pattern recognition.
+
+We also tried what did not work. HeyGen for AI-generated video avatars. The output was technically fine. Viewers noticed immediately. Trust is expensive to rebuild, so we stopped after two weeks.
+
+That failure taught us the distinction that matters: tasks that can be evaluated by outputs are agent candidates. Tasks where quality depends on judgment about the brand, the customer, or the moment stay with humans.
+
+Eight people became six. Output held. The six do more valuable work than the eight did.
+
+Most marketing orgs are still structured around a problem that no longer exists: good marketing requires a lot of human labour. It does not. It requires a few people who can design and oversee systems, and agents that can execute.
+
+If you want to see which of your tasks are agent candidates, the Autonomy Score diagnostic maps your marketing setup across five dimensions in three minutes. benedictschweiger.com/autonomy-score</div>
+      <div class="li-carousel">
+        <img src="slide_01.png" alt="Slide 1" style="height:260px;width:auto;flex-shrink:0;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.18)">
+        <img src="slide_02.png" alt="Slide 2" style="height:260px;width:auto;flex-shrink:0;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.18)">
+        <img src="slide_03.png" alt="Slide 3" style="height:260px;width:auto;flex-shrink:0;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.18)">
+        <img src="slide_04.png" alt="Slide 4" style="height:260px;width:auto;flex-shrink:0;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.18)">
+        <img src="slide_05.png" alt="Slide 5" style="height:260px;width:auto;flex-shrink:0;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.18)">
+      </div>
+      <div class="li-actions">
+        <button>👍 Like</button>
+        <button>💬 Comment</button>
+        <button>🔁 Repost</button>
+        <button>✈️ Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instagram Preview -->
+  <div class="platform-section">
+    <div class="platform-label">Instagram Preview</div>
+    <div class="ig-card">
+      <div class="ig-top">
+        <img class="ig-avatar" src="/images/og-default.png" alt="Avatar">
+        <span class="ig-username">benedictschweiger</span>
+        <span class="ig-menu">…</span>
+      </div>
+      <div class="ig-viewer" id="igViewer">
+        <img src="slide_01.png" alt="Slide 1" class="active" data-idx="0">
+        <img src="slide_02.png" alt="Slide 2" class="" data-idx="1">
+        <img src="slide_03.png" alt="Slide 3" class="" data-idx="2">
+        <img src="slide_04.png" alt="Slide 4" class="" data-idx="3">
+        <img src="slide_05.png" alt="Slide 5" class="" data-idx="4">
+        <div class="ig-tap ig-tap-left" onclick="igNav(-1)"></div>
+        <div class="ig-tap ig-tap-right" onclick="igNav(1)"></div>
+        <div class="ig-dots">
+          <div class="ig-dot active" data-dot="0"></div>
+          <div class="ig-dot " data-dot="1"></div>
+          <div class="ig-dot " data-dot="2"></div>
+          <div class="ig-dot " data-dot="3"></div>
+          <div class="ig-dot " data-dot="4"></div>
+        </div>
+      </div>
+      <div class="ig-icons">
+        <span>❤️</span>
+        <span>🗨️</span>
+        <span>📤</span>
+        <span class="ig-save">🔖</span>
+      </div>
+      <div class="ig-caption-area">
+        <span class="ig-cap-user">benedictschweiger</span> We cut from 8 to 6 people at ALTHERR last December.
+
+Not by cutting output. By asking one question for every role: does this task require a human, or does it require a system?
+
+Instagram publishing: system. One week of setup with N8N and an LLM. Done.
+
+SEO execution: one person with AI tools does what two did before.
+
+Video avatars via HeyGen: tried it, failed. Viewers notice. Trust costs too much. Stopped after two weeks.
+
+The line that matters: tasks with measurable outputs belong to agents. Tasks that need judgment about the brand or customer stay with people.
+
+Six doing the work of eight, but better work.
+
+Which of your marketing tasks are agent candidates? Link in bio to find out.
+
+#agenticmarketing #marketingautomation #aimarketing #marketingstrategy #marketingops #futureofwork #contentmarketing #smallteam
+      </div>
+      <div class="ig-comments">View all 0 comments</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="approval-bar">
+  <div class="inner">
+    <div class="feedback-wrap">
+      <label>Feedback / revision notes</label>
+      <textarea id="feedback" placeholder="Optional — leave blank to approve as-is…" rows="2"></textarea>
+    </div>
+    <button class="btn btn-revise" onclick="sendDecision('revise')">🔄 Request revision</button>
+    <button class="btn btn-approve" onclick="sendDecision('approve')">✅ Approve & post</button>
+    <button class="btn" onclick="sendDecision('delete')" title="Remove from pipeline" style="background:#f5f5f5;color:#888;border:1.5px solid #ddd">🗑 Delete</button>
+  </div>
+</div>
+
+<script>
+// Instagram carousel navigation
+let igIdx = 0;
+const igTotal = 5;
+
+function igNav(dir) {
+  igIdx = Math.max(0, Math.min(igTotal - 1, igIdx + dir));
+  document.querySelectorAll('#igViewer img').forEach(img => img.classList.remove('active'));
+  document.querySelector('#igViewer img[data-idx="' + igIdx + '"]').classList.add('active');
+  document.querySelectorAll('.ig-dot').forEach(d => d.classList.remove('active'));
+  document.querySelector('.ig-dot[data-dot="' + igIdx + '"]').classList.add('active');
+}
+
+// Approval actions
+async function sendDecision(action) {
+  const feedback = document.getElementById('feedback').value.trim();
+  const slug = 'agentic-marketing-v1';
+  const toast = document.getElementById('toast');
+
+  if (action === 'revise' && !feedback) {
+    document.getElementById('feedback').focus();
+    document.getElementById('feedback').style.borderColor = '#e65100';
+    return;
+  }
+
+  // Approve goes to social-publish; revise/delete go to content-approval
+  if (action === 'approve') {
+    toast.textContent = 'Posting to LinkedIn + Instagram...';
+    toast.classList.add('show');
+    document.querySelectorAll('.btn').forEach(b => b.disabled = true);
+
+    try {
+      const res = await fetch('/.netlify/functions/social-publish', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug: slug,
+          caption_linkedin: "The question is not whether AI can do the job. It is whether the job deserves a human.\n\nWe asked that at ALTHERR for every role on the team. Most answers were uncomfortable.\n\nInstagram publishing: a hygiene channel. We needed it consistent, not creative. An N8N workflow with an LLM handles it now. Setup was one week. That role did not get refilled when we restructured.\n\nSEO execution: one strategist with AI tooling does what two people did before. Not because the work matters less, but because most of it is pattern recognition, and models are built for pattern recognition.\n\nWe also tried what did not work. HeyGen for AI-generated video avatars. The output was technically fine. Viewers noticed immediately. Trust is expensive to rebuild, so we stopped after two weeks.\n\nThat failure taught us the distinction that matters: tasks that can be evaluated by outputs are agent candidates. Tasks where quality depends on judgment about the brand, the customer, or the moment stay with humans.\n\nEight people became six. Output held. The six do more valuable work than the eight did.\n\nMost marketing orgs are still structured around a problem that no longer exists: good marketing requires a lot of human labour. It does not. It requires a few people who can design and oversee systems, and agents that can execute.\n\nIf you want to see which of your tasks are agent candidates, the Autonomy Score diagnostic maps your marketing setup across five dimensions in three minutes. benedictschweiger.com/autonomy-score",
+          caption_instagram: "We cut from 8 to 6 people at ALTHERR last December.\n\nNot by cutting output. By asking one question for every role: does this task require a human, or does it require a system?\n\nInstagram publishing: system. One week of setup with N8N and an LLM. Done.\n\nSEO execution: one person with AI tools does what two did before.\n\nVideo avatars via HeyGen: tried it, failed. Viewers notice. Trust costs too much. Stopped after two weeks.\n\nThe line that matters: tasks with measurable outputs belong to agents. Tasks that need judgment about the brand or customer stay with people.\n\nSix doing the work of eight, but better work.\n\nWhich of your marketing tasks are agent candidates? Link in bio to find out.\n\n#agenticmarketing #marketingautomation #aimarketing #marketingstrategy #marketingops #futureofwork #contentmarketing #smallteam",
+          images: ["slide_01.png","slide_02.png","slide_03.png","slide_04.png","slide_05.png"]
+        })
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        const liStatus = data.linkedin?.error ? '\u26a0\ufe0f LI: ' + data.linkedin.error : '\u2705 LinkedIn';
+        const igStatus = data.instagram?.error ? '\u26a0\ufe0f IG: ' + data.instagram.error : '\u2705 Instagram';
+        toast.textContent = liStatus + ' | ' + igStatus;
+        setTimeout(() => { window.location.href = '/review/'; }, 2500);
+      } else {
+        toast.textContent = '\u26a0\ufe0f ' + (data.error || 'Something went wrong');
+        document.querySelectorAll('.btn').forEach(b => b.disabled = false);
+        setTimeout(() => { toast.classList.remove('show'); }, 4000);
+      }
+    } catch (e) {
+      toast.textContent = '\u26a0\ufe0f Network error';
+      document.querySelectorAll('.btn').forEach(b => b.disabled = false);
+      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+  } else {
+    // revise or delete → content-approval
+    const res = await fetch('/.netlify/functions/content-approval', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action, slug, type: 'social', feedback })
+    });
+
+    if (res.ok) {
+      if (action === 'delete') {
+        toast.textContent = '\ud83d\uddd1 Removed from pipeline.';
+        toast.classList.add('show');
+        document.querySelectorAll('.btn').forEach(b => b.disabled = true);
+        setTimeout(() => { window.location.href = '/review/'; }, 1200);
+      } else {
+        toast.textContent = '\ud83d\udd04 Revision requested \u2014 Gary will follow up.';
+        toast.classList.add('show');
+        document.querySelectorAll('.btn').forEach(b => b.disabled = true);
+        setTimeout(() => { toast.classList.remove('show'); }, 4000);
+      }
+    } else {
+      toast.textContent = '\u26a0\ufe0f Something went wrong. Try again.';
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+  }
+}
+</script>
+</body>
+</html>
