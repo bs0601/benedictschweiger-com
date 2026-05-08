@@ -215,7 +215,10 @@ exports.handler = async function(event) {
       : indexResult?.error
         ? `⚠️ Indexing error: ${indexResult.error}`
         : '🔍 Submitted to Google Indexing API';
-    text = `✅ APPROVED\n\nSlug: ${slug}\nType: ${type || 'unknown'}\n\n${pubStatus}\n${idxStatus}\n🔗 ${SITE_BASE}/blog/${slug}/`;
+    const atomHint = (type === 'blog')
+      ? `\n\n💡 Next: \`node scripts/extract-atoms.js content/blog/${slug}.md\``
+      : '';
+    text = `✅ APPROVED\n\nSlug: ${slug}\nType: ${type || 'unknown'}\n\n${pubStatus}\n${idxStatus}\n🔗 ${SITE_BASE}/blog/${slug}/${atomHint}`;
   } else if (action === 'revise') {
     text = `🔄 REVISE\nType: ${type || 'unknown'}\nSlug: ${slug}\n\nFeedback:\n${feedback || '(no feedback provided)'}`;
   } else {
