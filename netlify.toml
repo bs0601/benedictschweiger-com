@@ -3,6 +3,10 @@
   publish = "public"
   edge_functions = "netlify/edge-functions"
 
+[[edge_functions]]
+  path = "/review/*"
+  function = "review-auth"
+
 [build.environment]
   HUGO_VERSION = "0.159.0"
 
