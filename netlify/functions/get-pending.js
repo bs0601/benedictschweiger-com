@@ -33,13 +33,14 @@ exports.handler = async function(event) {
   }
 
   try {
-    // Fetch the static pending.json from CDN
-    const baseUrl = process.env.URL || 'https://www.benedictschweiger.com';
-    const res = await fetch(`${baseUrl}/review/pending.json?t=${Date.now()}`);
-    if (!res.ok) {
+    // Read pending.json directly from the filesystem (avoids auth guard on /review/*)
+    const path = require('path');
+    const fs = require('fs');
+    const pendingPath = path.join(__dirname, '../../static/review/pending.json');
+    if (!fs.existsSync(pendingPath)) {
       return { statusCode: 200, headers, body: JSON.stringify([]) };
     }
-    const items = await res.json();
+    const items = JSON.parse(fs.readFileSync(pendingPath, 'utf-8'));
 
     // Load dismissed slugs from Blobs
     let dismissed = new Set();
