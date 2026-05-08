@@ -4,6 +4,7 @@
  * POST body: { action: "approve"|"revise"|"delete", slug, type, feedback }
  *
  * approve — flips draft:true → false via GitHub API (triggers Netlify build + publish)
+ *           submits URL to Google Indexing API for immediate crawling
  *           marks slug as dismissed in Blobs (removes from review dashboard)
  *           sends Telegram confirmation to Bene
  * revise  — sends Telegram + Brevo email with feedback notes
@@ -12,12 +13,70 @@
  * Required env vars:
  *   GARY_TELEGRAM_BOT_TOKEN, BENE_TELEGRAM_CHAT_ID, BREVO_API_KEY
  *   GITHUB_TOKEN — PAT with repo write access (Settings → Developer settings → PAT)
+ *   GOOGLE_SERVICE_ACCOUNT_KEY — JSON key for service account with Indexing API access
+ *                                  Minified JSON string, e.g. {"type":"service_account",...}
+ *                                  Service account must be added as owner in Search Console
  */
 
 const { getStore } = require('@netlify/blobs');
+const crypto = require('crypto');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = 'bs0601/benedictschweiger-com';
+const SITE_BASE    = 'https://www.benedictschweiger.com';
+
+// --- Google Indexing API via service account JWT auth ---
+async function getServiceAccountToken(key) {
+  const now   = Math.floor(Date.now() / 1000);
+  const scope = 'https://www.googleapis.com/auth/indexing';
+  const header = Buffer.from(JSON.stringify({ alg: 'RS256', typ: 'JWT' })).toString('base64url');
+  const claim  = Buffer.from(JSON.stringify({
+    iss: key.client_email,
+    scope,
+    aud: 'https://oauth2.googleapis.com/token',
+    exp: now + 3600,
+    iat: now
+  })).toString('base64url');
+
+  const signingInput = `${header}.${claim}`;
+  const signer = crypto.createSign('RSA-SHA256');
+  signer.update(signingInput);
+  const signature = signer.sign(key.private_key, 'base64url');
+
+  const jwt = `${signingInput}.${signature}`;
+
+  const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${jwt}`
+  });
+  const tokenData = await tokenRes.json();
+  if (!tokenData.access_token) throw new Error(`Token exchange failed: ${JSON.stringify(tokenData)}`);
+  return tokenData.access_token;
+}
+
+async function requestGoogleIndexing(postUrl) {
+  const rawKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
+  if (!rawKey) {
+    console.warn('GOOGLE_SERVICE_ACCOUNT_KEY not set — skipping Indexing API');
+    return { skipped: true, reason: 'no service account key' };
+  }
+
+  const key   = JSON.parse(rawKey);
+  const token = await getServiceAccountToken(key);
+
+  const res = await fetch('https://indexing.googleapis.com/v3/urlNotifications:publish', {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ url: postUrl, type: 'URL_UPDATED' })
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Indexing API error (${res.status}): ${err}`);
+  }
+  return await res.json();
+}
 
 async function publishDraft(slug) {
   if (!GITHUB_TOKEN) throw new Error('GITHUB_TOKEN not set');
@@ -123,8 +182,9 @@ exports.handler = async function(event) {
     };
   }
 
-  // For approve: publish the draft via GitHub API
+  // For approve: publish the draft via GitHub API, then ping Google
   let publishResult = null;
+  let indexResult   = null;
   if (action === 'approve') {
     try {
       publishResult = await publishDraft(slug);
@@ -132,17 +192,32 @@ exports.handler = async function(event) {
       console.error('publishDraft error:', e.message);
       publishResult = { error: e.message };
     }
+
+    // Request Google indexing (non-blocking — failure doesn't break the flow)
+    const postUrl = `${SITE_BASE}/blog/${slug}/`;
+    try {
+      indexResult = await requestGoogleIndexing(postUrl);
+      console.log('Indexing API result:', JSON.stringify(indexResult));
+    } catch (e) {
+      console.error('Indexing API error (non-fatal):', e.message);
+      indexResult = { error: e.message };
+    }
   }
 
   // Build Telegram message
   let text;
   if (action === 'approve') {
     const pubStatus = publishResult?.published
-      ? '\n🚀 Published — Netlify build triggered.'
+      ? '🚀 Netlify build triggered'
       : publishResult?.alreadyPublished
-        ? '\n✓ Already live.'
-        : `\n⚠️ Auto-publish failed: ${publishResult?.error}\nManual publish required.`;
-    text = `✅ APPROVED\nType: ${type || 'unknown'}\nSlug: ${slug}${pubStatus}`;
+        ? '✓ Already live'
+        : `⚠️ Publish failed: ${publishResult?.error}`;
+    const idxStatus = indexResult?.skipped
+      ? '⏳ Indexing API not configured'
+      : indexResult?.error
+        ? `⚠️ Indexing error: ${indexResult.error}`
+        : '🔍 Submitted to Google Indexing API';
+    text = `✅ APPROVED\n\nSlug: ${slug}\nType: ${type || 'unknown'}\n\n${pubStatus}\n${idxStatus}\n🔗 ${SITE_BASE}/blog/${slug}/`;
   } else if (action === 'revise') {
     text = `🔄 REVISE\nType: ${type || 'unknown'}\nSlug: ${slug}\n\nFeedback:\n${feedback || '(no feedback provided)'}`;
   } else {
@@ -186,6 +261,6 @@ exports.handler = async function(event) {
   return {
     statusCode: 200,
     headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ok: true, action, slug, publishResult })
+    body: JSON.stringify({ ok: true, action, slug, publishResult, indexResult })
   };
 };
