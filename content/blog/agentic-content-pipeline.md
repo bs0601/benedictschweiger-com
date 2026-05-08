@@ -18,7 +18,7 @@ keywords:
   - "automate social media posts"
   - "linkedin api automation"
 cover:
-  image: "/images/og-default.png"
+  image: "/images/blog/agentic-content-pipeline-og.png"
   alt: "Agentic content pipeline diagram"
 hasFAQ: true
 faq:
@@ -37,14 +37,14 @@ faq:
 **TLDR**
 - Ideas are not the bottleneck. Time to develop and distribute them is.
 - An AI agent (Gary) handles research, writing, formatting, and publishing. I handle one step: approval.
-- The interview is what keeps the content original — Gary asks questions based on keyword research, I answer from real experience, it writes from those answers.
+- The interview is what keeps the content original. Gary asks questions based on keyword research, I answer from real experience, it writes from those answers.
 - The approval gate is not editing. It's a pass/fail check: no false claims, good flow, would I read this.
 - From approval to live post across blog, LinkedIn, and Instagram: under 60 seconds.
-- Templates constrain creative range — more variety is the fix, not abandoning the system.
+- Templates constrain creative range. More variety is the fix, not abandoning the system.
 
 The gap between having an idea and having a published post is where most content goes to die.
 
-I have ideas. What I don't have is time to develop every one into a post, design the creative, write the caption, format for two platforms, and hit publish — all while running marketing for a [watch retailer](https://www.altherr.de) doing eight figures in revenue. Something has to give.
+I have ideas. What I don't have is time to develop every one into a post, design the creative, write the caption, format for two platforms, and hit publish, all while running marketing for a [watch retailer](https://www.altherr.de) doing eight figures in revenue. Something has to give.
 
 Most people solve this by posting less. I solved it by building a pipeline.
 
@@ -54,9 +54,9 @@ The agent I call Gary handles everything between "I have an idea" and "this is r
 
 What Gary doesn't do is think. It doesn't have opinions, real experience, or skin in the game. That's where the interview step comes in.
 
-Before Gary writes a single word, it asks me questions. Not generic ones — targeted questions based on the keyword research it ran before the conversation. What was the specific frustration? What would I tell someone starting from zero? What surprised me about building this? My answers are what make the content worth reading. Gary's job is to turn those answers into something well-structured, properly formatted, and ready to ship.
+Before Gary writes a single word, it asks me questions. Not generic ones. Targeted questions based on the keyword research it ran before the conversation. What was the specific frustration? What would I tell someone starting from zero? What surprised me about building this? My answers are what make the content worth reading. Gary's job is to turn those answers into something well-structured, properly formatted, and ready to ship.
 
-The result is content that sounds like me — because the thinking is mine. The execution is automated.
+The result is content that sounds like me, because the thinking is mine. The execution is automated.
 
 ## The architecture, plainly
 
@@ -72,13 +72,13 @@ Here's what runs under the hood:
 
 The whole thing from approval to live post takes under 60 seconds.
 
-This works for carousels. It works equally well for plain text posts. The architecture doesn't care about format — it cares about moving content from idea to distribution without requiring me to operate every step manually.
+This works for carousels. It works equally well for plain text posts. The architecture doesn't care about format. It moves content from idea to distribution without requiring me to operate every step manually.
 
 ## Where I actually sit in this process
 
 Not at a desk writing. Not in Canva designing slides. At an approval gate.
 
-When I review a post, I'm checking three things: does it make any false claims, does it flow well enough that I'd actually read it, and would it genuinely interest someone in my audience. If the answer to all three is yes, I approve. If something's off, I hit Revise and write one sentence of feedback — Gary rewrites and resubmits.
+When I review a post, I'm checking three things: does it make any false claims, does it flow well enough that I'd actually read it, and would it genuinely interest someone in my audience. If the answer to all three is yes, I approve. If something's off, I hit Revise and write one sentence of feedback. Gary rewrites and resubmits.
 
 That's the whole job. Everything else is automated.
 
@@ -86,9 +86,9 @@ The important thing to understand about this model: the approval gate isn't wher
 
 ## What actually broke
 
-Building this, I expected the technical parts to be the hard part. [LinkedIn's image upload API](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/images-api) is a separate call from the post creation API — most tutorials don't mention this. The [Instagram Graph API](https://developers.facebook.com/docs/instagram-platform/instagram-graph-api) requires publicly accessible image URLs before you can create media containers. The Netlify edge function wouldn't read environment variables scoped only to regular functions. Small things, fixable things.
+Building this, I expected the technical parts to be the hard part. [LinkedIn's image upload API](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/images-api) is a separate call from the post creation API. Most tutorials don't mention this. The [Instagram Graph API](https://developers.facebook.com/docs/instagram-platform/instagram-graph-api) requires publicly accessible image URLs before you can create media containers. The Netlify edge function wouldn't read environment variables scoped only to regular functions. Small things, fixable things.
 
-The harder constraint was creative. Templates are necessary for automation — Gary needs a consistent structure to work from. But templates limit variety. The carousels I can generate today follow a few formats. That's a narrower creative range than I'd choose if I were designing from scratch every time.
+The harder constraint was creative. Templates are necessary for automation. Gary needs a consistent structure to work from. But templates limit variety. The carousels I can generate today follow a few formats. That's a narrower creative range than I'd choose if I were designing from scratch every time.
 
 The solution is more templates, more variety. This is version one of a pipeline that will look very different in a year. I'm not bothered by the current constraints because I understand where they come from and how to address them. What I'm not willing to do is let perfect be the enemy of functional.
 
@@ -100,7 +100,7 @@ It also produces content that has no reason to exist.
 
 The internet already has ten thousand articles about content automation. What it doesn't have is my specific experience building this at a company I've run marketing for since 2020, with the specific constraints of a bootstrapped operation, validated on my own setup before I trust it with a real business. That context is what makes a post original. That's what the interview extracts.
 
-If the content isn't lasting and original, there's no point publishing it. The pipeline exists to scale the output of ideas that are worth scaling — not to manufacture volume for its own sake.
+If the content isn't lasting and original, there's no point publishing it. The pipeline exists to scale the output of ideas that are worth scaling, not to manufacture volume for its own sake.
 
 ## What to do if you want to build this
 

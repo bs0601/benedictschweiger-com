@@ -121,7 +121,7 @@ if (!fm.includes('cover:')) {
 } else {
   const imgMatch = fm.match(/^\s+image:\s*["']?(.+?)["']?\s*$/m);
   if (imgMatch && imgMatch[1].includes('og-default')) {
-    warnings.push('cover.image: still using og-default.png — generate a post-specific image');
+    errors.push('cover.image: still using og-default.png — generate a post-specific image');
   }
 }
 
@@ -143,6 +143,23 @@ if (!get('date')) {
   warnings.push('date: missing — add date: YYYY-MM-DD');
 }
 
+// ── Word count ────────────────────────────────────────────────────────────
+const words = body.trim().split(/\s+/).filter(w => w.length > 0);
+const wordCount = words.length;
+if (wordCount < 600) {
+  errors.push(`word count: ${wordCount} — minimum 600 required`);
+} else if (wordCount < 900) {
+  warnings.push(`word count: ${wordCount} — aim for 900–1500 for SEO weight`);
+}
+
+// ── Internal link check ──────────────────────────────────────────────────
+if (!body.includes('/autonomy-score/')) {
+  errors.push('missing link to /autonomy-score/ — every post must include it');
+}
+if (!/brevo|\/resources|newsletter/i.test(body)) {
+  warnings.push('no newsletter CTA found (brevo, /resources, or newsletter) — consider adding one');
+}
+
 // ── Banned vocabulary ─────────────────────────────────────────────────────
 const banned = [
   'testament', 'showcasing', 'pivotal', 'delve', 'landscape',
@@ -155,26 +172,75 @@ if (found.length > 0) {
   warnings.push(`banned vocabulary found: ${found.join(', ')}`);
 }
 
-// ── Report ────────────────────────────────────────────────────────────────
-const pad = s => `  ${s}`;
+// ── Voice rules (warnings only) ──────────────────────────────────────────
+const voiceWarnings = [];
 
-if (errors.length === 0 && warnings.length === 0) {
-  console.log(`✅  ${path.basename(filePath)} — frontmatter valid`);
-  process.exit(0);
+const emDashCount = (body.match(/—/g) || []).length;
+if (emDashCount > 3) {
+  voiceWarnings.push(`em dash overuse (found ${emDashCount}) — use commas or periods`);
 }
 
-if (warnings.length > 0) {
-  console.log('⚠️   Warnings:');
-  warnings.forEach(w => console.log(pad(w)));
+const fillerPhrases = [
+  "it's worth noting", "worth noting", "in order to",
+  "due to the fact", "it is important to", "one of the most"
+];
+for (const phrase of fillerPhrases) {
+  if (bodyLower.includes(phrase)) {
+    voiceWarnings.push(`filler phrase: "${phrase}"`);
+  }
+}
+
+const sentences = body.split(/\n/).map(l => l.trim());
+for (const line of sentences) {
+  if (/^(Additionally|Furthermore|Moreover),/i.test(line)) {
+    voiceWarnings.push(`weak opener: "${line.slice(0, 50)}…"`);
+  }
+}
+
+// Check for staccato fragment clusters (4+ consecutive very short lines)
+const lines = body.split('\n');
+let shortRun = 0;
+for (const line of lines) {
+  const trimmed = line.trim();
+  if (trimmed.length > 0 && trimmed.split(/\s+/).length < 8) {
+    shortRun++;
+    if (shortRun > 4) {
+      voiceWarnings.push('possible staccato fragment cluster — 4+ consecutive short lines');
+      break;
+    }
+  } else {
+    shortRun = 0;
+  }
+}
+
+// ── Report ────────────────────────────────────────────────────────────────
+const pad = s => `  ${s}`;
+const totalIssues = errors.length + warnings.length + voiceWarnings.length;
+
+if (totalIssues === 0) {
+  console.log(`✅  ${path.basename(filePath)} — all checks passed`);
+  process.exit(0);
 }
 
 if (errors.length > 0) {
   console.log('❌  Errors (must fix before commit):');
   errors.forEach(e => console.log(pad(e)));
-  console.log('');
-  console.log(`${errors.length} error(s), ${warnings.length} warning(s)`);
-  process.exit(1);
 }
 
-console.log(`⚠️   ${warnings.length} warning(s) — no blocking errors`);
+if (warnings.length > 0) {
+  console.log('\n⚠️   Warnings:');
+  warnings.forEach(w => console.log(pad(w)));
+}
+
+if (voiceWarnings.length > 0) {
+  console.log('\n🗣️  Voice notes (style, not blockers):');
+  voiceWarnings.forEach(v => console.log(pad(v)));
+}
+
+console.log('');
+console.log(`${errors.length} error(s), ${warnings.length} warning(s), ${voiceWarnings.length} voice note(s)`);
+
+if (errors.length > 0) {
+  process.exit(1);
+}
 process.exit(0);

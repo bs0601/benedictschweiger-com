@@ -141,7 +141,21 @@ async function postToLinkedIn(captionLinkedin, images) {
 
 // --- Instagram Graph API ---
 
-async function postToInstagram(captionInstagram, images) {
+async function postInstagramComment(mediaId, hashtags, accessToken) {
+  const message = hashtags.join(' ');
+  const res = await fetch(`https://graph.facebook.com/v21.0/${mediaId}/comments`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `message=${encodeURIComponent(message)}&access_token=${encodeURIComponent(accessToken)}`
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Instagram comment failed (${res.status}): ${err}`);
+  }
+  return await res.json();
+}
+
+async function postToInstagram(captionInstagram, images, hashtags) {
   const accessToken = process.env.INSTAGRAM_GRAPH_API_TOKEN;
   const accountId = process.env.INSTAGRAM_ACCOUNT_ID;
   if (!accessToken || !accountId) return { error: 'Instagram env vars not set' };
@@ -199,7 +213,19 @@ async function postToInstagram(captionInstagram, images) {
       throw new Error(`Instagram publish failed (${publishRes.status}): ${err}`);
     }
     const publishData = await publishRes.json();
-    return { published: true, mediaId: publishData.id };
+
+    // 4. Post first comment with hashtags
+    let commentResult = null;
+    if (hashtags && hashtags.length > 0) {
+      try {
+        commentResult = await postInstagramComment(publishData.id, hashtags, accessToken);
+      } catch (e) {
+        console.error('Instagram comment error (non-fatal):', e.message);
+        commentResult = { error: e.message };
+      }
+    }
+
+    return { published: true, mediaId: publishData.id, comment: commentResult };
   } catch (e) {
     console.error('Instagram error:', e.message);
     return { error: e.message };
@@ -236,7 +262,7 @@ exports.handler = async function(event) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON' }) };
   }
 
-  const { slug, caption_linkedin, caption_instagram, images } = body;
+  const { slug, caption_linkedin, caption_instagram, images, hashtags_instagram } = body;
 
   if (!slug || !images || !images.length) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Missing slug or images' }) };
@@ -259,12 +285,18 @@ exports.handler = async function(event) {
   const linkedinResult = await postToLinkedIn(caption_linkedin || '', images);
 
   // 3. Post to Instagram
-  const instagramResult = await postToInstagram(caption_instagram || '', images);
+  const instagramResult = await postToInstagram(caption_instagram || '', images, hashtags_instagram);
 
   // 4. Send Telegram confirmation
   const liStatus = linkedinResult.published ? '✅ Published' : `⚠️ ${linkedinResult.error}`;
   const igStatus = instagramResult.published ? '✅ Published' : `⚠️ ${instagramResult.error}`;
-  const tgText = `📱 POSTED\nLinkedIn: ${liStatus}\nInstagram: ${igStatus}\nSlug: ${slug}`;
+  let igComment = '';
+  if (instagramResult.comment) {
+    igComment = instagramResult.comment.error
+      ? `\nIG Hashtags: ⚠️ ${instagramResult.comment.error}`
+      : '\nIG Hashtags: ✅ Comment posted';
+  }
+  const tgText = `📱 POSTED\nLinkedIn: ${liStatus}\nInstagram: ${igStatus}${igComment}\nSlug: ${slug}`;
 
   try {
     await fetch(
