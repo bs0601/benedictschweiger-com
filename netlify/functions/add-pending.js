@@ -32,6 +32,11 @@ exports.handler = async function(event) {
     return { statusCode: 401, headers, body: JSON.stringify({ error: 'Unauthorized' }) };
   }
 
+  // Ping — return immediately without touching Blobs
+  if (action === 'ping') {
+    return { statusCode: 200, headers, body: JSON.stringify({ ok: true, pong: true }) };
+  }
+
   const store = getStore(STORE);
 
   // Load current items
