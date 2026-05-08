@@ -7,11 +7,12 @@
 export default async function handler(request, context) {
   const url = new URL(request.url);
 
-  // Allow login page and login function through without auth check
+  // Allow login page, login function, and pending.json through without auth check
   if (
     url.pathname === '/review/login/' ||
     url.pathname === '/review/login' ||
-    url.pathname.startsWith('/.netlify/functions/review-login')
+    url.pathname.startsWith('/.netlify/functions/review-login') ||
+    url.pathname === '/review/pending.json'
   ) {
     return context.next();
   }
