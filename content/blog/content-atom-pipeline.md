@@ -63,7 +63,7 @@ The limits are not arbitrary. TENSION_BODY has a 160-character ceiling at 28pt i
 
 We caught a real problem on the first run. TENSION_BODY was 253 characters. PROOF_BODY was 307. [Google Slides](https://workspace.google.com/products/slides/) would have auto-shrunk both and broken the design. The validator found both before a single API call hit the presentation.
 
-{{< callout type="decision" >}}First carousel brief failed validation: TENSION_BODY 93 chars over limit, PROOF_BODY 147 chars over. Both fields were full paragraphs — they needed to be compressed to 2–3 short sentences. The validator made this visible before generation, not after.{{< /callout >}}
+> **What actually happened:** First carousel brief failed validation — TENSION_BODY 93 chars over limit, PROOF_BODY 147 chars over. Both fields were full paragraphs that needed to compress to 2–3 short sentences. The validator caught this before generation, not after.
 
 ## The double-click principle
 
@@ -95,7 +95,13 @@ If you want to understand where your content operation sits on the automation cu
 
 ---
 
-{{< autonomy-score-cta >}}
+---
+
+**Where does your marketing operation stand on the automation curve?**
+
+The [Autonomy Score diagnostic](/autonomy-score/) maps your current setup across five dimensions and shows which parts of your marketing are candidates for this kind of system. Takes three minutes.
+
+[→ Take the Autonomy Score](/autonomy-score/)
 
 ---
 
