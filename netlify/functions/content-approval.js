@@ -12,58 +12,43 @@
  *
  * Required env vars:
  *   GARY_TELEGRAM_BOT_TOKEN, BENE_TELEGRAM_CHAT_ID, BREVO_API_KEY
- *   GITHUB_TOKEN — PAT with repo write access (Settings → Developer settings → PAT)
- *   GOOGLE_SERVICE_ACCOUNT_KEY — JSON key for service account with Indexing API access
- *                                  Minified JSON string, e.g. {"type":"service_account",...}
- *                                  Service account must be added as owner in Search Console
+ *   GITHUB_TOKEN            — GitHub PAT with repo write access
+ *   GOOGLE_CLIENT_ID        — already set (used by oauth-callback)
+ *   GOOGLE_CLIENT_SECRET    — already set (used by oauth-callback)
+ *   GOOGLE_REFRESH_TOKEN    — must include indexing scope (re-auth if needed)
  */
 
 const { getStore } = require('@netlify/blobs');
-const crypto = require('crypto');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = 'bs0601/benedictschweiger-com';
 const SITE_BASE    = 'https://www.benedictschweiger.com';
 
-// --- Google Indexing API via service account JWT auth ---
-async function getServiceAccountToken(key) {
-  const now   = Math.floor(Date.now() / 1000);
-  const scope = 'https://www.googleapis.com/auth/indexing';
-  const header = Buffer.from(JSON.stringify({ alg: 'RS256', typ: 'JWT' })).toString('base64url');
-  const claim  = Buffer.from(JSON.stringify({
-    iss: key.client_email,
-    scope,
-    aud: 'https://oauth2.googleapis.com/token',
-    exp: now + 3600,
-    iat: now
-  })).toString('base64url');
-
-  const signingInput = `${header}.${claim}`;
-  const signer = crypto.createSign('RSA-SHA256');
-  signer.update(signingInput);
-  const signature = signer.sign(key.private_key, 'base64url');
-
-  const jwt = `${signingInput}.${signature}`;
-
-  const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
+// --- Google Indexing API via existing OAuth user credentials ---
+async function getGoogleAccessToken() {
+  const res = await fetch('https://oauth2.googleapis.com/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${jwt}`
+    body: new URLSearchParams({
+      client_id:     process.env.GOOGLE_CLIENT_ID,
+      client_secret: process.env.GOOGLE_CLIENT_SECRET,
+      refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+      grant_type:    'refresh_token'
+    }).toString()
   });
-  const tokenData = await tokenRes.json();
-  if (!tokenData.access_token) throw new Error(`Token exchange failed: ${JSON.stringify(tokenData)}`);
-  return tokenData.access_token;
+  const data = await res.json();
+  if (!data.access_token) throw new Error(`Token exchange failed: ${JSON.stringify(data)}`);
+  return data.access_token;
 }
 
 async function requestGoogleIndexing(postUrl) {
-  const rawKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
-  if (!rawKey) {
-    console.warn('GOOGLE_SERVICE_ACCOUNT_KEY not set — skipping Indexing API');
-    return { skipped: true, reason: 'no service account key' };
+  const rt = process.env.GOOGLE_REFRESH_TOKEN;
+  if (!rt) {
+    console.warn('GOOGLE_REFRESH_TOKEN not set — skipping Indexing API');
+    return { skipped: true, reason: 'no refresh token' };
   }
 
-  const key   = JSON.parse(rawKey);
-  const token = await getServiceAccountToken(key);
+  const token = await getGoogleAccessToken();
 
   const res = await fetch('https://indexing.googleapis.com/v3/urlNotifications:publish', {
     method: 'POST',
