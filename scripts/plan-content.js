@@ -11,7 +11,8 @@ const path = require('path');
 const NOTION_API_KEY = fs.readFileSync(
   path.join(process.env.HOME, '.config/notion/api_key'), 'utf-8'
 ).trim();
-const NOTION_DB_ID = 'bebed412-7c8d-4ed9-881f-fb3aacc8c4f4';
+const ATOMS_DB_ID = 'bebed412-7c8d-4ed9-881f-fb3aacc8c4f4';
+const CONTENT_LIBRARY_DB_ID = 'd426a4e3-5e0f-4d92-8db2-23ed8de5f61d';
 const CALENDAR_PATH = '/Users/openclaw/.openclaw/workspace/gary/content-calendar.md';
 const OUTPUT_PATH = '/Users/openclaw/.openclaw/workspace/gary/content-plan.md';
 
@@ -21,7 +22,7 @@ async function queryAllAtoms() {
   do {
     const body = { page_size: 100 };
     if (cursor) body.start_cursor = cursor;
-    const res = await fetch(`https://api.notion.com/v1/databases/${NOTION_DB_ID}/query`, {
+    const res = await fetch(`https://api.notion.com/v1/databases/${ATOMS_DB_ID}/query`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${NOTION_API_KEY}`,
@@ -97,6 +98,49 @@ function generateReason(atom) {
   if (atom.type === 'quote') reasons.push('quotable — strong for cards');
   if (reasons.length === 0) reasons.push('fresh content opportunity');
   return reasons.join(', ');
+}
+
+async function queryContentLibrary() {
+  const allPages = [];
+  let cursor = undefined;
+  do {
+    const body = {
+      page_size: 100,
+      filter: { property: 'Status', select: { equals: 'Published' } }
+    };
+    if (cursor) body.start_cursor = cursor;
+    const res = await fetch(`https://api.notion.com/v1/databases/${CONTENT_LIBRARY_DB_ID}/query`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${NOTION_API_KEY}`,
+        'Notion-Version': '2022-06-28',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(`Content Library query failed (${res.status}): ${err}`);
+    }
+    const data = await res.json();
+    allPages.push(...data.results);
+    cursor = data.has_more ? data.next_cursor : undefined;
+  } while (cursor);
+  return allPages;
+}
+
+function extractLibraryRow(page) {
+  const p = page.properties;
+  return {
+    name: p['Name']?.title?.[0]?.plain_text || '',
+    platform: p['Platform']?.select?.name || '',
+    format: p['Format']?.select?.name || '',
+    atomId: p['Atom ID']?.rich_text?.[0]?.plain_text || '',
+    liImpressions: p['LinkedIn Impressions']?.number || 0,
+    liReactions: p['LinkedIn Reactions']?.number || 0,
+    igImpressions: p['Instagram Impressions']?.number || 0,
+    igSaves: p['Instagram Saves']?.number || 0
+  };
 }
 
 async function main() {
@@ -207,6 +251,36 @@ Based on calendar: ${linkedInCount} LinkedIn text, ${carouselCount} carousels, $
     plan += `Recommendation: LinkedIn text posts are below target — prioritize LinkedIn\n`;
   } else {
     plan += `Recommendation: Good balance — continue current mix\n`;
+  }
+
+  // 6. Performance insights from Content Library (grouped by Atom ID)
+  let libraryRows = [];
+  try {
+    const libPages = await queryContentLibrary();
+    libraryRows = libPages.map(extractLibraryRow).filter(r => r.atomId);
+  } catch (err) {
+    console.error(`Warning: Could not query Content Library: ${err.message}`);
+  }
+
+  if (libraryRows.length > 0) {
+    const byAtomId = {};
+    for (const r of libraryRows) {
+      if (!byAtomId[r.atomId]) byAtomId[r.atomId] = [];
+      byAtomId[r.atomId].push(r);
+    }
+
+    plan += `\n## Performance insights\n\nContent Library entries grouped by Atom ID — shows which atoms have been used and their best-performing format.\n\n`;
+    plan += `| Atom ID (short) | Uses | Best format | Best platform | Top impressions |\n|---|---|---|---|---|\n`;
+
+    for (const [atomId, entries] of Object.entries(byAtomId)) {
+      const best = [...entries].sort((a, b) => {
+        const aImp = a.liImpressions + a.igImpressions;
+        const bImp = b.liImpressions + b.igImpressions;
+        return bImp - aImp;
+      })[0];
+      const topImp = best.liImpressions + best.igImpressions;
+      plan += `| ${atomId.slice(0, 8)}... | ${entries.length} | ${best.format || '—'} | ${best.platform || '—'} | ${topImp || '—'} |\n`;
+    }
   }
 
   // Write and print
