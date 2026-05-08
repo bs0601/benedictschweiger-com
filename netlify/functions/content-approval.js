@@ -16,6 +16,7 @@
  *   GOOGLE_CLIENT_ID        — already set (used by oauth-callback)
  *   GOOGLE_CLIENT_SECRET    — already set (used by oauth-callback)
  *   GOOGLE_REFRESH_TOKEN    — must include indexing scope (re-auth if needed)
+ *   NOTION_API_KEY          — Notion integration token (atoms DB tracking)
  */
 
 const { getStore } = require('@netlify/blobs');
@@ -121,6 +122,65 @@ async function publishDraft(slug) {
 const TELEGRAM_BOT_TOKEN = process.env.GARY_TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID   = process.env.BENE_TELEGRAM_CHAT_ID;
 const BREVO_API_KEY      = process.env.BREVO_API_KEY;
+const NOTION_API_KEY     = process.env.NOTION_API_KEY;
+const NOTION_ATOMS_DB_ID = 'bebed412-7c8d-4ed9-881f-fb3aacc8c4f4';
+
+async function markAtomsSourceLive(slug) {
+  if (!NOTION_API_KEY) {
+    console.warn('NOTION_API_KEY not set — skipping atom status update');
+    return { skipped: true };
+  }
+
+  const headers = {
+    'Authorization': `Bearer ${NOTION_API_KEY}`,
+    'Notion-Version': '2022-06-28',
+    'Content-Type': 'application/json'
+  };
+
+  // Query atoms where Source Slug matches
+  const queryRes = await fetch(`https://api.notion.com/v1/databases/${NOTION_ATOMS_DB_ID}/query`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      filter: {
+        property: 'Source Slug',
+        rich_text: { equals: slug }
+      }
+    })
+  });
+
+  if (!queryRes.ok) {
+    const err = await queryRes.text();
+    throw new Error(`Notion query failed (${queryRes.status}): ${err}`);
+  }
+
+  const data = await queryRes.json();
+  let updated = 0;
+
+  for (const page of data.results) {
+    const currentStatus = page.properties?.Status?.select?.name;
+    if (currentStatus !== 'active') continue;
+
+    const updateRes = await fetch(`https://api.notion.com/v1/pages/${page.id}`, {
+      method: 'PATCH',
+      headers,
+      body: JSON.stringify({
+        properties: {
+          Status: { select: { name: 'source_live' } }
+        }
+      })
+    });
+
+    if (!updateRes.ok) {
+      const err = await updateRes.text();
+      console.error(`Notion update failed for ${page.id}: ${err}`);
+    } else {
+      updated++;
+    }
+  }
+
+  return { updated, total: data.results.length };
+}
 
 exports.handler = async function(event) {
   if (event.httpMethod === "OPTIONS") {
@@ -189,6 +249,18 @@ exports.handler = async function(event) {
     } catch (e) {
       console.error('publishDraft error:', e.message);
       publishResult = { error: e.message };
+    }
+
+    // Mark atoms as source_live when a blog post is approved
+    let atomResult = null;
+    if (type === 'blog' && publishResult?.published) {
+      try {
+        atomResult = await markAtomsSourceLive(slug);
+        console.log('Atom status update:', JSON.stringify(atomResult));
+      } catch (e) {
+        console.error('Atom status update error (non-fatal):', e.message);
+        atomResult = { error: e.message };
+      }
     }
 
     // Request Google indexing (non-blocking — failure doesn't break the flow)
@@ -262,6 +334,6 @@ exports.handler = async function(event) {
   return {
     statusCode: 200,
     headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ok: true, action, slug, publishResult, indexResult })
+    body: JSON.stringify({ ok: true, action, slug, publishResult, indexResult, atomResult })
   };
 };

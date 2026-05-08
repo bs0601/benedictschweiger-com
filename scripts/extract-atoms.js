@@ -1,5 +1,5 @@
 /**
- * extract-atoms.js — Extract content atoms from a blog post via Ollama LLM,
+ * extract-atoms.js — Extract content atoms from a blog post via Kimi API,
  * then write them to the Notion Content Atoms database.
  *
  * Usage: node scripts/extract-atoms.js content/blog/[slug].md
@@ -12,8 +12,16 @@ const NOTION_API_KEY = fs.readFileSync(
   path.join(process.env.HOME, '.config/notion/api_key'), 'utf-8'
 ).trim();
 const NOTION_DB_ID = 'bebed412-7c8d-4ed9-881f-fb3aacc8c4f4';
-const OLLAMA_URL = 'http://localhost:11434/api/chat';
-const OLLAMA_MODEL = 'qwen3.5:27b';
+const GEMINI_API_KEY = (() => {
+  try {
+    const env = fs.readFileSync(
+      path.join(process.env.HOME, '.openclaw/workspace/memory/credentials.env'), 'utf-8'
+    );
+    const match = env.match(/^GEMINI_API_KEY=(.+)$/m);
+    return match ? match[1].trim() : process.env.GEMINI_API_KEY;
+  } catch { return process.env.GEMINI_API_KEY; }
+})();
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
 async function main() {
   const filePath = process.argv[2];
@@ -81,29 +89,33 @@ Article title: ${title}
 Article content:
 ${content}`;
 
-  let ollamaResponse;
+  if (!GEMINI_API_KEY) {
+    console.error('GEMINI_API_KEY not set.');
+    process.exit(1);
+  }
+
+  let geminiResponse;
   try {
-    const res = await fetch(OLLAMA_URL, {
+    const res = await fetch(`${GEMINI_URL}?key=${GEMINI_API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: OLLAMA_MODEL,
-        messages: [{ role: 'user', content: prompt }],
-        stream: false,
-        options: { think: false }
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.3 }
       })
     });
     if (!res.ok) {
-      console.warn(`Ollama returned ${res.status} — is it running? Exiting gracefully.`);
-      process.exit(0);
+      const errText = await res.text();
+      console.error(`Gemini API error ${res.status}: ${errText}`);
+      process.exit(1);
     }
-    ollamaResponse = await res.json();
+    geminiResponse = await res.json();
   } catch (err) {
-    console.warn(`Ollama not available (${err.message}). Exiting gracefully.`);
-    process.exit(0);
+    console.error(`Gemini API request failed: ${err.message}`);
+    process.exit(1);
   }
 
-  const rawText = ollamaResponse.message?.content || '';
+  const rawText = geminiResponse.candidates?.[0]?.content?.parts?.[0]?.text || '';
 
   // Strip markdown code fences if present
   let jsonStr = rawText.trim();
