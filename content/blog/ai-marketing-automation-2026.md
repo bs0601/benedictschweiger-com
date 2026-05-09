@@ -2,7 +2,7 @@
 title: "AI marketing automation in 2026: what actually works"
 date: 2026-05-09
 slug: "ai-marketing-automation-2026"
-draft: true
+draft: false
 description: "Most e-commerce businesses are running a broken marketing stack. Here's what AI marketing automation actually looks like when you implement it — with real decisions and real tools."
 author: "Benedict Schweiger"
 tags:
