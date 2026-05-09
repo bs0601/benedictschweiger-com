@@ -1,7 +1,7 @@
 [
   {
     "slug": "agentic-marketing-v1",
-    "title": "Agentic Marketing \u2014 What It Actually Means (V1)",
+    "title": "Agentic Marketing — What It Actually Means (V1)",
     "type": "social",
     "format": "text + slides v1",
     "platform": "linkedin",
@@ -19,7 +19,7 @@
   },
   {
     "slug": "agentic-marketing-v2",
-    "title": "Agentic Marketing \u2014 What It Actually Means (V2)",
+    "title": "Agentic Marketing — What It Actually Means (V2)",
     "type": "social",
     "format": "text + slides v2",
     "platform": "linkedin",
@@ -37,14 +37,14 @@
   },
   {
     "slug": "agentic-marketing-primer-v1",
-    "title": "Agentic Marketing \u2014 What It Actually Means (v1)",
+    "title": "Agentic Marketing — What It Actually Means (v1)",
     "type": "carousel",
     "pillar": "Agentic Marketing",
     "created": "May 09, 2026"
   },
   {
     "slug": "agentic-marketing-primer-v2",
-    "title": "Agentic Marketing \u2014 What It Actually Means (v2)",
+    "title": "Agentic Marketing — What It Actually Means (v2)",
     "type": "carousel",
     "pillar": "Agentic Marketing",
     "created": "May 09, 2026"
@@ -72,7 +72,7 @@
   },
   {
     "slug": "attribution-trap-2026",
-    "title": "The attribution trap \u2014 content before ads",
+    "title": "The attribution trap — content before ads",
     "type": "carousel",
     "pillar": "Agentic Marketing",
     "created": "May 09, 2026"
@@ -90,12 +90,5 @@
     "type": "linkedin",
     "pillar": "Agentic Marketing",
     "created": "May 08, 2026"
-  },
-  {
-    "slug": "ai-marketing-automation-2026",
-    "title": "AI marketing automation in 2026: what actually works",
-    "type": "blog",
-    "pillar": "Agentic Marketing",
-    "created": "May 09, 2026"
   }
 ]
