@@ -29,6 +29,21 @@
   .btn-revise { background: #fef3e2; color: #e65100; border: 1.5px solid #e65100; }
   .toast { position: fixed; top: 24px; right: 24px; background: #1a1a1a; color: #fff; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 200; }
   .toast.show { opacity: 1; }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .top-bar { padding: 12px 16px; }
+    .top-bar h2 { font-size: 13px; }
+    .content-area { padding: 20px 16px 220px; }
+    .blog-body { font-size: 15px; }
+    .approval-bar { padding: 12px 16px; }
+    .approval-bar .inner { flex-wrap: wrap; gap: 8px; align-items: stretch; }
+    .feedback-wrap { flex: 1 1 100%; order: 1; }
+    .feedback-wrap textarea { min-height: 40px; font-size: 14px; }
+    .btn-revise  { order: 2; flex: 1; font-size: 13px; padding: 11px 10px; }
+    .btn-approve { order: 3; flex: 1; font-size: 13px; padding: 11px 10px; }
+    .btn-delete  { order: 4; padding: 11px 14px; font-size: 13px; }
+  }
 </style>
 <style>
   .blog-body { max-width: 68ch; line-height: 1.82; font-size: 17px; color: #1a1a1a; }
