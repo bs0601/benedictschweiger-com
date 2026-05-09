@@ -32,7 +32,7 @@ exports.handler = async function(event) {
   }
 
   try {
-    const res = await fetch('https://www.benedictschweiger.com/review-queue.json', {
+    const res = await fetch('https://benedictschweiger.com/review-queue.json', {
       headers: { 'Cache-Control': 'no-cache' }
     });
     if (!res.ok) throw new Error(`Failed to fetch queue: ${res.status}`);
