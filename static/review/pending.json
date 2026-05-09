@@ -1,5 +1,47 @@
 [
   {
+    "slug": "distribution-moat-2026",
+    "title": "Distribution is the moat",
+    "type": "carousel",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "attribution-trap-2026",
+    "title": "The attribution trap",
+    "type": "carousel",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "passion-advantage-2026",
+    "title": "The passion advantage",
+    "type": "carousel",
+    "pillar": "Team Restructuring",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "authenticity-track-record-2026",
+    "title": "Authenticity is a track record",
+    "type": "carousel",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "channel-dependency-2026",
+    "title": "The one-channel trap",
+    "type": "carousel",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "ai-marketing-automation-2026",
+    "title": "AI marketing automation in 2026: what actually works",
+    "type": "blog",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
     "slug": "agentic-content-pipeline",
     "title": "I Built an Agentic Content Pipeline. Here's What It Actually Takes.",
     "type": "blog",

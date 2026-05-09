@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Review: The attribution trap</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: #F5F4F0; color: #1a1a1a; min-height: 100vh; }
+  .top-bar { background: #1a1a1a; color: #fff; padding: 14px 24px; display: flex; align-items: center; gap: 12px; }
+  .top-bar a { color: #aaa; text-decoration: none; font-size: 13px; }
+  .top-bar a:hover { color: #fff; }
+  .top-bar h2 { font-size: 15px; font-weight: 600; flex: 1; }
+  .badge { font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
+  .badge-blog { background: #e8f0fe; color: #3949ab; }
+  .badge-linkedin { background: #e3f2fd; color: #1565c0; }
+  .badge-carousel { background: #fef3e2; color: #e65100; }
+  .content-area { max-width: 720px; margin: 0 auto; padding: 32px 24px 120px; }
+  .approval-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #e5e5e5; padding: 16px 24px; display: flex; gap: 12px; align-items: flex-end; max-width: 100%; z-index: 100; box-shadow: 0 -4px 24px rgba(0,0,0,.08); }
+  .approval-bar .inner { max-width: 720px; margin: 0 auto; width: 100%; display: flex; gap: 12px; align-items: flex-end; }
+  .feedback-wrap { flex: 1; }
+  .feedback-wrap label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: .06em; text-transform: uppercase; display: block; margin-bottom: 6px; }
+  .feedback-wrap textarea { width: 100%; border: 1.5px solid #e5e5e5; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: inherit; resize: vertical; min-height: 44px; max-height: 120px; outline: none; color: #1a1a1a; transition: border-color .15s; }
+  .feedback-wrap textarea:focus { border-color: #C4622D; }
+  .btn { border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; padding: 12px 20px; white-space: nowrap; transition: opacity .15s; }
+  .btn:hover { opacity: .85; }
+  .btn-approve { background: #2a7a4e; color: #fff; }
+  .btn-revise { background: #fef3e2; color: #e65100; border: 1.5px solid #e65100; }
+  .toast { position: fixed; top: 24px; right: 24px; background: #1a1a1a; color: #fff; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 200; }
+  .toast.show { opacity: 1; }
+</style>
+<style>
+  .carousel-wrap { max-width: 420px; position: relative; }
+  .slides { position: relative; overflow: hidden; border-radius: 12px; }
+  .slide { display: none; position: relative; }
+  .slide.active { display: block; }
+  .slide img { width: 100%; display: block; border-radius: 12px; }
+  .slide-num { position: absolute; bottom: 12px; right: 14px; background: rgba(0,0,0,.5); color: #fff; font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 20px; }
+  .nav { display: flex; gap: 12px; margin-top: 16px; align-items: center; justify-content: center; }
+  .nav button { background: #1a1a1a; color: #fff; border: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .nav button:disabled { background: #e5e5e5; color: #aaa; }
+  .nav .progress { font-size: 13px; color: #888; min-width: 50px; text-align: center; }
+  .caption-area { margin-top: 24px; }
+  .caption-label { font-size: 12px; font-weight: 700; color: #888; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px; }
+  .caption-text { background: #fff; border-radius: 8px; padding: 14px; font-size: 14px; line-height: 1.6; color: #1a1a1a; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a href="/review/">← All drafts</a>
+  <h2>The attribution trap</h2>
+  <span class="badge badge-carousel">carousel</span>
+</div>
+<div class="toast" id="toast"></div>
+<div class="content-area">
+  <div class="carousel-wrap">
+    <div class="slides" id="slides"></div>
+    <div class="nav">
+      <button id="prev" onclick="move(-1)" disabled>← Prev</button>
+      <span class="progress" id="prog">1 / 0</span>
+      <button id="next" onclick="move(1)">Next →</button>
+    </div>
+  </div>
+  <div class="caption-area">
+    <div class="caption-label">Post caption (edit before publishing)</div>
+    <div class="caption-text" id="caption-text" contenteditable="true">We couldn't trust the data Facebook and Google gave us. So we built content and ecosystem before scaling ads.</div>
+  </div>
+</div>
+<div class="approval-bar">
+  <div class="inner">
+    <div class="feedback-wrap">
+      <label>Feedback / revision notes</label>
+      <textarea id="feedback" placeholder="Optional — leave blank to approve as-is…" rows="2"></textarea>
+    </div>
+    <button class="btn btn-revise" onclick="sendDecision('revise')">🔄 Request revision</button>
+    <button class="btn btn-approve" data-approve onclick="sendDecision('approve')">✅ Approve & publish</button>
+  </div>
+</div>
+<script>
+let cur = 0;
+const slides = document.querySelectorAll('.slide');
+slides[0].classList.add('active');
+function move(dir) {
+  slides[cur].classList.remove('active');
+  cur = Math.max(0, Math.min(slides.length-1, cur+dir));
+  slides[cur].classList.add('active');
+  document.getElementById('prog').textContent = (cur+1) + ' / ' + slides.length;
+  document.getElementById('prev').disabled = cur===0;
+  document.getElementById('next').disabled = cur===slides.length-1;
+}
+// Keyboard nav
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight') move(1);
+  if(e.key==='ArrowLeft') move(-1);
+});
+// Pass caption to approval handler
+document.querySelector('[data-approve]').addEventListener('click', function() {
+  window._caption = document.getElementById('caption-text').innerText;
+});
+</script>
+<script>
+async function sendDecision(action) {
+  const feedback = document.getElementById('feedback').value.trim();
+  const slug = window.location.pathname.replace(/\/review\/|\/$/g,'');
+  const type = document.querySelector('.badge') ? document.querySelector('.badge').textContent.trim() : 'unknown';
+  const caption = window._caption || '';
+
+  if (action === 'revise' && !feedback) {
+    document.getElementById('feedback').focus();
+    document.getElementById('feedback').style.borderColor = '#e65100';
+    return;
+  }
+
+  const res = await fetch('/.netlify/functions/content-approval', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ action, slug, type, feedback, caption })
+  });
+
+  const toast = document.getElementById('toast');
+  if (res.ok) {
+    toast.textContent = action === 'approve' ? '✅ Approved — Hugo will publish shortly.' : '🔄 Revision requested — Hugo will follow up.';
+    toast.classList.add('show');
+    document.querySelectorAll('.btn').forEach(b => b.disabled = true);
+    setTimeout(() => { toast.classList.remove('show'); }, 4000);
+  } else {
+    toast.textContent = '⚠️ Something went wrong. Try again.';
+    toast.classList.add('show');
+    setTimeout(() => { toast.classList.remove('show'); }, 3000);
+  }
+}
+</script>
+</body>
+</html>
