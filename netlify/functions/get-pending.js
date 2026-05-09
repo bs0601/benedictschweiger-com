@@ -1,18 +1,17 @@
 /**
- * get-pending.js — returns pending review items filtered by dismissed slugs.
+ * get-pending.js — returns pending review items.
  *
  * GET /.netlify/functions/get-pending
  *
- * Reads /review/pending.json from the CDN, checks a Netlify Blob store for
- * dismissed slugs (approved or deleted), and returns the filtered list.
+ * Reads /review-queue.json (static, public CDN file) — the single source of truth.
+ * No Netlify Blobs. Items are removed from this file directly on approve/delete.
  */
 
-const { getStore } = require('@netlify/blobs');
 const crypto = require('crypto');
 
 function isAuthorized(event) {
   const password = process.env.REVIEW_PASSWORD;
-  if (!password) return true; // not configured — open (dev)
+  if (!password) return true;
   const expected = crypto.createHash('sha256').update(password + 'review-salt-2026').digest('hex');
   const cookies = event.headers.cookie || '';
   return cookies.split(';').some(c => c.trim() === `review_auth=${expected}`);
@@ -33,32 +32,12 @@ exports.handler = async function(event) {
   }
 
   try {
-    // Read pending items directly from Netlify Blobs — no HTTP, no CDN, no auth issues
-    const { getStore } = require('@netlify/blobs');
-    const store = getStore('review-pending');
-    let items = [];
-    try {
-      const raw = await store.get('items');
-      if (raw) items = JSON.parse(raw);
-    } catch (e) {
-      console.error('Blobs read error:', e.message);
-    }
-
-    // Load dismissed slugs from Blobs
-    let dismissed = new Set();
-    try {
-      const store = getStore('review-dismissed');
-      const raw = await store.get('dismissed-slugs');
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        dismissed = new Set(Array.isArray(parsed) ? parsed : []);
-      }
-    } catch (e) {
-      console.error('Blobs read error (non-fatal):', e.message);
-    }
-
-    const filtered = items.filter(item => !dismissed.has(item.slug));
-    return { statusCode: 200, headers, body: JSON.stringify(filtered) };
+    const res = await fetch('https://www.benedictschweiger.com/review-queue.json', {
+      headers: { 'Cache-Control': 'no-cache' }
+    });
+    if (!res.ok) throw new Error(`Failed to fetch queue: ${res.status}`);
+    const items = await res.json();
+    return { statusCode: 200, headers, body: JSON.stringify(items) };
   } catch (e) {
     console.error('get-pending error:', e.message);
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
