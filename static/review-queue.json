@@ -1,7 +1,7 @@
 [
   {
     "slug": "agentic-marketing-v1",
-    "title": "Agentic Marketing — What It Actually Means (V1)",
+    "title": "Agentic Marketing \u2014 What It Actually Means (V1)",
     "type": "social",
     "format": "text + slides v1",
     "platform": "linkedin",
@@ -19,7 +19,7 @@
   },
   {
     "slug": "agentic-marketing-v2",
-    "title": "Agentic Marketing — What It Actually Means (V2)",
+    "title": "Agentic Marketing \u2014 What It Actually Means (V2)",
     "type": "social",
     "format": "text + slides v2",
     "platform": "linkedin",
@@ -34,5 +34,68 @@
       "slide_04.png",
       "slide_05.png"
     ]
+  },
+  {
+    "slug": "agentic-marketing-primer-v1",
+    "title": "Agentic Marketing \u2014 What It Actually Means (v1)",
+    "type": "carousel",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "agentic-marketing-primer-v2",
+    "title": "Agentic Marketing \u2014 What It Actually Means (v2)",
+    "type": "carousel",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "channel-dependency-2026",
+    "title": "The one-channel trap",
+    "type": "carousel",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "authenticity-track-record-2026",
+    "title": "Authenticity is a track record",
+    "type": "carousel",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "passion-advantage-2026",
+    "title": "The passion advantage in agentic marketing",
+    "type": "carousel",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "attribution-trap-2026",
+    "title": "The attribution trap \u2014 content before ads",
+    "type": "carousel",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "distribution-moat-2026",
+    "title": "Distribution is the moat",
+    "type": "carousel",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
+  },
+  {
+    "slug": "linkedin-atom-test-01",
+    "title": "Scalability is not a goal",
+    "type": "linkedin",
+    "pillar": "Agentic Marketing",
+    "created": "May 08, 2026"
+  },
+  {
+    "slug": "ai-marketing-automation-2026",
+    "title": "AI marketing automation in 2026: what actually works",
+    "type": "blog",
+    "pillar": "Agentic Marketing",
+    "created": "May 09, 2026"
   }
 ]
