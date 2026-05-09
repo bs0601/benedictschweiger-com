@@ -1,5 +1,8 @@
 {
   "name": "benedictschweiger-com",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "canvas": "^3.2.3"
+  }
 }
