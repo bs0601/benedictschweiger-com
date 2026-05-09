@@ -156,10 +156,21 @@
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Unknown error');
         if (action === 'approve') {
-          showToast('✅ Approved! Publishing…', 4000);
+                    showToast('✅ Approved! Publishing…', 4000);
+          // Mark resolved in sessionStorage so dashboard updates immediately
+          try {
+            const r = JSON.parse(sessionStorage.getItem('review_resolved') || '{}');
+            r[SLUG] = { status: 'approved', ts: Date.now() };
+            sessionStorage.setItem('review_resolved', JSON.stringify(r));
+          } catch {}
           setTimeout(() => window.location.href = '/review/', 2000);
         } else if (action === 'delete') {
-          showToast('🗑 Removed from pipeline.');
+                    showToast('🗑 Removed from pipeline.');
+          try {
+            const r = JSON.parse(sessionStorage.getItem('review_resolved') || '{}');
+            r[SLUG] = { status: 'deleted', ts: Date.now() };
+            sessionStorage.setItem('review_resolved', JSON.stringify(r));
+          } catch {}
           setTimeout(() => window.location.href = '/review/', 1500);
         } else {
           showToast('🔄 Revision requested. Hugo notified.');
