@@ -2,7 +2,7 @@
 title: "The content atom pipeline: one article feeds every platform"
 date: 2026-05-08
 slug: "content-atom-pipeline"
-draft: true
+draft: false
 description: "How I built an AI pipeline that extracts atoms from blog posts and drives every carousel, LinkedIn post, and Instagram caption from a single source of truth."
 author: "Benedict Schweiger"
 tags:
