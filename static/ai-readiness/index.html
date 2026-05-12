@@ -105,6 +105,12 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 .resultbadge.cost{background:#fdecea;color:#c0392b}
 .resultbadge.early{background:#fff3e0;color:#b87a14}
 .resultbadge.rots{background:#e8f5ee;color:#2a7a4e}
+/* ROTS Curve */
+.rots-wrap{margin:0 -20px 24px;padding:0 20px}
+.rots-headline{font-size:15px;font-weight:700;color:var(--blk);line-height:1.35;margin-bottom:14px;text-align:center}
+.rots-svg{width:100%;max-width:430px;height:auto;display:block;margin:0 auto}
+@keyframes rotsPulse{0%{r:5;opacity:.6}50%{r:12;opacity:.15}100%{r:5;opacity:.6}}
+#rotsMarkerPulse{animation:rotsPulse 2s ease-in-out infinite}
 </style>
 </head>
 <body>
@@ -125,6 +131,35 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
     <li><span class="lfdash">—</span><span>The businesses that measure AI ROI first will have a 12-month head start</span></li>
     <li><span class="lfdash">—</span><span>AI isn't expensive. Undirected AI is expensive.</span></li>
   </ul>
+  <div class="rots-wrap">
+    <div class="rots-headline">The ROTS Curve: Where most businesses get stuck, and how to cross over.</div>
+    <svg class="rots-svg" viewBox="0 0 360 200" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="rotsLine" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#C4622D"/>
+          <stop offset="100%" stop-color="#C4622D"/>
+        </linearGradient>
+      </defs>
+      <!-- Zones -->
+      <rect x="10" y="10" width="100" height="180" rx="8" fill="#fdecea" opacity="0.6"/>
+      <rect x="120" y="10" width="120" height="180" rx="8" fill="#fff3e0" opacity="0.6"/>
+      <rect x="250" y="10" width="100" height="180" rx="8" fill="#e8f5ee" opacity="0.6"/>
+      <!-- Zone labels -->
+      <text x="60" y="170" text-anchor="middle" font-size="10" font-weight="700" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif">Cost Position</text>
+      <text x="180" y="170" text-anchor="middle" font-size="10" font-weight="700" fill="#b87a14" font-family="'Plus Jakarta Sans',sans-serif">Early ROTS</text>
+      <text x="300" y="170" text-anchor="middle" font-size="10" font-weight="700" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif">ROTS-Positive</text>
+      <!-- Axis labels -->
+      <text x="180" y="196" text-anchor="middle" font-size="9" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif">Token Spend →</text>
+      <text x="8" y="100" text-anchor="middle" font-size="9" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif" transform="rotate(-90 8 100)">Return →</text>
+      <!-- Zero line -->
+      <line x1="10" y1="100" x2="350" y2="100" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="14" y="97" font-size="8" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif">0</text>
+      <!-- Curve -->
+      <path d="M 30 160 Q 90 145, 120 100 Q 150 55, 180 70 Q 210 85, 260 50 Q 300 25, 330 20" fill="none" stroke="url(#rotsLine)" stroke-width="3" stroke-linecap="round"/>
+      <!-- Arrows on curve ends -->
+      <polygon points="330,20 325,24 325,16" fill="#C4622D"/>
+    </svg>
+  </div>
   <div class="lstats">
     <div class="statb"><span class="statv">3</span><span class="statl">Questions</span></div>
     <div class="statb"><span class="statv">30″</span><span class="statl">Seconds</span></div>
@@ -320,6 +355,40 @@ function showResults() {
       <div class="rlogo">Your AI Readiness Result</div>
       <div class="resultbadge ${r.badgeClass}">${r.badgeText}</div>
       <div class="rheadline">${r.headline}</div>
+      <div class="rots-wrap" style="margin-top:18px">
+        <svg class="rots-svg" id="rotsResultSvg" viewBox="0 0 360 200" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="rotsLineR" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#C4622D"/>
+              <stop offset="100%" stop-color="#C4622D"/>
+            </linearGradient>
+          </defs>
+          <!-- Zones -->
+          <rect x="10" y="10" width="100" height="180" rx="8" fill="#fdecea" opacity="0.6"/>
+          <rect x="120" y="10" width="120" height="180" rx="8" fill="#fff3e0" opacity="0.6"/>
+          <rect x="250" y="10" width="100" height="180" rx="8" fill="#e8f5ee" opacity="0.6"/>
+          <!-- Zone labels -->
+          <text x="60" y="170" text-anchor="middle" font-size="10" font-weight="700" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif">Cost Position</text>
+          <text x="180" y="170" text-anchor="middle" font-size="10" font-weight="700" fill="#b87a14" font-family="'Plus Jakarta Sans',sans-serif">Early ROTS</text>
+          <text x="300" y="170" text-anchor="middle" font-size="10" font-weight="700" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif">ROTS-Positive</text>
+          <!-- Axis labels -->
+          <text x="180" y="196" text-anchor="middle" font-size="9" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif">Token Spend →</text>
+          <text x="8" y="100" text-anchor="middle" font-size="9" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif" transform="rotate(-90 8 100)">Return →</text>
+          <!-- Zero line -->
+          <line x1="10" y1="100" x2="350" y2="100" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="14" y="97" font-size="8" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif">0</text>
+          <!-- Curve -->
+          <path d="M 30 160 Q 90 145, 120 100 Q 150 55, 180 70 Q 210 85, 260 50 Q 300 25, 330 20" fill="none" stroke="url(#rotsLineR)" stroke-width="3" stroke-linecap="round"/>
+          <!-- Arrows on curve ends -->
+          <polygon points="330,20 325,24 325,16" fill="#C4622D"/>
+          <!-- Position marker (pulsing dot) -->
+          <g id="rotsMarker" style="display:none">
+            <circle id="rotsMarkerPulse" cx="0" cy="0" r="12" fill="#C4622D" opacity="0.25"/>
+            <circle id="rotsMarkerDot" cx="0" cy="0" r="5" fill="#C4622D" stroke="#fff" stroke-width="2"/>
+            <text id="rotsMarkerLabel" x="0" y="0" text-anchor="start" font-size="11" font-weight="700" fill="#C4622D" font-family="'Plus Jakarta Sans',sans-serif">You are here →</text>
+          </g>
+        </svg>
+      </div>
     </div>
     <div class="rbody">
       <div class="rbody-title">What is ROTS?</div>
@@ -369,6 +438,26 @@ function showResults() {
       <p class="optinfine">No spam. Unsubscribe anytime.</p>
     </div>
   `;
+  // Position marker on ROTS curve
+  const marker = document.getElementById('rotsMarker');
+  const pulse = document.getElementById('rotsMarkerPulse');
+  const dot = document.getElementById('rotsMarkerDot');
+  const label = document.getElementById('rotsMarkerLabel');
+  if (marker && pulse && dot && label) {
+    let mx, my, lx, ly;
+    if (resultKey === 'cost-position') {
+      mx = 75; my = 152; lx = 85; ly = 140;
+    } else if (resultKey === 'early-rots') {
+      mx = 180; my = 70; lx = 190; ly = 58;
+    } else {
+      mx = 295; my = 35; lx = 245; ly = 35;
+    }
+    pulse.setAttribute('cx', mx); pulse.setAttribute('cy', my);
+    dot.setAttribute('cx', mx); dot.setAttribute('cy', my);
+    label.setAttribute('x', lx); label.setAttribute('y', ly);
+    marker.style.display = 'block';
+  }
+
   show('sr');
 }
 
