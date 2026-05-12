@@ -1816,7 +1816,7 @@ button, a { touch-action: manipulation; }
 
 <!-- ========== STICKY BOTTOM CTA (mobile) ========== -->
 <div class="sticky-cta" id="stickyCta">
- <a href="#lead" class="btn btn-primary" style="width:100%">📋 Verificar disponibilidade</a>
+ <a href="#lead" class="btn btn-primary" id="stickyBtn" style="width:100%">📋 Verificar disponibilidade</a>
 </div>
 
 <!-- ========== LIGHTBOX ========== -->
@@ -2170,6 +2170,18 @@ function handleSubmit(e) {
  success.classList.add('visible');
  console.log('Showing qualified success state');
  
+ // Transform sticky CTA to WhatsApp
+ const stickyBtn = document.getElementById('stickyBtn');
+ if (stickyBtn) {
+ stickyBtn.href = `https://wa.me/5511999895999?text=${waMsg}`;
+ stickyBtn.textContent = '💬 Falar no WhatsApp';
+ stickyBtn.className = 'btn btn-wa';
+ stickyBtn.style.width = '100%';
+ stickyBtn.onclick = function() {
+ return gtag_report_conversion(`https://wa.me/5511999895999?text=${waMsg}`);
+ };
+ }
+ 
  // Track conversion
  gtag('event', 'conversion', {
  'send_to': 'AW-18156640658',
@@ -2180,6 +2192,10 @@ function handleSubmit(e) {
  // Soft rejection
  unqualified.classList.add('visible');
  console.log('Showing unqualified state');
+ 
+ // Hide sticky CTA for unqualified
+ const stickyCta = document.getElementById('stickyCta');
+ if (stickyCta) stickyCta.style.display = 'none';
  }
  
  // Send to server in background (don't block UX)
