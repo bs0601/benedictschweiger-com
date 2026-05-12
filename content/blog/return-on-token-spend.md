@@ -1,9 +1,9 @@
 ---
-title: "Return on Token Spend: The Only AI Metric That Matters in 2026"
+title: "Return on Token Spend: The Only AI Metric in 2026"
 date: 2026-05-12
 slug: "return-on-token-spend"
 draft: false
-description: "$2.5 trillion spent on AI. Almost nothing to show for it. The metric that fixes this is Return on Token Spend — and nobody is measuring it yet."
+description: "$2.5T spent on AI with near-zero ROI. ROTS is the framework that measures what your tokens actually return. Here's how to calculate it."
 author: "Benedict Schweiger"
 tags:
   - "agentic marketing"
@@ -85,6 +85,8 @@ Every major technology adoption follows a J-curve. Early returns are negative as
 
 AI is no different. The ROTS J-curve has four phases. Most companies are stuck in phase two.
 
+{{< figure src="/images/rots-jcurve.svg" alt="The ROTS J-curve: four phases from Quick Wins to Flywheel" caption="Most companies quit in the Valley of Death. The ones that build systems cross into compounding returns." >}}
+
 **Phase 1: Quick Wins**
 
 An executive buys ChatGPT Plus. A marketer starts using Claude for copy drafts. A developer drops Copilot into VS Code. Productivity bumps appear immediately. The work feels faster. The quality feels acceptable. ROTS is mildly positive because the spend is tiny and the perceived value is high.
@@ -94,6 +96,10 @@ This phase is deceptive. The gains are real but shallow. They come from individu
 **Phase 2: Valley of Death**
 
 This is where most companies live in 2026.
+
+{{< callout type="warning" >}}
+74% of companies struggle to achieve and scale value from AI. Only 26% move beyond proof-of-concept. — BCG, 2026
+{{< /callout >}}
 
 Tool sprawl sets in. Marketing buys Jasper. Sales adopts Gong's AI features. Engineering spins up internal LLM experiments. Customer service pilots a chatbot. Each team has its own stack, its own vendor, its own API key. Nobody is measuring whether any of it works.
 
@@ -157,17 +163,21 @@ Theory is useful. Examples are better.
 
 **The house sale**
 
-In May 2026, I sold a house in Maresias, Brazil. R$ 4.95 million. Traditional agent commission: 5–6%, or roughly R$ 300,000. Instead, I built a landing page, set up Google Ads conversion tracking, and ran a WhatsApp-only funnel. The entire execution — copy, design, tracking, deployment — was handled by an AI operations partner running local models.
+In May 2026, I am selling a house in Maresias, Brazil. R$ 4.95 million. Traditional agent commission: 5–6%, or roughly R$ 300,000. Instead, I built a landing page, set up Google Ads conversion tracking, and ran a WhatsApp-only funnel. The entire execution — copy, design, tracking, deployment — was handled by an AI operations partner running local models.
 
-Total API cost for the evening: approximately $0.14.
+Total API cost: approximately $0.14.
 
-The house may sell tomorrow. It may sell in six months. The market decides that. What is already decided is the ROTS: R$ 300,000 in commission avoided for $0.14 in compute. Even if the campaign burns R$ 10,000 in ads before closing, the ROTS remains astronomical. The full breakdown is documented in [the live experiment](/blog/selling-house-with-ai/).
+The house has not sold yet. The market decides that. What is already decided is the ROTS: R$ 300,000 in commission avoided for $0.14 in compute. Even if the campaign burns R$ 10,000 in ads before closing, the ROTS remains astronomical. The full breakdown is documented in [the live experiment](/blog/selling-house-with-ai/).
 
 This is not a typical case. It is an extreme one. But extremes clarify what is possible when execution compresses to near-zero cost.
 
 **Two roles at ALTHERR**
 
 At [ALTHERR](https://www.altherr.de), the luxury watch retailer where I run marketing, we reduced the team from eight to six in December 2025. Not by cutting output. By replacing two roles with agentic workflows.
+
+{{< callout type="number" >}}
+2 roles eliminated. 0 output reduction. Near-zero marginal AI cost. The salaries alone paid for the infrastructure in under a month.
+{{< /callout >}}
 
 An Instagram manager was replaced by an N8N automation that schedules posts, generates captions, and maintains cadence. Setup took one week. The role no longer exists in the org chart. An SEO junior was replaced by a senior operator working with AI-assisted research and drafting. Output improved in both volume and quality.
 
@@ -194,6 +204,10 @@ The ROTS framework is not just an operational tool. It is becoming a valuation i
 The implication for investors and boards: AI spend is not automatically good. Directed, measured AI spend is good. Undirected, unmeasured AI spend is a red flag. The question to ask in every earnings call is not "how much are you spending on AI?" It is "what is your ROTS, and how do you know?"
 
 Companies that cannot answer that question are burning shareholder money. Companies that can answer it precisely are building compounding advantages that will be very hard to close later.
+
+{{< callout type="quote" >}}
+"The 36% of CMOs planning headcount cuts are not cutting because AI is cheap. They are cutting because AI-directed workflows produce more output with fewer people, and the ROTS math is becoming undeniable."
+{{< /callout >}}
 
 The [workforce implications](/blog/will-ai-replace-marketing-jobs/) are equally direct. The 36% of CMOs planning headcount cuts in the next 24 months, per [Spencer Stuart's 2026 survey](https://www.spencerstuart.com/research-and-insight/the-ai-reckoning-why-marketers-think-2026-is-a-make-or-break-year), are not cutting because AI is cheap. They are cutting because AI-directed workflows produce more output with fewer people, and the ROTS math is becoming undeniable.
 
