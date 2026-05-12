@@ -26,13 +26,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 
 /* LANDING */
 #sl{overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--w);padding-top:calc(var(--st) + 20px)}
-.lw{max-width:960px;margin:0 auto;padding:0 20px calc(var(--sb) + 32px)}
-.lhero{display:flex;flex-direction:column;gap:24px;margin-bottom:28px}
-@media(min-width:768px){
-  .lhero{flex-direction:row;align-items:center;gap:40px}
-  .ltext{flex:1;min-width:0}
-  .lvisual{flex:1;min-width:0}
-}
+.lw{max-width:430px;margin:0 auto;padding:0 20px calc(var(--sb) + 32px);text-align:center}
 .ll{display:flex;align-items:center;gap:8px;margin-bottom:32px}
 .li{width:32px;height:32px;border-radius:8px;background:var(--s);display:flex;align-items:center;justify-content:center}
 .li svg{width:16px;height:16px;stroke:#fff;stroke-width:2.2;fill:none;stroke-linecap:round}
@@ -130,21 +124,9 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
     <span class="ln">Benedict Schweiger</span>
   </div>
   <div class="lbadge"><span class="lbdot"></span>Free AI Readiness Check</div>
-  <div class="lhero">
-    <div class="ltext">
-      <h1 class="lh"><em>Where are you</em><br>on the AI ROI curve?</h1>
-      <p class="lsub">3 questions. 30 seconds. No email required to see your result.</p>
-      <ul class="lfriction">
-        <li><span class="lfdash">—</span><span>Most teams are burning tokens without knowing what they produce</span></li>
-        <li><span class="lfdash">—</span><span>The businesses that strategically deploy AI where it creates ROI will have a 12-month head start</span></li>
-        <li><span class="lfdash">—</span><span>AI isn't expensive. Undirected AI is expensive.</span></li>
-      </ul>
-      <button class="btnstart" onclick="startAssessment()">Start Assessment →</button>
-      <p class="lnote">Your result is visible without email</p>
-    </div>
-    <div class="lvisual">
-      <div class="rots-wrap" style="margin:0">
-        <svg class="rots-svg" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <h1 class="lh"><em>Where are you</em><br>on the AI ROI curve?</h1>
+  <div class="rots-wrap" style="margin:0 -20px 24px">
+    <svg class="rots-svg" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <!-- Gradient for the curve: green → red → amber → green -->
         <linearGradient id="rotsLine" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -211,11 +193,12 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
       <text x="140" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif">Most companies quit here</text>
       <line x1="140" y1="108" x2="140" y2="188" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4 3"/>
       <polygon points="140,194 136,186 144,186" fill="#c0392b"/>
-        </svg>
-      </div>
-    </div>
+    </svg>
   </div>
-  <div class="lstats">
+  <button class="btnstart" onclick="startAssessment()">Start Assessment →</button>
+  <p class="lnote">Your result is visible without email</p>
+</div>
+</div>
     <div class="statb"><span class="statv">3</span><span class="statl">Questions</span></div>
     <div class="statb"><span class="statv">30″</span><span class="statl">Seconds</span></div>
     <div class="statb"><span class="statv">1</span><span class="statl">Result</span></div>
