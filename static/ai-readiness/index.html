@@ -517,7 +517,8 @@ function selectOpt(qIdx, optIdx) {
   const screen = document.getElementById('sq' + (qIdx + 1));
   screen.querySelectorAll('.opt').forEach((el, j) => el.classList.toggle('sel', j === optIdx));
   document.getElementById('btnnext' + qIdx).classList.add('on');
-  if (qIdx < 2) {
+  // Auto-advance for all questions except the last one (Q4 shows results)
+  if (qIdx < 3) {
     setTimeout(() => nextQ(qIdx), 320);
   }
 }
