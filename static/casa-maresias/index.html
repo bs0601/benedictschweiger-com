@@ -32,41 +32,44 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Google Analytics 4 + Google Ads Conversion Tracking -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+<!-- Google Ads Conversion Tracking -->
+<!-- PASTE YOUR GOOGLE ADS TAG HERE -->
+<!-- 
+  Instructions:
+  1. In Google Ads, go to Tools & Settings → Conversions
+  2. Click "New conversion action" → Website
+  3. Enter: benedictschweiger.com
+  4. Google will give you a gtag snippet
+  5. Replace this entire comment block with that snippet
+  
+  The snippet will look like:
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-XXXXXXXXX');
+  </script>
+-->
+
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  
-  // GA4 Property ID (replace with your actual GA4 ID)
-  gtag('config', 'G-PLACEHOLDER');
-  
-  // Google Ads Conversion ID (replace with your actual AW ID)
-  gtag('config', 'AW-PLACEHOLDER');
-  
-  // WhatsApp click conversion — fires both GA4 event + Google Ads conversion
+  // WhatsApp click conversion tracking
+  // This function is called when any WhatsApp button is clicked
   function gtag_report_conversion(url) {
-    // GA4 custom event
-    gtag('event', 'whatsapp_click', {
-      'event_category': 'engagement',
-      'event_label': 'casa_maresias_whatsapp',
-      'value': 4950000.0,
-      'currency': 'BRL',
-      'property_type': 'casa',
-      'location': 'maresias'
-    });
+    // Check if gtag is available (Google Ads tag is loaded)
+    if (typeof gtag === 'function') {
+      // Fire Google Ads conversion
+      gtag('event', 'conversion', {
+        'send_to': 'AW-PLACEHOLDER/PLACEHOLDER_LABEL',
+        'value': 4950000.0,
+        'currency': 'BRL'
+      });
+    }
     
-    // Google Ads conversion
-    var callback = function () {
-      if (typeof(url) != 'undefined') { window.location = url; }
-    };
-    gtag('event', 'conversion', {
-      'send_to': 'AW-PLACEHOLDER/PLACEHOLDER_LABEL',
-      'value': 4950000.0,
-      'currency': 'BRL',
-      'event_callback': callback
-    });
+    // Always navigate to WhatsApp
+    if (typeof(url) != 'undefined') { 
+      window.location = url; 
+    }
     return false;
   }
 </script>
