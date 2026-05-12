@@ -54,21 +54,22 @@ Enviado em: ${new Date(data.submittedAt).toLocaleString('pt-BR')}
 Source: ${data.source}
     `.trim();
 
-    // Send email via Netlify's built-in form handling or external service
-    // For now, log to console (you can integrate with SendGrid, Postmark, etc.)
+    // Log lead (replace with email service when ready)
     console.log('=== NEW LEAD ===');
     console.log(emailBody);
     console.log('================');
 
-    // Email integration ready — add SENDGRID_API_KEY to Netlify env vars
-    // const sgMail = require('@sendgrid/mail');
-    // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    // await sgMail.send({
-    //   to: 'benedict.schweiger@altherr.de',
-    //   from: 'leads@benedictschweiger.com',
-    //   subject: `Novo lead: ${data.nome} — Casa Maresias`,
-    //   text: emailBody
-    // });
+    // Build WhatsApp message for qualified leads
+    const waMsg = encodeURIComponent(`Olá! Tenho interesse na Casa Maresias (Cond. Vila Verde).
+
+Meus dados:
+• Nome: ${data.nome}
+• Cidade: ${data.cidade || 'Não informado'}
+• Orçamento: ${budgetLabels[data.budget]}
+• Timeline: ${timelineLabels[data.timeline]}
+• Pagamento: ${financiamentoLabels[data.financiamento]}
+
+Gostaria de agendar uma visita.`);
 
     return {
       statusCode: 200,
@@ -76,7 +77,10 @@ Source: ${data.source}
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type'
       },
-      body: JSON.stringify({ success: true })
+      body: JSON.stringify({
+        success: true,
+        whatsappUrl: `https://wa.me/5511999895999?text=${waMsg}`
+      })
     };
 
   } catch (err) {

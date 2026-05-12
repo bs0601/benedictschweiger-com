@@ -2057,41 +2057,6 @@ function isQualified(data) {
  return true;
 }
 
-function buildWhatsAppMessage(data) {
- const budgetLabels = {
- 'ate-4m': 'Até R$ 4 milhões',
- '4m-5m': 'R$ 4 milhões — R$ 5 milhões',
- '5m-6m': 'R$ 5 milhões — R$ 6 milhões',
- 'acima-6m': 'Acima de R$ 6 milhões'
- };
- 
- const timelineLabels = {
- 'imediato': 'Imediato',
- '1-3-meses': '1 a 3 meses',
- '3-6-meses': '3 a 6 meses',
- '6-12-meses': '6 a 12 meses',
- 'ainda-nao-sei': 'Ainda pesquisando'
- };
- 
- const financingLabels = {
- 'a-vista': 'À vista',
- 'financiado': 'Financiamento bancário',
- 'parcelado-direto': 'Parcelado com proprietário',
- 'nao-sei-ainda': 'Ainda não decidi'
- };
- 
- return `Olá! Tenho interesse na Casa Maresias (Cond. Vila Verde).
-
-Meus dados:
-• Nome: ${data.nome}
-• Cidade: ${data.cidade || 'Não informado'}
-• Orçamento: ${budgetLabels[data.budget]}
-• Timeline: ${timelineLabels[data.timeline]}
-• Pagamento: ${financingLabels[data.financiamento]}
-
-Gostaria de agendar uma visita.`;
-}
-
 function handleSubmit(e) {
  e.preventDefault();
  console.log('Form submit triggered');
@@ -2136,26 +2101,34 @@ function handleSubmit(e) {
  };
  
  console.log('Form data:', data);
- console.log('Qualified:', isQualified(data));
  
  // Disable button
  btn.disabled = true;
  btn.textContent = 'Verificando...';
  
- // Process qualification immediately (don't block on server)
+ // Send to server — get WhatsApp URL from response
+ fetch('/.netlify/functions/lead-capture', {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify(data)
+ })
+ .then(res => res.json())
+ .then(result => {
+ console.log('Server result:', result);
+ 
+ // Process qualification
  const qualified = isQualified(data);
  console.log('Qualified:', qualified);
  
  // Hide form, show result
  form.style.display = 'none';
  
- if (qualified) {
- // Show WhatsApp with pre-filled message
- const waMsg = encodeURIComponent(buildWhatsAppMessage(data));
+ if (qualified && result.whatsappUrl) {
+ // Show WhatsApp with server-provided URL
  const waLink = document.getElementById('waLink');
- waLink.href = `https://wa.me/5511999895999?text=${waMsg}`;
+ waLink.href = result.whatsappUrl;
  waLink.onclick = function() {
- return gtag_report_conversion(`https://wa.me/5511999895999?text=${waMsg}`);
+ return gtag_report_conversion(result.whatsappUrl);
  };
  success.classList.add('visible');
  console.log('Showing qualified success state');
@@ -2163,12 +2136,12 @@ function handleSubmit(e) {
  // Transform sticky CTA to WhatsApp
  const stickyBtn = document.getElementById('stickyBtn');
  if (stickyBtn) {
- stickyBtn.href = `https://wa.me/5511999895999?text=${waMsg}`;
+ stickyBtn.href = result.whatsappUrl;
  stickyBtn.textContent = '💬 Falar no WhatsApp';
  stickyBtn.className = 'btn btn-wa';
  stickyBtn.style.width = '100%';
  stickyBtn.onclick = function() {
- return gtag_report_conversion(`https://wa.me/5511999895999?text=${waMsg}`);
+ return gtag_report_conversion(result.whatsappUrl);
  };
  }
  
@@ -2187,13 +2160,13 @@ function handleSubmit(e) {
  const stickyCta = document.getElementById('stickyCta');
  if (stickyCta) stickyCta.style.display = 'none';
  }
- 
- // Send to server in background (don't block UX)
- fetch('/.netlify/functions/lead-capture', {
- method: 'POST',
- headers: { 'Content-Type': 'application/json' },
- body: JSON.stringify(data)
- }).catch(err => console.error('Background sync error:', err));
+ })
+ .catch(err => {
+ console.error('Form error:', err);
+ btn.disabled = false;
+ btn.textContent = 'Verificar disponibilidade →';
+ alert('Erro ao enviar. Por favor, tente pelo WhatsApp.');
+ });
  
  return false;
 }
