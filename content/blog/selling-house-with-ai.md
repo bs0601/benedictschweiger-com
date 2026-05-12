@@ -95,6 +95,8 @@ Here's what that looked like in practice:
 
 **8:15 PM** — Google Ads conversion tracking installed. Event fires on every WhatsApp click. Value parameter set to R$ 4.95M so Google knows what a conversion is worth.
 
+Here's what struck me in that moment: implementing Google Ads tracking used to be scary. Now it's copy-paste to my agent. The same agent that designed the page is also a Google Ads ninja. Magic.
+
 **8:33 PM** — Slideshow added. Swipeable, auto-advancing, dot navigation. Because static images don't sell houses — movement does.
 
 **9:47 PM** — Deployed. Domain pointing live. Campaign published.
@@ -106,6 +108,8 @@ Total API cost for the evening: approximately $0.14. The Mac Studio running loca
 Here's what nobody tells you about AI: the bottleneck isn't the technology. It's your ability to know what you want.
 
 My wife's feedback was the critical input. She knew the house. She knew what buyers care about. She knew that "ar condicionado quente e frio" sells better than "AC" because Brazilians care about winter comfort. She knew the furniture was from October 2022, not 2024.
+
+And the fixes happened in minutes. Mobile UX tweaks, picture swaps, wording changes — each round of feedback executed as fast as she could describe it. It felt like sitting in a shared office with an expert team.
 
 AI didn't know any of that. What AI did was compress the execution time to zero. In a traditional workflow, each round of feedback would have been a Slack message to a designer, a wait, a revision, another wait. Instead, it was: say it, see it, ship it.
 
@@ -129,6 +133,10 @@ If you're still thinking about AI as a writing assistant or a chatbot, you're mi
 Will the house sell? I don't know yet. The market decides that. What I do know is that the gap between idea and execution closed from weeks to minutes tonight — and that changes the math on every high-ticket sale, not just real estate.
 
 That gap used to be weeks. Tonight it was minutes.
+
+There's a bigger thought I'm sitting with. What if the first real estate agent to seriously use AI agents in this state cleans up the market? It must be like the first realtors who discovered they could sell on the internet — an edge that a fragmented market will take years to adopt. How much economic value can be captured when the execution layer compresses to near-zero?
+
+What a time to be alive.
 
 ---
 
