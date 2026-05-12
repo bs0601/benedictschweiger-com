@@ -1472,7 +1472,7 @@ button, a { touch-action: manipulation; }
  <div class="section-head reveal">
  <span class="eyebrow">Agende sua visita</span>
  <h2>Quer conhecer a casa pessoalmente?</h2>
- <p>Preencha o formulário. Verificamos cada contato para garantir qualidade.</p>
+ <p>Responda algumas perguntas rápidas. Se houver fit, você recebe o contato direto do WhatsApp.</p>
  </div>
  <form class="lead-form reveal" id="contactForm" onsubmit="return handleSubmit(event)">
  <!-- Honeypot field (hidden from humans) -->
@@ -1524,18 +1524,22 @@ button, a { touch-action: manipulation; }
  </div>
  </div>
  
- <button type="submit" class="form-submit" id="submitBtn">Solicitar contato →</button>
+ <button type="submit" class="form-submit" id="submitBtn">Verificar disponibilidade →</button>
  <p class="form-privacy">Seus dados são protegidos. Nunca enviamos spam.</p>
  
+ <!-- Qualified lead: WhatsApp unlocked -->
  <div class="form-success" id="formSuccess">
- <h3>✓ Mensagem enviada!</h3>
- <p>Entraremos em contato em até 24 horas. Se preferir, fale diretamente pelo WhatsApp:</p>
- <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20enviei%20meus%20dados%20pelo%20formul%C3%A1rio%20e%20gostaria%20de%20agendar%20uma%20visita." 
-    class="btn btn-wa" 
-    target="_blank" 
-    rel="noopener"
-    style="margin-top:16px;display:inline-flex;width:auto"
-    onclick="return gtag_report_conversion('https://wa.me/5511999895999?text=Ol%C3%A1%2C%20enviei%20meus%20dados%20pelo%20formul%C3%A1rio%20e%20gostaria%20de%20agendar%20uma%20visita.');">💬 Falar no WhatsApp</a>
+ <h3>✓ Ótimo fit!</h3>
+ <p>Com base nas suas respostas, você está dentro do perfil de comprador. Fale diretamente pelo WhatsApp:</p>
+ <a href="#" class="btn btn-wa" id="waLink" target="_blank" rel="noopener" style="margin-top:16px;display:inline-flex;width:auto">💬 Falar no WhatsApp</a>
+ <p style="margin-top:12px;font-size:0.85rem;opacity:0.7">Mensagem pré-preenchida com suas respostas</p>
+ </div>
+ 
+ <!-- Unqualified: soft rejection -->
+ <div class="form-success" id="formUnqualified" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)">
+ <h3>Recebemos seu interesse</h3>
+ <p>Obrigado pelo contato. No momento, estamos priorizando visitas de compradores com perfil de investimento acima de R$ 4,5 milhões e decisão em até 3 meses.</p>
+ <p style="margin-top:8px">Se sua situação mudar, fique à vontade para retornar.</p>
  </div>
  </form>
  </div>
@@ -1788,7 +1792,7 @@ button, a { touch-action: manipulation; }
  <div class="price-display reveal">R$ 4.950.000</div>
  <div class="price-note reveal">Móveis novos de outubro/2022 incluídos · Certidões negativas em dia</div>
  <div class="cta-buttons reveal">
- <a href="#lead" class="btn btn-primary" style="display:inline-flex;width:auto">📋 Preencher formulário de contato</a>
+ <a href="#lead" class="btn btn-primary" style="display:inline-flex;width:auto">📋 Verificar disponibilidade</a>
  </div>
  <p style="margin-top: 24px; opacity: 0.7; font-size: 0.85rem;">Visitas mediante agendamento</p>
  </div>
@@ -2049,14 +2053,69 @@ lightbox.addEventListener('touchend', e => {
  }
 }, { passive: true });
 
-// ===== Form handling with bot protection =====
+// ===== Form handling with bot protection + qualification =====
 const MATH_ANSWER = 12; // 7 + 5
+
+function isQualified(data) {
+ // Budget must be 4m+ (house is 4.95m)
+ const qualifiedBudgets = ['4m-5m', '5m-6m', 'acima-6m'];
+ if (!qualifiedBudgets.includes(data.budget)) return false;
+ 
+ // Timeline must be within 6 months
+ const qualifiedTimelines = ['imediato', '1-3-meses', '3-6-meses'];
+ if (!qualifiedTimelines.includes(data.timeline)) return false;
+ 
+ // Financing must be viable (not "don't know" or "installments with owner")
+ const qualifiedFinancing = ['a-vista', 'financiado'];
+ if (!qualifiedFinancing.includes(data.financiamento)) {
+ // Allow "don't know" if budget is 5m+ (serious buyer exploring)
+ if (data.budget !== '5m-6m' && data.budget !== 'acima-6m') return false;
+ }
+ 
+ return true;
+}
+
+function buildWhatsAppMessage(data) {
+ const budgetLabels = {
+ 'ate-4m': 'Até R$ 4 milhões',
+ '4m-5m': 'R$ 4 milhões — R$ 5 milhões',
+ '5m-6m': 'R$ 5 milhões — R$ 6 milhões',
+ 'acima-6m': 'Acima de R$ 6 milhões'
+ };
+ 
+ const timelineLabels = {
+ 'imediato': 'Imediato',
+ '1-3-meses': '1 a 3 meses',
+ '3-6-meses': '3 a 6 meses',
+ '6-12-meses': '6 a 12 meses',
+ 'ainda-nao-sei': 'Ainda pesquisando'
+ };
+ 
+ const financingLabels = {
+ 'a-vista': 'À vista',
+ 'financiado': 'Financiamento bancário',
+ 'parcelado-direto': 'Parcelado com proprietário',
+ 'nao-sei-ainda': 'Ainda não decidi'
+ };
+ 
+ return `Olá! Tenho interesse na Casa Maresias (Cond. Vila Verde C10 B1).
+
+Meus dados:
+• Nome: ${data.nome}
+• Cidade: ${data.cidade || 'Não informado'}
+• Orçamento: ${budgetLabels[data.budget]}
+• Timeline: ${timelineLabels[data.timeline]}
+• Pagamento: ${financingLabels[data.financiamento]}
+
+Gostaria de agendar uma visita.`;
+}
 
 function handleSubmit(e) {
  e.preventDefault();
  const form = document.getElementById('contactForm');
  const btn = document.getElementById('submitBtn');
  const success = document.getElementById('formSuccess');
+ const unqualified = document.getElementById('formUnqualified');
  
  // Honeypot check
  const honeypot = document.getElementById('website').value;
@@ -2087,9 +2146,9 @@ function handleSubmit(e) {
  
  // Disable button
  btn.disabled = true;
- btn.textContent = 'Enviando...';
+ btn.textContent = 'Verificando...';
  
- // Send to Netlify function
+ // Send to Netlify function (logs lead, sends email)
  fetch('/.netlify/functions/lead-capture', {
  method: 'POST',
  headers: { 'Content-Type': 'application/json' },
@@ -2098,7 +2157,18 @@ function handleSubmit(e) {
  .then(res => {
  if (res.ok) {
  form.style.display = 'none';
+ 
+ const qualified = isQualified(data);
+ if (qualified) {
+ // Show WhatsApp with pre-filled message
+ const waMsg = encodeURIComponent(buildWhatsAppMessage(data));
+ const waLink = document.getElementById('waLink');
+ waLink.href = `https://wa.me/5511999895999?text=${waMsg}`;
+ waLink.onclick = function() {
+ return gtag_report_conversion(`https://wa.me/5511999895999?text=${waMsg}`);
+ };
  success.classList.add('visible');
+ 
  // Track conversion
  gtag('event', 'conversion', {
  'send_to': 'AW-18156640658',
@@ -2106,13 +2176,17 @@ function handleSubmit(e) {
  'currency': 'BRL'
  });
  } else {
+ // Soft rejection
+ unqualified.classList.add('visible');
+ }
+ } else {
  throw new Error('Server error');
  }
  })
  .catch(err => {
  console.error('Form error:', err);
  btn.disabled = false;
- btn.textContent = 'Solicitar contato →';
+ btn.textContent = 'Verificar disponibilidade →';
  alert('Erro ao enviar. Por favor, tente pelo WhatsApp.');
  });
  
