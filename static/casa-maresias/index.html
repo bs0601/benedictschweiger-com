@@ -1346,39 +1346,18 @@ button, a { touch-action: manipulation; }
 <section class="lead-form-section" id="lead">
  <div class="container">
  <div class="section-head reveal">
- <span class="eyebrow">Receba mais informações</span>
- <h2>Quer receber fotos exclusivas e agendar uma visita?</h2>
- <p>Deixe seus dados e entraremos em contato em até 24 horas.</p>
+ <span class="eyebrow">Agende sua visita</span>
+ <h2>Quer conhecer a casa pessoalmente?</h2>
+ <p>Fale diretamente conosco pelo WhatsApp. Respondemos em poucos minutos.</p>
  </div>
- <div class="lead-form reveal">
- <form id="leadForm" onsubmit="handleLeadSubmit(event)">
- <div class="form-row">
- <input type="text" class="form-input" name="nome" placeholder="Seu nome" required>
- <input type="email" class="form-input" name="email" placeholder="Seu e-mail" required>
- </div>
- <div class="form-row">
- <input type="tel" class="form-input" name="telefone" placeholder="Seu WhatsApp / telefone" required>
- <select class="form-input" name="interesse" required>
- <option value="" disabled selected>Qual seu interesse?</option>
- <option value="visita">Quero agendar uma visita</option>
- <option value="fotos">Quero receber mais fotos</option>
- <option value="informacoes">Quero mais informações</option>
- <option value="financiamento">Quero saber sobre financiamento</option>
- </select>
- </div>
- <button type="submit" class="form-submit">📩 Enviar e receber contato</button>
- <p class="form-privacy">Seus dados estão seguros. Não enviamos spam.</p>
- </form>
- <div class="form-success" id="formSuccess">
- <h3>✓ Mensagem enviada!</h3>
- <p>Entraremos em contato em até 24 horas. Enquanto isso, sinta-se à vontade para nos chamar no WhatsApp.</p>
- <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20acabei%20de%20enviar%20meus%20dados%20pelo%20site%20e%20tenho%20interesse%20na%20Casa%20Maresias." 
+ <div class="lead-form reveal" style="text-align: center;">
+ <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20e%20gostaria%20de%20agendar%20uma%20visita." 
     class="btn btn-wa" 
     target="_blank" 
     rel="noopener"
-    style="margin-top:16px;display:inline-flex;width:auto;"
-    onclick="return gtag_report_conversion('https://wa.me/5511999895999?text=Ol%C3%A1%2C%20acabei%20de%20enviar%20meus%20dados%20pelo%20site%20e%20tenho%20interesse%20na%20Casa%20Maresias.');">💬 Chamar no WhatsApp</a>
- </div>
+    style="padding: 20px 40px; font-size: 1.1rem; display: inline-flex; width: auto; max-width: 100%;"
+    onclick="return gtag_report_conversion('https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20e%20gostaria%20de%20agendar%20uma%20visita.');">💬 Falar no WhatsApp</a>
+ <p style="margin-top: 16px; color: rgba(255,255,255,0.6); font-size: 0.85rem;">+55 (11) 99989-5999 · Respondemos em minutos</p>
  </div>
  </div>
 </section>
@@ -1412,13 +1391,14 @@ button, a { touch-action: manipulation; }
  <h2>Veja a casa em movimento</h2>
  <p>Um passeio rápido pelos ambientes, áreas externas e estrutura do condomínio.</p>
  </div>
- <div class="video-frame reveal">
+ <div class="video-frame reveal" style="max-width: 100%; aspect-ratio: 16 / 9; border-radius: 12px;">
  <iframe
  src="https://www.youtube.com/embed/7G6FqzbD4LY?rel=0&modestbranding=1&playsinline=1"
  title="Casa Maresias — Tour"
  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
  allowfullscreen
- loading="lazy"></iframe>
+ loading="lazy"
+ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
  </div>
  </div>
 </section>
@@ -1529,7 +1509,7 @@ button, a { touch-action: manipulation; }
 
  <div class="gallery-item" data-cat="condominio"><img src="img/ext_hero.jpg" alt="Condomínio Vila Verde" loading="lazy"><span class="gallery-label">Condomínio</span></div>
  <div class="gallery-item" data-cat="condominio"><img src="img/ext_side.jpg" alt="Condomínio Vila Verde" loading="lazy"><span class="gallery-label">Condomínio</span></div>
- <div class="gallery-item" data-cat="condominio"><img src="img/churrasqueira.jpg" alt="Churrasqueira do condomínio" loading="lazy"><span class="gallery-label">Churrasqueira (condomínio)</span></div>
+ <div class="gallery-item" data-cat="externa"><img src="img/churrasqueira.jpg" alt="Churrasqueira" loading="lazy"><span class="gallery-label">Churrasqueira</span></div>
  <div class="gallery-item" data-cat="condominio"><img src="img/cond_pool_main.jpg" alt="Piscina do condomínio" loading="lazy"><span class="gallery-label">Piscina principal</span></div>
  <div class="gallery-item" data-cat="condominio"><img src="img/cond_tennis.jpg" alt="Tênis" loading="lazy"><span class="gallery-label">Quadra de tênis</span></div>
  <div class="gallery-item" data-cat="condominio"><img src="img/cond_gym.jpg" alt="Academia" loading="lazy"><span class="gallery-label">Academia nova</span></div>
