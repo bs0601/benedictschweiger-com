@@ -221,19 +221,23 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
   </div>
   <div class="qdiv"></div>
   <div class="qstage">
-    <div class="qstem">When you spend money on AI right now, do you know what it produces?</div>
+    <div class="qstem">How do you currently use AI?</div>
     <div class="opts">
       <button class="opt" onclick="selectOpt(0,0)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">I have no idea what my AI spend returns</span>
+        <span class="otext">ChatGPT for emails and brainstorming</span>
       </button>
       <button class="opt" onclick="selectOpt(0,1)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">I can point to some outputs but not business outcomes</span>
+        <span class="otext">Multiple tools, some paid, experimenting widely</span>
       </button>
       <button class="opt" onclick="selectOpt(0,2)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">I know exactly what every dollar of AI spend produces</span>
+        <span class="otext">Specific workflows run on AI, I track time/output</span>
+      </button>
+      <button class="opt" onclick="selectOpt(0,3)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">AI agents operate autonomously, I monitor metrics</span>
       </button>
     </div>
   </div>
@@ -251,19 +255,23 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
   </div>
   <div class="qdiv"></div>
   <div class="qstage">
-    <div class="qstem">If your AI tools stopped working tomorrow, what would break?</div>
+    <div class="qstem">What happens if you stopped paying for AI tools tomorrow?</div>
     <div class="opts">
       <button class="opt" onclick="selectOpt(1,0)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">Nothing — I barely use them</span>
+        <span class="otext">Nothing changes, I'd use free versions or do without</span>
       </button>
       <button class="opt" onclick="selectOpt(1,1)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">Some tasks would slow down, but we'd adapt</span>
+        <span class="otext">Some tasks would slow down, but I'd adapt in a week</span>
       </button>
       <button class="opt" onclick="selectOpt(1,2)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">Core business processes would halt</span>
+        <span class="otext">I'd lose 10+ hours/week of automated work, no replacement</span>
+      </button>
+      <button class="opt" onclick="selectOpt(1,3)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">Core business processes would stop, revenue at risk</span>
       </button>
     </div>
   </div>
@@ -281,19 +289,23 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
   </div>
   <div class="qdiv"></div>
   <div class="qstage">
-    <div class="qstem">What's your biggest frustration with AI right now?</div>
+    <div class="qstem">Can you name a specific business outcome AI produced last month?</div>
     <div class="opts">
       <button class="opt" onclick="selectOpt(2,0)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">I don't know where to start</span>
+        <span class="otext">No, I use it but don't track outcomes</span>
       </button>
       <button class="opt" onclick="selectOpt(2,1)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">I use it but the outputs are inconsistent</span>
+        <span class="otext">I saved some time, but can't quantify it</span>
       </button>
       <button class="opt" onclick="selectOpt(2,2)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">I can't scale what works because I can't prove it works</span>
+        <span class="otext">Yes, I can point to a specific deliverable or time save</span>
+      </button>
+      <button class="opt" onclick="selectOpt(2,3)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">Yes, I can tie it to revenue, cost reduction, or headcount</span>
       </button>
     </div>
   </div>
@@ -314,35 +326,45 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 const answers = [null, null, null];
 
 const RESULTS = {
-  'cost-position': {
+  'quick-wins': {
     badgeClass: 'cost',
-    badgeText: 'Cost Position',
-    headline: "Your AI spend is a cost position. Here's how to flip it.",
-    body: `Paying for 4 AI tools, no system, no measurement, growing bill.`,
-    stakes: "The businesses that figure this out in the next 12 months will have an advantage that compounds for years. The ones that don't will be playing catch-up in 2028.",
-    reframe: "You're not behind, you're early.",
+    badgeText: 'Quick Wins',
+    headline: "You're in the Quick Wins phase. Most people are.",
+    body: `You're using ChatGPT for emails, brainstorming, maybe some copy. It feels useful — because it is. But you're not measuring what it produces, and you haven't built any systems around it.`,
+    stakes: "The Quick Wins phase ends when the novelty wears off. Without systems, you'll be back to doing it manually in 6 months.",
+    reframe: "This is where everyone starts. The question is whether you stay here.",
     tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
-    cta: "I'll show you how to turn your AI spend from a cost into a return engine — in 30 days."
+    cta: "I'll show you how to move from random use to systematic ROI — before the novelty fades."
+  },
+  'valley-of-death': {
+    badgeClass: 'cost',
+    badgeText: 'Valley of Death',
+    headline: "You're in the Valley of Death. This is where most companies quit.",
+    body: `You're paying for multiple tools, experimenting, maybe even have some workflows. But you can't prove ROI. The bills are climbing. The outputs are inconsistent. You're not sure if this is worth it.`,
+    stakes: "This is where 70% of companies abandon AI. They never make it to the other side because they don't know how to measure what works.",
+    reframe: "You're not failing. You're exactly where you need to be to break through.",
+    tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
+    cta: "I'll send you the measurement framework that gets you out of the Valley — and into ROTS-positive territory."
   },
   'early-rots': {
     badgeClass: 'early',
     badgeText: 'Early ROTS',
-    headline: "You're producing outputs. Now prove they produce outcomes.",
-    body: `AI writing LinkedIn posts, summarising emails, generating copy — but no idea what it changed.`,
-    stakes: "The gap between 'we use AI' and 'AI moves our numbers' becomes a canyon in 18 months.",
-    reframe: "The habit is built. Now measure it.",
+    headline: "You're crossing into Early ROTS. The hard part is behind you.",
+    body: `You have working systems. You can point to specific outcomes. You're breaking even on token spend and starting to see positive returns. Now the challenge is scaling without breaking what works.`,
+    stakes: "The gap between 'we use AI' and 'AI moves our numbers' is closing. The next 6 months determine whether you build a flywheel or hit a ceiling.",
+    reframe: "The habit is built. Now scale it.",
     tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
-    cta: "I'll send you the measurement framework that turns outputs into proof — copy it in a week."
+    cta: "I'll show you the scaling playbook — how to turn working systems into compounding returns."
   },
   'rots-positive': {
     badgeClass: 'rots',
     badgeText: 'ROTS-Positive',
-    headline: "You know your numbers. Now build the system that scales them.",
-    body: `10x the volume without 10x the infrastructure — it collapses.`,
-    stakes: "Operators who build scalable AI systems in the next 12 months will run circles around everyone else.",
-    reframe: "Top 5%. Most never get here.",
+    headline: "You're ROTS-Positive. Top 5%. Most never get here.",
+    body: `You have AI agents functioning as digital employees. Your token spend generates serious leverage. You can tie AI directly to revenue, cost reduction, or headcount efficiency.`,
+    stakes: "The question now is scale. How do you 10x without 10x the infrastructure? How do you document the playbook so others can replicate it?",
+    reframe: "You're not just using AI. You're operating with it.",
     tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
-    cta: "I'll show you the scaling playbook — the systems, the measurement, the dead ends to avoid."
+    cta: "I'll show you the advanced systems — agent teams, digital employees, and the playbook that makes it repeatable."
   }
 };
 
@@ -378,12 +400,12 @@ function prevQ(qIdx) {
 }
 
 function computeResult() {
-  const counts = [0, 0, 0];
-  answers.forEach(a => { if (a !== null) counts[a]++; });
-  const maxCount = Math.max(...counts);
-  const majorityIdx = counts.indexOf(maxCount);
-  if (majorityIdx === 0) return 'cost-position';
-  if (majorityIdx === 1) return 'early-rots';
+  // Sum answers (0-3 each, total 0-9)
+  const total = answers.reduce((sum, a) => sum + (a !== null ? a : 0), 0);
+  // Map to J-curve phases
+  if (total <= 2) return 'quick-wins';
+  if (total <= 5) return 'valley-of-death';
+  if (total <= 7) return 'early-rots';
   return 'rots-positive';
 }
 
@@ -526,14 +548,18 @@ function showResults() {
   const ctxText = document.getElementById('rotsContextText');
   if (marker && pulse && dot && label) {
     let mx, my, lx, ly, ctxHTML;
-    if (resultKey === 'cost-position') {
+    if (resultKey === 'quick-wins') {
+      // Start of curve (green zone, slight positive) — Quick Wins
+      mx = 55; my = 108; lx = 67; ly = 95;
+      ctxHTML = '<div style="font-size:13px;font-weight:700;color:#2a7a4e;margin-bottom:6px">You are in Quick Wins</div><div style="font-size:13px;color:var(--dg);line-height:1.6">You\'re using AI for tasks that feel useful — emails, brainstorming, copy. The productivity bump is real. But without systems or measurement, this phase ends when the novelty wears off. The next step is building your first repeatable workflow.</div>';
+    } else if (resultKey === 'valley-of-death') {
       // In the trough (red zone) — deep negative ROTS
       mx = 140; my = 195; lx = 152; ly = 182;
-      ctxHTML = '<div style="font-size:13px;font-weight:700;color:#c0392b;margin-bottom:6px">You are in the Valley of Death</div><div style="font-size:13px;color:var(--dg);line-height:1.6">Most companies quit here. You are buying AI tools, experimenting, and watching API bills climb with no clear return. This is normal. The next phase is building rudimentary systems that produce predictable output.</div>';
+      ctxHTML = '<div style="font-size:13px;font-weight:700;color:#c0392b;margin-bottom:6px">You are in the Valley of Death</div><div style="font-size:13px;color:var(--dg);line-height:1.6">Most companies quit here. You\'re paying for multiple tools, experimenting, watching bills climb with no clear return. This is normal. The way out is measurement — proving what works so you can double down on it.</div>';
     } else if (resultKey === 'early-rots') {
       // Crossing zero (amber zone) — early ROTS
       mx = 225; my = 130; lx = 237; ly = 117;
-      ctxHTML = '<div style="font-size:13px;font-weight:700;color:#b87a14;margin-bottom:6px">You are crossing into Early ROTS</div><div style="font-size:13px;color:var(--dg);line-height:1.6">Your systems are starting to work. Output is becoming predictable. You are breaking even on token spend and beginning to see positive returns. The next phase is scaling — turning working automations into AI agents that operate as digital employees.</div>';
+      ctxHTML = '<div style="font-size:13px;font-weight:700;color:#b87a14;margin-bottom:6px">You are crossing into Early ROTS</div><div style="font-size:13px;color:var(--dg);line-height:1.6">Your systems are starting to work. Output is becoming predictable. You\'re breaking even on token spend and beginning to see positive returns. The next phase is scaling — turning working automations into AI agents that operate as digital employees.</div>';
     } else {
       // Steep upward curve (green zone) — ROTS-positive
       mx = 340; my = 52; lx = 270; ly = 52;
