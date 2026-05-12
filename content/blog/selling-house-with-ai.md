@@ -111,6 +111,10 @@ My wife's feedback was the critical input. She knew the house. She knew what buy
 
 And the fixes happened in minutes. Mobile UX tweaks, picture swaps, wording changes — each round of feedback executed as fast as she could describe it. It felt like sitting in a shared office with an expert team.
 
+But I need to be honest: this is not perfect. There were moments where I gave feedback — change this image tag, fix that specific wording — and the agent said it was done, but it wasn't. I'd screenshot and point it out, and the agent would insist it had changed, as if the memory of the edit was more real than the pixels on the screen. You end up talking to someone who's delusional about their own work.
+
+I'm not a detail-oriented person. I don't need 110% correctness. Mistakes happen, and I'm fine living with them as long as I know to look for them. The key is expectation management: this is fast, it's powerful, but you still need a human eye checking the details. That gap will close over time. For now, it's part of the deal.
+
 AI didn't know any of that. What AI did was compress the execution time to zero. In a traditional workflow, each round of feedback would have been a Slack message to a designer, a wait, a revision, another wait. Instead, it was: say it, see it, ship it.
 
 This is what I mean by agentic marketing. Not AI replacing humans. AI removing the latency between human judgment and market impact.
