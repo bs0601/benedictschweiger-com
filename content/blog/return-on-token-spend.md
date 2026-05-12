@@ -61,6 +61,8 @@ This is not a technology problem. The models work. The infrastructure works. The
 
 That second question is what Return on Token Spend answers.
 
+{{< figure src="/images/blog/rots-jcurve.svg" alt="The ROTS J-curve: four phases from Quick Wins to Flywheel" caption="Most companies quit in the Valley of Death. The ones that build systems cross into compounding returns." >}}
+
 ## What is Return on Token Spend?
 
 Return on Token Spend is a simple ratio with radical implications.
@@ -84,8 +86,6 @@ These numbers are not a verdict on AI. They are a verdict on how AI is being dep
 Every major technology adoption follows a J-curve. Early returns are negative as the organisation learns, experiments, and builds infrastructure. Then, if the technology is genuinely productive, returns turn positive and compound.
 
 AI is no different. The ROTS J-curve has four phases. Most companies are stuck in phase two.
-
-{{< figure src="/images/rots-jcurve.svg" alt="The ROTS J-curve: four phases from Quick Wins to Flywheel" caption="Most companies quit in the Valley of Death. The ones that build systems cross into compounding returns." >}}
 
 **Phase 1: Quick Wins**
 
