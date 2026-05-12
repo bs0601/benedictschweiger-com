@@ -129,6 +129,12 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 .rquote-name{font-size:13px;font-weight:700;color:var(--blk)}
 .rquote-title{font-size:12px;color:var(--mg)}
 
+/* Playbook CTA */
+.rplaybook{margin:0 14px 16px;padding:22px 20px;background:var(--slt);border:2px solid var(--s);border-radius:var(--r);text-align:left}
+.rplaybook-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--s);margin-bottom:10px}
+.rplaybook-body{font-size:14px;line-height:1.65;color:var(--dg);margin-bottom:16px}
+.rplaybook-body strong{color:var(--blk);font-weight:700}
+
 /* ROTS Curve */
 .rots-wrap{margin:0 -20px 24px;padding:0 20px}
 .rots-headline{font-size:15px;font-weight:700;color:var(--blk);line-height:1.35;margin-bottom:14px;text-align:center}
@@ -396,7 +402,8 @@ const RESULTS = {
     stakes: "In 6 months, you'll either have a system or you'll be back to pre-AI speed. The gap between those two outcomes starts with what you do this week.",
     reframe: "This is where everyone starts. The question is whether you stay here.",
     tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
-    cta: "I'll show you how to move from random use to systematic ROI — before the novelty fades."
+    cta: "I'll show you how to move from random use to systematic ROI — before the novelty fades.",
+    playbook: "<strong>You're experimenting, but you don't have a system yet.</strong> The playbook shows you the exact framework I use to turn AI experiments into repeatable workflows — the same one I use to test ideas on my personal systems before rolling them to a €20M operation. You'll get the prompt templates, the measurement method, and the weekly rhythm that separates dabblers from operators."
   },
   'valley-of-death': {
     badgeClass: 'cost',
@@ -432,7 +439,8 @@ const RESULTS = {
     stakes: "70% of companies abandon AI here. Not because AI doesn't work — because they never measured what works. The ones who build measurement systems now will have a 12-month head start.",
     reframe: "You're not failing. You're exactly where you need to be to break through.",
     tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
-    cta: "I'll send you the measurement framework that gets you out of the Valley — and into ROTS-positive territory."
+    cta: "I'll send you the measurement framework that gets you out of the Valley — and into ROTS-positive territory.",
+    playbook: "<strong>You're in the most dangerous phase.</strong> Most companies quit here because they never build measurement systems. The playbook is the exact framework I used to get out of the Valley — how to audit your AI spend, calculate ROTS for every tool, and kill what doesn't pay for itself. This is what I test on my own systems first. Only what survives goes to the €20M business."
   },
   'early-rots': {
     badgeClass: 'early',
@@ -465,7 +473,8 @@ const RESULTS = {
     stakes: "The gap between 'we use AI' and 'AI moves our numbers' is closing. The next 6 months determine whether you build a flywheel or hit a ceiling.",
     reframe: "The habit is built. Now scale it.",
     tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
-    cta: "I'll show you the scaling playbook — how to turn working systems into compounding returns."
+    cta: "I'll show you the scaling playbook — how to turn working systems into compounding returns.",
+    playbook: "<strong>You have working systems. Now you need to scale them.</strong> The playbook shows you how I turn one working workflow into an agent team — how to document, delegate, and automate so your systems improve without you. This is the exact method I use to move what works from my personal lab to a €20M marketing operation."
   },
   'rots-positive': {
     badgeClass: 'rots',
@@ -497,7 +506,8 @@ const RESULTS = {
     stakes: "The question now is scale. How do you 10x without 10x the infrastructure? How do you document the playbook so others can replicate it?",
     reframe: "You're not just using AI. You're operating with it.",
     tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
-    cta: "I'll show you the advanced systems — agent teams, digital employees, and the playbook that makes it repeatable."
+    cta: "I'll show you the advanced systems — agent teams, digital employees, and the playbook that makes it repeatable.",
+    playbook: "<strong>You're ahead of 95% of companies.</strong> The playbook shows you how I build agent teams that function as digital employees — the coordination systems, the failure protocols, and the documentation that makes it repeatable. This is what I use to run my personal brand and my €20M operation. The question isn't if you'll scale. It's how fast."
   }
 };
 
@@ -639,6 +649,16 @@ function showResults() {
       <div class="rcard-body">${(r.getDiagnosis ? r.getDiagnosis(answers) : r.diagnosis).replace(/\n\n/g, '<br><br>')}</div>
     </div>
 
+    <!-- Why you need the playbook — contextual CTA -->
+    <div class="rplaybook" id="rplaybook">
+      <div class="rplaybook-label">Why you need this now</div>
+      <div class="rplaybook-body">${r.playbook || ''}</div>
+      <input class="optininput" type="email" id="emailInput" placeholder="your@email.com" autocomplete="email" style="margin-top:12px"/>
+      <div class="optinerr" id="emailErr">Please enter a valid email.</div>
+      <button class="btnsend" id="btnSend" onclick="submitEmail('${resultKey}')">Get the playbook →</button>
+      <p class="optinfine">No spam. Unsubscribe anytime.</p>
+    </div>
+
     <!-- Action Card -->
     <div class="rcard rcard-action">
       <div class="rcard-label" style="color:#2a7a4e">Your next steps</div>
@@ -661,17 +681,6 @@ function showResults() {
           <div class="rquote-title">CMO, ALTHERR — €20M revenue</div>
         </div>
       </div>
-    </div>
-
-    <!-- Opt-in — clean -->
-    <div class="optincard" style="margin-top:20px">
-      <div class="optineyebrow">Next step</div>
-      <div class="optintitle">Get the ROTS playbook</div>
-      <div class="optinsub">Exact systems I use to turn AI spend into compounding returns — from my personal lab to a €20M operation.</div>
-      <input class="optininput" type="email" id="emailInput" placeholder="your@email.com" autocomplete="email"/>
-      <div class="optinerr" id="emailErr">Please enter a valid email.</div>
-      <button class="btnsend" id="btnSend" onclick="submitEmail('${resultKey}')">Show me the playbook →</button>
-      <p class="optinfine">No spam. Unsubscribe anytime.</p>
     </div>
   `;
   // Position marker on ROTS curve + context text
