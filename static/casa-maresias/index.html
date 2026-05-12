@@ -41,24 +41,20 @@
  gtag('config', 'AW-18156640658');
 </script>
 
+<!-- Google tag (gtag.js) event - WhatsApp click conversion -->
 <script>
-  // WhatsApp click conversion tracking
-  // This function is called when any WhatsApp button is clicked
   function gtag_report_conversion(url) {
-    // Check if gtag is available (Google Ads tag is loaded)
-    if (typeof gtag === 'function') {
-      // Fire Google Ads conversion
-      gtag('event', 'conversion', {
-        'send_to': 'AW-18156640658/PLACEHOLDER_LABEL',
-        'value': 4950000.0,
-        'currency': 'BRL'
-      });
-    }
-    
-    // Always navigate to WhatsApp
-    if (typeof(url) != 'undefined') { 
-      window.location = url; 
-    }
+    var callback = function () {
+      if (typeof url === 'string') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'manual_event_OUTBOUND_CLICK', {
+      'event_callback': callback,
+      'event_timeout': 2000,
+      'value': 4950000.0,
+      'currency': 'BRL'
+    });
     return false;
   }
 </script>
