@@ -198,7 +198,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 <div class="scr" id="sq1">
   <div class="qbar">
     <div class="qbartop"><span class="qlogo">AI Readiness</span><span class="qnum">1 / 3</span></div>
-    <div class="prog"><div class="progf" style="width:33%"></div></div>
+    <div class="prog"><div class="progf" style="width:25%"></div></div>
   </div>
   <div class="qdiv"></div>
   <div class="qstage">
@@ -232,7 +232,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 <div class="scr" id="sq2">
   <div class="qbar">
     <div class="qbartop"><span class="qlogo">AI Readiness</span><span class="qnum">2 / 3</span></div>
-    <div class="prog"><div class="progf" style="width:66%"></div></div>
+    <div class="prog"><div class="progf" style="width:50%"></div></div>
   </div>
   <div class="qdiv"></div>
   <div class="qstage">
@@ -265,8 +265,8 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 <!-- QUESTION 3 -->
 <div class="scr" id="sq3">
   <div class="qbar">
-    <div class="qbartop"><span class="qlogo">AI Readiness</span><span class="qnum">3 / 3</span></div>
-    <div class="prog"><div class="progf" style="width:100%"></div></div>
+    <div class="qbartop"><span class="qlogo">AI Readiness</span><span class="qnum">3 / 4</span></div>
+    <div class="prog"><div class="progf" style="width:75%"></div></div>
   </div>
   <div class="qdiv"></div>
   <div class="qstage">
@@ -292,7 +292,41 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
   </div>
   <div class="qfoot">
     <button class="btnback" onclick="prevQ(2)">← Back</button>
-    <button class="btnnext" id="btnnext2" onclick="showResults()">See result →</button>
+    <button class="btnnext" id="btnnext2" onclick="nextQ(2)">Next →</button>
+  </div>
+</div>
+
+<!-- QUESTION 4 -->
+<div class="scr" id="sq4">
+  <div class="qbar">
+    <div class="qbartop"><span class="qlogo">AI Readiness</span><span class="qnum">4 / 4</span></div>
+    <div class="prog"><div class="progf" style="width:100%"></div></div>
+  </div>
+  <div class="qdiv"></div>
+  <div class="qstage">
+    <div class="qstem">Is anyone else on your team using AI systematically?</div>
+    <div class="opts">
+      <button class="opt" onclick="selectOpt(3,0)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">No, just me experimenting</span>
+      </button>
+      <button class="opt" onclick="selectOpt(3,1)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">A few people use it, but everyone does their own thing</span>
+      </button>
+      <button class="opt" onclick="selectOpt(3,2)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">We have shared prompts and workflows</span>
+      </button>
+      <button class="opt" onclick="selectOpt(3,3)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">AI is embedded in our team processes</span>
+      </button>
+    </div>
+  </div>
+  <div class="qfoot">
+    <button class="btnback" onclick="prevQ(3)">← Back</button>
+    <button class="btnnext" id="btnnext3" onclick="showResults()">See result →</button>
   </div>
 </div>
 
@@ -304,15 +338,38 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 </div>
 
 <script>
-const answers = [null, null, null];
+const answers = [null, null, null, null];
 
 const RESULTS = {
   'quick-wins': {
     badgeClass: 'cost',
     badgeText: 'Quick Wins',
     headline: "You're in the Quick Wins phase. Most people are.",
-    body: `You're using ChatGPT for emails, brainstorming, maybe some copy. It feels useful — because it is. But you're not measuring what it produces, and you haven't built any systems around it.`,
-    stakes: "The Quick Wins phase ends when the novelty wears off. Without systems, you'll be back to doing it manually in 6 months.",
+    getDiagnosis: (a) => {
+      let d = `You copy-paste into ChatGPT. It writes emails faster. It brainstorms ideas. It feels like magic — because compared to staring at a blank page, it is.\n\n`;
+      if (a[1] >= 2) d += `But here's the contradiction: you said your core processes would stop without AI. You're already dependent on something you haven't systematized. That's risky.\n\n`;
+      else if (a[1] === 1) d += `You said some tasks would slow down without AI. You're building dependency before building systems.\n\n`;
+      else d += `You said nothing would change if AI stopped. That's honest — and it means you have nothing to lose by experimenting more aggressively.\n\n`;
+      
+      if (a[2] === 0) d += `You also said you don't track outcomes. So you have no idea if this is worth your time. That's normal — and fixable.`;
+      else if (a[2] === 1) d += `You said you saved time but can't quantify it. The feeling is there. The number isn't. That's the gap to close.`;
+      
+      if (a[3] >= 2) d += `\n\nInteresting: your team has shared workflows, but you're still in Quick Wins. That means the team is ahead of you, or you're not using what's already built.`;
+      else if (a[3] === 0) d += `\n\nYou're doing this alone. That's fine for now, but agentic work happens faster with a team.`;
+      
+      return d;
+    },
+    getNextSteps: (a) => {
+      const steps = [
+        "Pick one task you do every week. Not ten — one.",
+        "Build a prompt template for it. Save it somewhere you can reuse.",
+        "Time yourself doing it manually vs. with AI. Write down the number."
+      ];
+      if (a[1] >= 2) steps.push("You said core processes depend on AI. Document them. Write down the prompt, the input, the output. Make them reproducible.");
+      else steps.push("That's your first ROTS data point. Everything else builds from there.");
+      return steps;
+    },
+    stakes: "In 6 months, you'll either have a system or you'll be back to pre-AI speed. The gap between those two outcomes starts with what you do this week.",
     reframe: "This is where everyone starts. The question is whether you stay here.",
     tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
     cta: "I'll show you how to move from random use to systematic ROI — before the novelty fades."
@@ -321,8 +378,34 @@ const RESULTS = {
     badgeClass: 'cost',
     badgeText: 'Valley of Death',
     headline: "You're in the Valley of Death. This is where most companies quit.",
-    body: `You're paying for multiple tools, experimenting, maybe even have some workflows. But you can't prove ROI. The bills are climbing. The outputs are inconsistent. You're not sure if this is worth it.`,
-    stakes: "This is where 70% of companies abandon AI. They never make it to the other side because they don't know how to measure what works.",
+    getDiagnosis: (a) => {
+      let d = ``;
+      if (a[0] === 1) d += `You're using Claude Desktop, Cursor, or CoWork. Better tools than ChatGPT, but still manual. You still copy-paste. You still context-switch.\n\n`;
+      else if (a[0] === 2) d += `You have API integrations. That's real work. But you said you can't prove ROI. So you built the pipeline without the meter.\n\n`;
+      else if (a[0] === 3) d += `You have autonomous agents. But you can't tie them to outcomes. That's like having employees you never review.\n\n`;
+      
+      if (a[1] >= 2) d += `You said core processes depend on AI. You're locked in. The bills keep coming. But you don't know if it's profitable. That's the Valley of Death: dependency without proof.\n\n`;
+      else d += `You said you'd adapt if AI stopped. That's good — you're not trapped. But it also means you're not committed enough to push through.\n\n`;
+      
+      if (a[2] === 0) d += `You don't track outcomes at all. You're flying blind. Most people in the Valley never look up.`;
+      else if (a[2] === 1) d += `You feel the time savings but can't quantify them. That's the fog of the Valley — you know something is working but you can't prove it.`;
+      
+      if (a[3] === 0) d += `\n\nYou're alone in this. No team, no shared workflows. That makes it harder — but also means you can move fast.`;
+      else if (a[3] >= 2) d += `\n\nYour team has shared workflows. But you're still in the Valley. That means measurement is the missing piece, not tooling.`;
+      
+      return d || `You're paying for tools, experimenting, but can't prove ROI. The bills climb. The outputs vary. You're not sure if this is worth it.`;
+    },
+    getNextSteps: (a) => {
+      const steps = [
+        "Audit your AI spend. List every tool, every subscription, every API bill.",
+        "Pick your top 3 AI-assisted tasks. Time them manually vs. with AI."
+      ];
+      if (a[2] <= 1) steps.push("Calculate a simple ROTS score: (time saved × hourly rate) / tool cost. Do it for one task this week.");
+      else steps.push("You can already point to outcomes. Now quantify them. Put a number on one deliverable this week.");
+      steps.push("Kill one tool that doesn't pass the test. Double down on one that does.");
+      return steps;
+    },
+    stakes: "70% of companies abandon AI here. Not because AI doesn't work — because they never measured what works. The ones who build measurement systems now will have a 12-month head start.",
     reframe: "You're not failing. You're exactly where you need to be to break through.",
     tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
     cta: "I'll send you the measurement framework that gets you out of the Valley — and into ROTS-positive territory."
@@ -331,7 +414,30 @@ const RESULTS = {
     badgeClass: 'early',
     badgeText: 'Early ROTS',
     headline: "You're crossing into Early ROTS. The hard part is behind you.",
-    body: `You have working systems. You can point to specific outcomes. You're breaking even on token spend and starting to see positive returns. Now the challenge is scaling without breaking what works.`,
+    getDiagnosis: (a) => {
+      let d = `You have working systems. You can point to specific outcomes. You're breaking even on token spend and starting to see positive returns.\n\n`;
+      
+      if (a[0] === 2) d += `You said you have API integrations. That's the foundation. Now the question is: how many of those integrations run without you?\n\n`;
+      else if (a[0] === 3) d += `You have autonomous agents. That's advanced. But you said you're only at Early ROTS. That means your agents work, but they don't scale yet.\n\n`;
+      
+      if (a[2] === 2) d += `You can point to deliverables. Good. Now tie them to business outcomes. Time saved is nice. Revenue generated is better.\n\n`;
+      else if (a[2] === 3) d += `You can tie AI to revenue or cost. That's rare. But you said you're Early ROTS, not ROTS-Positive. That means the connection exists but isn't systematic.\n\n`;
+      
+      if (a[3] <= 1) d += `Your team isn't systematic yet. You're the bottleneck. What happens when you take a week off?`;
+      else d += `Your team has shared workflows. That's leverage. Now make them self-improving.`;
+      
+      return d;
+    },
+    getNextSteps: (a) => {
+      const steps = [
+        "Document your top 3 AI workflows. Write down the prompt, the input, the output, the time saved.",
+        "Pick one workflow to automate further. Can it run without you?"
+      ];
+      if (a[3] <= 1) steps.push("Get one other person on your team to use your best workflow. Teach them. That's your first step to scale.");
+      else steps.push("Build a simple dashboard: weekly ROTS score, top performers, failures.");
+      steps.push("Start thinking about agentic systems — not just AI-assisted tasks, but AI that operates independently.");
+      return steps;
+    },
     stakes: "The gap between 'we use AI' and 'AI moves our numbers' is closing. The next 6 months determine whether you build a flywheel or hit a ceiling.",
     reframe: "The habit is built. Now scale it.",
     tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
@@ -341,7 +447,29 @@ const RESULTS = {
     badgeClass: 'rots',
     badgeText: 'ROTS-Positive',
     headline: "You're ROTS-Positive. Top 5%. Most never get here.",
-    body: `You have AI agents functioning as digital employees. Your token spend generates serious leverage. You can tie AI directly to revenue, cost reduction, or headcount efficiency.`,
+    getDiagnosis: (a) => {
+      let d = `You have AI agents functioning as digital employees. Your token spend generates serious leverage. You can tie AI directly to revenue, cost reduction, or headcount efficiency.\n\n`;
+      
+      if (a[0] === 3) d += `You said you have autonomous agents. That's the top of the stack. The question now is: how many? And how do they coordinate?\n\n`;
+      else if (a[0] === 2) d += `You have API integrations but said agents run autonomously. That's a gap — some systems need you, others don't. Close it.\n\n`;
+      
+      if (a[3] === 3) d += `Your team has AI embedded in processes. That's operational. Now build the playbook so others can replicate it.\n\n`;
+      else if (a[3] <= 1) d += `But your team isn't there yet. You're carrying this alone. That's a ceiling — and a burnout risk.\n\n`;
+      
+      d += `The new risk: complacency. What got you here won't get you to the next level. You need systems that document, replicate, and improve themselves.`;
+      
+      return d;
+    },
+    getNextSteps: (a) => {
+      const steps = [
+        "Build a playbook. Document every agent, every workflow, every failure.",
+        "Create an agent team. One agent for research, one for writing, one for review — coordinated."
+      ];
+      if (a[3] <= 1) steps.push("Get your team systematic. Share one workflow. Make it mandatory. Measure adoption.");
+      else steps.push("Implement continuous measurement. Weekly ROTS reviews, not monthly.");
+      steps.push("Start sharing. The operators who build the playbook for others capture the most value.");
+      return steps;
+    },
     stakes: "The question now is scale. How do you 10x without 10x the infrastructure? How do you document the playbook so others can replicate it?",
     reframe: "You're not just using AI. You're operating with it.",
     tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
@@ -378,20 +506,28 @@ function nextQ(qIdx) {
 function prevQ(qIdx) {
   if (qIdx === 1) show('sq1');
   else if (qIdx === 2) show('sq2');
+  else if (qIdx === 3) show('sq3');
 }
 
 function computeResult() {
-  // Sum answers (0-3 each, total 0-9)
-  const total = answers.reduce((sum, a) => sum + (a !== null ? a : 0), 0);
-  // Map to J-curve phases
-  if (total <= 2) return 'quick-wins';
-  if (total <= 5) return 'valley-of-death';
-  if (total <= 7) return 'early-rots';
+  // Weighted scoring: Q1 (tools) = 1x, Q2 (dependency) = 1x, Q3 (outcomes) = 2x, Q4 (team) = 1x
+  // Max weighted score: 3 + 3 + 6 + 3 = 15
+  const q1 = answers[0] !== null ? answers[0] : 0;
+  const q2 = answers[1] !== null ? answers[1] : 0;
+  const q3 = answers[2] !== null ? answers[2] : 0;
+  const q4 = answers[3] !== null ? answers[3] : 0;
+  
+  const weighted = q1 + q2 + (q3 * 2) + q4;
+  
+  // Phase boundaries (0-15 scale)
+  if (weighted <= 4) return 'quick-wins';
+  if (weighted <= 8) return 'valley-of-death';
+  if (weighted <= 12) return 'early-rots';
   return 'rots-positive';
 }
 
 function showResults() {
-  if (answers[2] === null) return;
+  if (answers[3] === null) return;
   const resultKey = computeResult();
   const r = RESULTS[resultKey];
 
@@ -473,12 +609,12 @@ function showResults() {
       </div>
     </div>
     <div class="rbody">
-      <div class="rbody-title">What is ROTS?</div>
-      <div class="rbody-text">ROTS = Return on Token Spend. It's the metric that separates businesses using AI as a cost from businesses using AI as a return engine. Google and Meta had to prove ROAS before ads became omnipresent. AI is at the same inflection point. The businesses that prove ROTS first will have the same advantage.</div>
+      <div class="rbody-title">The diagnosis</div>
+      <div class="rbody-text">${(r.getDiagnosis ? r.getDiagnosis(answers) : r.diagnosis).replace(/\n\n/g, '</div></div><div class="rbody" style="margin-top:0"><div class="rbody-text">')}</div>
     </div>
     <div class="rbody" style="margin-top:0">
-      <div class="rbody-title">The dead end</div>
-      <div class="rbody-text">${r.body}</div>
+      <div class="rbody-title">Your next steps</div>
+      <div class="rbody-text"><ol style="padding-left:20px;margin:0">${(r.getNextSteps ? r.getNextSteps(answers) : r.nextSteps).map(step => `<li style="margin-bottom:8px">${step}</li>`).join('')}</ol></div>
     </div>
     <div class="rbody" style="margin-top:0">
       <div class="rbody-title">What happens if you don't act</div>
