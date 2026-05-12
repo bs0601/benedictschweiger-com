@@ -2152,18 +2152,13 @@ function handleSubmit(e) {
  btn.disabled = true;
  btn.textContent = 'Verificando...';
  
- // Send to Netlify function (logs lead, sends email)
- fetch('/.netlify/functions/lead-capture', {
- method: 'POST',
- headers: { 'Content-Type': 'application/json' },
- body: JSON.stringify(data)
- })
- .then(res => {
- console.log('Server response:', res.status);
- if (res.ok) {
+ // Process qualification immediately (don't block on server)
+ const qualified = isQualified(data);
+ console.log('Qualified:', qualified);
+ 
+ // Hide form, show result
  form.style.display = 'none';
  
- const qualified = isQualified(data);
  if (qualified) {
  // Show WhatsApp with pre-filled message
  const waMsg = encodeURIComponent(buildWhatsAppMessage(data));
@@ -2186,16 +2181,13 @@ function handleSubmit(e) {
  unqualified.classList.add('visible');
  console.log('Showing unqualified state');
  }
- } else {
- throw new Error('Server error: ' + res.status);
- }
- })
- .catch(err => {
- console.error('Form error:', err);
- btn.disabled = false;
- btn.textContent = 'Verificar disponibilidade →';
- alert('Erro ao enviar. Por favor, tente pelo WhatsApp.');
- });
+ 
+ // Send to server in background (don't block UX)
+ fetch('/.netlify/functions/lead-capture', {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify(data)
+ }).catch(err => console.error('Background sync error:', err));
  
  return false;
 }
