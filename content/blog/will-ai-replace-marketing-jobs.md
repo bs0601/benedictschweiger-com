@@ -98,7 +98,7 @@ That difference — between the person who built the system and understands its 
 
 ---
 
-If you are running a marketing team and want to understand where this transition sits in your own business, the [Autonomy Score diagnostic](https://benedictschweiger.com/autonomy-score/) is a structured starting point: it maps your current operation against automation readiness across five dimensions and identifies where the highest-leverage shifts are. It takes about 10 minutes.
+If you are running a marketing team and want to understand where this transition sits in your own business, the [AI Readiness Assessment](/ai-readiness/) is a structured starting point: it maps your current operation against automation readiness across five dimensions and identifies where the highest-leverage shifts are. It takes about 10 minutes.
 
 ---
 

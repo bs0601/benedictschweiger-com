@@ -25,7 +25,7 @@ faq:
 - I run marketing for a €20M business. Before deploying agentic AI there, I validated everything on my own personal brand first.
 - The methodology: treat your personal setup as a test stand. Nothing goes to the business until it has proved itself in controlled conditions.
 - The stack: Mac Studio M3 Ultra running local LLMs + [OpenClaw](https://openclaw.ai) for memory, orchestration, and publishing. Built and deployed in a few weeks.
-- What's live: a full content pipeline, the [Autonomy Score diagnostic](https://benedictschweiger.com/autonomy-score/), a LinkedIn publishing workflow, and this website — all agentic.
+- What's live: a full content pipeline, the [AI Readiness Assessment](/ai-readiness/), a LinkedIn publishing workflow, and this website — all agentic.
 
 ---
 
@@ -66,7 +66,7 @@ The difference between this and using ChatGPT is the difference between a one-of
 In the few weeks since the test stand went up:
 
 - **This website** — built and launched (Hugo + PaperMod, hosted on Netlify, auto-deploys from GitHub push)
-- **The [Autonomy Score diagnostic](https://benedictschweiger.com/autonomy-score/)** — a 15-question assessment that shows marketers where they sit on the path to agentic operations, with automated Brevo integration for follow-up
+- **The [AI Readiness Assessment](/ai-readiness/)** — a 15-question assessment that shows marketers where they sit on the path to agentic operations, with automated Brevo integration for follow-up
 - **A LinkedIn publishing pipeline** — I review drafts and approve; the agent publishes via the LinkedIn API
 - **A content production system** — weekly keyword research, interview-based input, drafts produced by agent, approved and published
 - **Voice input workflows** — I think out loud, the output is captured, organised, and acted on
@@ -97,7 +97,7 @@ The rollout logic: build in private, validate under controlled conditions, push 
 
 If you are a marketer or operator sitting on the fence about agentic AI — not because you are sceptical, but because you cannot afford to get it wrong — the test stand approach is the answer. Start somewhere with no business risk. Run real workflows. Observe what happens. Promote what works.
 
-For a structured starting point on where your marketing operation sits today, the [Autonomy Score diagnostic](https://benedictschweiger.com/autonomy-score/) takes about ten minutes and maps your current setup against agentic readiness across five dimensions.
+For a structured starting point on where your marketing operation sits today, the [AI Readiness Assessment](/ai-readiness/) takes about ten minutes and maps your current setup against agentic readiness across five dimensions.
 
 ---
 

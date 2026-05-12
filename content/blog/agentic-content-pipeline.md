@@ -116,4 +116,4 @@ And if you're not sure where to start? Ask Claude.
 
 *This post was produced through the exact pipeline it describes. Gary interviewed me, wrote the draft based on my answers, and I approved it. The architecture diagram is in my head; the code is in [the repo](https://github.com/bs0601/benedictschweiger-com).*
 
-*Want to understand where your marketing operation sits on the automation curve? [Take the Autonomy Score diagnostic →](/autonomy-score/)*
+*Want to understand where your marketing operation sits on the automation curve? [Take the AI Readiness Assessment →](/ai-readiness/)*

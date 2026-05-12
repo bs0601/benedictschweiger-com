@@ -118,7 +118,7 @@ At ALTHERR, Instagram was a hygiene factor — a channel we needed to maintain, 
 
 The marketers building real leverage right now are the ones who can make those distinctions clearly, design systems around them, and evaluate agent output with the same rigour they used to apply to human work.
 
-If you want to understand where your own operation stands on this spectrum, the [Autonomy Score diagnostic](https://benedictschweiger.com/autonomy-score/) maps your current marketing setup against agentic readiness across five dimensions and shows you where the highest-leverage changes are.
+If you want to understand where your own operation stands on this spectrum, the [AI Readiness Assessment](/ai-readiness/) maps your current marketing setup against agentic readiness across five dimensions and shows you where the highest-leverage changes are.
 
 ---
 

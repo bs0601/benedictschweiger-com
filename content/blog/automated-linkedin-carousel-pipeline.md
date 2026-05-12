@@ -75,7 +75,7 @@ The pipeline has three layers: content, generation, and distribution.
 
 Two design templates handle different content needs. Template v1 is a photo style: full-bleed cover image, dark gradient overlay on the lower third, warm white content slides. Template v2 is an X/Twitter screenshot style: near-black background (#0F0F0F), [Inter](https://rsms.me/inter/) font, circular avatar on every slide, thread emoji top right. The script auto-selects based on whether the [Drive](https://developers.google.com/drive/api/guides/about-sdk) photo folder has images. Photos available, v1. Empty folder, v2. A force-override flag in the brief handles edge cases.
 
-Both templates share the same five-slide structure. Slide one: hook on a dark background. Slides two and three: tension and proof on warm white. Slide four: the reframe on dark. Slide five: CTA on orange, driving to [benedictschweiger.com/autonomy-score](/autonomy-score/).
+Both templates share the same five-slide structure. Slide one: hook on a dark background. Slides two and three: tension and proof on warm white. Slide four: the reframe on dark. Slide five: CTA on orange, driving to [benedictschweiger.com/autonomy-score](/ai-readiness/).
 
 This is the v2 output — X/Twitter style, Inter font, circular avatar — generated from a single JSON brief:
 

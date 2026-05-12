@@ -146,6 +146,6 @@ What a time to be alive.
 
 *Want to see the landing page?* [casa-maresias](https://benedictschweiger.com/casa-maresias/)
 
-*Curious how agentic your marketing operation is?* [Take the Autonomy Score diagnostic](/autonomy-score/) — 15 questions, 2 minutes, zero fluff.
+*Curious how agentic your marketing operation is?* [Take the AI Readiness Assessment](/ai-readiness/) — 15 questions, 2 minutes, zero fluff.
 
 *Want the system that built it?* [Subscribe to the newsletter](/resources/) — I document the tools, workflows, and decisions as they happen.

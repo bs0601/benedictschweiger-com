@@ -103,7 +103,7 @@ The content built that relationship. And the relationship is the margin.
 
 ---
 
-*Want to know how close your marketing operation is to running this kind of system autonomously? The [Autonomy Score diagnostic](/autonomy-score/) takes 10 minutes. It tells you exactly where the leverage is and where manual work is costing you most.*
+*Want to know how close your marketing operation is to running this kind of system autonomously? The [AI Readiness Assessment](/ai-readiness/) takes 10 minutes. It tells you exactly where the leverage is and where manual work is costing you most.*
 
 ---
 

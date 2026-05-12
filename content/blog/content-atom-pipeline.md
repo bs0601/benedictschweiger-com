@@ -91,7 +91,7 @@ The atom preserves it. Every piece traces back. The paper trail makes the data m
 
 This is still early — 46 atoms extracted from 5 posts, two carousels generated, one approval flow end-to-end tested. But the architecture is there and the logic holds.
 
-If you want to understand where your content operation sits on the automation curve, the [Autonomy Score diagnostic](/autonomy-score/) shows which parts of your marketing are candidates for this kind of system. Takes three minutes.
+If you want to understand where your content operation sits on the automation curve, the [AI Readiness Assessment](/ai-readiness/) shows which parts of your marketing are candidates for this kind of system. Takes three minutes.
 
 ---
 
@@ -99,9 +99,9 @@ If you want to understand where your content operation sits on the automation cu
 
 **Where does your marketing operation stand on the automation curve?**
 
-The [Autonomy Score diagnostic](/autonomy-score/) maps your current setup across five dimensions and shows which parts of your marketing are candidates for this kind of system. Takes three minutes.
+The [AI Readiness Assessment](/ai-readiness/) maps your current setup across five dimensions and shows which parts of your marketing are candidates for this kind of system. Takes three minutes.
 
-[→ Take the Autonomy Score](/autonomy-score/)
+[→ Take the AI Readiness Assessment](/ai-readiness/)
 
 ---
 
