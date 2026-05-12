@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#ffffff"/>
+<title>AI Readiness Assessment — Benedict Schweiger</title>
+<style>html,body{background:#fff}</style>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{height:100%;background:#fff}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;height:100%;overflow:hidden;-webkit-font-smoothing:antialiased}
+:root{
+  --s:#C4622D;--slt:#F5EBE4;--smd:#E8D0C2;
+  --blk:#1a1a1a;--dg:#484848;--mg:#717171;--lg:#e0e0e0;--bg:#f7f7f7;--w:#fff;
+  --sh:0 2px 8px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --sh2:0 4px 20px rgba(0,0,0,.10),0 2px 6px rgba(0,0,0,.06);
+  --r:16px;--rs:12px;
+  --st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);
+}
+#app{position:fixed;inset:0;height:100svh;overflow:hidden;opacity:0;transition:opacity .3s ease .1s}
+#app.rdy{opacity:1}
+.scr{position:absolute;inset:0;height:100svh;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .2s;overflow:hidden}
+.scr.on{opacity:1;pointer-events:all}
+
+/* LANDING */
+#sl{overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--w);padding-top:calc(var(--st) + 20px)}
+.lw{max-width:430px;margin:0 auto;padding:0 20px calc(var(--sb) + 32px)}
+.ll{display:flex;align-items:center;gap:8px;margin-bottom:32px}
+.li{width:32px;height:32px;border-radius:8px;background:var(--s);display:flex;align-items:center;justify-content:center}
+.li svg{width:16px;height:16px;stroke:#fff;stroke-width:2.2;fill:none;stroke-linecap:round}
+.ln{font-size:15px;font-weight:800;color:var(--blk)}
+.lbadge{display:inline-flex;align-items:center;gap:6px;background:var(--slt);color:var(--s);font-size:11px;font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:20px;width:fit-content;text-transform:uppercase;letter-spacing:.05em}
+.lbdot{width:5px;height:5px;border-radius:50%;background:var(--s);animation:dot 1.4s ease-in-out infinite}
+@keyframes dot{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.2)}}
+.lh{font-size:clamp(28px,8vw,40px);font-weight:800;line-height:1.06;letter-spacing:-.035em;color:var(--blk);margin-bottom:16px}
+.lh em{color:var(--s);font-style:normal}
+.lsub{font-size:15px;line-height:1.72;color:var(--mg);margin-bottom:16px}
+.lfriction{list-style:none;margin:0 0 24px;display:flex;flex-direction:column;gap:9px}
+.lfriction li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--dg);line-height:1.5}
+.lfdash{color:var(--s);font-weight:700;flex-shrink:0}
+.lstats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:24px}
+.statb{background:var(--bg);border-radius:var(--rs);padding:12px 8px;text-align:center}
+.statv{font-size:16px;font-weight:800;color:var(--blk);letter-spacing:-.02em;display:block;margin-bottom:2px}
+.statl{font-size:10px;color:var(--mg);line-height:1.3}
+.btnstart{width:100%;background:var(--s);color:#fff;border:none;border-radius:var(--rs);padding:16px 20px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px;min-height:52px;transition:background .15s}
+.btnstart:active{background:#a84f24}
+.lnote{text-align:center;font-size:12px;color:var(--mg);margin-top:12px}
+
+/* QUIZ */
+#sq{background:var(--w);padding-top:calc(var(--st) + 16px)}
+.qbar{flex-shrink:0;padding:0 20px 12px}
+.qbartop{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.qlogo{font-size:14px;font-weight:800;color:var(--blk)}
+.qnum{font-size:13px;font-weight:700;color:var(--s)}
+.prog{height:3px;background:var(--lg);border-radius:2px;overflow:hidden}
+.progf{height:100%;background:var(--s);border-radius:2px;transition:width .35s ease;width:0%}
+.qdiv{height:1px;background:var(--lg);flex-shrink:0}
+.qstage{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 20px 8px}
+@keyframes qin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.qstem{font-size:clamp(17px,4.2vw,22px);font-weight:700;line-height:1.28;letter-spacing:-.02em;color:var(--blk);margin-bottom:18px;animation:qin .22s ease}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--w);border:none;border-radius:var(--rs);box-shadow:var(--sh);padding:0 14px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;width:100%;min-height:64px;transition:box-shadow .15s,background .15s;overflow:hidden}
+.opt:active{background:var(--slt)}
+.opt.sel{background:var(--slt)}
+.oradio{width:20px;height:20px;flex-shrink:0;border:2px solid var(--lg);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.opt.sel .oradio{border-color:var(--s);background:var(--s)}
+.oradinner{width:8px;height:8px;border-radius:50%;background:#fff;opacity:0;transition:opacity .15s}
+.opt.sel .oradinner{opacity:1}
+.otext{font-size:13px;font-weight:500;color:var(--dg);line-height:1.35;flex:1;transition:color .15s;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.opt.sel .otext{color:var(--blk)}
+.qfoot{flex-shrink:0;padding:10px 20px calc(var(--sb) + 10px);border-top:1px solid var(--lg);background:var(--w);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.btnback{background:none;border:1.5px solid var(--lg);border-radius:var(--rs);color:var(--dg);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;padding:11px 16px;cursor:pointer;transition:all .15s;min-height:46px}
+.btnback:disabled{opacity:.28;cursor:not-allowed}
+.btnnext{background:var(--s);color:#fff;border:none;border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;padding:11px 20px;cursor:pointer;transition:all .15s;opacity:.28;pointer-events:none;min-height:46px;min-width:100px}
+.btnnext.on{opacity:1;pointer-events:all}
+.btnnext.on:active{transform:scale(.97)}
+
+/* RESULTS */
+#sr{background:var(--bg)}
+.rscroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--sb) + 32px)}
+.rhero{background:var(--w);padding:calc(var(--st) + 24px) 20px 24px;text-align:center;border-bottom:1px solid var(--lg)}
+.rlogo{font-size:11px;font-weight:700;color:var(--mg);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.rheadline{font-size:clamp(20px,5.5vw,26px);font-weight:800;line-height:1.18;letter-spacing:-.025em;color:var(--blk);margin-bottom:10px}
+.rheadline em{color:var(--s);font-style:normal}
+.rsubline{font-size:14px;color:var(--mg);line-height:1.6;max-width:340px;margin:0 auto 16px}
+.rbody{background:var(--w);margin:10px 0;padding:20px}
+.rbody-title{font-size:16px;font-weight:800;color:var(--blk);letter-spacing:-.02em;line-height:1.3;margin-bottom:10px}
+.rbody-text{font-size:14px;color:var(--dg);line-height:1.75}
+.optincard{background:var(--w);border-radius:var(--r);padding:22px 20px;margin:10px 14px;box-shadow:var(--sh2)}
+.optineyebrow{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--s);margin-bottom:8px}
+.optintitle{font-size:18px;font-weight:800;color:var(--blk);letter-spacing:-.025em;line-height:1.2;margin-bottom:7px}
+.optinsub{font-size:14px;color:var(--mg);line-height:1.65;margin-bottom:14px}
+.optininput{width:100%;border:1.5px solid var(--lg);border-radius:var(--rs);padding:13px 15px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:var(--blk);background:var(--w);outline:none;margin-bottom:9px;-webkit-appearance:none;transition:border-color .15s}
+.optininput::placeholder{color:var(--mg)}
+.optininput:focus{border-color:var(--s)}
+.optinerr{font-size:12px;color:#e53e3e;margin-bottom:9px;display:none}
+.optinerr.show{display:block}
+.btnsend{width:100%;background:var(--s);color:#fff;border:none;border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;padding:15px;cursor:pointer;min-height:52px;transition:background .15s}
+.btnsend:active{background:#a84f24}
+.btnsend:disabled{opacity:.5;cursor:not-allowed}
+.optinfine{text-align:center;font-size:11px;color:var(--mg);margin-top:8px}
+.resultbadge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.resultbadge.cost{background:#fdecea;color:#c0392b}
+.resultbadge.early{background:#fff3e0;color:#b87a14}
+.resultbadge.rots{background:#e8f5ee;color:#2a7a4e}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- LANDING -->
+<div class="scr on" id="sl">
+<div class="lw">
+  <div class="ll">
+    <div class="li"><svg viewBox="0 0 16 16"><path d="M2 8h12M2 4l4 4-4 4M10 4l4 4-4 4"/></svg></div>
+    <span class="ln">Benedict Schweiger</span>
+  </div>
+  <div class="lbadge"><span class="lbdot"></span>Free AI Readiness Check</div>
+  <h1 class="lh"><em>Where are you</em><br>on the AI ROI curve?</h1>
+  <p class="lsub">3 questions. 30 seconds. No email required to see your result.</p>
+  <ul class="lfriction">
+    <li><span class="lfdash">—</span><span>Most teams are burning tokens without knowing what they produce</span></li>
+    <li><span class="lfdash">—</span><span>The businesses that measure AI ROI first will have a 12-month head start</span></li>
+    <li><span class="lfdash">—</span><span>AI isn't expensive. Undirected AI is expensive.</span></li>
+  </ul>
+  <div class="lstats">
+    <div class="statb"><span class="statv">3</span><span class="statl">Questions</span></div>
+    <div class="statb"><span class="statv">30″</span><span class="statl">Seconds</span></div>
+    <div class="statb"><span class="statv">1</span><span class="statl">Result</span></div>
+    <div class="statb"><span class="statv">Free</span><span class="statl">No catch</span></div>
+  </div>
+  <button class="btnstart" onclick="startAssessment()">Start Assessment →</button>
+  <p class="lnote">Your result is visible without email</p>
+</div>
+</div>
+
+<!-- QUESTION 1 -->
+<div class="scr" id="sq1">
+  <div class="qbar">
+    <div class="qbartop"><span class="qlogo">AI Readiness</span><span class="qnum">1 / 3</span></div>
+    <div class="prog"><div class="progf" style="width:33%"></div></div>
+  </div>
+  <div class="qdiv"></div>
+  <div class="qstage">
+    <div class="qstem">When you spend money on AI right now, do you know what it produces?</div>
+    <div class="opts">
+      <button class="opt" onclick="selectOpt(0,0)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">I have no idea what my AI spend returns</span>
+      </button>
+      <button class="opt" onclick="selectOpt(0,1)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">I can point to some outputs but not business outcomes</span>
+      </button>
+      <button class="opt" onclick="selectOpt(0,2)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">I know exactly what every dollar of AI spend produces</span>
+      </button>
+    </div>
+  </div>
+  <div class="qfoot">
+    <button class="btnback" onclick="show('sl')">← Back</button>
+    <button class="btnnext" id="btnnext0" onclick="nextQ(0)">Next →</button>
+  </div>
+</div>
+
+<!-- QUESTION 2 -->
+<div class="scr" id="sq2">
+  <div class="qbar">
+    <div class="qbartop"><span class="qlogo">AI Readiness</span><span class="qnum">2 / 3</span></div>
+    <div class="prog"><div class="progf" style="width:66%"></div></div>
+  </div>
+  <div class="qdiv"></div>
+  <div class="qstage">
+    <div class="qstem">If your AI tools stopped working tomorrow, what would break?</div>
+    <div class="opts">
+      <button class="opt" onclick="selectOpt(1,0)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">Nothing — I barely use them</span>
+      </button>
+      <button class="opt" onclick="selectOpt(1,1)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">Some tasks would slow down, but we'd adapt</span>
+      </button>
+      <button class="opt" onclick="selectOpt(1,2)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">Core business processes would halt</span>
+      </button>
+    </div>
+  </div>
+  <div class="qfoot">
+    <button class="btnback" onclick="prevQ(1)">← Back</button>
+    <button class="btnnext" id="btnnext1" onclick="nextQ(1)">Next →</button>
+  </div>
+</div>
+
+<!-- QUESTION 3 -->
+<div class="scr" id="sq3">
+  <div class="qbar">
+    <div class="qbartop"><span class="qlogo">AI Readiness</span><span class="qnum">3 / 3</span></div>
+    <div class="prog"><div class="progf" style="width:100%"></div></div>
+  </div>
+  <div class="qdiv"></div>
+  <div class="qstage">
+    <div class="qstem">What's your biggest frustration with AI right now?</div>
+    <div class="opts">
+      <button class="opt" onclick="selectOpt(2,0)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">I don't know where to start</span>
+      </button>
+      <button class="opt" onclick="selectOpt(2,1)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">I use it but the outputs are inconsistent</span>
+      </button>
+      <button class="opt" onclick="selectOpt(2,2)">
+        <div class="oradio"><div class="oradinner"></div></div>
+        <span class="otext">I can't scale what works because I can't prove it works</span>
+      </button>
+    </div>
+  </div>
+  <div class="qfoot">
+    <button class="btnback" onclick="prevQ(2)">← Back</button>
+    <button class="btnnext" id="btnnext2" onclick="showResults()">See result →</button>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div class="scr" id="sr">
+  <div class="rscroll" id="rscroll"></div>
+</div>
+
+</div>
+
+<script>
+const answers = [null, null, null];
+
+const RESULTS = {
+  'cost-position': {
+    badgeClass: 'cost',
+    badgeText: 'Cost Position',
+    headline: "You're in the 73% of businesses burning tokens without a map",
+    body: "Most teams are spending on AI because they feel they should, not because they have a system. The good news: this is the easiest position to improve from. The next 30 days are about measuring one thing."
+  },
+  'early-rots': {
+    badgeClass: 'early',
+    badgeText: 'Early ROTS',
+    headline: "You're producing AI outputs. Now build the system that proves they work.",
+    body: "You can point to things AI has done for you. The gap is between 'outputs' and 'outcomes.' The next 30 days are about connecting those dots with measurement."
+  },
+  'rots-positive': {
+    badgeClass: 'rots',
+    badgeText: 'ROTS-Positive',
+    headline: "You're ready to scale. Most businesses never get here.",
+    body: "You know what your AI spend produces. The question now is how to 10x it without 10x'ing the chaos. The next 30 days are about building systems that compound."
+  }
+};
+
+function show(id) {
+  document.querySelectorAll('.scr').forEach(s => s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const sc = document.getElementById(id).querySelector('.rscroll');
+  if (sc) sc.scrollTop = 0;
+}
+
+function startAssessment() {
+  show('sq1');
+}
+
+function selectOpt(qIdx, optIdx) {
+  answers[qIdx] = optIdx;
+  const screen = document.getElementById('sq' + (qIdx + 1));
+  screen.querySelectorAll('.opt').forEach((el, j) => el.classList.toggle('sel', j === optIdx));
+  document.getElementById('btnnext' + qIdx).classList.add('on');
+  if (qIdx < 2) {
+    setTimeout(() => nextQ(qIdx), 320);
+  }
+}
+
+function nextQ(qIdx) {
+  if (answers[qIdx] === null) return;
+  show('sq' + (qIdx + 2));
+}
+
+function prevQ(qIdx) {
+  if (qIdx === 1) show('sq1');
+  else if (qIdx === 2) show('sq2');
+}
+
+function computeResult() {
+  const counts = [0, 0, 0];
+  answers.forEach(a => { if (a !== null) counts[a]++; });
+  const maxCount = Math.max(...counts);
+  const majorityIdx = counts.indexOf(maxCount);
+  if (majorityIdx === 0) return 'cost-position';
+  if (majorityIdx === 1) return 'early-rots';
+  return 'rots-positive';
+}
+
+function showResults() {
+  if (answers[2] === null) return;
+  const resultKey = computeResult();
+  const r = RESULTS[resultKey];
+
+  document.getElementById('rscroll').innerHTML = `
+    <div class="rhero">
+      <div class="rlogo">Your AI Readiness Result</div>
+      <div class="resultbadge ${r.badgeClass}">${r.badgeText}</div>
+      <div class="rheadline">${r.headline}</div>
+      <div class="rsubline">${r.body}</div>
+    </div>
+    <div class="rbody">
+      <div class="rbody-title">What this means</div>
+      <div class="rbody-text">${r.body}</div>
+    </div>
+    <div class="optincard">
+      <div class="optineyebrow">Next step</div>
+      <div class="optintitle">Get the 30-day ROTS roadmap</div>
+      <div class="optinsub">A practical, week-by-week plan to move from where you are now to measurable AI ROI.</div>
+      <input class="optininput" type="email" id="emailInput" placeholder="your@email.com" autocomplete="email"/>
+      <div class="optinerr" id="emailErr">Please enter a valid email.</div>
+      <button class="btnsend" id="btnSend" onclick="submitEmail('${resultKey}')">Send me the roadmap →</button>
+      <p class="optinfine">No spam. Unsubscribe anytime.</p>
+    </div>
+  `;
+  show('sr');
+}
+
+async function submitEmail(resultKey) {
+  const input = document.getElementById('emailInput');
+  const err = document.getElementById('emailErr');
+  const btn = document.getElementById('btnSend');
+  const email = (input.value || '').trim();
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    err.classList.add('show');
+    input.focus();
+    return;
+  }
+  err.classList.remove('show');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    const res = await fetch('/.netlify/functions/brevo-subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        source: 'ai-readiness',
+        result: resultKey
+      })
+    });
+    if (res.ok) {
+      btn.textContent = '✓ Sent! Check your inbox.';
+      btn.style.background = '#2a7a4e';
+    } else {
+      throw new Error('HTTP ' + res.status);
+    }
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Send me the roadmap →';
+    err.textContent = 'Something went wrong. Please try again.';
+    err.classList.add('show');
+  }
+}
+
+window.addEventListener('load', () => {
+  document.getElementById('app').classList.add('rdy');
+});
+</script>
+</body>
+</html>
