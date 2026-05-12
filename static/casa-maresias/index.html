@@ -1466,23 +1466,78 @@ button, a { touch-action: manipulation; }
  </div>
 </section>
 
-<!-- ========== LEAD CAPTURE FORM (moved under video) ========== -->
+<!-- ========== LEAD CAPTURE FORM ========== -->
 <section class="lead-form-section" id="lead">
  <div class="container">
  <div class="section-head reveal">
  <span class="eyebrow">Agende sua visita</span>
  <h2>Quer conhecer a casa pessoalmente?</h2>
- <p>Fale diretamente conosco pelo WhatsApp. Respondemos em poucos minutos.</p>
+ <p>Preencha o formulário. Verificamos cada contato para garantir qualidade.</p>
  </div>
- <div class="lead-form reveal" style="text-align: center;">
- <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20e%20gostaria%20de%20agendar%20uma%20visita." 
+ <form class="lead-form reveal" id="contactForm" onsubmit="return handleSubmit(event)">
+ <!-- Honeypot field (hidden from humans) -->
+ <div style="position:absolute;left:-9999px;opacity:0">
+ <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+ </div>
+ 
+ <div class="form-row">
+ <input type="text" name="nome" class="form-input" placeholder="Nome completo *" required autocomplete="name">
+ <input type="email" name="email" class="form-input" placeholder="E-mail *" required autocomplete="email">
+ </div>
+ <div class="form-row">
+ <input type="tel" name="telefone" class="form-input" placeholder="WhatsApp / Telefone *" required autocomplete="tel">
+ <select name="budget" class="form-input" required>
+ <option value="" disabled selected>Faixa de investimento *</option>
+ <option value="ate-4m">Até R$ 4 milhões</option>
+ <option value="4m-5m">R$ 4 milhões — R$ 5 milhões</option>
+ <option value="5m-6m">R$ 5 milhões — R$ 6 milhões</option>
+ <option value="acima-6m">Acima de R$ 6 milhões</option>
+ </select>
+ </div>
+ <div class="form-row">
+ <select name="timeline" class="form-input" required>
+ <option value="" disabled selected>Quando pretende comprar? *</option>
+ <option value="imediato">Imediato (já estou decidido)</option>
+ <option value="1-3-meses">1 a 3 meses</option>
+ <option value="3-6-meses">3 a 6 meses</option>
+ <option value="6-12-meses">6 a 12 meses</option>
+ <option value="ainda-nao-sei">Ainda estou pesquisando</option>
+ </select>
+ <select name="financiamento" class="form-input" required>
+ <option value="" disabled selected>Forma de pagamento *</option>
+ <option value="a-vista">À vista</option>
+ <option value="financiado">Financiamento bancário</option>
+ <option value="parcelado-direto">Parcelado direto com proprietário</option>
+ <option value="nao-sei-ainda">Ainda não decidi</option>
+ </select>
+ </div>
+ <div class="form-row">
+ <input type="text" name="cidade" class="form-input" placeholder="De qual cidade/estado você fala?" autocomplete="address-level2">
+ </div>
+ 
+ <!-- Bot challenge: simple math -->
+ <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 18px;margin-bottom:16px">
+ <div style="font-size:0.85rem;color:rgba(255,255,255,0.7);margin-bottom:8px">Verificação de segurança</div>
+ <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+ <span id="mathChallenge" style="font-size:1.1rem;font-weight:600;color:#fff">Quanto é 7 + 5?</span>
+ <input type="number" name="math" class="form-input" style="width:100px;flex-shrink:0" placeholder="?" required>
+ </div>
+ </div>
+ 
+ <button type="submit" class="form-submit" id="submitBtn">Solicitar contato →</button>
+ <p class="form-privacy">Seus dados são protegidos. Nunca enviamos spam.</p>
+ 
+ <div class="form-success" id="formSuccess">
+ <h3>✓ Mensagem enviada!</h3>
+ <p>Entraremos em contato em até 24 horas. Se preferir, fale diretamente pelo WhatsApp:</p>
+ <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20enviei%20meus%20dados%20pelo%20formul%C3%A1rio%20e%20gostaria%20de%20agendar%20uma%20visita." 
     class="btn btn-wa" 
     target="_blank" 
     rel="noopener"
-    style="padding: 20px 40px; font-size: 1.1rem; display: inline-flex; width: auto; max-width: 100%;"
-    onclick="return gtag_report_conversion('https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20e%20gostaria%20de%20agendar%20uma%20visita.');">💬 Falar no WhatsApp</a>
- <p style="margin-top: 16px; color: rgba(255,255,255,0.6); font-size: 0.85rem;">+55 (11) 99989-5999 · Respondemos em minutos</p>
+    style="margin-top:16px;display:inline-flex;width:auto"
+    onclick="return gtag_report_conversion('https://wa.me/5511999895999?text=Ol%C3%A1%2C%20enviei%20meus%20dados%20pelo%20formul%C3%A1rio%20e%20gostaria%20de%20agendar%20uma%20visita.');">💬 Falar no WhatsApp</a>
  </div>
+ </form>
  </div>
 </section>
 
@@ -1733,11 +1788,7 @@ button, a { touch-action: manipulation; }
  <div class="price-display reveal">R$ 4.950.000</div>
  <div class="price-note reveal">Móveis novos de outubro/2022 incluídos · Certidões negativas em dia</div>
  <div class="cta-buttons reveal">
- <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20%28Cond.%20Vila%20Verde%20C10%20B1%29.%20Gostaria%20de%20agendar%20uma%20visita." 
-    class="btn btn-wa" 
-    target="_blank" 
-    rel="noopener"
-    onclick="return gtag_report_conversion('https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20%28Cond.%20Vila%20Verde%20C10%20B1%29.%20Gostaria%20de%20agendar%20uma%20visita.');">💬 Conversar pelo WhatsApp</a>
+ <a href="#lead" class="btn btn-primary" style="display:inline-flex;width:auto">📋 Preencher formulário de contato</a>
  </div>
  <p style="margin-top: 24px; opacity: 0.7; font-size: 0.85rem;">Visitas mediante agendamento</p>
  </div>
@@ -1997,6 +2048,76 @@ lightbox.addEventListener('touchend', e => {
  closeLightbox();
  }
 }, { passive: true });
+
+// ===== Form handling with bot protection =====
+const MATH_ANSWER = 12; // 7 + 5
+
+function handleSubmit(e) {
+ e.preventDefault();
+ const form = document.getElementById('contactForm');
+ const btn = document.getElementById('submitBtn');
+ const success = document.getElementById('formSuccess');
+ 
+ // Honeypot check
+ const honeypot = document.getElementById('website').value;
+ if (honeypot) {
+ console.log('Bot detected (honeypot)');
+ return false;
+ }
+ 
+ // Math challenge check
+ const mathAnswer = parseInt(form.math.value, 10);
+ if (mathAnswer !== MATH_ANSWER) {
+ alert('Verificação de segurança incorreta. Tente novamente.');
+ return false;
+ }
+ 
+ // Collect data
+ const data = {
+ nome: form.nome.value,
+ email: form.email.value,
+ telefone: form.telefone.value,
+ budget: form.budget.value,
+ timeline: form.timeline.value,
+ financiamento: form.financiamento.value,
+ cidade: form.cidade.value,
+ source: 'casa-maresias-landing',
+ submittedAt: new Date().toISOString()
+ };
+ 
+ // Disable button
+ btn.disabled = true;
+ btn.textContent = 'Enviando...';
+ 
+ // Send to Netlify function
+ fetch('/.netlify/functions/lead-capture', {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify(data)
+ })
+ .then(res => {
+ if (res.ok) {
+ form.style.display = 'none';
+ success.classList.add('visible');
+ // Track conversion
+ gtag('event', 'conversion', {
+ 'send_to': 'AW-18156640658',
+ 'value': 4950000.0,
+ 'currency': 'BRL'
+ });
+ } else {
+ throw new Error('Server error');
+ }
+ })
+ .catch(err => {
+ console.error('Form error:', err);
+ btn.disabled = false;
+ btn.textContent = 'Solicitar contato →';
+ alert('Erro ao enviar. Por favor, tente pelo WhatsApp.');
+ });
+ 
+ return false;
+}
 </script>
 
 </body>
