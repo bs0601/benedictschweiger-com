@@ -2,7 +2,7 @@
 title: "Selling a House Without an Agent: A Live AI Experiment"
 date: 2026-05-11
 slug: "selling-house-with-ai"
-draft: true
+draft: false
 description: "We're documenting what happens when you sell a R$ 4.95M house without an agent, using AI to compress execution time from weeks to hours"
 author: "Benedict Schweiger"
 tags:
