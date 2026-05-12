@@ -26,7 +26,13 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 
 /* LANDING */
 #sl{overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--w);padding-top:calc(var(--st) + 20px)}
-.lw{max-width:430px;margin:0 auto;padding:0 20px calc(var(--sb) + 32px)}
+.lw{max-width:960px;margin:0 auto;padding:0 20px calc(var(--sb) + 32px)}
+.lhero{display:flex;flex-direction:column;gap:24px;margin-bottom:28px}
+@media(min-width:768px){
+  .lhero{flex-direction:row;align-items:center;gap:40px}
+  .ltext{flex:1;min-width:0}
+  .lvisual{flex:1;min-width:0}
+}
 .ll{display:flex;align-items:center;gap:8px;margin-bottom:32px}
 .li{width:32px;height:32px;border-radius:8px;background:var(--s);display:flex;align-items:center;justify-content:center}
 .li svg{width:16px;height:16px;stroke:#fff;stroke-width:2.2;fill:none;stroke-linecap:round}
@@ -124,16 +130,21 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
     <span class="ln">Benedict Schweiger</span>
   </div>
   <div class="lbadge"><span class="lbdot"></span>Free AI Readiness Check</div>
-  <h1 class="lh"><em>Where are you</em><br>on the AI ROI curve?</h1>
-  <p class="lsub">3 questions. 30 seconds. No email required to see your result.</p>
-  <ul class="lfriction">
-    <li><span class="lfdash">—</span><span>Most teams are burning tokens without knowing what they produce</span></li>
-    <li><span class="lfdash">—</span><span>The businesses that strategically deploy AI where it creates ROI will have a 12-month head start</span></li>
-    <li><span class="lfdash">—</span><span>AI isn't expensive. Undirected AI is expensive.</span></li>
-  </ul>
-  <div class="rots-wrap">
-    <div class="rots-headline">The ROTS Curve: Why AI feels like a win, then a trap, then a flywheel</div>
-    <svg class="rots-svg" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <div class="lhero">
+    <div class="ltext">
+      <h1 class="lh"><em>Where are you</em><br>on the AI ROI curve?</h1>
+      <p class="lsub">3 questions. 30 seconds. No email required to see your result.</p>
+      <ul class="lfriction">
+        <li><span class="lfdash">—</span><span>Most teams are burning tokens without knowing what they produce</span></li>
+        <li><span class="lfdash">—</span><span>The businesses that strategically deploy AI where it creates ROI will have a 12-month head start</span></li>
+        <li><span class="lfdash">—</span><span>AI isn't expensive. Undirected AI is expensive.</span></li>
+      </ul>
+      <button class="btnstart" onclick="startAssessment()">Start Assessment →</button>
+      <p class="lnote">Your result is visible without email</p>
+    </div>
+    <div class="lvisual">
+      <div class="rots-wrap" style="margin:0">
+        <svg class="rots-svg" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <!-- Gradient for the curve: green → red → amber → green -->
         <linearGradient id="rotsLine" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -200,7 +211,9 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
       <text x="140" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif">Most companies quit here</text>
       <line x1="140" y1="108" x2="140" y2="188" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4 3"/>
       <polygon points="140,194 136,186 144,186" fill="#c0392b"/>
-    </svg>
+        </svg>
+      </div>
+    </div>
   </div>
   <div class="lstats">
     <div class="statb"><span class="statv">3</span><span class="statl">Questions</span></div>
@@ -208,8 +221,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
     <div class="statb"><span class="statv">1</span><span class="statl">Result</span></div>
     <div class="statb"><span class="statv">Free</span><span class="statl">No catch</span></div>
   </div>
-  <button class="btnstart" onclick="startAssessment()">Start Assessment →</button>
-  <p class="lnote">Your result is visible without email</p>
 </div>
 </div>
 
@@ -225,19 +236,19 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
     <div class="opts">
       <button class="opt" onclick="selectOpt(0,0)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">ChatGPT for emails and brainstorming</span>
+        <span class="otext">ChatGPT web interface, copy-paste into my workflow</span>
       </button>
       <button class="opt" onclick="selectOpt(0,1)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">Multiple tools, some paid, experimenting widely</span>
+        <span class="otext">Claude Desktop / Cursor / CoWork — AI in my IDE or workspace</span>
       </button>
       <button class="opt" onclick="selectOpt(0,2)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">Specific workflows run on AI, I track time/output</span>
+        <span class="otext">Claude Code or API integrations — AI connected to my systems</span>
       </button>
       <button class="opt" onclick="selectOpt(0,3)">
         <div class="oradio"><div class="oradinner"></div></div>
-        <span class="otext">AI agents operate autonomously, I monitor metrics</span>
+        <span class="otext">Autonomous agents running without my direct input</span>
       </button>
     </div>
   </div>
@@ -485,7 +496,6 @@ function showResults() {
           <g id="rotsMarker" style="display:none">
             <circle id="rotsMarkerPulse" cx="0" cy="0" r="14" fill="#C4622D" opacity="0.3"/>
             <circle id="rotsMarkerDot" cx="0" cy="0" r="6" fill="#C4622D" stroke="#fff" stroke-width="2.5"/>
-            <text id="rotsMarkerLabel" x="0" y="0" text-anchor="start" font-size="11" font-weight="700" fill="#C4622D" font-family="'Plus Jakarta Sans',sans-serif">You are here →</text>
           </g>
         </svg>
         <!-- Context text below curve -->
