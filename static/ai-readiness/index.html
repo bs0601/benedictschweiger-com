@@ -105,6 +105,30 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 .resultbadge.cost{background:#fdecea;color:#c0392b}
 .resultbadge.early{background:#fff3e0;color:#b87a14}
 .resultbadge.rots{background:#e8f5ee;color:#2a7a4e}
+
+/* Result Cards */
+.rcard{background:#fff;border:1px solid var(--lg);border-radius:var(--r);padding:20px;margin:0 14px 12px;text-align:left}
+.rcard-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.rcard-body{font-size:14px;line-height:1.65;color:var(--dg)}
+.rcard-action{background:#f8faf9;border-color:#d4e5d9}
+.rcard-steps{list-style:none;padding:0;margin:0}
+.rcard-steps li{display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.5;color:var(--dg);margin-bottom:10px}
+.rcard-steps li:last-child{margin-bottom:0}
+.rcard-stepnum{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#2a7a4e;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+
+/* Stakes */
+.rstakes{margin:16px 14px;padding:16px 20px;background:#fff8f0;border-left:3px solid var(--s);border-radius:0 var(--rs) var(--rs) 0}
+.rstakes-label{font-size:11px;font-weight:700;color:var(--s);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px}
+.rstakes p{font-size:13px;line-height:1.6;color:var(--dg);margin:0}
+
+/* Quote */
+.rquote{margin:16px 14px;padding:18px 20px;background:var(--slt);border:1.5px solid var(--smd);border-radius:var(--r)}
+.rquote p{font-size:14px;line-height:1.55;color:var(--blk);font-style:italic;margin:0 0 12px}
+.rquote-author{display:flex;align-items:center;gap:10px}
+.rquote-avatar{width:32px;height:32px;border-radius:50%;background:var(--s);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.rquote-name{font-size:13px;font-weight:700;color:var(--blk)}
+.rquote-title{font-size:12px;color:var(--mg)}
+
 /* ROTS Curve */
 .rots-wrap{margin:0 -20px 24px;padding:0 20px}
 .rots-headline{font-size:15px;font-weight:700;color:var(--blk);line-height:1.35;margin-bottom:14px;text-align:center}
@@ -608,48 +632,41 @@ function showResults() {
         <div id="rotsContextText" style="margin-top:14px;padding:14px 16px;background:var(--bg);border-radius:var(--rs);text-align:left"></div>
       </div>
     </div>
-    <div class="rbody">
-      <div class="rbody-title">The diagnosis</div>
-      <div class="rbody-text">${(r.getDiagnosis ? r.getDiagnosis(answers) : r.diagnosis).replace(/\n\n/g, '</div></div><div class="rbody" style="margin-top:0"><div class="rbody-text">')}</div>
+    <!-- Diagnosis Card -->
+    <div class="rcard rcard-diagnosis">
+      <div class="rcard-label" style="color:var(--s)">The diagnosis</div>
+      <div class="rcard-body">${(r.getDiagnosis ? r.getDiagnosis(answers) : r.diagnosis).replace(/\n\n/g, '<br><br>')}</div>
     </div>
-    <div class="rbody" style="margin-top:0">
-      <div class="rbody-title">Your next steps</div>
-      <div class="rbody-text"><ol style="padding-left:20px;margin:0">${(r.getNextSteps ? r.getNextSteps(answers) : r.nextSteps).map(step => `<li style="margin-bottom:8px">${step}</li>`).join('')}</ol></div>
+
+    <!-- Action Card -->
+    <div class="rcard rcard-action">
+      <div class="rcard-label" style="color:#2a7a4e">Your next steps</div>
+      <ol class="rcard-steps">${(r.getNextSteps ? r.getNextSteps(answers) : r.nextSteps).map((step, i) => `<li><span class="rcard-stepnum">${i + 1}</span>${step}</li>`).join('')}</ol>
     </div>
-    <div class="rbody" style="margin-top:0">
-      <div class="rbody-title">What happens if you don't act</div>
-      <div class="rbody-text">${r.stakes}</div>
+
+    <!-- Stakes — compact -->
+    <div class="rstakes">
+      <span class="rstakes-label">⚠️ What happens if you don't act</span>
+      <p>${r.stakes}</p>
     </div>
-    <div class="rbody" style="margin-top:0">
-      <div class="rbody-title">Why you're not behind</div>
-      <div class="rbody-text">${r.reframe}</div>
-    </div>
-    <div class="rbody" style="margin-top:0">
-      <div class="rbody-title">How I work</div>
-      <div class="rbody-text">${r.tinkering}</div>
-    </div>
-    <div class="tweetcard" style="background:var(--slt);border:1.5px solid var(--smd);border-radius:var(--r);padding:18px 20px;margin:10px 14px;box-shadow:var(--sh)">
-      <div style="font-size:15px;color:var(--blk);line-height:1.55;margin-bottom:12px;font-style:italic">"AI isn't expensive. Undirected AI is expensive. The businesses that strategically deploy AI where it creates ROI will have a 12-month head start."</div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:36px;height:36px;border-radius:50%;background:var(--s);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff">BS</div>
+
+    <!-- Bene Quote — compact -->
+    <div class="rquote">
+      <p>"AI isn't expensive. Undirected AI is expensive. The businesses that strategically deploy AI where it creates ROI will have a 12-month head start."</p>
+      <div class="rquote-author">
+        <div class="rquote-avatar">BS</div>
         <div>
-          <div style="font-size:13px;font-weight:700;color:var(--blk)">Benedict Schweiger</div>
-          <div style="font-size:12px;color:var(--mg)">CMO, ALTHERR — €20M revenue</div>
+          <div class="rquote-name">Benedict Schweiger</div>
+          <div class="rquote-title">CMO, ALTHERR — €20M revenue</div>
         </div>
       </div>
     </div>
-    <div class="optincard">
+
+    <!-- Opt-in — clean -->
+    <div class="optincard" style="margin-top:20px">
       <div class="optineyebrow">Next step</div>
-      <div class="optintitle">Follow the strategy that turns your business into a ROTS-Flywheel</div>
-      <div class="optinsub">I will share with you my exact playbook and use cases, that I run on my business. You learn how I run my personal brand and how I implement what works into my €20M marketing operations. From personal lab to market-production.</div>
-      <div style="font-size:13px;color:var(--dg);line-height:1.6;margin-bottom:14px;padding:12px;background:var(--bg);border-radius:var(--rs)">
-        <div style="font-weight:600;margin-bottom:4px">What you get</div>
-        My exact playbook, real use cases, and how I move what works from my personal lab to a €20M marketing operation.
-      </div>
-      <div style="font-size:13px;color:var(--dg);line-height:1.6;margin-bottom:14px;padding:12px;background:var(--bg);border-radius:var(--rs)">
-        <div style="font-weight:600;margin-bottom:4px">How I work</div>
-        I test everything on my own systems first. Only what survives goes to the €20M business I run.
-      </div>
+      <div class="optintitle">Get the ROTS playbook</div>
+      <div class="optinsub">Exact systems I use to turn AI spend into compounding returns — from my personal lab to a €20M operation.</div>
       <input class="optininput" type="email" id="emailInput" placeholder="your@email.com" autocomplete="email"/>
       <div class="optinerr" id="emailErr">Please enter a valid email.</div>
       <button class="btnsend" id="btnSend" onclick="submitEmail('${resultKey}')">Show me the playbook →</button>
