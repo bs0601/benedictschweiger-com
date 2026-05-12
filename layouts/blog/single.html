@@ -180,9 +180,9 @@ body.article-page nav{background:rgba(250,250,247,0.96)}
     <!-- State 0: Intro -->
     <div class="mq-state" id="mqs0">
       <div class="mq-badge">2-min check · free · instant result</div>
-      <div class="mq-headline">Which of your marketing roles<br>is AI replacing first?</div>
-      <p class="mq-sub">Most teams won't know until it's already happened. Answer 3 questions and see where your operation is exposed.</p>
-      <button class="mq-btn-start" onclick="mqStart()">Check my exposure →</button>
+      <div class="mq-headline">AI ROI Curve Locator</div>
+      <p class="mq-sub">Is your AI investment paying off already? 3 questions. 30 seconds. See where you sit on the ROTS curve.</p>
+      <button class="mq-btn-start" onclick="mqStart()">Find my position →</button>
     </div>
 
     <!-- States 1–3: Questions (rendered by JS) -->
@@ -228,22 +228,22 @@ body.article-page nav{background:rgba(250,250,247,0.96)}
   var cta = document.createElement('a');
   cta.href = '/autonomy-score/?utm_source=blog&utm_medium=inline-cta&utm_campaign=mid-article';
   cta.className = 'diag-inline';
-  cta.innerHTML = '<div class="diag-inline-title">Which of your marketing roles is AI replacing first?</div>' +
-    '<div class="diag-inline-sub">3 questions. See where your team is exposed.</div>' +
-    '<div class="diag-inline-btn">Check your exposure →</div>';
+  cta.innerHTML = '<div class="diag-inline-title">AI ROI Curve Locator</div>' +
+    '<div class="diag-inline-sub">Is your AI investment paying off already? 3 questions. 30 seconds.</div>' +
+    '<div class="diag-inline-btn">Find my position →</div>';
   paras[2].insertAdjacentElement('afterend', cta);
 })();
 
 // ── MINI DIAGNOSTIC WIDGET ──
 var MQ_QS = [
-  {stem:'To what extent is AI integrated into your daily workflow?',
-   opts:['None. We haven\'t started.','Fragmented. A few individuals use tools, but there is no system.','Functional. AI assists in specific areas like copy or analysis.','Strategic. AI is a core engine that saves significant time daily.'],
+  {stem:'How much are you spending on AI tools and APIs each month?',
+   opts:['Nothing. I use free tiers only.','Under $100. A few ChatGPT Plus seats.','$100–500. Multiple tools, some API usage.','$500+. Significant token spend across the team.'],
    pts:[0,30,60,100]},
-  {stem:'Could your marketing function without you for 3 months?',
-   opts:['No. It lives entirely in my head.','Barely. The team requires my constant direction.','Yes. Documented processes and a capable team are in place.','Better. The system runs more efficiently without my involvement.'],
+  {stem:'What measurable output has AI produced for your business so far?',
+   opts:['None. Just experimentation.','Some saved hours, but no tracked ROI.','Clear time savings in specific workflows.','Revenue-attributable results or headcount reduction.'],
    pts:[0,30,80,100]},
-  {stem:'Is your revenue dangerously dependent on a single source or channel?',
-   opts:['Yes. If one channel dies, the business is in serious trouble.','Mostly. One dominant channel with a few minor ones.','No. Two or three channels each contribute meaningfully.','Never. We have no single point of failure.'],
+  {stem:'How would you describe your current AI phase?',
+   opts:['Just starting — evaluating tools.','Quick wins — some tasks automated.','Deep integration — AI runs parts of my operation.','Flywheel — AI output compounds without more input.'],
    pts:[0,30,80,100]}
 ];
 var mqCur = 0, mqAns = [null, null, null];
@@ -306,14 +306,14 @@ function mqShowResult() {
 
   var zone, sub;
   if (pct < 34) {
-    zone = 'High exposure.';
-    sub = 'AI is already automating tasks your team does manually. The window to get ahead of it is still open — but it\'s closing.';
+    zone = 'Cost Position.';
+    sub = 'You\'re spending more than you\'re getting back. Most companies are here — the question is how long you stay.';
   } else if (pct < 67) {
-    zone = 'In transition.';
-    sub = 'Some functions are protected. Others aren\'t. The full diagnostic shows you which is which.';
+    zone = 'Early ROTS.';
+    sub = 'You\'re starting to see returns, but the math is still fragile. The full assessment shows you where to push.';
   } else {
-    zone = 'Well-positioned.';
-    sub = 'Your operation has the right scaffolding. The full diagnostic identifies where to fortify before the next wave.';
+    zone = 'ROTS-Positive.';
+    sub = 'Your AI investment is compounding. The assessment identifies where to scale next.';
   }
 
   document.getElementById('mqEyebrow').textContent = 'YOUR SCORE';
@@ -358,7 +358,7 @@ function mqSubmit() {
   var scoreEl = document.getElementById('mqDoneTitle');
   scoreEl.textContent = 'You scored ' + pct + '/100. Check your inbox.';
   var fullLink = document.getElementById('mqFullLink');
-  fullLink.href = '/autonomy-score/?utm_source=blog&utm_medium=mini-diagnostic&utm_campaign=' + slug;
+  fullLink.href = '/ai-readiness/?utm_source=blog&utm_medium=mini-diagnostic&utm_campaign=' + slug;
   mqShow('mqs5');
 }
 </script>
