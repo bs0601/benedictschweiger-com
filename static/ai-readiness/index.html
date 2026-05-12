@@ -240,32 +240,32 @@ const RESULTS = {
   'cost-position': {
     badgeClass: 'cost',
     badgeText: 'Cost Position',
-    headline: "You're spending on AI because everyone else is. Here's why that's not your fault.",
-    body: `Six months ago I was in the same position. I was paying for Claude, ChatGPT, Gemini — burning through tokens and hoping something would stick. I had no system. No measurement. Just a growing credit card bill and a vague sense that I was falling behind.`,
-    elon: "AI is a supersonic tsunami. Most people don't see it coming.",
+    headline: "Your AI spend is a cost position. Here's how to flip it.",
+    body: `Paying for 4 AI tools, no system, no measurement, growing bill.`,
     stakes: "The businesses that figure this out in the next 12 months will have an advantage that compounds for years. The ones that don't will be playing catch-up in 2028.",
-    reframe: "You're not behind. You're actually early. Most of your competitors are still in the 'recipe ChatGPT' phase. The fact that you took this assessment puts you ahead of 80% of the market.",
-    cta: "Enter your email. I'll show you exactly how I went from burning tokens to measuring ROI — and how you can do it faster than I did."
+    reframe: "You're not behind, you're early.",
+    tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
+    cta: "I'll show you how to turn your AI spend from a cost into a return engine — in 30 days."
   },
   'early-rots': {
     badgeClass: 'early',
     badgeText: 'Early ROTS',
-    headline: "You're producing AI outputs. But you can't prove they move the needle.",
-    body: `I spent three months in this exact spot. I had AI writing my LinkedIn posts, summarising my emails, generating ad copy. It felt productive. Then I asked the hard question: what did any of it actually change? I couldn't answer. I had outputs everywhere and outcomes nowhere.`,
-    elon: "AI is a supersonic tsunami. Most people don't see it coming.",
-    stakes: "The gap between 'we use AI' and 'AI moves our numbers' is where careers and companies get separated. In 18 months, that gap will be a canyon.",
-    reframe: "You're closer than you think. You have the hardest part — the habit — already built. Now it's just about connecting the dots. Most people never even start.",
-    cta: "Enter your email. I'll send you the exact measurement framework I built to turn my AI outputs into proof — and how you can copy it in a week."
+    headline: "You're producing outputs. Now prove they produce outcomes.",
+    body: `AI writing LinkedIn posts, summarising emails, generating copy — but no idea what it changed.`,
+    stakes: "The gap between 'we use AI' and 'AI moves our numbers' becomes a canyon in 18 months.",
+    reframe: "The habit is built. Now measure it.",
+    tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
+    cta: "I'll send you the measurement framework that turns outputs into proof — copy it in a week."
   },
   'rots-positive': {
     badgeClass: 'rots',
     badgeText: 'ROTS-Positive',
-    headline: "You know what your AI spend produces. Now the real work starts.",
-    body: `This is where I am now. I can tell you exactly what my AI systems cost and what they return. But scaling without breaking the system? That's the next level. I've watched what happens when you 10x the volume without 10x'ing the infrastructure — it collapses. I'm building the playbook so you don't have to learn that lesson the hard way.`,
-    elon: "AI is a supersonic tsunami. Most people don't see it coming.",
-    stakes: "The operators who build scalable AI systems in the next 12 months will run circles around everyone else. The ones who hesitate will spend 2028 explaining why they're 'still evaluating options.'",
-    reframe: "You're in the top 5%. Most businesses never reach this point. The fact that you can measure ROI puts you ahead of almost every competitor you'll face.",
-    cta: "Enter your email. I'll show you the scaling playbook I'm building — the systems, the measurement, the dead ends to avoid."
+    headline: "You know your numbers. Now build the system that scales them.",
+    body: `10x the volume without 10x the infrastructure — it collapses.`,
+    stakes: "Operators who build scalable AI systems in the next 12 months will run circles around everyone else.",
+    reframe: "Top 5%. Most never get here.",
+    tinkering: "I test everything on my own systems first. Only what survives goes to the €20M business I run.",
+    cta: "I'll show you the scaling playbook — the systems, the measurement, the dead ends to avoid."
   }
 };
 
@@ -320,21 +320,13 @@ function showResults() {
       <div class="rlogo">Your AI Readiness Result</div>
       <div class="resultbadge ${r.badgeClass}">${r.badgeText}</div>
       <div class="rheadline">${r.headline}</div>
-      <div class="rsubline">${r.body}</div>
-    </div>
-    <div class="tweetcard" style="background:#fff;border:1.5px solid var(--lg);border-radius:var(--r);padding:18px 20px;margin:10px 14px;box-shadow:var(--sh)">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
-        <div style="width:36px;height:36px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:18px">🐦</div>
-        <div>
-          <div style="font-size:13px;font-weight:700;color:var(--blk)">Elon Musk</div>
-          <div style="font-size:12px;color:var(--mg)">@elonmusk</div>
-        </div>
-      </div>
-      <div style="font-size:15px;color:var(--blk);line-height:1.55;margin-bottom:12px">${r.elon}</div>
-      <div style="font-size:12px;color:var(--mg)">12:04 AM · Mar 14, 2026</div>
     </div>
     <div class="rbody">
-      <div class="rbody-title">The dead end I hit</div>
+      <div class="rbody-title">What is ROTS?</div>
+      <div class="rbody-text">ROTS = Return on Token Spend. It's the metric that separates businesses using AI as a cost from businesses using AI as a return engine. Google and Meta had to prove ROAS before ads became omnipresent. AI is at the same inflection point. The businesses that prove ROTS first will have the same advantage.</div>
+    </div>
+    <div class="rbody" style="margin-top:0">
+      <div class="rbody-title">The dead end</div>
       <div class="rbody-text">${r.body}</div>
     </div>
     <div class="rbody" style="margin-top:0">
@@ -345,14 +337,36 @@ function showResults() {
       <div class="rbody-title">Why you're not behind</div>
       <div class="rbody-text">${r.reframe}</div>
     </div>
+    <div class="rbody" style="margin-top:0">
+      <div class="rbody-title">How I work</div>
+      <div class="rbody-text">${r.tinkering}</div>
+    </div>
+    <div class="tweetcard" style="background:var(--slt);border:1.5px solid var(--smd);border-radius:var(--r);padding:18px 20px;margin:10px 14px;box-shadow:var(--sh)">
+      <div style="font-size:15px;color:var(--blk);line-height:1.55;margin-bottom:12px;font-style:italic">"AI isn't expensive. Undirected AI is expensive. The businesses that measure what their tokens produce will have a 12-month head start."</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--s);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff">BS</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--blk)">Benedict Schweiger</div>
+          <div style="font-size:12px;color:var(--mg)">CMO, ALTHERR — €20M revenue</div>
+        </div>
+      </div>
+    </div>
     <div class="optincard">
       <div class="optineyebrow">Next step</div>
-      <div class="optintitle">Get the 30-day ROTS roadmap</div>
+      <div class="optintitle">Join the ROTS journey</div>
       <div class="optinsub">${r.cta}</div>
+      <div style="font-size:13px;color:var(--dg);line-height:1.6;margin-bottom:14px;padding:12px;background:var(--bg);border-radius:var(--rs)">
+        <div style="font-weight:600;margin-bottom:4px">Trust signal</div>
+        I run AI systems for a €20M business. I test everything on my own setup first.
+      </div>
+      <div style="font-size:13px;color:var(--dg);line-height:1.6;margin-bottom:14px;padding:12px;background:var(--bg);border-radius:var(--rs)">
+        <div style="font-weight:600;margin-bottom:4px">How I work</div>
+        Personal lab → Production. That's the process.
+      </div>
       <input class="optininput" type="email" id="emailInput" placeholder="your@email.com" autocomplete="email"/>
       <div class="optinerr" id="emailErr">Please enter a valid email.</div>
-      <button class="btnsend" id="btnSend" onclick="submitEmail('${resultKey}')">Send me the roadmap →</button>
-      <p class="optinfine">No spam. Unsubscribe anytime. This will change the trajectory of your business.</p>
+      <button class="btnsend" id="btnSend" onclick="submitEmail('${resultKey}')">Join the journey →</button>
+      <p class="optinfine">No spam. Unsubscribe anytime.</p>
     </div>
   `;
   show('sr');
