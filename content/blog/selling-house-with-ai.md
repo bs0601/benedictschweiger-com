@@ -1,9 +1,9 @@
 ---
-title: "I Sold a House Using AI. Here's What Actually Happened."
+title: "Selling a House Without an Agent: A Live AI Experiment"
 date: 2026-05-11
 slug: "selling-house-with-ai"
 draft: true
-description: "How we built a conversion-optimized landing page for a R$ 4.95M beach house in one evening — and why the real lesson isn't about real estate"
+description: "We're documenting what happens when you sell a R$ 4.95M house without an agent, using AI to compress execution time from weeks to hours"
 author: "Benedict Schweiger"
 tags:
   - "agentic marketing"
@@ -30,23 +30,44 @@ faq:
   - question: "How much did the AI assistance cost?"
     answer: "The AI operations partner runs on local models (Ollama on a Mac Studio). API costs for the evening: approximately $0.14. The real cost is the thinking, not the compute."
   - question: "Would this work for other property types?"
-    answer: "The framework transfers: identify the actual conversion behavior in your market, remove every friction point, and build the shortest possible path from intent to action."
+    answer: "This is an ongoing experiment. So far the framework holds: identify the actual conversion behavior in your market, remove every friction point, and build the shortest possible path from intent to action. Whether it transfers to other property types depends on the specific buyer behavior in each segment."
 ---
 
 **TLDR**
-- Built a conversion-optimized landing page for a R$ 4.95M beach house in under 4 hours
+- We're documenting what happens when you sell a R$ 4.95M house without an agent, using AI to compress execution time
 - WhatsApp-only funnel: no forms, no calls, just one tap to message
 - 18 rounds of feedback from my wife, implemented in real-time
 - Google Ads campaign live same evening
 - The real story: AI isn't replacing judgment — it's compressing execution time to zero
+- Saving ~6% agent commission on a R$ 4.95M property = ~R$ 300,000 — the ROI is obvious even if the house takes months to sell
 
 ---
 
-My wife decided to sell our beach house in Maresias.
+We're documenting what happens when you sell a house without an agent, using AI to compress execution time from weeks to hours.
 
-R$ 4.950.000. Five suites, 345 square meters, 150 meters from the beach. It's the kind of property that sits on the market for months if you do it the traditional way — list with an agent, wait, hope.
+The house is in Maresias. R$ 4.950.000. Five suites, 345 square meters, 150 meters from the beach. It's the kind of property that sits on the market for months if you do it the traditional way — list with an agent, wait, hope.
 
 I don't have months. I have a full-time job running marketing for ALTHERR and a personal brand to build. So I did what I always do: I threw AI at the problem and watched what happened.
+
+This is a live lab. The house may sell. It may not. What I'm documenting is the process, the math, and what actually works when you strip away the agency layer.
+
+## The Math That Makes This Obvious
+
+Before we get to the landing page, let's talk about why this experiment is worth running at all.
+
+A traditional real estate agent in Brazil charges 5–6% commission. On a R$ 4.95M property, that's R$ 247,500 to R$ 297,000. Call it ~R$ 300,000.
+
+What does that R$ 300,000 buy you? In theory: market knowledge, buyer network, negotiation skill, paperwork handling. In practice, for a property like this: a listing on the major portals, some photos, and a wait.
+
+What are we spending instead?
+- Domain and hosting: negligible
+- Google Ads budget: ~R$ 5,000–10,000 over a few months (generous estimate)
+- AI operations partner (local models): ~$0.14 for the evening
+- My time: 3 hours and 47 minutes
+
+Even if the house takes six months to sell and we burn through R$ 10,000 in ads, we're still net positive by ~R$ 290,000. The ROI is obvious. The only question is whether we can match or beat the agent's reach and conversion quality.
+
+That's what this experiment is designed to find out.
 
 ## The Constraint That Shaped Everything
 
@@ -105,7 +126,7 @@ I'll report back in two weeks with actual numbers. Not projections. Not hope. Da
 
 If you're still thinking about AI as a writing assistant or a chatbot, you're missing the point. The operators who win in the next five years won't be the ones with the best prompts. They'll be the ones who can articulate what they want, judge whether they got it, and iterate faster than anyone else.
 
-The house will sell. I'm not worried about that. What I'm watching is how fast the gap between idea and execution can close when you stop treating AI as a tool and start treating it as a team member.
+Will the house sell? I don't know yet. The market decides that. What I do know is that the gap between idea and execution closed from weeks to minutes tonight — and that changes the math on every high-ticket sale, not just real estate.
 
 That gap used to be weeks. Tonight it was minutes.
 
