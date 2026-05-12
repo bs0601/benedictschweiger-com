@@ -128,7 +128,9 @@ The campaign is live. Google Ads is learning. Here's what matters:
 - **Cost per WhatsApp conversation:** If we hit R$ 150–300, we're profitable
 - **Time to first lead:** Usually 24–48 hours for a new campaign
 
-I'll report back in two weeks with actual numbers. Not projections. Not hope. Data.
+**Update — 12 hours later:** First qualified lead via WhatsApp. One message, one interested buyer, zero friction. Total cost to acquire: $0.14 in API spend. The ad budget is separate — but the execution layer that captured this interest cost less than a cup of coffee.
+
+I'll keep reporting as the data comes in. Not projections. Not hope. What actually happens.
 
 ## What This Means for You
 
