@@ -155,11 +155,11 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
         </linearGradient>
       </defs>
 
-      <!-- Background zones -->
-      <rect x="10" y="10" width="75" height="180" rx="6" fill="#e8f5ee" opacity="0.5"/>
-      <rect x="90" y="10" width="110" height="180" rx="6" fill="#fdecea" opacity="0.5"/>
-      <rect x="205" y="10" width="85" height="180" rx="6" fill="#fff3e0" opacity="0.5"/>
-      <rect x="295" y="10" width="95" height="180" rx="6" fill="#e8f5ee" opacity="0.5"/>
+      <!-- Background zones (subtle) -->
+      <rect x="10" y="10" width="75" height="180" rx="6" fill="#e8f5ee" opacity="0.18"/>
+      <rect x="90" y="10" width="110" height="180" rx="6" fill="#fdecea" opacity="0.12"/>
+      <rect x="205" y="10" width="85" height="180" rx="6" fill="#fff3e0" opacity="0.15"/>
+      <rect x="295" y="10" width="95" height="180" rx="6" fill="#e8f5ee" opacity="0.18"/>
 
       <!-- Axis labels -->
       <text x="200" y="216" text-anchor="middle" font-size="10" font-weight="600" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif">Time / AI Maturity →</text>
@@ -169,9 +169,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
       <line x1="35" y1="110" x2="385" y2="110" stroke="#484848" stroke-width="1.5" stroke-dasharray="5 4"/>
       <text x="22" y="113" font-size="10" font-weight="700" fill="#484848" font-family="'Plus Jakarta Sans',sans-serif">0</text>
 
-      <!-- Negative zone label -->
-      <text x="200" y="155" text-anchor="middle" font-size="9" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.6">Negative ROTS</text>
-      <text x="200" y="65" text-anchor="middle" font-size="9" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.6">Positive ROTS</text>
+
 
       <!-- J-Curve: starts slightly positive, dips deep negative, then hockey stick up -->
       <!-- Path: M start(40,95) → small bump → deep trough → cross zero → steep upward -->
@@ -201,14 +199,15 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
       <text x="344" y="40" text-anchor="middle" font-size="8" font-weight="700" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif">Flywheel</text>
 
       <!-- "Most companies quit here" annotation -->
-      <line x1="140" y1="175" x2="170" y2="152" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="3 2"/>
-      <text x="172" y="150" font-size="9" font-weight="700" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif">Most companies quit here →</text>
+      <line x1="140" y1="175" x2="140" y2="200" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <polygon points="140,206 136,198 144,198" fill="#c0392b"/>
+      <text x="140" y="214" text-anchor="middle" font-size="8" font-weight="700" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif">Most companies quit here</text>
 
       <!-- Phase description callouts -->
-      <text x="60" y="58" text-anchor="middle" font-size="7" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.8">ChatGPT speedups</text>
-      <text x="140" y="58" text-anchor="middle" font-size="7" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.8">Tool sprawl, API bills</text>
-      <text x="247" y="58" text-anchor="middle" font-size="7" fill="#b87a14" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.8">Systems emerging</text>
-      <text x="344" y="58" text-anchor="middle" font-size="7" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.8">AI as employees</text>
+      <text x="60" y="58" text-anchor="middle" font-size="6.5" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.55">ChatGPT for tasks</text>
+      <text x="140" y="58" text-anchor="middle" font-size="6.5" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.55">Tool sprawl, API burn</text>
+      <text x="247" y="58" text-anchor="middle" font-size="6.5" fill="#b87a14" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.55">AI as employees</text>
+      <text x="344" y="58" text-anchor="middle" font-size="6.5" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.55">Systems emerging</text>
     </svg>
   </div>
   <div class="lstats">
@@ -427,11 +426,11 @@ function showResults() {
             </linearGradient>
           </defs>
 
-          <!-- Background zones -->
-          <rect x="10" y="10" width="75" height="180" rx="6" fill="#e8f5ee" opacity="0.5"/>
-          <rect x="90" y="10" width="110" height="180" rx="6" fill="#fdecea" opacity="0.5"/>
-          <rect x="205" y="10" width="85" height="180" rx="6" fill="#fff3e0" opacity="0.5"/>
-          <rect x="295" y="10" width="95" height="180" rx="6" fill="#e8f5ee" opacity="0.5"/>
+          <!-- Background zones (subtle) -->
+          <rect x="10" y="10" width="75" height="180" rx="6" fill="#e8f5ee" opacity="0.18"/>
+          <rect x="90" y="10" width="110" height="180" rx="6" fill="#fdecea" opacity="0.12"/>
+          <rect x="205" y="10" width="85" height="180" rx="6" fill="#fff3e0" opacity="0.15"/>
+          <rect x="295" y="10" width="95" height="180" rx="6" fill="#e8f5ee" opacity="0.18"/>
 
           <!-- Axis labels -->
           <text x="200" y="216" text-anchor="middle" font-size="10" font-weight="600" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif">Time / AI Maturity →</text>
@@ -441,9 +440,7 @@ function showResults() {
           <line x1="35" y1="110" x2="385" y2="110" stroke="#484848" stroke-width="1.5" stroke-dasharray="5 4"/>
           <text x="22" y="113" font-size="10" font-weight="700" fill="#484848" font-family="'Plus Jakarta Sans',sans-serif">0</text>
 
-          <!-- Negative/Positive zone labels -->
-          <text x="200" y="155" text-anchor="middle" font-size="9" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.6">Negative ROTS</text>
-          <text x="200" y="65" text-anchor="middle" font-size="9" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.6">Positive ROTS</text>
+
 
           <!-- J-Curve -->
           <path id="rotsCurvePathR" d="M 40 95 C 55 88, 70 92, 85 105 C 100 125, 115 165, 140 175 C 165 185, 185 170, 205 140 C 225 110, 245 80, 275 55 C 305 30, 340 18, 380 12" fill="none" stroke="url(#rotsLineR)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -467,11 +464,16 @@ function showResults() {
           <rect x="315" y="28" width="58" height="18" rx="9" fill="#2a7a4e" opacity="0.12"/>
           <text x="344" y="40" text-anchor="middle" font-size="8" font-weight="700" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif">Flywheel</text>
 
+          <!-- "Most companies quit here" annotation -->
+          <line x1="140" y1="175" x2="140" y2="200" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <polygon points="140,206 136,198 144,198" fill="#c0392b"/>
+          <text x="140" y="214" text-anchor="middle" font-size="8" font-weight="700" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif">Most companies quit here</text>
+
           <!-- Phase description callouts -->
-          <text x="60" y="58" text-anchor="middle" font-size="7" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.8">ChatGPT speedups</text>
-          <text x="140" y="58" text-anchor="middle" font-size="7" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.8">Tool sprawl, API bills</text>
-          <text x="247" y="58" text-anchor="middle" font-size="7" fill="#b87a14" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.8">Systems emerging</text>
-          <text x="344" y="58" text-anchor="middle" font-size="7" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.8">AI as employees</text>
+          <text x="60" y="58" text-anchor="middle" font-size="6.5" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.55">ChatGPT for tasks</text>
+          <text x="140" y="58" text-anchor="middle" font-size="6.5" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.55">Tool sprawl, API burn</text>
+          <text x="247" y="58" text-anchor="middle" font-size="6.5" fill="#b87a14" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.55">AI as employees</text>
+          <text x="344" y="58" text-anchor="middle" font-size="6.5" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif" opacity="0.55">Systems emerging</text>
 
           <!-- Position marker (pulsing dot) -->
           <g id="rotsMarker" style="display:none">
