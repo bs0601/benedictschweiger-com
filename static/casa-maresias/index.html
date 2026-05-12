@@ -2104,10 +2104,18 @@ Gostaria de agendar uma visita.`;
 
 function handleSubmit(e) {
  e.preventDefault();
+ console.log('Form submit triggered');
+ 
  const form = document.getElementById('contactForm');
  const btn = document.getElementById('submitBtn');
  const success = document.getElementById('formSuccess');
  const unqualified = document.getElementById('formUnqualified');
+ 
+ if (!form || !btn || !success || !unqualified) {
+ console.error('Missing elements:', { form, btn, success, unqualified });
+ alert('Erro técnico. Recarregue a página.');
+ return false;
+ }
  
  // Honeypot check
  const honeypot = document.getElementById('website').value;
@@ -2118,6 +2126,7 @@ function handleSubmit(e) {
  
  // Math challenge check
  const mathAnswer = parseInt(form.math.value, 10);
+ console.log('Math answer:', mathAnswer, 'Expected:', MATH_ANSWER);
  if (mathAnswer !== MATH_ANSWER) {
  alert('Verificação de segurança incorreta. Tente novamente.');
  return false;
@@ -2136,6 +2145,9 @@ function handleSubmit(e) {
  submittedAt: new Date().toISOString()
  };
  
+ console.log('Form data:', data);
+ console.log('Qualified:', isQualified(data));
+ 
  // Disable button
  btn.disabled = true;
  btn.textContent = 'Verificando...';
@@ -2147,6 +2159,7 @@ function handleSubmit(e) {
  body: JSON.stringify(data)
  })
  .then(res => {
+ console.log('Server response:', res.status);
  if (res.ok) {
  form.style.display = 'none';
  
@@ -2160,6 +2173,7 @@ function handleSubmit(e) {
  return gtag_report_conversion(`https://wa.me/5511999895999?text=${waMsg}`);
  };
  success.classList.add('visible');
+ console.log('Showing qualified success state');
  
  // Track conversion
  gtag('event', 'conversion', {
@@ -2170,9 +2184,10 @@ function handleSubmit(e) {
  } else {
  // Soft rejection
  unqualified.classList.add('visible');
+ console.log('Showing unqualified state');
  }
  } else {
- throw new Error('Server error');
+ throw new Error('Server error: ' + res.status);
  }
  })
  .catch(err => {
