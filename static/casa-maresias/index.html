@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#14383d">
-<meta name="description" content="Casa à venda em Maresias — 5 suítes, 345m², 150m da praia, mobiliada e pronta para morar. Condomínio Vila Verde. R$ 4.950.000.">
+<meta name="description" content="Casa à venda em Maresias — 5 suítes, 345m², mobiliada. Condomínio Vila Verde. R$ 4.950.000.">
 <meta name="keywords" content="casa à venda maresias, imóvel litoral norte sp, casa praia são sebastião, condomínio vila verde, casa 5 suítes maresias">
 <meta name="author" content="Benedict Schweiger">
 <meta name="robots" content="index, follow">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Casa à Venda Maresias | 5 Suítes, 150m da Praia, Mobiliada — R$ 4.950.000">
-<meta property="og:description" content="Casa colonial-mediterrânea com 5 suítes, escritório, área gourmet e a 150m da Praia de Maresias. Documentação em dia. Agende sua visita.">
+<meta property="og:title" content="Casa à Venda Maresias | 5 Suítes, Mobiliada — R$ 4.950.000">
+<meta property="og:description" content="Casa de praia brasileira com 5 suítes, escritório, área gourmet. Condomínio Vila Verde. Agende sua visita.">
 <meta property="og:image" content="https://benedictschweiger.com/casa-maresias/img/ext_hero.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,11 +21,11 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Casa à Venda Maresias | 5 Suítes, 150m da Praia — R$ 4.950.000">
-<meta name="twitter:description" content="Casa colonial-mediterrânea com 5 suítes, área gourmet e escritório. Condomínio Vila Verde. Documentação em dia.">
+<meta name="twitter:title" content="Casa à Venda Maresias | 5 Suítes, Mobiliada — R$ 4.950.000">
+<meta name="twitter:description" content="Casa de praia brasileira com 5 suítes, área gourmet e escritório. Condomínio Vila Verde.">
 <meta name="twitter:image" content="https://benedictschweiger.com/casa-maresias/img/ext_hero.jpg">
 
-<title>Casa à Venda Maresias | 5 Suítes, 150m da Praia, Mobiliada — R$ 4.950.000</title>
+<title>Casa à Venda Maresias | 5 Suítes, Mobiliada — R$ 4.950.000</title>
 
 <link rel="canonical" href="https://benedictschweiger.com/casa-maresias/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,7 +83,7 @@
   "@context": "https://schema.org",
   "@type": "RealEstateListing",
   "name": "Casa Maresias — Condomínio Vila Verde",
-  "description": "Casa colonial-mediterrânea com 5 suítes, 345m² construídos, 150m da Praia de Maresias. Mobiliada e pronta para morar.",
+  "description": "Casa de praia brasileira com 5 suítes, 345m² construídos. Mobiliada e pronta para morar.",
   "url": "https://benedictschweiger.com/casa-maresias/",
   "datePosted": "2026-05-11",
   "price": "4950000.00",
@@ -235,6 +235,40 @@ button, a { touch-action: manipulation; }
 @keyframes pulse {
  0%, 100% { opacity: 1; }
  50% { opacity: 0.4; }
+}
+
+/* Scarcity sticker */
+.scarcity-sticker {
+ position: absolute;
+ top: 100px;
+ right: 20px;
+ background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+ color: #fff;
+ padding: 12px 20px;
+ border-radius: 12px;
+ font-size: 0.85rem;
+ font-weight: 700;
+ text-transform: uppercase;
+ letter-spacing: 0.08em;
+ box-shadow: 0 8px 24px rgba(198, 107, 79, 0.4);
+ z-index: 10;
+ transform: rotate(3deg);
+}
+.scarcity-sticker::before {
+ content: '';
+ position: absolute;
+ top: -6px; left: -6px; right: -6px; bottom: -6px;
+ border: 2px dashed var(--coral);
+ border-radius: 16px;
+ opacity: 0.5;
+}
+@media (min-width: 900px) {
+ .scarcity-sticker {
+  top: 120px;
+  right: 40px;
+  padding: 14px 24px;
+  font-size: 0.95rem;
+ }
 }
 
 /* ============================================================
@@ -561,34 +595,6 @@ button, a { touch-action: manipulation; }
 .form-success.visible { display: block; }
 .form-success h3 { color: var(--success); margin-bottom: 8px; }
 .form-success p { color: rgba(255,255,255,0.9); }
-
-/* ============================================================
- SOCIAL PROOF
- ============================================================ */
-.social-proof {
- background: #fff;
- padding: 32px 0;
- border-bottom: 1px solid var(--line);
-}
-.social-proof-grid {
- display: flex;
- flex-wrap: wrap;
- justify-content: center;
- align-items: center;
- gap: 24px 40px;
- text-align: center;
-}
-.social-proof-item {
- display: flex;
- align-items: center;
- gap: 8px;
- font-size: 0.9rem;
- color: var(--muted);
-}
-.social-proof-item strong {
- color: var(--sea-dark);
- font-size: 1.1rem;
-}
 
 /* ============================================================
  O IMÓVEL
@@ -1288,10 +1294,11 @@ button, a { touch-action: manipulation; }
 
 <!-- ========== HERO ========== -->
 <section class="hero" id="top">
+ <div class="scarcity-sticker">Oportunidade única</div>
  <div class="hero-content">
  <span class="eyebrow">À Venda · Maresias · Litoral Norte SP</span>
  <h1>Casa Maresias</h1>
- <p class="hero-sub">Cond. Vila Verde · Casa 10, Bloco 1 — a 150m da Praia</p>
+ <p class="hero-sub">Cond. Vila Verde — a 150m da Praia</p>
  <div class="hero-cta">
  <a href="#video" class="btn btn-primary">▶ Ver o vídeo tour</a>
  <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20%28Cond.%20Vila%20Verde%20C10%20B1%29." 
@@ -1312,27 +1319,6 @@ button, a { touch-action: manipulation; }
  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Banheiros</div></div>
  <div class="stat"><div class="stat-num">345<span class="unit">m²</span></div><div class="stat-label">Construída</div></div>
  <div class="stat"><div class="stat-num">238<span class="unit">m²</span></div><div class="stat-label">Terreno</div></div>
- <div class="stat"><div class="stat-num">150<span class="unit">m</span></div><div class="stat-label">Da Praia</div></div>
- </div>
- </div>
-</section>
-
-<!-- ========== SOCIAL PROOF ========== -->
-<section class="social-proof">
- <div class="container">
- <div class="social-proof-grid">
- <div class="social-proof-item">
- <span>📍</span>
- <span><strong>Condomínio Vila Verde</strong> — um dos mais consolidados do litoral</span>
- </div>
- <div class="social-proof-item">
- <span>✓</span>
- <span><strong>Documentação em dia</strong> — escritura imediata</span>
- </div>
- <div class="social-proof-item">
- <span>🪵</span>
- <span><strong>Projeto assinado</strong> — Rosana Collet & Paula Magaldi</span>
- </div>
  </div>
  </div>
 </section>
@@ -1363,9 +1349,9 @@ button, a { touch-action: manipulation; }
  <div class="intro-grid">
  <div class="intro-text reveal">
  <span class="eyebrow">O Imóvel</span>
- <h2>Casa de praia brasileira, com história.</h2>
+ <h2>Casa de praia brasileira, com charme de sobra.</h2>
  <p class="lead">"Uma casa pensada para morar, trabalhar e receber — durante todo o ano, em qualquer estação."</p>
- <p>Casa de praia em estilo brasileiro, encantadoramente escondida no coração de Maresias, dentro de um dos condomínios mais consolidados do litoral norte. Pé-direito alto em madeira, ambientes sociais integrados, escada em madeira maciça e amplas varandas com rede e vista para a mata atlântica. Detalhe especial: <strong>azulejos mexicanos</strong> trazidos pessoalmente pelo construtor, espalhados por toda a casa — incluindo áreas externas.</p>
+ <p>Casa de praia em estilo brasileiro, encantadoramente escondida no coração de Maresias, dentro de um dos condomínios mais consolidados do litoral norte. Pé-direito alto em madeira, ambientes sociais integrados, escada em madeira maciça e amplas varandas com rede e vista para a mata atlântica. Detalhe especial: charmosos azulejos trazidos pessoalmente do México e espalhados por toda a casa — incluindo áreas externas.</p>
  <p>5 suítes equipadas (3 no andar superior, quarto térreo e sala de TV), escritório completo para home-office e área gourmet externa compõem uma residência completa — entregue mobiliada com móveis novos (outubro/2024) e pronta para morar.</p>
  </div>
  <div class="intro-image reveal">
@@ -1408,20 +1394,19 @@ button, a { touch-action: manipulation; }
 
  <div class="diff-grid">
  <div class="diff-item reveal"><span class="diff-icon">📍</span><strong>Localização privilegiada</strong>No Bloco 1, perto da portaria. A 150m da praia. Apenas um vizinho — privacidade reservada.</div>
- <div class="diff-item reveal"><span class="diff-icon">🛏</span><strong>5 suítes equipadas</strong>3 suítes no andar superior, quarto térreo e sala de TV com banheiro próprio.</div>
+ <div class="diff-item reveal"><span class="diff-icon">🛏</span><strong>5 suítes equipadas</strong>incluindo quarto térreo — perfeito para receber pessoas de idade.</div>
  <div class="diff-item reveal"><span class="diff-icon">🪞</span><strong>Armários novos com LED</strong>Em todos os quartos, cozinha e sala — com tela para circulação de ar.</div>
  <div class="diff-item reveal"><span class="diff-icon">👔</span><strong>Closet novo na suíte master</strong>Com iluminação automática LED.</div>
- <div class="diff-item reveal"><span class="diff-icon">💻</span><strong>Home-office com AC</strong>Internet Vivo fibra ótica de altíssima velocidade. Pronto para trabalho remoto o ano todo.</div>
- <div class="diff-item reveal"><span class="diff-icon">❄️</span><strong>AC quente e frio</strong>Na sala e em 2 quartos — diferencial para o inverno.</div>
+ <div class="diff-item reveal"><span class="diff-icon">💻</span><strong>Home-office com ar condicionado quente e frio</strong>Internet Vivo fibra ótica de altíssima velocidade. Pronto para trabalho remoto o ano todo.</div>
+ <div class="diff-item reveal"><span class="diff-icon">❄️</span><strong>ar condicionado quente e frio</strong>Na sala e em 2 quartos — diferencial para o inverno.</div>
  <div class="diff-item reveal"><span class="diff-icon">🔥</span><strong>Área gourmet completa</strong>Churrasqueira com elevação, cooktop, minibar e fogo de chão.</div>
- <div class="diff-item reveal"><span class="diff-icon">🌿</span><strong>Varanda ampla e charmosa</strong>Além de cantinho com ducha quente externa, grama artificial e parede-lousa para crianças.</div>
+ <div class="diff-item reveal"><span class="diff-icon">🌿</span><strong>Varanda ampla e charmosa</strong>cantinho com ducha quente externa, grama artificial e parede-lousa para crianças.</div>
  <div class="diff-item reveal"><span class="diff-icon">🍽</span><strong>Eletrodomésticos modernos</strong>Cozinha e lavanderia completa, equipada com geladeira side-by-side, lava-louças e secadora novas.</div>
  <div class="diff-item reveal"><span class="diff-icon">💧</span><strong>Dupla filtragem de água</strong>Filtro na entrada da casa + filtro Brastemp na cozinha.</div>
  <div class="diff-item reveal"><span class="diff-icon">🪟</span><strong>Anti-mosquito</strong>Tela em todas as janelas + mosquiteiro nas camas.</div>
  <div class="diff-item reveal"><span class="diff-icon">🛡</span><strong>Portão e área cercada</strong>Segurança extra para crianças e pets — portão inferior e superior na escada.</div>
- <div class="diff-item reveal"><span class="diff-icon">⚡</span><strong>Elétrica e telhado reformados</strong>Parte elétrica e painel de luz novos. Telhado dos quartos recentemente refeito.</div>
  <div class="diff-item reveal"><span class="diff-icon">🪵</span><strong>Madeiras nobres</strong>Todas as madeiras e janelas em cumaru maciço, telhado em garapeira.</div>
- <div class="diff-item reveal"><span class="diff-icon">🎨</span><strong>Azulejos mexicanos</strong>Trazidos pessoalmente pelo construtor da casa — espalhados por toda a casa, inclusive áreas externas. Ainda restam peças extras.</div>
+ <div class="diff-item reveal"><span class="diff-icon">🎨</span><strong>Azulejos mexicanos</strong>Trazidos pessoalmente — espalhados por toda a casa, inclusive áreas externas. Ainda restam peças extras.</div>
  <div class="diff-item reveal"><span class="diff-icon">✒️</span><strong>Projeto assinado</strong>Arquitetura por Rosana Collet (escritório de Marcos Tomanik) · Paisagismo por Paula Magaldi.</div>
  </div>
  </div>
@@ -1436,7 +1421,6 @@ button, a { touch-action: manipulation; }
  <p>A 150m da praia (5 min a pé), com lazer completo e segurança 24h.</p>
  </div>
  <div class="cond-grid">
- <div class="cond-card reveal"><span class="cond-card-icon">🏖</span><h4>150m da praia</h4><p>5 min a pé até a Praia de Maresias</p></div>
  <div class="cond-card reveal"><span class="cond-card-icon">⛱</span><h4>Beach service</h4><p>2 guarda-sóis + 4 cadeiras nos fins de semana e temporada</p></div>
  <div class="cond-card reveal"><span class="cond-card-icon">🎾</span><h4>2 Quadras de Tênis</h4><p>Tênis e beach tennis</p></div>
  <div class="cond-card reveal"><span class="cond-card-icon">⚽</span><h4>Futebol</h4><p>Quadras para uso dos moradores</p></div>
@@ -1500,10 +1484,10 @@ button, a { touch-action: manipulation; }
  <div class="gallery-item" data-cat="externa"><img src="img/evening_lounge.jpg" alt="Lounge ao entardecer" loading="lazy"><span class="gallery-label">Lounge ao entardecer</span></div>
  <div class="gallery-item" data-cat="externa"><img src="img/night_pool_palms.jpg" alt="Piscina à noite" loading="lazy"><span class="gallery-label">Piscina à noite</span></div>
  <div class="gallery-item" data-cat="externa"><img src="img/back_yard.jpg" alt="Quintal" loading="lazy"><span class="gallery-label">Quintal</span></div>
+ <div class="gallery-item" data-cat="externa"><img src="img/churrasqueira.jpg" alt="Churrasqueira" loading="lazy"><span class="gallery-label">Churrasqueira</span></div>
 
  <div class="gallery-item" data-cat="condominio"><img src="img/ext_hero.jpg" alt="Condomínio Vila Verde" loading="lazy"><span class="gallery-label">Condomínio</span></div>
  <div class="gallery-item" data-cat="condominio"><img src="img/ext_side.jpg" alt="Condomínio Vila Verde" loading="lazy"><span class="gallery-label">Condomínio</span></div>
- <div class="gallery-item" data-cat="externa"><img src="img/churrasqueira.jpg" alt="Churrasqueira" loading="lazy"><span class="gallery-label">Churrasqueira</span></div>
  <div class="gallery-item" data-cat="condominio"><img src="img/cond_pool_main.jpg" alt="Piscina do condomínio" loading="lazy"><span class="gallery-label">Piscina principal</span></div>
  <div class="gallery-item" data-cat="condominio"><img src="img/cond_tennis.jpg" alt="Tênis" loading="lazy"><span class="gallery-label">Quadra de tênis</span></div>
  <div class="gallery-item" data-cat="condominio"><img src="img/cond_gym.jpg" alt="Academia" loading="lazy"><span class="gallery-label">Academia nova</span></div>
@@ -1533,7 +1517,7 @@ button, a { touch-action: manipulation; }
  <ul>
  <li>Sala ampla com pé-direito alto e mesa de jantar espaçosa</li>
  <li>Armários planejados com iluminação LED</li>
- <li>Sala de TV no térreo com sofá reclinável grande, ar-condicionado e banheiro próprio (conta como 5ª suíte)</li>
+ <li>Sala de TV no térreo com sofá reclinável grande, ar condicionado quente e frio e banheiro próprio (conta como 5ª suíte)</li>
  <li>Integração total com a varanda e área gourmet externa</li>
  </ul>
  </div>
@@ -1542,12 +1526,12 @@ button, a { touch-action: manipulation; }
  <div class="feature-icon">🛏</div>
  <h3>5 Suítes (incluindo Sala de TV)</h3>
  <ul>
- <li>3 suítes no andar superior, com cama de casal, ar-condicionado e armários planejados novos com LED</li>
+ <li>3 suítes no andar superior, com cama de casal, ar condicionado quente e frio e armários planejados novos com LED</li>
  <li>Suíte master com closet novo e iluminação automática LED</li>
  <li>Quarto térreo — prático para hóspedes com mobilidade reduzida</li>
  <li>Sala de TV com banheiro próprio — funciona como 5ª suíte</li>
  <li>Tela anti-mosquito em todas as janelas + mosquiteiro nas camas</li>
- <li>Ar-condicionado quente e frio na sala e em 2 quartos</li>
+ <li>ar condicionado quente e frio na sala e em 2 quartos</li>
  </ul>
  </div>
 
@@ -1566,7 +1550,7 @@ button, a { touch-action: manipulation; }
  <div class="feature-icon">💻</div>
  <h3>Home Office</h3>
  <ul>
- <li>Escritório completo com ar-condicionado</li>
+ <li>Escritório completo com ar condicionado quente e frio</li>
  <li>Ambiente integrado, iluminado, com mobília nova</li>
  <li><strong>Internet Vivo fibra ótica</strong> de altíssima velocidade</li>
  <li>Pronto para trabalho remoto durante todo o ano</li>
@@ -1603,20 +1587,10 @@ button, a { touch-action: manipulation; }
  <ul>
  <li>Todas as madeiras e janelas em <strong>cumaru maciço</strong></li>
  <li>Telhado em <strong>garapeira</strong></li>
- <li><strong>Telhado dos quartos recentemente refeito</strong></li>
+ <li>Telhado dos quartos recentemente refeito</li>
  <li>Manutenção de todas as madeiras externas feita recentemente</li>
  <li>Parte elétrica e painel de luz reformados</li>
  <li>Azulejos mexicanos por toda a casa — incluindo áreas externas</li>
- </ul>
- </div>
-
- <div class="feature-card reveal">
- <div class="feature-icon">📋</div>
- <h3>Pronta para Morar</h3>
- <ul>
- <li>Mobiliada com móveis novos de outubro/2024 — incluídos na venda</li>
- <li>Funcionária de confiança disponível para manutenção</li>
- <li>Possibilidade de manter para aluguel anual</li>
  </ul>
  </div>
 
@@ -1654,14 +1628,13 @@ button, a { touch-action: manipulation; }
  <span class="eyebrow reveal">Valor de Venda</span>
  <h2 class="reveal">Pronta para morar — mobiliário incluído</h2>
  <div class="price-display reveal">R$ 4.950.000</div>
- <div class="price-note reveal">Móveis novos de outubro/2024 incluídos · Certidões negativas em dia · Documentação sem pendências</div>
+ <div class="price-note reveal">Móveis novos de outubro/2024 incluídos · Certidões negativas em dia</div>
  <div class="cta-buttons reveal">
  <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20%28Cond.%20Vila%20Verde%20C10%20B1%29.%20Gostaria%20de%20agendar%20uma%20visita." 
     class="btn btn-wa" 
     target="_blank" 
     rel="noopener"
     onclick="return gtag_report_conversion('https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20%28Cond.%20Vila%20Verde%20C10%20B1%29.%20Gostaria%20de%20agendar%20uma%20visita.');">💬 Conversar pelo WhatsApp</a>
- <a href="tel:+5511999895999" class="btn btn-secondary">📞 +55 (11) 99989-5999</a>
  </div>
  <p style="margin-top: 24px; opacity: 0.7; font-size: 0.85rem;">Visitas mediante agendamento</p>
  </div>
@@ -1849,48 +1822,6 @@ lightbox.addEventListener('touchend', e => {
  closeLightbox();
  }
 }, { passive: true });
-
-// ===== Lead form handling =====
-function handleLeadSubmit(e) {
- e.preventDefault();
- const form = document.getElementById('leadForm');
- const success = document.getElementById('formSuccess');
- const formData = new FormData(form);
- 
- // Track lead conversion
- if (typeof gtag !== 'undefined') {
-  gtag_report_lead();
- }
- if (typeof fbq !== 'undefined') {
-  fbq('track', 'Lead');
- }
- 
- // TODO: Replace with your form endpoint (Formspree, Netlify Forms, etc.)
- // Example with Formspree:
- // fetch('https://formspree.io/f/YOUR_FORM_ID', {
- //  method: 'POST',
- //  body: formData,
- //  headers: { 'Accept': 'application/json' }
- // })
- 
- // For now, show success immediately
- form.style.display = 'none';
- success.classList.add('visible');
- 
- // Optional: send to WhatsApp as fallback
- const nome = formData.get('nome');
- const telefone = formData.get('telefone');
- const interesse = formData.get('interesse');
- const waText = `Olá, meu nome é ${nome}. Tenho interesse na Casa Maresias (${interesse}). Meu telefone: ${telefone}`;
- const waLink = `https://wa.me/5511999895999?text=${encodeURIComponent(waText)}`;
- 
- // Update the WhatsApp button in success message
- const successWaBtn = success.querySelector('a.btn-wa');
- if (successWaBtn) {
-  successWaBtn.href = waLink;
-  successWaBtn.onclick = function() { return gtag_report_conversion(waLink); };
- }
-}
 </script>
 
 </body>
