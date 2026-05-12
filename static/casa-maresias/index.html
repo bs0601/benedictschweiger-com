@@ -92,7 +92,7 @@
   "availability": "https://schema.org/InStock",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Av. Doutor Francisco Loup, 1.902, Casa 10, Bloco 1",
+    "streetAddress": "Av. Doutor Francisco Loup, 1.902, Bloco 1",
     "addressLocality": "Maresias",
     "addressRegion": "SP",
     "addressCountry": "BR"
@@ -471,6 +471,85 @@ button, a { touch-action: manipulation; }
 @keyframes bounce {
  0%,100% { transform: translate(-50%, 0); }
  50% { transform: translate(-50%, 6px); }
+}
+
+/* ============================================================
+ SLIDESHOW
+ ============================================================ */
+.slideshow-container {
+ position: relative;
+ width: 100%;
+ max-width: 900px;
+ margin: 0 auto;
+ border-radius: 12px;
+ overflow: hidden;
+ box-shadow: 0 20px 60px rgba(20, 56, 61, 0.18);
+ background: var(--sea-deep);
+}
+.slideshow-wrapper {
+ display: flex;
+ transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+ will-change: transform;
+}
+.slide {
+ min-width: 100%;
+ aspect-ratio: 16 / 10;
+ position: relative;
+}
+.slide img {
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+ display: block;
+}
+.slide-btn {
+ position: absolute;
+ top: 50%;
+ transform: translateY(-50%);
+ width: 44px;
+ height: 44px;
+ border-radius: 50%;
+ background: rgba(255,255,255,0.9);
+ border: none;
+ color: var(--sea-dark);
+ font-size: 1.4rem;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ z-index: 5;
+ transition: all 0.3s ease;
+ box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.slide-btn:hover { background: #fff; transform: translateY(-50%) scale(1.05); }
+.slide-btn:active { transform: translateY(-50%) scale(0.95); }
+.slide-prev { left: 12px; }
+.slide-next { right: 12px; }
+.slide-dots {
+ position: absolute;
+ bottom: 16px;
+ left: 50%;
+ transform: translateX(-50%);
+ display: flex;
+ gap: 8px;
+ z-index: 5;
+}
+.slide-dot {
+ width: 8px;
+ height: 8px;
+ border-radius: 50%;
+ background: rgba(255,255,255,0.5);
+ border: none;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ padding: 0;
+}
+.slide-dot.active { background: #fff; transform: scale(1.3); }
+@media (min-width: 640px) {
+ .slide-btn { width: 52px; height: 52px; font-size: 1.6rem; }
+ .slide-prev { left: 20px; }
+ .slide-next { right: 20px; }
+ .slide-dot { width: 10px; height: 10px; }
 }
 
 /* ============================================================
@@ -1298,7 +1377,7 @@ button, a { touch-action: manipulation; }
  <div class="hero-content">
  <span class="eyebrow">À Venda · Maresias · Litoral Norte SP</span>
  <h1>Casa Maresias</h1>
- <p class="hero-sub">Condomínio Vila Verde — Casa 10, Bloco 1</p>
+ <p class="hero-sub">Condomínio Vila Verde — Bloco 1</p>
  <div class="hero-cta">
  <a href="#video" class="btn btn-primary">▶ Ver o vídeo tour</a>
  <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20%28Cond.%20Vila%20Verde%20C10%20B1%29." 
@@ -1323,42 +1402,37 @@ button, a { touch-action: manipulation; }
  </div>
 </section>
 
-<!-- ========== LEAD CAPTURE FORM ========== -->
-<section class="lead-form-section" id="lead">
- <div class="container">
- <div class="section-head reveal">
- <span class="eyebrow">Agende sua visita</span>
- <h2>Quer conhecer a casa pessoalmente?</h2>
- <p>Fale diretamente conosco pelo WhatsApp. Respondemos em poucos minutos.</p>
- </div>
- <div class="lead-form reveal" style="text-align: center;">
- <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20e%20gostaria%20de%20agendar%20uma%20visita." 
-    class="btn btn-wa" 
-    target="_blank" 
-    rel="noopener"
-    style="padding: 20px 40px; font-size: 1.1rem; display: inline-flex; width: auto; max-width: 100%;"
-    onclick="return gtag_report_conversion('https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20e%20gostaria%20de%20agendar%20uma%20visita.');">💬 Falar no WhatsApp</a>
- <p style="margin-top: 16px; color: rgba(255,255,255,0.6); font-size: 0.85rem;">+55 (11) 99989-5999 · Respondemos em minutos</p>
- </div>
- </div>
-</section>
-
-<!-- ========== O IMÓVEL ========== -->
+<!-- ========== IMAGE SLIDESHOW ========== -->
 <section class="section" id="casa">
  <div class="container">
- <div class="intro-grid">
- <div class="intro-text reveal">
- <span class="eyebrow">O Imóvel</span>
+ <div class="section-head reveal">
+ <span class="eyebrow">A Casa</span>
  <h2>Casa de praia brasileira, com charme de sobra.</h2>
- <p class="lead">"Uma casa pensada para morar, trabalhar e receber — durante todo o ano, em qualquer estação."</p>
- <p>Casa de praia em estilo brasileiro, encantadoramente escondida no coração de Maresias, dentro de um dos condomínios mais consolidados do litoral norte. Pé-direito alto em madeira, ambientes sociais integrados, escada em madeira maciça e amplas varandas com rede e vista para a mata atlântica. Detalhe especial: charmosos azulejos trazidos pessoalmente do México e espalhados por toda a casa — incluindo áreas externas.</p>
- <p>5 suítes equipadas (3 no andar superior, quarto térreo e sala de TV), escritório completo para home-office e área gourmet externa compõem uma residência completa — entregue mobiliada com móveis novos (outubro/2024) e pronta para morar.</p>
+ <p class="lead" style="border-left:0; padding-left:0; font-style:italic; color:var(--sea); font-family:'Cormorant Garamond',serif; font-size:1.35rem; line-height:1.4;">"Uma casa pensada para morar, trabalhar e receber — durante todo o ano, em qualquer estação."</p>
  </div>
- <div class="intro-image reveal">
- <img src="img/living_main.jpg" alt="Sala da Casa Maresias" loading="lazy">
- <div class="credit">
- Arquitetura: <strong>Rosana Collet</strong> (escritório de Marcos Tomanik) · Paisagismo: <strong>Paula Magaldi</strong>
+ <div class="slideshow-container reveal">
+ <div class="slideshow-wrapper" id="slideshowWrapper">
+ <div class="slide"><img src="img/ext_hero.jpg" alt="Fachada da Casa Maresias" loading="eager"></div>
+ <div class="slide"><img src="img/living_main.jpg" alt="Sala principal" loading="lazy"></div>
+ <div class="slide"><img src="img/living_stairs.jpg" alt="Sala com escada" loading="lazy"></div>
+ <div class="slide"><img src="img/living_tv.jpg" alt="Sala de TV" loading="lazy"></div>
+ <div class="slide"><img src="img/kitchen_open.jpg" alt="Cozinha integrada" loading="lazy"></div>
+ <div class="slide"><img src="img/bed_master.jpg" alt="Suíte master" loading="lazy"></div>
+ <div class="slide"><img src="img/bed_hammock.jpg" alt="Suíte com vista" loading="lazy"></div>
+ <div class="slide"><img src="img/office_main.jpg" alt="Home Office" loading="lazy"></div>
+ <div class="slide"><img src="img/outdoor_dining.jpg" alt="Área gourmet" loading="lazy"></div>
+ <div class="slide"><img src="img/balcony_pool.jpg" alt="Varanda com vista" loading="lazy"></div>
+ <div class="slide"><img src="img/night_pool_palms.jpg" alt="Piscina à noite" loading="lazy"></div>
  </div>
+ <button class="slide-btn slide-prev" id="slidePrev" aria-label="Foto anterior">‹</button>
+ <button class="slide-btn slide-next" id="slideNext" aria-label="Próxima foto">›</button>
+ <div class="slide-dots" id="slideDots"></div>
+ </div>
+ <div style="text-align:center; margin-top:16px;">
+ <p style="font-size:0.9rem; color:var(--muted);">Casa de praia em estilo brasileiro, encantadoramente escondida no coração de Maresias. Pé-direito alto em madeira, ambientes sociais integrados, escada em madeira maciça e amplas varandas com rede e vista para a mata atlântica. Detalhe especial: charmosos azulejos trazidos pessoalmente do México e espalhados por toda a casa — incluindo áreas externas.</p>
+ <p style="font-size:0.9rem; color:var(--muted); margin-top:8px;">5 suítes equipadas (3 no andar superior, quarto térreo e sala de TV), escritório completo para home-office e área gourmet externa compõem uma residência completa — entregue mobiliada com móveis novos (outubro/2022) e pronta para morar.</p>
+ <div class="credit" style="margin-top:16px;">
+ Arquitetura: <strong>Rosana Collet</strong> (escritório de Marcos Tomanik) · Paisagismo: <strong>Ana Paula Magaldi</strong>
  </div>
  </div>
  </div>
@@ -1379,6 +1453,26 @@ button, a { touch-action: manipulation; }
  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
  allowfullscreen
  loading="lazy"></iframe>
+ </div>
+ </div>
+</section>
+
+<!-- ========== LEAD CAPTURE FORM (moved under video) ========== -->
+<section class="lead-form-section" id="lead">
+ <div class="container">
+ <div class="section-head reveal">
+ <span class="eyebrow">Agende sua visita</span>
+ <h2>Quer conhecer a casa pessoalmente?</h2>
+ <p>Fale diretamente conosco pelo WhatsApp. Respondemos em poucos minutos.</p>
+ </div>
+ <div class="lead-form reveal" style="text-align: center;">
+ <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20e%20gostaria%20de%20agendar%20uma%20visita." 
+    class="btn btn-wa" 
+    target="_blank" 
+    rel="noopener"
+    style="padding: 20px 40px; font-size: 1.1rem; display: inline-flex; width: auto; max-width: 100%;"
+    onclick="return gtag_report_conversion('https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20e%20gostaria%20de%20agendar%20uma%20visita.');">💬 Falar no WhatsApp</a>
+ <p style="margin-top: 16px; color: rgba(255,255,255,0.6); font-size: 0.85rem;">+55 (11) 99989-5999 · Respondemos em minutos</p>
  </div>
  </div>
 </section>
@@ -1407,7 +1501,7 @@ button, a { touch-action: manipulation; }
  <div class="diff-item reveal"><span class="diff-icon">🛡</span><strong>Portão e área cercada</strong>Segurança extra para crianças e pets — portão inferior e superior na escada.</div>
  <div class="diff-item reveal"><span class="diff-icon">🪵</span><strong>Madeiras nobres</strong>Todas as madeiras e janelas em cumaru maciço, telhado em garapeira.</div>
  <div class="diff-item reveal"><span class="diff-icon">🎨</span><strong>Azulejos mexicanos</strong>Trazidos pessoalmente — espalhados por toda a casa, inclusive áreas externas. Ainda restam peças extras.</div>
- <div class="diff-item reveal"><span class="diff-icon">✒️</span><strong>Projeto assinado</strong>Arquitetura por Rosana Collet (escritório de Marcos Tomanik) · Paisagismo por Paula Magaldi.</div>
+ <div class="diff-item reveal"><span class="diff-icon">✒️</span><strong>Projeto assinado</strong>Arquitetura por Rosana Collet (escritório de Marcos Tomanik) · Paisagismo por Ana Paula Magaldi.</div>
  </div>
  </div>
 </section>
@@ -1419,6 +1513,12 @@ button, a { touch-action: manipulation; }
  <span class="eyebrow">Condomínio Vila Verde</span>
  <h2>Estrutura de resort, exclusiva para moradores</h2>
  <p>A 150m da praia (5 min a pé), com lazer completo e segurança 24h.</p>
+ </div>
+ <div class="map-container reveal" style="margin-bottom:40px;">
+ <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.2345!2d-45.4083!3d-23.7911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ3JzI4LjAiUyA0NcKwMjQnMzAuMCJX!5e0!3m2!1spt-BR!2sbr!4v1715555555555!5m2!1spt-BR!2sbr" width="100%" height="320" style="border:0; border-radius:12px; box-shadow:0 12px 40px rgba(0,0,0,0.25);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+ <div style="text-align:center; margin-top:12px;">
+ <a href="https://maps.app.goo.gl/GA8c32ZUxGjaRgEYA?g_st=ic" class="btn btn-secondary" target="_blank" rel="noopener" style="display:inline-flex; width:auto; background:rgba(255,255,255,0.15); color:#fff; border-color:rgba(255,255,255,0.3);">📍 Ver localização no Google Maps</a>
+ </div>
  </div>
  <div class="cond-grid">
  <div class="cond-card reveal"><span class="cond-card-icon">⛱</span><h4>Beach service</h4><p>2 guarda-sóis + 4 cadeiras nos fins de semana e temporada</p></div>
@@ -1608,7 +1708,7 @@ button, a { touch-action: manipulation; }
  <p>A Praia de Maresias é uma das mais cobiçadas do litoral norte paulista — destino certo de quem busca natureza, gastronomia e a vida de praia durante o ano todo. A casa fica a apenas <strong>150 metros da areia</strong>, dentro do tradicional Condomínio Vila Verde.</p>
  <div class="address">
  <strong>Av. Doutor Francisco Loup, 1.902</strong>
- <span>Cond. Vila Verde — Casa 10, Bloco 1</span>
+ <span>Cond. Vila Verde — Bloco 1</span>
  <span>Maresias · São Sebastião — SP</span>
  </div>
  <div style="margin-top: 22px;">
@@ -1628,7 +1728,7 @@ button, a { touch-action: manipulation; }
  <span class="eyebrow reveal">Valor de Venda</span>
  <h2 class="reveal">Pronta para morar — mobiliário incluído</h2>
  <div class="price-display reveal">R$ 4.950.000</div>
- <div class="price-note reveal">Móveis novos de outubro/2024 incluídos · Certidões negativas em dia</div>
+ <div class="price-note reveal">Móveis novos de outubro/2022 incluídos · Certidões negativas em dia</div>
  <div class="cta-buttons reveal">
  <a href="https://wa.me/5511999895999?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Casa%20Maresias%20%28Cond.%20Vila%20Verde%20C10%20B1%29.%20Gostaria%20de%20agendar%20uma%20visita." 
     class="btn btn-wa" 
@@ -1644,7 +1744,7 @@ button, a { touch-action: manipulation; }
 <footer class="footer">
  <div class="container">
  <div class="footer-brand">Casa Maresias</div>
- <p>Cond. Vila Verde — Casa 10, Bloco 1 · Maresias, São Sebastião — SP</p>
+ <p>Cond. Vila Verde — Bloco 1 · Maresias, São Sebastião — SP</p>
  <p style="margin-top: 12px;">WhatsApp: <a href="https://wa.me/5511999895999">+55 (11) 99989-5999</a></p>
  <p style="margin-top: 26px; opacity: 0.4; font-size: 0.72rem;">Matrícula nº 40.297 · Certidões negativas em dia</p>
  </div>
@@ -1681,6 +1781,78 @@ button, a { touch-action: manipulation; }
 </div>
 
 <script>
+// ===== Slideshow =====
+const slideshowWrapper = document.getElementById('slideshowWrapper');
+const slidePrev = document.getElementById('slidePrev');
+const slideNext = document.getElementById('slideNext');
+const slideDots = document.getElementById('slideDots');
+let slideIndex = 0;
+let slideInterval;
+
+function initSlideshow() {
+ if (!slideshowWrapper) return;
+ const slides = slideshowWrapper.querySelectorAll('.slide');
+ if (slides.length === 0) return;
+ 
+ // Create dots
+ slides.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', 'Ir para foto ' + (i + 1));
+  dot.addEventListener('click', () => goToSlide(i));
+  slideDots.appendChild(dot);
+ });
+ 
+ updateSlide();
+ startSlideTimer();
+ 
+ // Touch swipe
+ let touchStartX = 0;
+ slideshowWrapper.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  stopSlideTimer();
+ }, { passive: true });
+ slideshowWrapper.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) {
+   if (dx < 0) nextSlide();
+   else prevSlide();
+  }
+  startSlideTimer();
+ }, { passive: true });
+}
+
+function updateSlide() {
+ if (!slideshowWrapper) return;
+ slideshowWrapper.style.transform = 'translateX(-' + slideIndex * 100 + '%)';
+ const dots = slideDots.querySelectorAll('.slide-dot');
+ dots.forEach((d, i) => d.classList.toggle('active', i === slideIndex));
+}
+
+function nextSlide() {
+ const total = slideshowWrapper.querySelectorAll('.slide').length;
+ slideIndex = (slideIndex + 1) % total;
+ updateSlide();
+}
+function prevSlide() {
+ const total = slideshowWrapper.querySelectorAll('.slide').length;
+ slideIndex = (slideIndex - 1 + total) % total;
+ updateSlide();
+}
+function goToSlide(i) {
+ slideIndex = i;
+ updateSlide();
+ stopSlideTimer();
+ startSlideTimer();
+}
+function startSlideTimer() { slideInterval = setInterval(nextSlide, 5000); }
+function stopSlideTimer() { clearInterval(slideInterval); }
+
+if (slidePrev) slidePrev.addEventListener('click', () => { prevSlide(); stopSlideTimer(); startSlideTimer(); });
+if (slideNext) slideNext.addEventListener('click', () => { nextSlide(); stopSlideTimer(); startSlideTimer(); });
+
+initSlideshow();
+
 // ===== Header scroll =====
 const header = document.getElementById('header');
 const stickyBar = document.getElementById('stickyBar');
