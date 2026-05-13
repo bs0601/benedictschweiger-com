@@ -1,6 +1,6 @@
 # Agentic Content Runbook
 
-**Version:** 1.0  
+**Version:** 1.2  
 **Date:** 2026-05-13  
 **Owner:** Benedict Schweiger + Hugo (AI operations partner)  
 **Review cycle:** Monthly, or when a step breaks twice
@@ -24,7 +24,8 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 
 ### Monday — Idea Capture
 
-**Trigger:** 09:00 GMT-3, or when Bene drops raw material in Telegram
+**Trigger:** 09:00 GMT-3, or when Bene drops raw material in Telegram  
+**Owner:** Agent (default) / Both (fallback interview)
 
 **Input:**
 - Bene's voice note, text message, or Notion page with raw idea
@@ -32,27 +33,27 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 
 **Process:**
 1. Read the raw material
-2. Run 5-question extraction interview with Bene (if needed):
-   - What specifically happened?
-   - What number or outcome resulted?
-   - What did you expect vs. what actually happened?
-   - What would someone else get wrong about this?
-   - Which pillar does this belong to?
-3. Distill into 3–5 Content Atoms
-4. Add each Atom to Content Atoms DB with:
+2. **Default path:** Agent extracts 3–5 Content Atoms directly from the material
+3. **Fallback path** (if atoms are thin/vague): Agent sends Bene a single message — "Extracted these atoms. Anything missing?" — and only runs the 5-question interview if Bene says yes or the atoms score below 3
+4. Score each atom 1–5 on specificity:
+   - Named entity? (person, company, tool)
+   - Real number? (metric, outcome, time saved)
+   - Counterfactual present? (what was expected vs. what happened)
+   - Score < 3 → re-interview or drop
+5. Add passing atoms to Content Atoms DB with:
    - Type (quote / framework / data / decision / take / provocation)
    - Source (Bene's message / meeting / observation)
    - Pillar
    - Platform fit (LinkedIn / Blog / Both)
-5. Create Content Library rows for planned pieces this week:
+6. Create Content Library rows for planned pieces this week:
    - 1 blog post (pillar article)
-   - 3 LinkedIn posts
+   - 2–3 LinkedIn posts (based on atom count and quality)
    - Status = Draft
    - Link Atom IDs
 
 **Output:**
-- Content Atoms DB: 3–5 new atoms
-- Content Library: 4 new rows (1 blog + 3 LinkedIn)
+- Content Atoms DB: 3–5 new atoms (only passing scores)
+- Content Library: 3–4 new rows (1 blog + 2–3 LinkedIn)
 
 **Notion fields updated:**
 - Content Atoms: all fields
@@ -62,7 +63,8 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 
 ### Tuesday — Draft Generation
 
-**Trigger:** 09:00 GMT-3
+**Trigger:** 09:00 GMT-3  
+**Owner:** Agent
 
 **Input:**
 - Content Library rows with Status = Draft
@@ -79,16 +81,17 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
    - Run `validate-post.js`
    - Draft = true
 4. **LinkedIn posts:** Write carousel brief + generate slides
-   - Character count: 150–300 words for caption
-   - Include hook, story/data, takeaway, CTA
+   - Caption: 150–300 words
+   - Structure: Hook (1 line) → Story/Data (3–5 lines) → Takeaway (2 lines) → CTA (1 line)
    - Generate carousel brief JSON (`gary/carousels/briefs/<slug>.json`)
    - Run `alan/scripts/generate-carousel.py` with v2 template only
    - Output: 5 PNGs + PDF to `gary/carousels/<slug>/`
+   - **Exception:** If the atom is a single sharp quote or data point that doesn't justify 5 slides, agent marks it as `format: single-image` in Content Library and generates a single text-on-image card instead
 5. Update Content Library status to Draft (confirmed)
 
 **Output:**
 - Blog draft in repo
-- 3 LinkedIn post drafts + card images
+- 2–3 LinkedIn post drafts (carousles or single-image)
 - All drafts linked to Atom IDs
 
 **Notion fields updated:**
@@ -98,26 +101,36 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 
 ### Wednesday — Approval Gate
 
-**Trigger:** 09:00 GMT-3 (send to Bene), or when Bene requests review
+**Trigger:** 09:00 GMT-3 (send to Bene), or when Bene requests review  
+**Owner:** Agent sends / Bene approves
 
 **Input:**
 - Blog post markdown
-- LinkedIn post texts + card images
+- LinkedIn post texts + carousel PDFs
 
 **Process:**
 1. **Blog post:**
    - Generate PDF preview (clean formatted document)
-   - Generate audio version via Mistral Voxtral TTS
-   - Send PDF + audio voice message to Bene via Telegram
+   - Send PDF to Bene via Telegram
    - Caption: "📄 [Title] | Pillar: [X] | Word count: [N] | ✅ Approve / 🔄 Revise"
+   - No audio by default (Bene can request via voice note if he wants it)
 2. **LinkedIn posts (carousels):**
    - Send PDF with all 5 slides + caption text
    - Caption: "💼 [Title] | Pillar: [X] | Slides: 5 | ✅ Approve / 🔄 Revise"
+3. **LinkedIn posts (single-image, if any):**
+   - Send image file + caption text
+   - Caption: "💼 [Title] | Pillar: [X] | Single image | ✅ Approve / 🔄 Revise"
 4. Write to `gary/state/pending-approvals.json`
 5. **Do NOT message Bene again.** Heartbeat handles reminders.
 
+**Hard rule — Approval timeout:**
+- If not approved by Thursday 12:00 GMT-3:
+  - Publish the previous week's evergreen backup (if available), OR
+  - Skip the slot and log it in Content Library as "Skipped — timeout"
+  - Do NOT let the queue silently fill up
+
 **Output:**
-- Telegram message(s) with PDF + audio (blog) / PDF (LinkedIn, carousel)
+- Telegram message(s) with PDF (blog) / PDF or image (LinkedIn)
 - pending-approvals.json updated
 
 **Notion fields updated:**
@@ -126,13 +139,14 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 **Bene's actions:**
 - Tap ✅ Approve → proceed to Thursday publish
 - Tap 🔄 Revise → reply with specific feedback
-- Ignore → heartbeat reminder after 12 hours
+- Ignore → heartbeat reminder after 12 hours, then timeout rule kicks in
 
 ---
 
 ### Thursday — Publish
 
-**Trigger:** Upon Bene's approval, or 09:00 GMT-3 if approved Wednesday night
+**Trigger:** Upon Bene's approval, or 09:00 GMT-3 if approved Wednesday night  
+**Owner:** Agent
 
 **Input:**
 - Approved items from pending-approvals.json
@@ -152,6 +166,11 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 3. Fill Published URL in Content Library
 4. Update status to Published
 
+**LinkedIn post (single-image):**
+1. Post caption text + single image via LinkedIn API
+2. Fill Published URL in Content Library
+3. Update status to Published
+
 **Newsletter (if active):**
 1. Compile from week's pillar content
 2. Schedule in Brevo
@@ -159,7 +178,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 
 **Output:**
 - Live blog post
-- Scheduled/published LinkedIn posts
+- Published LinkedIn posts
 - Content Library updated
 
 **Notion fields updated:**
@@ -167,9 +186,10 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 
 ---
 
-### Friday — Measurement
+### Friday — Metrics (Auto)
 
-**Trigger:** 17:00 GMT-3
+**Trigger:** 17:00 GMT-3  
+**Owner:** Agent (fully automated)
 
 **Input:**
 - Content Library items with Status = Published from last 14 days
@@ -185,23 +205,40 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 3. **Pull blog metrics:**
    - Netlify Analytics or Google Analytics page views
    - Write to Content Library if field exists
-4. **Update Content Atoms:**
-   - For each Atom referenced by published items in last 7 days:
-     - Increment Times Used
-     - Set Last Used date
-5. **Generate Friday report** (5 lines max):
-   - Top 3 performing posts (by impressions/reactions)
-   - Top 3 performing Atoms (by Times Used)
-   - 1 suggested double-down for next week
-   - 1 thing to stop or change
+4. Post auto-metrics to Telegram (no strategic commentary):
+   ```
+   📊 Week of [date]
+   LinkedIn: [N] posts, [N] impressions, [N] reactions
+   Blog: [N] views
+   Email: +[N] subscribers
+   ```
 
 **Output:**
 - Notion fields updated with metrics
-- Friday report posted to Telegram or Notion
+- Auto-metrics posted to Telegram
 
 **Notion fields updated:**
 - Content Library: LinkedIn Impressions, LinkedIn Reactions, Instagram Impressions, Instagram Saves
-- Content Atoms: Times Used, Last Used
+
+---
+
+### Monthly — Strategic Review
+
+**Trigger:** First Monday of each month  
+**Owner:** Agent generates / Bene reviews
+
+**Process:**
+1. Agent analyzes 4-week rolling data
+2. Generates strategic report (10 lines max):
+   - Top 3 performing posts (by impressions/reactions)
+   - Top 3 performing atoms (by engagement)
+   - 1 suggested double-down for next month
+   - 1 thing to stop or change
+   - 1 format or pillar to experiment with
+3. Send to Bene via Telegram
+
+**Output:**
+- Monthly strategic report
 
 ---
 
@@ -216,11 +253,11 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 - TL;DR: exactly 3 bullets
 - One uncomfortable sentence minimum
 
-### LinkedIn Posts (Carousels Only)
+### LinkedIn Posts (Carousles Default)
 - Caption: 150–300 words
 - Structure: Hook (1 line) → Story/Data (3–5 lines) → Takeaway (2 lines) → CTA (1 line)
-- Always includes 5-slide carousel (v2 template)
-- No single-image posts
+- Default: 5-slide carousel (v2 template)
+- Exception: single-image allowed when atom is a sharp quote or single data point
 - No em dashes, no boldface overuse
 - Signature move rate limit: "This is not X. It is Y." max 2 per month
 
@@ -268,7 +305,7 @@ Data-driven decisions. No gut feeling without data backing.
 | LinkedIn API | Post publishing | `memory/credentials.env` |
 | Brevo | Email list, newsletter | `memory/credentials.env` |
 | GitHub | Blog hosting | `~/.ssh/benedictschweiger_deploy` |
-| Mistral API | Audio generation | `memory/credentials.env` |
+| Mistral API | Audio generation (on request only) | `memory/credentials.env` |
 | Google Slides API | Carousel generation | `memory/credentials.env` |
 | Hugo | Blog build | Local install |
 | Netlify | Blog deploy | Auto-deploy from GitHub |
@@ -285,6 +322,8 @@ Data-driven decisions. No gut feeling without data backing.
 | Notion sync fails | Schema changed | Check Content Library fields match runbook |
 | Blog deploy fails | Validation error | Run validate-post.js, fix frontmatter |
 | LinkedIn post fails | Token expired | Re-auth via LinkedIn OAuth flow |
+| Queue silently fills up | No timeout rule enforced | Publish evergreen or skip and log |
+| Weekly strategic report is noise | 4-post sample size too small | Move strategy to monthly |
 
 ---
 
@@ -293,10 +332,16 @@ Data-driven decisions. No gut feeling without data backing.
 | Date | Change | Reason |
 |---|---|---|
 | 2026-05-13 | v1.0 | Consolidated from 3 hubs, 4 databases into 1 hub, 1 DB |
-| | Switched review from web pages to Telegram PDF + audio | Simpler, faster, mobile-native |
+| | Switched review from web pages to Telegram PDF | Simpler, faster, mobile-native |
 | | Locked pillars to 4 | Eliminated schema drift |
 | | Killed generate-card.js, switched to Google Slides v2 only | More control, less mistakes |
-| | LinkedIn: carousels only, no single-image posts | Simpler execution |
+| | LinkedIn: carousels default, single-image on rule line | Flexibility without laziness |
+| 2026-05-13 | v1.1 | Added atom quality gate (1–5 scoring) | Prevent weak atoms → weak posts |
+| | Added approval timeout rule (Thu 12:00) | Prevent queue abandonment |
+| | Killed blog audio by default | Save cost and time |
+| | Separated Friday metrics (auto) from monthly strategy | Weekly sample too small |
+| | Killed Times Used tracking | Overhead without clear decision |
+| | Added ownership markers (Agent / Bene / Both) | Prevent drift and confusion |
 
 ---
 
