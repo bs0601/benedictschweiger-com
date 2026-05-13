@@ -35,7 +35,7 @@ This means ALTHERR, a premium watch retailer, is by definition a **price taker**
 
 And yet some customers buy from ALTHERR at prices they could beat elsewhere. Drive three hours to pick up a watch in person. Come back again, and again, and again.
 
-Value-based pricing theory says this shouldn't be possible. In a perfectly transparent market, price should be the only variable that matters.
+Standard value-based pricing assumptions suggest this should not be possible. In a perfectly transparent market, price should be the only variable that matters.
 
 In practice, it isn't. Here is what actually determines pricing power when prices are public — and the data behind it.
 
@@ -43,9 +43,9 @@ In practice, it isn't. Here is what actually determines pricing power when price
 
 [Value-based pricing](https://hbr.org/2016/08/a-quick-guide-to-value-based-pricing) is the strategy of setting prices based on what customers are willing to pay — determined by the value they believe the product will deliver — rather than by production costs or a competitive survey.
 
-The standard playbook, as described by firms like Simon-Kucher and Partners and codified in most MBA pricing courses, works like this: identify what outcomes the customer is trying to achieve, quantify the value of those outcomes, and price at a fraction of that value. A procurement software that saves a company €500,000 annually can justify a €50,000 licence fee. A consulting engagement that restructures a €20M business can justify a €150,000 fee. The price is anchored to the value delivered, not to the hours worked.
+The standard playbook, as described in most MBA pricing courses, works like this: identify what outcomes the customer is trying to achieve, quantify the value of those outcomes, and price at a fraction of that value. A procurement software that saves a company €500,000 annually can justify a €50,000 licence fee. A consulting engagement that restructures a €20M business can justify a €150,000 fee. The price is anchored to the value delivered, not to the hours worked.
 
-As [Salesforce defines it](https://www.salesforce.com/sales/cpq/value-based-pricing/): "Value-based pricing is based on the buyers' perceived value of a product or service, rather than just on its features. It emphasises the benefits and positive outcomes a buyer gains from using the product."
+As one major CRM platform defines it: "Value-based pricing is based on the buyers' perceived value of a product or service, rather than just on its features. It emphasises the benefits and positive outcomes a buyer gains from using the product."
 
 This works well for software, for professional services, for branded consumer goods where the buyer cannot easily find an equivalent. It works less well when the buyer can, in thirty seconds, pull up a real-time list of alternatives at lower prices.
 
@@ -131,7 +131,7 @@ If you are running a premium business in a transparent market and the question y
 
 The right question is: how do I build the relationship that makes price comparison less relevant?
 
-The answer is not better product copy, a more sophisticated pricing model, or a Simon-Kucher engagement. It is consistent, non-promotional content that treats your audience as people who deserve genuine information — delivered before they have any reason to buy from you.
+The answer is not better product copy, a more sophisticated pricing model, or an external pricing consultancy engagement. It is consistent, non-promotional content that treats your audience as people who deserve genuine information — delivered before they have any reason to buy from you.
 
 Three practical steps:
 

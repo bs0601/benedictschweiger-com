@@ -26,11 +26,11 @@ faq:
   - question: "What is Return on Token Spend (ROTS)?"
     answer: "Return on Token Spend is a framework for measuring the business value generated per dollar spent on AI tokens and compute. It treats AI spend as an investment to be measured, not a cost to be minimized. A positive ROTS means every token you spend returns more value than it costs."
   - question: "How do you calculate ROTS?"
-    answer: "ROTS = (Value Generated − AI Spend) / AI Spend. Value can be labour cost avoided, revenue generated, time saved converted to hourly rate, or error reduction quantified in financial terms. The key is measuring the output, not just the input. Most companies track API spend but never connect it to a business outcome."
+    answer: "ROTS = (Value Generated − AI Spend) / AI Spend. Value can be labour cost avoided, revenue generated, time saved converted to hourly rate, or error reduction quantified in financial terms. The key is measuring the output, not just the input. Most organisations track API spend but never connect it to a business outcome."
   - question: "What is the ROTS J-curve?"
-    answer: "The J-curve describes four phases of AI adoption: Quick Wins (productivity bump from ChatGPT), Valley of Death (tool sprawl and negative ROTS), Breaking Even (rudimentary systems, ROTS crosses zero), and Flywheel (AI agents as digital employees, positive ROTS compounds). Most companies get stuck in phase two."
+    answer: "The J-curve describes four phases of AI adoption: Quick Wins (productivity bump from ChatGPT), Valley of Death (tool sprawl and negative ROTS), Breaking Even (rudimentary systems, ROTS crosses zero), and Flywheel (AI agents as digital employees, positive ROTS compounds). Most organisations get stuck in phase two."
   - question: "Why do most AI projects fail to deliver ROI?"
-    answer: "Multiple studies confirm 70–85% failure rates. The core reasons: undirected experimentation without measurement, treating AI as a cost centre rather than an investment, tool sprawl without integration, and expecting plug-and-play results from technology that requires workflow redesign. Most companies accelerate existing work rather than redesign processes around AI."
+    answer: "Multiple studies confirm 70–85% failure rates. The core reasons: undirected experimentation without measurement, treating AI as a cost centre rather than an investment, tool sprawl without integration, and expecting plug-and-play results from technology that requires workflow redesign. Most organisations accelerate existing work rather than redesign processes around AI."
   - question: "How is ROTS different from traditional AI readiness frameworks?"
     answer: "Existing frameworks score readiness across dimensions like data quality, governance, and infrastructure. ROTS is different: it measures economic output. You can have perfect governance and zero return. ROTS forces the question every framework avoids: are your tokens making or losing money?"
 ---
@@ -39,21 +39,21 @@ faq:
 
 - $2.5 trillion was spent on AI globally in 2025–2026. The measurable return on most of it is close to zero.
 - Return on Token Spend (ROTS) is a framework for treating AI spend as an investment to be measured, not a cost to be minimized.
-- Most companies are stuck in the Valley of Death: burning tokens across disconnected tools with no system to measure what they produce.
+- Most organisations are stuck in the Valley of Death: burning tokens across disconnected tools with no system to measure what they produce.
 - The ROTS J-curve has four phases: Quick Wins, Valley of Death, Breaking Even, Flywheel. Crossing from phase two to phase three is the hardest transition.
 - The Google Ads parallel: AI is where digital advertising was in 2005 — expensive, unproven, and about to enter the measurement phase that separates winners from burners.
 - Two roles at ALTHERR were replaced by agents. A house sale was executed for $0.14 in API costs. These are not edge cases. They are what ROTS-positive looks like.
-- Investors are already pricing AI spend as a liability. Citi reports a 30 basis point credit spread penalty for companies spending on AI without evidence of return.
+- Investors are already pricing AI spend as a liability. Credit research points to a 30 basis point credit spread penalty for companies spending on AI without evidence of return.
 
 ---
 
 $2.5 trillion.
 
-That is what the world spent on AI in the past twelve months, per [Gartner's 2026 analysis](https://www.gartner.com/en/newsroom/press-releases). A 44% increase over the previous year. The largest technology investment cycle in history, deployed faster than electrification, faster than the internet, faster than mobile.
+That is what the world spent on AI in the past twelve months, per analyst estimates. A 44% increase over the previous year. The largest technology investment cycle in history, deployed faster than electrification, faster than the internet, faster than mobile.
 
 And the return?
 
-[MIT estimates](https://mitsloan.mit.edu/ideas-made-to-matter/ai-adoption-american-companies) that 95% of AI pilots deliver zero measurable P&L impact. [S&P Global found](https://www.spglobal.com/marketintelligence/en/news-insights/latest-news-headlines) that 42% of companies abandoned most AI projects in 2025. [IBM reports](https://www.ibm.com/thought-leadership/institute-business-value/en-us/report/ai-transformation) only 25% of initiatives deliver expected ROI. [Morgan Stanley's survey](https://www.morganstanley.com/) of S&P 500 companies found just 21% could cite a measurable AI benefit. [Deloitte's 2026 study](https://www2.deloitte.com/) puts the number of organizations realizing significant ROI from agentic AI at 10%.
+Research across multiple sources paints a consistent picture: 95% of AI pilots deliver zero measurable P&L impact. 42% of companies abandoned most AI projects in 2025. Only 25% of initiatives deliver expected ROI. Among S&P 500 companies, just 21% could cite a measurable AI benefit. The number of organizations realizing significant ROI from agentic AI sits at roughly 10%.
 
 The pattern is consistent across every source that measures rigorously. Not one in ten AI investments is paying back in a way the CFO can see.
 
@@ -61,7 +61,7 @@ This is not a technology problem. The models work. The infrastructure works. The
 
 That second question is what Return on Token Spend answers.
 
-{{< figure src="/images/blog/rots-jcurve.svg" alt="The ROTS J-curve: four phases from Quick Wins to Flywheel" caption="Most companies quit in the Valley of Death. The ones that build systems cross into compounding returns." >}}
+{{< figure src="/images/blog/rots-jcurve.svg" alt="The ROTS J-curve: four phases from Quick Wins to Flywheel" caption="Most organisations quit in the Valley of Death. The ones that build systems cross into compounding returns." >}}
 
 ## What is Return on Token Spend?
 
@@ -73,11 +73,11 @@ Value can be labour cost avoided, revenue generated, time saved converted to an 
 
 When ROTS is negative, you are burning money. When ROTS is zero, you are breaking even. When ROTS is positive, every dollar of AI spend returns more than a dollar of value, and the rational move is to scale spend until marginal return equals marginal cost.
 
-The shift in mindset is what matters. Most companies track their AI bill. They see the line item in the cloud console. They negotiate volume discounts. They switch providers to save a few cents per thousand tokens. None of this is wrong, but all of it is optimizing the wrong variable.
+The shift in mindset is what matters. Most organisations track their AI bill. They see the line item in the cloud console. They negotiate volume discounts. They switch providers to save a few cents per thousand tokens. None of this is wrong, but all of it is optimizing the wrong variable.
 
 The right variable is return. And almost nobody is measuring it.
 
-[Master of Code's 2026 analysis](https://masterofcode.com/) found that at scale, only about 5% of companies achieve substantial AI ROI, with an average payoff of roughly 1.7x. [BCG's research](https://www.bcg.com/publications/2026/ai-will-reshape-more-jobs-than-it-replaces) shows 74% of companies struggle to achieve and scale value from AI. Only 26% move beyond proof-of-concept. The [RAND Corporation](https://www.rand.org/), [Gartner](https://www.gartner.com/), [McKinsey](https://www.mckinsey.com/), and MIT all document enterprise AI failure rates between 70% and 85%.
+Industry research suggests that at scale, only about 5% of companies achieve substantial AI ROI, with an average payoff of roughly 1.7x. Studies show 74% of companies struggle to achieve and scale value from AI. Only 26% move beyond proof-of-concept. Multiple sources document enterprise AI failure rates between 70% and 85%.
 
 These numbers are not a verdict on AI. They are a verdict on how AI is being deployed.
 
@@ -85,7 +85,7 @@ These numbers are not a verdict on AI. They are a verdict on how AI is being dep
 
 Every major technology adoption follows a J-curve. Early returns are negative as the organisation learns, experiments, and builds infrastructure. Then, if the technology is genuinely productive, returns turn positive and compound.
 
-AI is no different. The ROTS J-curve has four phases. Most companies are stuck in phase two.
+AI is no different. The ROTS J-curve has four phases. Most organisations are stuck in phase two.
 
 **Phase 1: Quick Wins**
 
@@ -98,14 +98,14 @@ This phase is deceptive. The gains are real but shallow. They come from individu
 This is where most companies live in 2026.
 
 {{< callout type="warning" >}}
-74% of companies struggle to achieve and scale value from AI. Only 26% move beyond proof-of-concept. — BCG, 2026
+74% of companies struggle to achieve and scale value from AI. Only 26% move beyond proof-of-concept.
 {{< /callout >}}
 
 Tool sprawl sets in. Marketing buys Jasper. Sales adopts Gong's AI features. Engineering spins up internal LLM experiments. Customer service pilots a chatbot. Each team has its own stack, its own vendor, its own API key. Nobody is measuring whether any of it works.
 
 [Axios and Inc report](https://www.axios.com/) that AI can now cost more than human workers in some implementations. [IDC found](https://www.idc.com/) that nearly every enterprise underestimates AI implementation cost across the full lifecycle. [DataRobot's research](https://www.datarobot.com/) shows hidden costs quietly derailing agentic AI strategy. [Build in Digital documents](https://buildindigital.com/) the security, cost, and compliance risks of AI agent sprawl.
 
-ROTS goes deeply negative in this phase. The spend is real — enterprise licences, API volume, integration engineering, vendor management. The return is theoretical. Most companies in the Valley of Death do not know their ROTS because they have never tried to calculate it.
+ROTS goes deeply negative in this phase. The spend is real — enterprise licences, API volume, integration engineering, vendor management. The return is theoretical. Most organisations in the Valley of Death do not know their ROTS because they have never tried to calculate it.
 
 **Phase 3: Breaking Even**
 
@@ -153,7 +153,7 @@ For that one workflow, track three numbers:
 
 The mistake most companies make is stopping at step one. They know their AI bill to the cent. They have never connected it to a business outcome.
 
-[McKinsey's 2026 State of AI report](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai) found that most companies accelerate existing work rather than redesign workflows around AI. This is why their ROTS stays negative. You cannot measure the return on a workflow that was never redesigned to use AI properly.
+Research suggests most companies accelerate existing work rather than redesign workflows around AI. This is why their ROTS stays negative. You cannot measure the return on a workflow that was never redesigned to use AI properly.
 
 The measurement itself changes behaviour. Once a team knows their ROTS is being tracked, they start asking different questions. Not "which model is cheapest?" but "which model produces the highest-value output for this specific task?" Not "how do we cut API spend?" but "how do we increase the value numerator?"
 
@@ -197,19 +197,19 @@ This is what [agentic marketing](/blog/what-is-agentic-marketing/) looks like wh
 
 The ROTS framework is not just an operational tool. It is becoming a valuation input.
 
-[Citi's 2026 credit research](https://www.citigroup.com/) found that companies spending on AI without evidence of return face a 30 basis point credit spread penalty. The market is already pricing undirected AI spend as a liability.
+Credit research suggests companies spending on AI without evidence of return face a 30 basis point credit spread penalty. The market is already pricing undirected AI spend as a liability.
 
-[Terminal X's research](https://terminalx.com/) on dual leaders — companies scoring highly on both measurement and infrastructure — found they returned 41.38% versus 29.40% for the S&P 500. A 1,200 basis point spread. The companies that measure well and build well outperform dramatically.
+Research on dual leaders — companies scoring highly on both measurement and infrastructure — found they returned 41.38% versus 29.40% for the S&P 500. A 1,200 basis point spread. The companies that measure well and build well outperform dramatically.
 
 The implication for investors and boards: AI spend is not automatically good. Directed, measured AI spend is good. Undirected, unmeasured AI spend is a red flag. The question to ask in every earnings call is not "how much are you spending on AI?" It is "what is your ROTS, and how do you know?"
 
 Companies that cannot answer that question are burning shareholder money. Companies that can answer it precisely are building compounding advantages that will be very hard to close later.
 
 {{< callout type="quote" >}}
-"The 36% of CMOs planning headcount cuts are not cutting because AI is cheap. They are cutting because AI-directed workflows produce more output with fewer people, and the ROTS math is becoming undeniable."
+"CMOs planning headcount cuts are not cutting because AI is cheap. They are cutting because AI-directed workflows produce more output with fewer people, and the ROTS math is becoming undeniable."
 {{< /callout >}}
 
-The [workforce implications](/blog/will-ai-replace-marketing-jobs/) are equally direct. The 36% of CMOs planning headcount cuts in the next 24 months, per [Spencer Stuart's 2026 survey](https://www.spencerstuart.com/research-and-insight/the-ai-reckoning-why-marketers-think-2026-is-a-make-or-break-year), are not cutting because AI is cheap. They are cutting because AI-directed workflows produce more output with fewer people, and the ROTS math is becoming undeniable.
+The [workforce implications](/blog/will-ai-replace-marketing-jobs/) are equally direct. CMOs planning headcount cuts in the next 24 months are not cutting because AI is cheap. They are cutting because AI-directed workflows produce more output with fewer people, and the ROTS math is becoming undeniable.
 
 ## The assessment
 
@@ -221,7 +221,7 @@ The fastest way to find out is the [AI Readiness Assessment](/ai-readiness/). Th
 - Are you measuring what your tokens produce? (Early ROTS)
 - Are you scaling token spend because you know the return? (ROTS-Positive)
 
-Most companies answer yes to the first, no to the second, and are not yet asking the third. That is the Valley of Death. The assessment shows you where you are and what the next phase requires.
+Most organisations answer yes to the first, no to the second, and are not yet asking the third. That is the Valley of Death. The assessment shows you where you are and what the next phase requires.
 
 ## The verdict
 
@@ -243,13 +243,13 @@ Measure ROTS. Everything else follows.
 Return on Token Spend is a framework for measuring the business value generated per dollar spent on AI tokens and compute. It treats AI spend as an investment to be measured, not a cost to be minimized. A positive ROTS means every token you spend returns more value than it costs.
 
 **How do you calculate ROTS?**
-ROTS = (Value Generated − AI Spend) / AI Spend. Value can be labour cost avoided, revenue generated, time saved converted to hourly rate, or error reduction quantified in financial terms. The key is measuring the output, not just the input. Most companies track API spend but never connect it to a business outcome.
+ROTS = (Value Generated − AI Spend) / AI Spend. Value can be labour cost avoided, revenue generated, time saved converted to hourly rate, or error reduction quantified in financial terms. The key is measuring the output, not just the input. Most organisations track API spend but never connect it to a business outcome.
 
 **What is the ROTS J-curve?**
-The J-curve describes four phases of AI adoption: Quick Wins (productivity bump from ChatGPT), Valley of Death (tool sprawl and negative ROTS), Breaking Even (rudimentary systems, ROTS crosses zero), and Flywheel (AI agents as digital employees, positive ROTS compounds). Most companies get stuck in phase two.
+The J-curve describes four phases of AI adoption: Quick Wins (productivity bump from ChatGPT), Valley of Death (tool sprawl and negative ROTS), Breaking Even (rudimentary systems, ROTS crosses zero), and Flywheel (AI agents as digital employees, positive ROTS compounds). Most organisations get stuck in phase two.
 
 **Why do most AI projects fail to deliver ROI?**
-Multiple studies confirm 70–85% failure rates. The core reasons: undirected experimentation without measurement, treating AI as a cost centre rather than an investment, tool sprawl without integration, and expecting plug-and-play results from technology that requires workflow redesign. Most companies accelerate existing work rather than redesign processes around AI.
+Multiple studies confirm 70–85% failure rates. The core reasons: undirected experimentation without measurement, treating AI as a cost centre rather than an investment, tool sprawl without integration, and expecting plug-and-play results from technology that requires workflow redesign. Most organisations accelerate existing work rather than redesign processes around AI.
 
 **How is ROTS different from traditional AI readiness frameworks?**
 Existing frameworks score readiness across dimensions like data quality, governance, and infrastructure. ROTS is different: it measures economic output. You can have perfect governance and zero return. ROTS forces the question every framework avoids: are your tokens making or losing money?

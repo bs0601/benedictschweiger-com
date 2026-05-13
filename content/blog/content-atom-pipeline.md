@@ -33,7 +33,7 @@ faq:
 ---
 
 **TL;DR**
-- Most content teams publish the same idea five times with no coherent source of truth. Atoms fix that.
+- Many content teams publish the same idea five times with no coherent source of truth. Atoms fix that.
 - An atom is a distilled insight from a blog post — extracted by Gemini, stored in Notion, used to drive every derivative piece.
 - Every carousel, LinkedIn post, and Instagram caption traces back to one source atom. Performance data accumulates at that level.
 - The brief validator checks character limits against real slide dimensions before generation starts. One less failure mode.
@@ -41,7 +41,7 @@ faq:
 
 ---
 
-Most content teams are solving the wrong problem.
+Many content teams I have observed are solving the wrong problem.
 
 They have a blog post. They want social content. So they extract a quote, post it on LinkedIn, screenshot it for Instagram, and call that a repurposing strategy. Each derivative loses a bit of the original argument. The Instagram post is a weaker version of the LinkedIn post, which is a weaker version of the article. Nobody notices because the audience differs on each platform. But the internal logic is gone.
 
@@ -61,7 +61,7 @@ From there, the brief has seven fields: hook, tension label, tension body, proof
 
 The limits are not arbitrary. TENSION_BODY has a 160-character ceiling at 28pt in a 3.28-inch box. HOOK and REFRAME have 80 characters at 50pt. If the brief is over, the generator stops and reports the exact overage, field by field.
 
-We caught a real problem on the first run. TENSION_BODY was 253 characters. PROOF_BODY was 307. [Google Slides](https://workspace.google.com/products/slides/) would have auto-shrunk both and broken the design. The validator found both before a single API call hit the presentation.
+We caught a real problem on the first run. TENSION_BODY was 253 characters. PROOF_BODY was 307. Google Slides would auto-shrink both and break the design. The validator found both before a single API call hit the presentation.
 
 > **What actually happened:** First carousel brief failed validation — TENSION_BODY 93 chars over limit, PROOF_BODY 147 chars over. Both fields were full paragraphs that needed to compress to 2–3 short sentences. The validator caught this before generation, not after.
 
@@ -73,7 +73,7 @@ Slides stand alone. Someone who never reads the caption gets the full idea. The 
 
 The caption carries what the slides do not show. Not a written summary of what is already visible. The story behind the decision, the failure that preceded the success, the context that makes the proof meaningful. Someone who swipes through the carousel and then reads the caption should learn something new.
 
-Most content teams do the opposite. They write the slides, then summarize them in the caption. The result is redundant — people who read captions stop reading because they already saw the point.
+Many content teams do the opposite. They write the slides, then summarize them in the caption. The result is redundant — people who read captions stop reading because they already saw the point.
 
 LinkedIn and Instagram also get separate copy. Different platform, different character range, different hashtag logic, different tone. The atom is the shared idea. The execution is platform-native.
 

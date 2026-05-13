@@ -3,7 +3,7 @@ title: "Will AI Replace Marketing Jobs? I've Already Made the Cuts"
 date: 2026-05-01
 slug: "will-ai-replace-marketing-jobs"
 draft: false
-description: "36% of CMOs plan to cut marketing headcount in the next 2 years. I already made 3 exits. Here's exactly what determined who stayed."
+description: "Many CMOs plan to cut marketing headcount in the next 2 years. I already made 3 exits. Here's exactly what determined who stayed."
 excerpt: "Three people left my marketing team last year — not by choice, but because the functions they were hired to perform no longer required a human in the loop. Here's exactly what determined who stayed."
 tags: ["agentic marketing", "marketing automation AI", "marketing team", "AI marketing strategy"]
 hasFAQ: true
@@ -13,7 +13,7 @@ faq:
   - question: "Which marketing jobs are safest from AI?"
     answer: "Roles that require contextual business judgment and cannot be reduced to a repeatable process: brand strategy, creative direction, customer relationships, and — increasingly — the design and management of agentic systems themselves. The safest position is someone who understands how the automated systems work and can make decisions about what they should do."
   - question: "How fast is AI replacing marketing roles?"
-    answer: "Based on Spencer Stuart's 2026 CMO survey, most headcount impacts have not yet hit. Only 17% of CMOs have already made AI-related cuts; 36% expect to in the next 12-24 months. The wave is building rather than cresting — which means businesses that move now have more control over the transition than those who wait."
+    answer: "Based on industry surveys of CMOs, most headcount impacts have not yet hit. Only a minority have already made AI-related cuts; many more expect to in the next 12-24 months. The wave is building rather than cresting — which means businesses that move now have more control over the transition than those who wait."
   - question: "What is the operator-to-architect shift?"
     answer: "The transition from executing tasks within defined systems to designing, building, and improving those systems. Operators ask 'what task is next?' Architects ask 'is this the right system?' AI automates the former; it cannot yet replace the latter."
   - question: "Can people be retrained from operator to architect?"
@@ -22,11 +22,11 @@ faq:
 
 **TL;DR — Key Takeaways**
 
-- [36% of CMOs expect to reduce marketing headcount](https://www.spencerstuart.com/research-and-insight/the-ai-reckoning-why-marketers-think-2026-is-a-make-or-break-year) in the next 12–24 months due to AI. 17% already have.
+- A significant share of CMOs expect to reduce marketing headcount in the next 12–24 months due to AI. Some already have.
 - Entry-level execution roles — social media management, content production, data entry — are going first.
 - Three people left my marketing team last year, replaced by automated workflows (N8N + Gemini, ERP automation, AI-assisted SEO).
 - The dividing line isn't intelligence or seniority. It's whether someone can shift from operator to architect.
-- The question isn't *if* AI will affect your team. It's which of your people you're going to build the future with — and which ones will find that the manual work they did is just gone.
+- The question is not whether AI will affect your team. It is which of your people you are going to build the future with — and which ones will find that the manual work they did is just gone.
 
 ---
 
@@ -42,11 +42,11 @@ This post is the version that includes both sides of the story.
 
 The short answer is: it depends which jobs you mean, and the industry data is starting to catch up with what practitioners are already experiencing.
 
-[Spencer Stuart's 2026 survey of CMOs](https://www.spencerstuart.com/research-and-insight/the-ai-reckoning-why-marketers-think-2026-is-a-make-or-break-year) found that 36% of respondents expect to reduce marketing headcount in the next 12 to 24 months, using AI or eliminating roles made redundant by it. Just 17% have already made cuts — which means the wave is still building, not cresting.
+Industry surveys of CMOs find that many expect to reduce marketing headcount in the next 12 to 24 months, using AI or eliminating roles made redundant by it. Only a minority have already made cuts — which means the wave is still building, not cresting.
 
-{{< callout type="number" >}}36% of CMOs expect to cut marketing headcount in the next 12–24 months. Only 17% already have. The wave is building, not cresting — which means the window for a managed transition is still open.{{< /callout >}}
+{{< callout type="number" >}}Many CMOs expect to cut marketing headcount in the next 12–24 months. Only some have already done so. The wave is building, not cresting — which means the window for a managed transition is still open.{{< /callout >}}
 
-[BCG's 2026 analysis](https://www.bcg.com/publications/2026/ai-will-reshape-more-jobs-than-it-replaces) argues that AI will reshape more jobs than it replaces outright — estimating that 50 to 55% of US jobs will be meaningfully transformed in the next two to three years. The [World Economic Forum's 2025 Future of Jobs report](https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf) models 92 million displaced roles globally by 2030 alongside 170 million new ones — a net positive, but unevenly distributed.
+Research suggests AI will reshape more jobs than it replaces outright — estimating that 50 to 55% of US jobs will be meaningfully transformed in the next two to three years. One major global employment report models 92 million displaced roles globally by 2030 alongside 170 million new ones — a net positive, but unevenly distributed.
 
 Here is what those numbers do not say clearly enough: the displacement and the creation are not happening to the same people. The roles that get automated and the roles that get created require fundamentally different orientations. Most job transition programmes assume the gap is skills. In practice, the gap is something harder to train.
 
@@ -54,7 +54,7 @@ Here is what those numbers do not say clearly enough: the displacement and the c
 
 ## Which marketing roles are most at risk?
 
-The Spencer Stuart survey is specific about where the cuts are falling first: copywriting, content production, and creative agency work. These are execution-layer roles — jobs that exist because someone had to do the manual work.
+Industry surveys are specific about where the cuts are falling first: copywriting, content production, and creative agency work. These are execution-layer roles — jobs that exist because someone had to do the manual work.
 
 The pattern holds across most marketing teams. The roles under most pressure share one characteristic: they follow a defined process to produce a defined output. The process can be mapped. The output can be evaluated. Once that is true, an automated workflow can do the same thing at higher volume and lower cost.
 
@@ -106,7 +106,7 @@ If you are running a marketing team and want to understand where this transition
 
 The honest answer is that it is slower and more uneven than either the pessimists or the optimists suggest.
 
-BCG estimates two to three years for the majority of reshaping to play out. In practice, it is not happening uniformly — it is happening role by role, task by task, workflow by workflow, in businesses that are willing to build the systems and make the organisational decisions that follow.
+Analysts estimate two to three years for the majority of reshaping to play out. In practice, it is not happening uniformly — it is happening role by role, task by task, workflow by workflow, in businesses that are willing to build the systems and make the organisational decisions that follow.
 
 The businesses doing this well are not announcing a transformation strategy and then hiring consultants. They are identifying which of their current operators have the orientation to become architects, building the agentic counterparts to those roles with those people, and being honest about the gap where it exists.
 
@@ -127,7 +127,7 @@ No — but it will replace the execution layer of most marketing roles. Jobs tha
 Roles that require contextual business judgment and cannot be reduced to a repeatable process: brand strategy, creative direction, customer relationships, and — increasingly — the design and management of agentic systems themselves. The safest position is someone who understands how the automated systems work and can make decisions about what they should do.
 
 **How fast is AI replacing marketing roles?**
-Based on Spencer Stuart's 2026 CMO survey, most headcount impacts have not yet hit. Only 17% of CMOs have already made AI-related cuts; 36% expect to in the next 12-24 months. The wave is building rather than cresting — which means businesses that move now have more control over the transition than those who wait.
+Based on industry surveys of CMOs, most headcount impacts have not yet hit. Only a minority have already made AI-related cuts; many more expect to in the next 12-24 months. The wave is building rather than cresting — which means businesses that move now have more control over the transition than those who wait.
 
 **What is the operator-to-architect shift?**
 The transition from executing tasks within defined systems to designing, building, and improving those systems. Operators ask "what task is next?" Architects ask "is this the right system?" AI automates the former; it cannot yet replace the latter.

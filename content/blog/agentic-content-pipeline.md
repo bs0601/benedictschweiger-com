@@ -46,7 +46,7 @@ The gap between having an idea and having a published post is where most content
 
 I have ideas. What I don't have is time to develop every one into a post, design the creative, write the caption, format for two platforms, and hit publish, all while running marketing for a [watch retailer](https://www.altherr.de) doing eight figures in revenue. Something has to give.
 
-Most people solve this by posting less. I solved it by building a pipeline.
+Many people solve this by posting less. I solved it by building a pipeline.
 
 ## What the pipeline actually does
 
@@ -98,7 +98,7 @@ There's a version of this pipeline that skips the interview step entirely. Gary 
 
 It also produces content that has no reason to exist.
 
-The internet already has ten thousand articles about content automation. What it doesn't have is my specific experience building this at a company I've run marketing for since 2020, with the specific constraints of a bootstrapped operation, validated on my own setup before I trust it with a real business. That context is what makes a post original. That's what the interview extracts.
+There are already many articles about content automation. What it doesn't have is my specific experience building this at a company I've run marketing for since 2020, with the specific constraints of a bootstrapped operation, validated on my own setup before I trust it with a real business. That context is what makes a post original. That's what the interview extracts.
 
 If the content isn't lasting and original, there's no point publishing it. The pipeline exists to scale the output of ideas that are worth scaling, not to manufacture volume for its own sake.
 

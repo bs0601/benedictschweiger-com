@@ -115,7 +115,7 @@ But I need to be honest: this is not perfect. There were moments where I gave fe
 
 I'm not a detail-oriented person. I don't need 110% correctness. Mistakes happen, and I'm fine living with them as long as I know to look for them. The key is expectation management: this is fast, it's powerful, but you still need a human eye checking the details. That gap will close over time. For now, it's part of the deal.
 
-AI didn't know any of that. What AI did was compress the execution time to zero. In a traditional workflow, each round of feedback would have been a Slack message to a designer, a wait, a revision, another wait. Instead, it was: say it, see it, ship it.
+AI didn't know any of that. What AI did was compress the execution time to zero. In a traditional workflow, each round of feedback meant a Slack message to a designer, a wait, a revision, another wait. Instead, it was: say it, see it, ship it.
 
 This is what I mean by agentic marketing. Not AI replacing humans. AI removing the latency between human judgment and market impact.
 

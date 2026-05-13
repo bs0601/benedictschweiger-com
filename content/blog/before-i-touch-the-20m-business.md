@@ -49,11 +49,11 @@ Agentic systems fail quietly. An agent produces output that is almost right — 
 
 The only way to learn what your specific agent stack fails at is to run it under real conditions and observe. The test stand approach gives you that — in an environment where a quiet failure costs you time and embarrassment rather than client revenue and team trust.
 
-The [36% of CMOs planning headcount cuts in the next 24 months](https://www.spencerstuart.com/research-and-insight/the-ai-reckoning-why-marketers-think-2026-is-a-make-or-break-year) are operating in organisations where bad agentic deployments have real consequences. The ones who are moving fastest and most safely are the ones who did the test stand work first.
+CMOs planning headcount cuts in the next 24 months are operating in organisations where bad agentic deployments have real consequences. The ones who are moving fastest and most safely are the ones who did the test stand work first.
 
 ## What does the test stand actually look like?
 
-The anchor is a [Mac Studio M3 Ultra with 96GB of unified memory](https://www.apple.com/mac-studio/). That machine runs large language models locally — no API calls, no per-token costs, no data leaving the building. It currently runs Gemma 4 (31B) for most daily work, Qwen 3.5 at 27B and 35B for tasks requiring more capacity, and DeepSeek R1 at 70B for heavier reasoning. A 70B model running locally on consumer hardware would have been unthinkable two years ago.
+The anchor is a [Mac Studio M3 Ultra with 96GB of unified memory](https://www.apple.com/mac-studio/). That machine runs large language models locally — no API calls, no per-token costs, no data leaving the building. It currently runs Gemma 4 (31B) for most daily work, Qwen 3.5 at 27B and 35B for tasks requiring more capacity, and DeepSeek R1 at 70B for heavier reasoning. A 70B model running locally on consumer hardware was unthinkable two years ago.
 
 What surprised me: the local models have proved capable enough that I am not reaching for Claude by default anymore on routine tasks. That is a meaningful shift — it means the high-quality hosted models can be reserved for work that genuinely needs them, and the volume work runs at near-zero marginal cost.
 
@@ -73,9 +73,9 @@ In the few weeks since the test stand went up:
 
 None of this required hiring. It required a few weeks of focused building and a willingness to stay in the lab longer than felt comfortable.
 
-What has it proved? Mostly that the failure modes are where the value is. The HeyGen video experiment failed — AI-generated video avatars do not pass a quality bar that human presence clears. That lesson came from a two-week test that cost nothing except time. Running that experiment inside the €20M business would have cost trust that takes months to rebuild.
+What has it proved? Mostly that the failure modes are where the value is. A quick check with AI-generated video avatars showed they do not pass the quality bar that human presence clears. I abandoned the idea when the quality gap was obvious — the lesson cost nothing except a brief look. Running that experiment inside the €20M business would risk trust that takes months to rebuild.
 
-{{< callout type="decision" >}}Rejected HeyGen video avatars despite their scalability appeal. Reason: AI-generated presence does not clear the quality bar that human presence sets — viewers notice, and the cost is trust you cannot quickly rebuild. Two-week test. Zero regret.{{< /callout >}}
+{{< callout type="decision" >}}Rejected AI-generated video avatars despite their scalability appeal. Reason: AI-generated presence does not clear the quality bar that human presence sets — viewers notice, and the cost is trust you cannot quickly rebuild. Abandoned after a quick quality check. Zero regret.{{< /callout >}}
 
 ## Why does the order of deployment matter?
 

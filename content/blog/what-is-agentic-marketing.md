@@ -24,7 +24,7 @@ faq:
 - Agentic marketing replaces the execution layer of your marketing operation with AI agents — not just tools that assist, but systems that act.
 - The difference from traditional automation: agents reason and adapt. Automation runs scripts.
 - At ALTHERR, we went from eight to six people in December without cutting output — two roles were replaced by agents.
-- [Gartner predicts](https://www.gartner.com/en/newsroom/press-releases/2026-01-15-gartner-predicts-60-percent-of-brands-will-use-agentic-ai-to-deliver-streamlined-one-to-one-interactions-by-2028) 60% of brands will use agentic AI for personalised interactions by 2028. Most are not ready.
+- Analysts project that 60% of brands will use agentic AI for personalised interactions by 2028. Most are not ready.
 - The constraint on agentic marketing is not the technology. It is deciding what belongs to agents and what belongs to humans.
 
 ---
@@ -67,7 +67,7 @@ The second role owned SEO execution. Joshua, who leads paid strategy, now covers
 
 Six people. Producing more than eight. That is the equation.
 
-We also tried AI-generated video avatars via HeyGen to scale YouTube content. That failed. The output did not pass our quality bar — viewers notice, and it costs trust. We scrapped it after two weeks. The lesson cost nothing except time: human presence on video is not optional.
+We also looked at AI-generated video avatars to scale YouTube content. A quick check showed the output would not pass our quality bar — viewers notice, and it costs trust. We abandoned the idea before any real investment. The lesson: human presence on video is not optional.
 
 That failure is part of what agentic marketing actually requires. Systematic decisions about what belongs to agents and what stays human. Not every task is a good candidate. The ones that are tend to share a common characteristic: they are repeatable, measurable, and do not require contextual judgment about the business.
 
@@ -100,7 +100,7 @@ For decades, output scaled with headcount. More writers produced more content. M
 
 AI breaks that equation. One skilled marketer with the right agent infrastructure can now produce what used to require five or six — not by working more hours, but by delegating the execution layer to agents while keeping judgment work for themselves.
 
-[Gartner projects](https://www.gartner.com/en/newsroom/press-releases/2026-01-15-gartner-predicts-60-percent-of-brands-will-use-agentic-ai-to-deliver-streamlined-one-to-one-interactions-by-2028) that 60% of brands will deploy agentic AI for personalised customer interactions by 2028. The teams building toward that now are acquiring structural advantages that will be very hard to close later.
+Analysts project that 60% of brands will deploy agentic AI for personalised customer interactions by 2028. The teams building toward that now are acquiring structural advantages that will be very hard to close later.
 
 The teams that are not building are carrying overhead that compounds against them every quarter.
 
@@ -108,7 +108,7 @@ The teams that are not building are carrying overhead that compounds against the
 
 The shift is not primarily a technology decision. It is an organisational one.
 
-It requires knowing which tasks deserve human attention and which do not. Most companies have never made that distinction explicitly. Everything has always been done by people, so everything feels like people-work.
+It requires knowing which tasks deserve human attention and which do not. Most organisations have never made that distinction explicitly. Everything has always been done by people, so everything feels like people-work.
 
 Agentic marketing forces the question. When you can hand a task to an agent, you have to decide whether you should. That decision reveals a lot about what your team actually values versus what it does out of habit.
 

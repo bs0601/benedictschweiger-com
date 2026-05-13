@@ -54,7 +54,7 @@ That question is more relevant in 2026 than it has ever been. And most €5–10
 
 The most common marketing problem at €5–10M e-commerce revenue is not strategy. It is dependency.
 
-Most businesses in this range generate customers through one channel. Google, Facebook, Instagram — whichever wave they caught first, they rode it well. The problem is they do not own it. The moment ad spend pauses, sales pause. Not gradually. Immediately.
+Many businesses in this range generate customers through one channel. Google, Facebook, Instagram — whichever wave they caught first, they rode it well. The problem is they do not own it. The moment ad spend pauses, sales pause.
 
 That dependency compounds as platforms mature. Click costs rise. ROAS compresses. Algorithm changes hit without warning. The businesses most exposed are the ones who built everything on top of paid performance and nothing underneath it.
 
@@ -144,7 +144,7 @@ The tools exist. The stack works. The SERP is full of platforms claiming to auto
 4. Invest in personal brand as a distribution asset.
 5. Use agentic workflows to amplify what the humans establish — not to replace human judgment before it exists.
 
-Most businesses skip step one and wonder why steps two through five do not compound. The measurement layer is not optional. The foundation is not optional. [Start with an audit of which parts of your marketing function are already agentic →](#)
+Many businesses skip step one and wonder why steps two through five do not compound. The measurement layer is not optional. The foundation is not optional. [Start with an audit of which parts of your marketing function are already agentic →](#)
 
 ---
 

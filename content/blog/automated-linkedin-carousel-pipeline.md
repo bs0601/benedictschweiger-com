@@ -33,7 +33,7 @@ faq:
 
 ---
 
-Most people who talk about content automation have never shipped a piece of content that was actually automated. They have dashboards. They have workflows drawn on whiteboards. They have a Canva account and a scheduling tool and a process that still requires a human sitting in front of a screen for 45 minutes every time they want to publish a carousel.
+Many people who talk about content automation have never shipped a piece of content that was actually automated. They have dashboards. They have workflows drawn on whiteboards. They have a Canva account and a scheduling tool and a process that still requires a human sitting in front of a screen for 45 minutes every time they want to publish a carousel.
 
 That was me last month. Two to three LinkedIn carousels per week. Each one: open Canva, pick a template, paste five blocks of text, nudge the alignment, export, upload, write the caption, post. Forty-five minutes on a fast day. Ninety if the design fought back.
 
@@ -55,7 +55,7 @@ The tools reflect this. [Canva](https://canva.com) dominates manual carousel des
 
 The [agentic marketing](/blog/what-is-agentic-marketing/) approach is different. You build the system once, encode your design decisions into a template, and let the pipeline handle production. The human reviews output, not process.
 
-The numbers justify the investment. LinkedIn carousels generate roughly 278% more engagement than video posts and 596% more than text-only posts. Median engagement rate sits around 21.77%, compared to 7.35% for video and 3% for standard images. Carousels are the highest-performing format on the platform, and most creators cannot produce them fast enough because the production bottleneck eats their capacity.
+The numbers justify the investment. Industry benchmarks suggest LinkedIn carousels significantly outperform video and text-only posts on engagement. Median engagement rate sits around 21.77%, compared to 7.35% for video and 3% for standard images. Carousels are the highest-performing format on the platform, and most creators cannot produce them fast enough because the production bottleneck eats their capacity.
 
 {{< callout type="number" label="Stat" >}}
 LinkedIn carousel average engagement rate hit 6.60% in 2026 — up 44% year-over-year.
