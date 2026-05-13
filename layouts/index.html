@@ -50,72 +50,124 @@
 </head>
 <body>
 
-<!-- HERO / AI READINESS ASSESSMENT -->
-<div class="hero" id="assessment">
-  <h1 class="hero-h">Marketing teams that run on <em>systems</em> outperform teams that run on headcount.</h1>
-  <p class="hero-sub">
-    Building the Agentic Marketing OS on myself before deploying it on a €20M business. CMO at ALTHERR. Ex-Simon-Kucher. Writing what the field actually looks like — real numbers, real failures, what compounds.
+<!-- ========== BLOCK 1: HERO ========== -->
+<div class="hero" id="hero">
+  <!-- Credibility line -->
+  <p class="hero-cred" style="font-size:13px;font-weight:700;color:var(--s);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;">
+    CMO at ALTHERR · Ex-Simon-Kucher · Simon-Kucher Sales Innovation Award 2017
   </p>
 
-  <!-- Assessment teaser card -->
-  <div class="assessment-card" style="max-width:540px;margin:28px auto 0;background:var(--bg);border-radius:16px;padding:28px 24px;text-align:center;border:1.5px solid var(--lg);">
-    <div style="display:inline-flex;align-items:center;gap:6px;background:var(--slt);color:var(--s);font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:16px;text-transform:uppercase;letter-spacing:.05em;">
-      <span style="width:5px;height:5px;border-radius:50%;background:var(--s);display:inline-block;"></span>
-      Free 2-Minute Assessment
-    </div>
-    <h2 style="font-size:clamp(22px,5vw,28px);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--blk);margin-bottom:12px;">Where are you on the <em style="color:var(--s);font-style:normal;">AI ROI curve?</em></h2>
-    <p style="font-size:14px;color:var(--mg);line-height:1.6;margin-bottom:20px;">4 questions. No email required to see your result. Discover which phase you're in — and what to do next.</p>
+  <!-- Headline: names a problem the reader recognizes -->
+  <h1 class="hero-h" style="font-size:clamp(32px,7vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.035em;color:var(--blk);margin-bottom:18px;max-width:640px;">
+    You're paying for AI tools that aren't showing up on your P&L.
+  </h1>
 
-    <!-- ROTS J-curve preview -->
-    <div style="margin:0 -4px 20px;">
-      <img src="/images/blog/rots-jcurve-new.jpg" alt="The ROTS J-curve: four phases from Quick Wins to Flywheel" style="width:100%;max-width:400px;height:auto;display:block;margin:0 auto;border-radius:12px;border:1px solid var(--lg);">
-    </div>
+  <!-- Subhead: what they get if they act -->
+  <p class="hero-sub" style="font-size:17px;line-height:1.65;color:var(--dg);max-width:540px;margin-bottom:32px;">
+    4 questions. See which phase you're in on the AI ROI curve — and what to do next. No email required to see your result.
+  </p>
 
-    <a href="/ai-readiness/" class="btnstart" style="display:inline-block;width:100%;background:var(--s);color:#fff;text-decoration:none;border-radius:12px;padding:16px 20px;font-size:15px;font-weight:700;min-height:52px;transition:background .15s;text-align:center;">Start Assessment →</a>
-    <p style="text-align:center;font-size:12px;color:var(--mg);margin-top:12px;">Your result is visible without email</p>
+  <!-- Primary CTA -->
+  <a href="/ai-readiness/" class="hero-cta-primary" style="display:inline-block;background:var(--s);color:#fff;text-decoration:none;border-radius:12px;padding:18px 32px;font-size:16px;font-weight:700;min-height:56px;transition:background .15s;text-align:center;margin-bottom:12px;">
+    See where you are on the curve →
+  </a>
+
+  <!-- Secondary CTA: email capture -->
+  <div class="hero-cta-secondary" style="margin-top:20px;">
+    <p style="font-size:14px;color:var(--mg);margin-bottom:10px;">Or get the weekly field notes — one idea, fully developed.</p>
+    <form id="hero-email-form" style="display:flex;gap:8px;max-width:420px;" onsubmit="return handleHeroEmail(event)">
+      <input type="email" id="hero-email" placeholder="your@email.com" required style="flex:1;border:2px solid var(--lg);border-radius:12px;padding:14px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:var(--blk);background:#fff;outline:none;" />
+      <button type="submit" style="background:var(--blk);color:#fff;border:none;border-radius:12px;padding:14px 20px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Get the Brief →</button>
+    </form>
+    <p id="hero-email-status" style="font-size:13px;color:var(--mg);margin-top:8px;display:none;"></p>
   </div>
 </div>
 
-<!-- NEWSLETTER ABOUT -->
-<div class="newsletter-section" id="newsletter-about">
-  <div class="newsletter-inner">
-    <div class="nl-card" style="text-align:center; padding: 2rem 1.5rem;">
-      <div class="nl-badge">The Autonomy Brief</div>
-      <p class="nl-sub" style="margin-top:0.75rem;">One idea, fully developed. What shipped that week, what broke, and one thing worth your time. The practitioner's version — not the guru's.</p>
-    </div>
-  </div>
-</div>
+<!-- ========== BLOCK 2: PROOF ========== -->
+<div class="proof-section" style="background:var(--bg);padding:64px 20px;">
+  <div class="w" style="max-width:900px;margin:0 auto;">
+    <div class="proof-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;">
 
-<!-- LATEST WRITING -->
-<div class="content-section">
-  <div class="w">
-    {{ $posts := where .Site.RegularPages "Section" "blog" }}
-    {{ range first 4 $posts }}
-    <a href="{{ .RelPermalink }}" class="post-card{{ if .Params.featured }} featured{{ end }}">
-      <div class="post-meta">
-        {{ with .Params.pillar }}
-        {{ $pillarClass := "pillar-pricing" }}
-        {{ if eq . "marketing" }}{{ $pillarClass = "pillar-marketing" }}{{ end }}
-        {{ if eq . "systems" }}{{ $pillarClass = "pillar-systems" }}{{ end }}
-        {{ if eq . "leadership" }}{{ $pillarClass = "pillar-leadership" }}{{ end }}
-        {{ if eq . "agentic" }}{{ $pillarClass = "pillar-agentic" }}{{ end }}
-        <span class="post-pillar {{ $pillarClass }}">{{ . | humanize }}</span>
-        {{ end }}
-        <span class="post-date">{{ .Date.Format "Jan 2006" }}</span>
+      <!-- Proof card 1 -->
+      <div class="proof-card" style="background:#fff;border-radius:16px;padding:28px 24px;border:1.5px solid var(--lg);">
+        <div class="proof-number" style="font-size:36px;font-weight:800;color:var(--s);letter-spacing:-.02em;margin-bottom:8px;">5</div>
+        <p class="proof-text" style="font-size:15px;line-height:1.55;color:var(--dg);margin:0;">
+          <strong style="color:var(--blk);">People.</strong> Replaced 3 roles with AI systems. Output went up.
+        </p>
       </div>
-      <div class="post-title">{{ .Title }}</div>
-      <div class="post-excerpt">{{ .Params.excerpt | default .Params.description | default .Summary }}</div>
-      <div class="post-read">Read →</div>
-    </a>
-    {{ end }}
 
+      <!-- Proof card 2 -->
+      <div class="proof-card" style="background:#fff;border-radius:16px;padding:28px 24px;border:1.5px solid var(--lg);">
+        <div class="proof-number" style="font-size:36px;font-weight:800;color:var(--s);letter-spacing:-.02em;margin-bottom:8px;">6.1M</div>
+        <p class="proof-text" style="font-size:15px;line-height:1.55;color:var(--dg);margin:0;">
+          <strong style="color:var(--blk);">YouTube views</strong> in 12 months. Built a content engine that outlasts ad spend.
+        </p>
+      </div>
+
+      <!-- Proof card 3 -->
+      <div class="proof-card" style="background:#fff;border-radius:16px;padding:28px 24px;border:1.5px solid var(--lg);">
+        <div class="proof-number" style="font-size:36px;font-weight:800;color:var(--s);letter-spacing:-.02em;margin-bottom:8px;">430k</div>
+        <p class="proof-text" style="font-size:15px;line-height:1.55;color:var(--dg);margin:0;">
+          <strong style="color:var(--blk);">Organic clicks</strong> from Google. SEO traffic that compounds while you sleep.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========== BLOCK 3: NEWSLETTER PREVIEW ========== -->
+<div class="newsletter-section" id="newsletter" style="padding:64px 20px;">
+  <div class="w" style="max-width:640px;margin:0 auto;">
+
+    <!-- Eyebrow -->
+    <div style="display:inline-flex;align-items:center;gap:6px;background:var(--slt);color:var(--s);font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:20px;text-transform:uppercase;letter-spacing:.05em;">
+      The Autonomy Brief
+    </div>
+
+    <!-- Excerpt (placeholder until first issue ships) -->
+    <div class="nl-excerpt" style="background:#fff;border:1.5px solid var(--lg);border-radius:16px;padding:28px 24px;margin-bottom:28px;">
+      <p style="font-size:15px;line-height:1.7;color:var(--dg);margin:0 0 16px;font-style:italic;">
+        "The first issue ships this month. One idea, fully developed. What shipped that week, what broke, and one thing worth your time. The practitioner's version — not the guru's."
+      </p>
+      <p style="font-size:13px;color:var(--mg);margin:0;">
+        Weekly. 5-minute read. No fluff.
+      </p>
+    </div>
+
+    <!-- Email form (second appearance) -->
+    <form id="nl-email-form" style="display:flex;gap:8px;margin-bottom:12px;" onsubmit="return handleNlEmail(event)">
+      <input type="email" id="nl-email" placeholder="your@email.com" required style="flex:1;border:2px solid var(--lg);border-radius:12px;padding:14px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:var(--blk);background:#fff;outline:none;" />
+      <button type="submit" style="background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Join the list →</button>
+    </form>
+    <p id="nl-email-status" style="font-size:13px;color:var(--mg);margin:0;display:none;"></p>
+
+  </div>
+</div>
+
+<!-- ========== EVIDENCE STRIP: RECENT POSTS ========== -->
+<div class="content-section" style="padding:0 20px 64px;">
+  <div class="w" style="max-width:900px;margin:0 auto;">
+    <p style="font-size:12px;font-weight:700;color:var(--mg);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;">Recent writing</p>
+    <div class="post-strip" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+      {{ $posts := where .Site.RegularPages "Section" "blog" }}
+      {{ range first 3 $posts }}
+      <a href="{{ .RelPermalink }}" style="text-decoration:none;color:inherit;">
+        <div style="background:#fff;border:1.5px solid var(--lg);border-radius:12px;padding:20px;transition:border-color .15s;">
+          <div style="font-size:12px;color:var(--mg);margin-bottom:8px;">{{ .Date.Format "Jan 2006" }}</div>
+          <div style="font-size:15px;font-weight:700;color:var(--blk);line-height:1.35;margin-bottom:8px;">{{ .Title }}</div>
+          <div style="font-size:13px;color:var(--dg);line-height:1.5;">{{ .Params.excerpt | default .Params.description | default .Summary | truncate 80 }}</div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
     {{ if gt (len $posts) 0 }}
-    <a href="/blog/" class="content-cta">All articles →</a>
+    <a href="/blog/" style="display:inline-block;margin-top:20px;font-size:14px;font-weight:600;color:var(--s);text-decoration:none;">All articles →</a>
     {{ end }}
   </div>
 </div>
 
-<!-- FOOTER -->
+<!-- ========== FOOTER ========== -->
 <footer>
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/benedictschweiger" target="_blank" rel="noopener">LinkedIn</a>
@@ -125,8 +177,74 @@
   <div class="footer-copy">&copy; {{ now.Year }} Benedict Schweiger</div>
 </footer>
 
+<!-- Email form handlers -->
+<script>
+async function handleHeroEmail(e) {
+  e.preventDefault();
+  const input = document.getElementById('hero-email');
+  const status = document.getElementById('hero-email-status');
+  const btn = e.target.querySelector('button');
+  const email = input.value.trim();
 
+  btn.disabled = true;
+  btn.textContent = '...';
 
+  try {
+    const res = await fetch('/.netlify/functions/brevo-subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, source: 'homepage-hero' })
+    });
+    if (res.ok) {
+      status.textContent = "You're in. First issue lands shortly.";
+      status.style.color = '#2a7a4e';
+      input.value = '';
+    } else {
+      throw new Error('HTTP ' + res.status);
+    }
+  } catch (err) {
+    status.textContent = 'Something went wrong. Please try again.';
+    status.style.color = '#c0392b';
+    btn.disabled = false;
+    btn.textContent = 'Get the Brief →';
+  }
+  status.style.display = 'block';
+  return false;
+}
+
+async function handleNlEmail(e) {
+  e.preventDefault();
+  const input = document.getElementById('nl-email');
+  const status = document.getElementById('nl-email-status');
+  const btn = e.target.querySelector('button');
+  const email = input.value.trim();
+
+  btn.disabled = true;
+  btn.textContent = '...';
+
+  try {
+    const res = await fetch('/.netlify/functions/brevo-subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, source: 'homepage-newsletter' })
+    });
+    if (res.ok) {
+      status.textContent = "You're in. First issue lands shortly.";
+      status.style.color = '#2a7a4e';
+      input.value = '';
+    } else {
+      throw new Error('HTTP ' + res.status);
+    }
+  } catch (err) {
+    status.textContent = 'Something went wrong. Please try again.';
+    status.style.color = '#c0392b';
+    btn.disabled = false;
+    btn.textContent = 'Join the list →';
+  }
+  status.style.display = 'block';
+  return false;
+}
+</script>
 
 {{ partial "analytics.html" . }}
 </body>
