@@ -17,12 +17,13 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 - Four pillars only
 - No new channels until LinkedIn → email closes subscribers for 4 consecutive weeks
 - No draft without a linked Atom ID
+- **Bene's time budget: 30 minutes/week total after week 4**
 
 ---
 
 ## Weekly Rhythm
 
-### Monday — Idea Capture
+### Monday — Idea Capture (Bene: 5 min)
 
 **Trigger:** 09:00 GMT-3, or when Bene drops raw material in Telegram  
 **Owner:** Agent (default) / Both (fallback interview)
@@ -61,7 +62,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 
 ---
 
-### Tuesday — Draft Generation
+### Tuesday — Draft Generation (Bene: 0 min)
 
 **Trigger:** 09:00 GMT-3  
 **Owner:** Agent
@@ -99,7 +100,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 
 ---
 
-### Wednesday — Approval Gate
+### Wednesday — Approval Gate (Bene: 10 min)
 
 **Trigger:** 09:00 GMT-3 (send to Bene), or when Bene requests review  
 **Owner:** Agent sends / Bene approves
@@ -143,7 +144,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 
 ---
 
-### Thursday — Publish
+### Thursday — Publish (Bene: 0 min)
 
 **Trigger:** Upon Bene's approval, or 09:00 GMT-3 if approved Wednesday night  
 **Owner:** Agent
@@ -186,7 +187,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 
 ---
 
-### Friday — Metrics (Auto)
+### Friday — Metrics (Auto) (Bene: 0 min)
 
 **Trigger:** 17:00 GMT-3  
 **Owner:** Agent (fully automated)
@@ -222,7 +223,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 
 ---
 
-### Monthly — Strategic Review
+### Monthly — Strategic Review (Bene: 15 min)
 
 **Trigger:** First Monday of each month  
 **Owner:** Agent generates / Bene reviews
