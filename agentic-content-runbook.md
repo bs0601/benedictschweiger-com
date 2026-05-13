@@ -249,6 +249,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 - Length: 1,500–2,500 words
 - Structure: Hook → Story → Data → Framework → CTA
 - CTA destination: `benedictschweiger.com` (with UTM params)
+- UTM format: `?utm_source=blog&utm_medium=article&utm_campaign=[pillar_slug]&utm_content=[post_slug]`
 - Frontmatter required: title, date, slug, description (<160 chars), author, tags, keywords, cover
 - Every external link goes to the specific page with the specific claim
 - Counterfactual check: every "AI replaced X" claim needs counterfactual in same paragraph
@@ -259,6 +260,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 - Caption: 150–300 words
 - Structure: Hook (1 line) → Story/Data (3–5 lines) → Takeaway (2 lines) → CTA (1 line)
 - CTA destination: `benedictschweiger.com` (with UTM params)
+- UTM format: `?utm_source=linkedin&utm_medium=carousel&utm_campaign=[pillar_slug]&utm_content=[post_slug]`
 - Default: 5-slide carousel (v2 template)
 - Exception: single-image allowed when atom is a sharp quote or single data point
 - No em dashes, no boldface overuse
@@ -272,6 +274,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 - Slide 3: Proof (warm white, label + body)
 - Slide 4: Reframe (dark bg)
 - Slide 5: CTA (orange bg → benedictschweiger.com with UTM params)
+- UTM format: `?utm_source=linkedin&utm_medium=carousel&utm_campaign=[pillar_slug]&utm_content=[post_slug]`
 - Generation: `alan/scripts/generate-carousel.py` with brief JSON
 
 ---
