@@ -78,10 +78,12 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
    - Frontmatter: title, date, slug, description, author, tags, keywords, cover
    - Run `validate-post.js`
    - Draft = true
-4. **LinkedIn posts:** Write text + generate card image
-   - Character count: 150–300 words
+4. **LinkedIn posts:** Write carousel brief + generate slides
+   - Character count: 150–300 words for caption
    - Include hook, story/data, takeaway, CTA
-   - Generate card image (1200×627px)
+   - Generate carousel brief JSON (`gary/carousels/briefs/<slug>.json`)
+   - Run `alan/scripts/generate-carousel.py` with v2 template only
+   - Output: 5 PNGs + PDF to `gary/carousels/<slug>/`
 5. Update Content Library status to Draft (confirmed)
 
 **Output:**
@@ -108,14 +110,9 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
    - Generate audio version via Mistral Voxtral TTS
    - Send PDF + audio voice message to Bene via Telegram
    - Caption: "📄 [Title] | Pillar: [X] | Word count: [N] | ✅ Approve / 🔄 Revise"
-2. **LinkedIn posts:**
-   - Generate PDF with post text + card image
-   - Send PDF to Bene via Telegram
-   - Caption: "💼 [Title] | Pillar: [X] | Chars: [N] | ✅ Approve / 🔄 Revise"
-3. **Carousels (if any):**
-   - Generate PDF with all slides + captions
-   - Send PDF to Bene via Telegram
-   - Caption: "🎠 [Title] | Slides: [N] | ✅ Approve / 🔄 Revise"
+2. **LinkedIn posts (carousels):**
+   - Send PDF with all 5 slides + caption text
+   - Caption: "💼 [Title] | Pillar: [X] | Slides: 5 | ✅ Approve / 🔄 Revise"
 4. Write to `gary/state/pending-approvals.json`
 5. **Do NOT message Bene again.** Heartbeat handles reminders.
 
@@ -149,16 +146,11 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 4. Fill Published URL in Content Library
 5. Update status to Published
 
-**LinkedIn post:**
-1. Schedule via LinkedIn API for optimal time (Tue/Thu/Sat)
-2. Post text + card image
+**LinkedIn post (carousel):**
+1. Post caption text via LinkedIn API
+2. Upload 5 slide images in sequence
 3. Fill Published URL in Content Library
-4. Update status to Scheduled, then Published after posting
-
-**Carousel:**
-1. Schedule slides + caption via relevant API
-2. Fill Published URL in Content Library
-3. Update status to Scheduled, then Published
+4. Update status to Published
 
 **Newsletter (if active):**
 1. Compile from week's pillar content
@@ -224,19 +216,23 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 - TL;DR: exactly 3 bullets
 - One uncomfortable sentence minimum
 
-### LinkedIn Posts
-- Length: 150–300 words
+### LinkedIn Posts (Carousels Only)
+- Caption: 150–300 words
 - Structure: Hook (1 line) → Story/Data (3–5 lines) → Takeaway (2 lines) → CTA (1 line)
-- Card image: 1200×627px, minimal text, strong visual
+- Always includes 5-slide carousel (v2 template)
+- No single-image posts
 - No em dashes, no boldface overuse
 - Signature move rate limit: "This is not X. It is Y." max 2 per month
 
-### Carousels
-- 5–8 slides
-- Slide 1: Hook (problem or surprising claim)
-- Slides 2–4: Story, data, framework
-- Slide 5: CTA
-- Consistent visual style (colors, fonts, spacing)
+### Carousel Template (v2 Only)
+- Template: X/Twitter screenshot style (dark bg, Inter font, 🧵 emoji)
+- 5 slides, portrait 10in × 12.5in
+- Slide 1: Hook (dark bg, circular avatar)
+- Slide 2: Tension (warm white, label + body)
+- Slide 3: Proof (warm white, label + body)
+- Slide 4: Reframe (dark bg)
+- Slide 5: CTA (orange bg → benedictschweiger.com/autonomy-score)
+- Generation: `alan/scripts/generate-carousel.py` with brief JSON
 
 ---
 
@@ -273,6 +269,7 @@ Data-driven decisions. No gut feeling without data backing.
 | Brevo | Email list, newsletter | `memory/credentials.env` |
 | GitHub | Blog hosting | `~/.ssh/benedictschweiger_deploy` |
 | Mistral API | Audio generation | `memory/credentials.env` |
+| Google Slides API | Carousel generation | `memory/credentials.env` |
 | Hugo | Blog build | Local install |
 | Netlify | Blog deploy | Auto-deploy from GitHub |
 
@@ -298,6 +295,8 @@ Data-driven decisions. No gut feeling without data backing.
 | 2026-05-13 | v1.0 | Consolidated from 3 hubs, 4 databases into 1 hub, 1 DB |
 | | Switched review from web pages to Telegram PDF + audio | Simpler, faster, mobile-native |
 | | Locked pillars to 4 | Eliminated schema drift |
+| | Killed generate-card.js, switched to Google Slides v2 only | More control, less mistakes |
+| | LinkedIn: carousels only, no single-image posts | Simpler execution |
 
 ---
 
