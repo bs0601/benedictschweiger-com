@@ -1476,15 +1476,12 @@ button, a { touch-action: manipulation; }
  <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
  </div>
  
- <div class="form-row">
+ <div class="form-row" style="grid-template-columns: 1fr 1fr;">
  <input type="text" name="nome" class="form-input" placeholder="Nome completo *" required autocomplete="name">
  <input type="email" name="email" class="form-input" placeholder="E-mail *" required autocomplete="email">
  </div>
- <div class="form-row">
+ <div class="form-row" style="grid-template-columns: 1fr 1fr;">
  <input type="tel" name="telefone" class="form-input" placeholder="WhatsApp / Telefone *" required autocomplete="tel">
- 
- </div>
- <div class="form-row">
  <select name="timeline" class="form-input" required>
  <option value="" disabled selected>Quando pretende comprar? *</option>
  <option value="imediato">Imediato (já estou decidido)</option>
@@ -1493,7 +1490,6 @@ button, a { touch-action: manipulation; }
  <option value="6-12-meses">6 a 12 meses</option>
  <option value="ainda-nao-sei">Ainda estou pesquisando</option>
  </select>
-
  </div>
  
  
@@ -1520,7 +1516,7 @@ button, a { touch-action: manipulation; }
  <!-- Unqualified: soft rejection -->
  <div class="form-success" id="formUnqualified" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)">
  <h3>Recebemos seu interesse</h3>
- <p>Obrigado pelo contato. No momento, estamos priorizando visitas de compradores com decisão em até 3 meses.</p>
+ <p>Obrigado pelo contato. Entraremos em breve pelo WhatsApp.</p>
  <p style="margin-top:8px">Se sua situação mudar, fique à vontade para retornar.</p>
  </div>
  </form>
@@ -2025,10 +2021,7 @@ lightbox.addEventListener('touchend', e => {
 const MATH_ANSWER = 12; // 7 + 5
 
 function isQualified(data) {
- // Timeline must be within 6 months
- const qualifiedTimelines = ['imediato', '1-3-meses', '3-6-meses'];
- if (!qualifiedTimelines.includes(data.timeline)) return false;
- 
+ // No qualification checks — only math challenge (bot protection)
  return true;
 }
 
@@ -2069,8 +2062,6 @@ function handleSubmit(e) {
  telefone: form.telefone.value,
  budget: form.budget.value,
  timeline: form.timeline.value,
-
- cidade: form.cidade.value,
  source: 'casa-maresias-landing',
  submittedAt: new Date().toISOString()
  };
