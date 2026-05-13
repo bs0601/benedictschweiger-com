@@ -61,7 +61,7 @@ This is not a technology problem. The models work. The infrastructure works. The
 
 That second question is what Return on Token Spend answers.
 
-{{< figure src="/images/blog/rots-jcurve.svg" alt="The ROTS J-curve: four phases from Quick Wins to Flywheel" caption="Most organisations quit in the Valley of Death. The ones that build systems cross into compounding returns." >}}
+{{< figure src="/images/blog/rots-jcurve-new.jpg" alt="The ROTS J-curve: four phases from Quick Wins to Flywheel" caption="Most organisations quit in the Valley of Death. The ones that build systems cross into compounding returns." >}}
 
 ## What is Return on Token Spend?
 
