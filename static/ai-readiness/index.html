@@ -139,8 +139,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 .rots-wrap{margin:0 -20px 24px;padding:0 20px}
 .rots-headline{font-size:15px;font-weight:700;color:var(--blk);line-height:1.35;margin-bottom:14px;text-align:center}
 .rots-svg{width:100%;max-width:430px;height:auto;display:block;margin:0 auto}
-@keyframes rotsPulse{0%{r:5;opacity:.6}50%{r:12;opacity:.15}100%{r:5;opacity:.6}}
-#rotsMarkerPulse{animation:rotsPulse 2s ease-in-out infinite}
+
 </style>
 </head>
 <body>
@@ -151,74 +150,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 <div class="lw">
   <h1 class="lh"><em>Where are you</em><br>on the AI ROI curve?</h1>
   <div class="rots-wrap" style="margin:0 -20px 24px">
-    <svg class="rots-svg" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <!-- Gradient for the curve: green → red → amber → green -->
-        <linearGradient id="rotsLine" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#2a7a4e"/>
-          <stop offset="18%" stop-color="#2a7a4e"/>
-          <stop offset="22%" stop-color="#c0392b"/>
-          <stop offset="48%" stop-color="#c0392b"/>
-          <stop offset="52%" stop-color="#b87a14"/>
-          <stop offset="70%" stop-color="#b87a14"/>
-          <stop offset="75%" stop-color="#2a7a4e"/>
-          <stop offset="100%" stop-color="#2a7a4e"/>
-        </linearGradient>
-        <!-- Area fill under curve -->
-        <linearGradient id="rotsArea" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#2a7a4e" stop-opacity="0.15"/>
-          <stop offset="40%" stop-color="#c0392b" stop-opacity="0.10"/>
-          <stop offset="60%" stop-color="#b87a14" stop-opacity="0.10"/>
-          <stop offset="100%" stop-color="#2a7a4e" stop-opacity="0.15"/>
-        </linearGradient>
-      </defs>
-
-      <!-- Background zones (subtle) -->
-      <rect x="10" y="30" width="75" height="180" rx="6" fill="#e8f5ee" opacity="0.18"/>
-      <rect x="90" y="30" width="110" height="180" rx="6" fill="#fdecea" opacity="0.12"/>
-      <rect x="205" y="30" width="85" height="180" rx="6" fill="#fff3e0" opacity="0.15"/>
-      <rect x="295" y="30" width="95" height="180" rx="6" fill="#e8f5ee" opacity="0.18"/>
-
-      <!-- Axis labels -->
-      <text x="220" y="256" text-anchor="middle" font-size="13" font-weight="600" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif">Time / AI Maturity →</text>
-      <text x="8" y="130" text-anchor="middle" font-size="13" font-weight="600" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif" transform="rotate(-90 8 130)">Return on Token Spend →</text>
-
-      <!-- Zero line -->
-      <line x1="35" y1="130" x2="425" y2="130" stroke="#484848" stroke-width="1.5" stroke-dasharray="5 4"/>
-      <text x="22" y="133" font-size="14" font-weight="700" fill="#484848" font-family="'Plus Jakarta Sans',sans-serif">0</text>
-
-      <!-- J-Curve: starts slightly positive, dips deep negative, then hockey stick up -->
-      <!-- Path: M start(40,115) → small bump → deep trough → cross zero → steep upward -->
-      <path id="rotsCurvePath" d="M 40 115 C 55 108, 70 112, 85 125 C 100 145, 115 185, 140 195 C 165 205, 185 190, 205 160 C 225 130, 245 100, 275 75 C 305 50, 340 38, 420 32" fill="none" stroke="url(#rotsLine)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-
-      <!-- Area under curve (subtle fill) -->
-      <path d="M 40 115 C 55 108, 70 112, 85 125 C 100 145, 115 185, 140 195 C 165 205, 185 190, 205 160 C 225 130, 245 100, 275 75 C 305 50, 340 38, 420 32 L 420 130 L 40 130 Z" fill="url(#rotsArea)" opacity="0.4"/>
-
-      <!-- Arrow at end of curve -->
-      <polygon points="420,32 414,37 414,33 408,34 408,30 414,31 414,27" fill="#2a7a4e"/>
-
-      <!-- Phase labels — all above the curve in their zones -->
-      <!-- Phase 1: Quick Wins -->
-      <rect x="22" y="14" width="56" height="18" rx="9" fill="#2a7a4e" opacity="0.12"/>
-      <text x="50" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif">Quick Wins</text>
-
-      <!-- Phase 2: Valley of Death — left of trough -->
-      <rect x="72" y="220" width="70" height="18" rx="9" fill="#c0392b" opacity="0.12"/>
-      <text x="107" y="232" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif">Valley of Death</text>
-
-      <!-- Phase 3: Breaking Even — below zero line, right of trough -->
-      <rect x="210" y="220" width="75" height="18" rx="9" fill="#b87a14" opacity="0.12"/>
-      <text x="247" y="232" text-anchor="middle" font-size="14" font-weight="700" fill="#b87a14" font-family="'Plus Jakarta Sans',sans-serif">Breaking Even</text>
-
-      <!-- Phase 4: Flywheel -->
-      <rect x="355" y="14" width="58" height="18" rx="9" fill="#2a7a4e" opacity="0.12"/>
-      <text x="384" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif">Flywheel</text>
-
-      <!-- "Most companies quit here" annotation — above trough, arrow pointing down -->
-      <text x="140" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif">Most companies quit here</text>
-      <line x1="140" y1="108" x2="140" y2="188" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4 3"/>
-      <polygon points="140,194 136,186 144,186" fill="#c0392b"/>
-    </svg>
+    <img src="/images/blog/rots-jcurve-new.jpg" alt="The ROTS J-curve: four phases from Quick Wins to Flywheel" style="width:100%;max-width:430px;height:auto;display:block;margin:0 auto;border-radius:12px;">
   </div>
   <button class="btnstart" onclick="startAssessment()">Start Assessment →</button>
   <p class="lnote">Your result is visible without email</p>
@@ -572,73 +504,7 @@ function showResults() {
       <div class="resultbadge ${r.badgeClass}">${r.badgeText}</div>
       <div class="rheadline">${r.headline}</div>
       <div class="rots-wrap" style="margin-top:18px">
-        <svg class="rots-svg" id="rotsResultSvg" viewBox="0 0 440 260" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="rotsLineR" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#2a7a4e"/>
-              <stop offset="18%" stop-color="#2a7a4e"/>
-              <stop offset="22%" stop-color="#c0392b"/>
-              <stop offset="48%" stop-color="#c0392b"/>
-              <stop offset="52%" stop-color="#b87a14"/>
-              <stop offset="70%" stop-color="#b87a14"/>
-              <stop offset="75%" stop-color="#2a7a4e"/>
-              <stop offset="100%" stop-color="#2a7a4e"/>
-            </linearGradient>
-            <linearGradient id="rotsAreaR" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#2a7a4e" stop-opacity="0.15"/>
-              <stop offset="40%" stop-color="#c0392b" stop-opacity="0.10"/>
-              <stop offset="60%" stop-color="#b87a14" stop-opacity="0.10"/>
-              <stop offset="100%" stop-color="#2a7a4e" stop-opacity="0.15"/>
-            </linearGradient>
-          </defs>
-
-          <!-- Background zones (subtle) -->
-          <rect x="10" y="30" width="75" height="180" rx="6" fill="#e8f5ee" opacity="0.18"/>
-          <rect x="90" y="30" width="110" height="180" rx="6" fill="#fdecea" opacity="0.12"/>
-          <rect x="205" y="30" width="85" height="180" rx="6" fill="#fff3e0" opacity="0.15"/>
-          <rect x="295" y="30" width="95" height="180" rx="6" fill="#e8f5ee" opacity="0.18"/>
-
-          <!-- Axis labels -->
-          <text x="220" y="256" text-anchor="middle" font-size="13" font-weight="600" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif">Time / AI Maturity →</text>
-          <text x="8" y="130" text-anchor="middle" font-size="13" font-weight="600" fill="#717171" font-family="'Plus Jakarta Sans',sans-serif" transform="rotate(-90 8 130)">Return on Token Spend →</text>
-
-          <!-- Zero line -->
-          <line x1="35" y1="130" x2="425" y2="130" stroke="#484848" stroke-width="1.5" stroke-dasharray="5 4"/>
-          <text x="22" y="133" font-size="14" font-weight="700" fill="#484848" font-family="'Plus Jakarta Sans',sans-serif">0</text>
-
-          <!-- J-Curve -->
-          <path id="rotsCurvePathR" d="M 40 115 C 55 108, 70 112, 85 125 C 100 145, 115 185, 140 195 C 165 205, 185 190, 205 160 C 225 130, 245 100, 275 75 C 305 50, 340 38, 420 32" fill="none" stroke="url(#rotsLineR)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-
-          <!-- Area under curve -->
-          <path d="M 40 115 C 55 108, 70 112, 85 125 C 100 145, 115 185, 140 195 C 165 205, 185 190, 205 160 C 225 130, 245 100, 275 75 C 305 50, 340 38, 420 32 L 420 130 L 40 130 Z" fill="url(#rotsAreaR)" opacity="0.4"/>
-
-          <!-- Arrow at end -->
-          <polygon points="420,32 414,37 414,33 408,34 408,30 414,31 414,27" fill="#2a7a4e"/>
-
-          <!-- Phase labels — all above the curve in their zones -->
-          <rect x="22" y="14" width="56" height="18" rx="9" fill="#2a7a4e" opacity="0.12"/>
-          <text x="50" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif">Quick Wins</text>
-
-          <rect x="72" y="220" width="70" height="18" rx="9" fill="#c0392b" opacity="0.12"/>
-          <text x="107" y="232" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif">Valley of Death</text>
-
-          <rect x="210" y="220" width="75" height="18" rx="9" fill="#b87a14" opacity="0.12"/>
-          <text x="247" y="232" text-anchor="middle" font-size="14" font-weight="700" fill="#b87a14" font-family="'Plus Jakarta Sans',sans-serif">Breaking Even</text>
-
-          <rect x="355" y="14" width="58" height="18" rx="9" fill="#2a7a4e" opacity="0.12"/>
-          <text x="384" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#2a7a4e" font-family="'Plus Jakarta Sans',sans-serif">Flywheel</text>
-
-          <!-- "Most companies quit here" annotation — above trough, arrow pointing down -->
-          <text x="140" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b" font-family="'Plus Jakarta Sans',sans-serif">Most companies quit here</text>
-          <line x1="140" y1="108" x2="140" y2="188" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4 3"/>
-          <polygon points="140,194 136,186 144,186" fill="#c0392b"/>
-
-          <!-- Position marker (pulsing dot) -->
-          <g id="rotsMarker" style="display:none">
-            <circle id="rotsMarkerPulse" cx="0" cy="0" r="14" fill="#C4622D" opacity="0.3"/>
-            <circle id="rotsMarkerDot" cx="0" cy="0" r="6" fill="#C4622D" stroke="#fff" stroke-width="2.5"/>
-          </g>
-        </svg>
+        <img src="/images/blog/rots-jcurve-new.jpg" alt="The ROTS J-curve: four phases from Quick Wins to Flywheel" style="width:100%;max-width:430px;height:auto;display:block;margin:0 auto;border-radius:12px;">
         <!-- Context text below curve -->
         <div id="rotsContextText" style="margin-top:14px;padding:14px 16px;background:var(--bg);border-radius:var(--rs);text-align:left"></div>
       </div>
@@ -683,36 +549,20 @@ function showResults() {
       </div>
     </div>
   `;
-  // Position marker on ROTS curve + context text
-  const marker = document.getElementById('rotsMarker');
-  const pulse = document.getElementById('rotsMarkerPulse');
-  const dot = document.getElementById('rotsMarkerDot');
-  const label = document.getElementById('rotsMarkerLabel');
+  // Context text below curve
   const ctxText = document.getElementById('rotsContextText');
-  if (marker && pulse && dot && label) {
-    let mx, my, lx, ly, ctxHTML;
+  if (ctxText) {
+    let ctxHTML;
     if (resultKey === 'quick-wins') {
-      // Start of curve (green zone, slight positive) — Quick Wins
-      mx = 55; my = 108; lx = 67; ly = 95;
       ctxHTML = '<div style="font-size:13px;font-weight:700;color:#2a7a4e;margin-bottom:6px">You are in Quick Wins</div><div style="font-size:13px;color:var(--dg);line-height:1.6">You\'re using AI for tasks that feel useful — emails, brainstorming, copy. The productivity bump is real. But without systems or measurement, this phase ends when the novelty wears off. The next step is building your first repeatable workflow.</div>';
     } else if (resultKey === 'valley-of-death') {
-      // In the trough (red zone) — deep negative ROTS
-      mx = 140; my = 195; lx = 152; ly = 182;
       ctxHTML = '<div style="font-size:13px;font-weight:700;color:#c0392b;margin-bottom:6px">You are in the Valley of Death</div><div style="font-size:13px;color:var(--dg);line-height:1.6">Most companies quit here. You\'re paying for multiple tools, experimenting, watching bills climb with no clear return. This is normal. The way out is measurement — proving what works so you can double down on it.</div>';
     } else if (resultKey === 'early-rots') {
-      // Crossing zero (amber zone) — early ROTS
-      mx = 225; my = 130; lx = 237; ly = 117;
       ctxHTML = '<div style="font-size:13px;font-weight:700;color:#b87a14;margin-bottom:6px">You are crossing into Early ROTS</div><div style="font-size:13px;color:var(--dg);line-height:1.6">Your systems are starting to work. Output is becoming predictable. You\'re breaking even on token spend and beginning to see positive returns. The next phase is scaling — turning working automations into AI agents that operate as digital employees.</div>';
     } else {
-      // Steep upward curve (green zone) — ROTS-positive
-      mx = 340; my = 52; lx = 270; ly = 52;
       ctxHTML = '<div style="font-size:13px;font-weight:700;color:#2a7a4e;margin-bottom:6px">You are ROTS-Positive</div><div style="font-size:13px;color:var(--dg);line-height:1.6">You have built AI agents that function as digital employees. Your token spend generates serious leverage and compounding returns. The focus now is scaling the system without breaking what works, and documenting the playbook.</div>';
     }
-    pulse.setAttribute('cx', mx); pulse.setAttribute('cy', my);
-    dot.setAttribute('cx', mx); dot.setAttribute('cy', my);
-    label.setAttribute('x', lx); label.setAttribute('y', ly);
-    marker.style.display = 'block';
-    if (ctxText) ctxText.innerHTML = ctxHTML;
+    ctxText.innerHTML = ctxHTML;
   }
 
   show('sr');
