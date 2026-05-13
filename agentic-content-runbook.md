@@ -248,6 +248,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 ### Blog Posts
 - Length: 1,500–2,500 words
 - Structure: Hook → Story → Data → Framework → CTA
+- CTA destination: `benedictschweiger.com` (with UTM params)
 - Frontmatter required: title, date, slug, description (<160 chars), author, tags, keywords, cover
 - Every external link goes to the specific page with the specific claim
 - Counterfactual check: every "AI replaced X" claim needs counterfactual in same paragraph
@@ -257,6 +258,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 ### LinkedIn Posts (Carousles Default)
 - Caption: 150–300 words
 - Structure: Hook (1 line) → Story/Data (3–5 lines) → Takeaway (2 lines) → CTA (1 line)
+- CTA destination: `benedictschweiger.com` (with UTM params)
 - Default: 5-slide carousel (v2 template)
 - Exception: single-image allowed when atom is a sharp quote or single data point
 - No em dashes, no boldface overuse
@@ -269,7 +271,7 @@ This runbook exists because "abandonment, shiny object syndrome" is the document
 - Slide 2: Tension (warm white, label + body)
 - Slide 3: Proof (warm white, label + body)
 - Slide 4: Reframe (dark bg)
-- Slide 5: CTA (orange bg → benedictschweiger.com/autonomy-score)
+- Slide 5: CTA (orange bg → benedictschweiger.com with UTM params)
 - Generation: `alan/scripts/generate-carousel.py` with brief JSON
 
 ---
