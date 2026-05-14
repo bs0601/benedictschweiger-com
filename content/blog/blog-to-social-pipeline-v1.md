@@ -2,8 +2,8 @@
 title: "Blog to Social: The Pipeline That Actually Runs My Content"
 date: 2026-05-14
 slug: "blog-to-social-pipeline-v1"
-draft: true
-description: "The full architecture of my blog-to-social pipeline: how an idea becomes posts across every platform — what works, what breaks, and what is still broken"
+draft: false
+description: "How I built a pipeline that turns voice memos into blog posts, LinkedIn posts, and Instagram carousels — what works, what breaks, and what is still broken"
 author: "Benedict Schweiger"
 tags:
   - "agentic marketing"
@@ -35,21 +35,23 @@ faq:
 ---
 
 **TLDR**
-- One blog post feeds every social platform through content atoms — distilled insights, not quotes.
-- The pipeline runs on OpenClaw, Gemini, Google Slides API, and Netlify functions. Tool cost: under $20 per month.
+- I do not write my own blog posts. I speak into a voice memo, an agent asks me questions, and the pipeline handles everything from draft to LinkedIn to Instagram.
+- The system works because it plays to my strength (speaking) and automates my weakness (writing). Total tool cost: under $0.50 per post.
 - Five things broke during the build. Each one revealed a gap between API documentation and API reality.
-- The approval gate is not editing. It is a pass/fail check. If I am rewriting paragraphs, the generation failed.
+- The approval gate is not where content gets made. It is where bad content gets stopped.
 - Template variety is the current bottleneck. More templates, not abandoning the system, is the fix.
 
 ---
 
-The gap between having an idea and having a published post is where most content goes to die.
+Writing has never been my strength.
 
-I have ideas. What I do not have is time to develop every one into a post, design the creative, write the caption, format for two platforms, and hit publish — all while running marketing for a [watch retailer](https://www.altherr.de) doing eight figures in revenue. Something has to give.
+I am good at expressing thoughts that come to me when I speak. As I speak, more thoughts come, more ideas develop. The writing-down part — I have never had the patience for it. That is why I like YouTube and live streams. I do not have to sit down and develop something slowly. It just flows, and I cut afterwards.
 
-Many people solve this by posting less. I solved it by building a pipeline.
+So when I started building a personal brand that required written content — blog posts, LinkedIn, Instagram — I faced a choice. Either force myself to become a writer, or build a system that lets me stay a speaker.
 
-This is what that pipeline actually looks like. Not the polished version. The version that runs right now, with its flaws and holes and the five things that broke along the way.
+I chose the system.
+
+This is what it looks like. Not the polished version. The version that runs right now, with its flaws and holes and the five things that broke along the way.
 
 ## What the pipeline actually does
 
@@ -57,9 +59,11 @@ The agent I call Gary handles everything between "I have an idea" and "this is r
 
 What Gary does not do is think. It does not have opinions, real experience, or skin in the game. That is where the interview step comes in.
 
-Before Gary writes a single word, it asks me questions. Not generic ones. Targeted questions based on the keyword research it ran before the conversation. What was the specific frustration? What would I tell someone starting from zero? What surprised me about building this? My answers are what make the content worth reading. Gary's job is to turn those answers into something well-structured, properly formatted, and ready to ship.
+Before Gary writes a single word, it asks me questions. Not generic ones. Targeted questions based on the keyword research it ran before the conversation. What was the specific frustration? What would I tell someone starting from zero? What surprised me about building this? I answer by voice memo — two or three minutes, whatever comes to mind. Gary turns those answers into a structured draft.
 
 The result is content that sounds like me, because the thinking is mine. The execution is automated.
+
+This is not a workaround for laziness. It is a deliberate choice to play to strength. I am better at thinking out loud than at typing. The pipeline lets me do what I am good at and automates what I am not.
 
 ## The architecture, plainly
 
@@ -95,21 +99,31 @@ Building this, I expected the technical parts to be the hard part. They were not
 
 I needed portrait 4:5 slides for LinkedIn carousels. The `pageSize` field exists in the Slides API data model. It does not exist in `batchUpdate`. You cannot set it programmatically. The workaround is embarrassingly simple: set the page size once, manually, in the Google Slides UI. Every clone inherits it. The template becomes the source of truth for anything the API cannot control.
 
+*The lesson: when an API has a documented field that the update endpoint ignores, the template is your real API.*
+
 **2. Emoji rendering fails in server-side exports.**
 
 The thread emoji on carousel slides was set to white, confirmed white in the API data, correctly positioned. It did not appear in exports. The root cause: the Inter font has no emoji glyphs. The Google Slides server-side PNG renderer has no emoji fallback. If the font cannot render the character, the character disappears. The fix: paste the emoji as an image element directly into the template. Images always render. Text emoji never will in this pipeline.
+
+*The lesson: if the font cannot render it, the server cannot export it. Use images for anything that must appear.*
 
 **3. LinkedIn image uploads are separate from post creation.**
 
 Most tutorials show a single API call to create a post with an image. That is not how it works. You initialise an image upload, get a URL, upload the binary, collect the resulting image URN, then create the post with a multiImage content block referencing those URNs. Three separate API calls. The documentation mentions this. Most tutorials do not.
 
+*The lesson: the documentation is accurate. The tutorials are not. Read the documentation.*
+
 **4. Instagram requires publicly accessible image URLs.**
 
 Instagram's Graph API does not accept image uploads directly. You create a media container with a public URL, then publish it. The images must already be hosted somewhere Instagram's servers can fetch them. Local files or signed URLs do not work. This means the generation step must upload to a public CDN before the publish step can run.
 
+*The lesson: Instagram's servers need to fetch your image. If they cannot reach it, they cannot publish it.*
+
 **5. Template variety limits creative range.**
 
 Templates are necessary for automation. Gary needs a consistent structure to work from. But templates limit variety. The carousels I can generate today follow two formats: photo header and X/Twitter screenshot style. That is a narrower creative range than I would choose if I were designing from scratch every time. The fix is more templates, not abandoning the system.
+
+*The lesson: automation requires constraints. The art is choosing constraints that still produce good work.*
 
 ## The content atom layer
 
@@ -139,20 +153,11 @@ LinkedIn and Instagram also get separate copy. Different platform, different cha
 
 ## What this actually costs
 
-The tool stack is deliberately minimal:
-
-- OpenClaw (agent orchestration) — free, self-hosted
-- Gemini 2.5 Flash (atom extraction) — ~$0.01 per post
-- Google Slides API (carousel generation) — free
-- GitHub API (publish trigger) — free
-- Netlify (hosting + serverless functions) — free tier
-- LinkedIn REST API + Instagram Graph API — free
-- DataForSEO (keyword research) — ~$0.05 per query
-- Notion (atom database) — free
+The tool stack is deliberately minimal. OpenClaw runs the agents. Gemini extracts atoms. Google Slides generates carousels. GitHub, Netlify, LinkedIn, Instagram handle the rest. DataForSEO does keyword research. Notion stores the atoms.
 
 Total cost per blog post: under $0.50. Total cost per carousel: zero. The only real cost is the time to build the system — and that is a one-time investment.
 
-## What I still have not fixed
+## What is still broken
 
 This is version one. It works. It is not complete.
 
@@ -163,6 +168,12 @@ This is version one. It works. It is not complete.
 **Performance feedback is manual.** I track LinkedIn impressions and Instagram saves, but the data does not flow back into the atom database automatically. I have to check each post and update the atom record by hand. The loop is closed in theory. In practice, it is open.
 
 **Template variety is the real bottleneck.** Two carousel templates is not enough. I need five or six to keep the feed from looking robotic. Each template requires design work in Google Slides, then testing in the generation pipeline. That is the work I am doing now.
+
+**The process is over-engineered.** My instructions live in too many places — skills, memory files, conversation history — and sometimes they contradict each other. I throw ideas at the wall, they get documented differently in different places, and the system becomes less reliable. My humanity gets in the way.
+
+I should have taken more time at the beginning to think it through and build it as straightforward as possible. Instead, I iterated my way into complexity. We are where we are, and I am working toward a better future.
+
+The other problem: context. Sometimes things are in my head that I did not share before. The output could be better if I were more consistent about feeding the system. That is what feedback is for — but feedback is a patch on a process that should not need so many patches.
 
 ## Why personal input is non-negotiable
 
@@ -178,14 +189,18 @@ If the content is not lasting and original, there is no point publishing it. The
 
 Most creators and marketers are stuck optimising process when they should be eliminating it. The difference between "I streamlined my workflow" and "I automated my pipeline" is not semantic. One still requires you in the chair. The other does not.
 
-This pipeline took one working session to build. It will produce every piece of content I publish for the rest of the year. The marginal cost of the next post is two minutes of writing a brief and one click to approve. The marginal cost of the fiftieth post is the same.
+The core of this pipeline took one working session to build. The patching has been ongoing ever since. The marginal cost of the next post is two minutes of speaking into a voice memo and one click to approve. The marginal cost of the fiftieth post is the same.
 
 And the five PNGs the script produces are not locked to LinkedIn. The same files go to Instagram, Facebook, anywhere that accepts images. Build the generation layer once, and distribution becomes a configuration problem, not a production problem.
 
 The tools exist. The APIs are free. The only cost is the willingness to treat content creation as an engineering problem, not a creative ritual.
 
+But that willingness is the hard part. Most people will not do it. They will keep treating content as a creative ritual, keep spending hours on posts that could take minutes, keep wondering why their output does not scale.
+
+The pipeline is not the point. The point is what the pipeline makes possible: showing up consistently, with original thinking, without burning out on the mechanics. That is the moat. Not the tools. The consistency.
+
 ---
 
-*This post was produced through the exact pipeline it describes. Gary interviewed me, wrote the draft based on my answers, and I approved it before it went live.*
+*This post was produced through the exact pipeline it describes. I spoke into a voice memo, Gary asked questions, wrote the draft based on my answers, and I approved it before it went live.*
 
 *Want to understand where your marketing operation sits on the agentic curve? [Take the Autonomy Score →](/autonomy-score/)*
