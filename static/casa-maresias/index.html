@@ -58,6 +58,15 @@
         window.location = url;
       }
     };
+    // Google Ads conversion — only fires on actual WhatsApp click
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18156640658',
+      'event_callback': callback,
+      'event_timeout': 2000,
+      'value': 4950000.0,
+      'currency': 'BRL'
+    });
+    // GA4 outbound click tracking
     gtag('event', 'manual_event_OUTBOUND_CLICK', {
       'event_callback': callback,
       'event_timeout': 2000,
@@ -2112,12 +2121,7 @@ function handleSubmit(e) {
  };
  }
  
- // Track conversion
- gtag('event', 'conversion', {
- 'send_to': 'AW-18156640658',
- 'value': 4950000.0,
- 'currency': 'BRL'
- });
+ // Note: conversion tracked on WhatsApp click, not form submission
  } else {
  // Soft rejection
  unqualified.classList.add('visible');
