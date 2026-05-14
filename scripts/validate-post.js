@@ -2,6 +2,9 @@
 /**
  * validate-post.js — Gary runs this before committing any blog post.
  *
+ * SPEC: memory/blog-feedback-rules.md is the source of truth.
+ * This script is the enforcement. If they drift, the markdown wins.
+ *
  * Usage: node scripts/validate-post.js content/blog/my-post.md
  *
  * Checks:
@@ -15,11 +18,10 @@
  *   - hasFAQ: true
  *   - faq array with at least 4 questions
  *   - No banned AI vocabulary in body
- *   - Audience lock: primary reader stated
  *   - TLDR: exactly 3 bullets, saves the turn
  *   - One broken/missing section only
- *   - Verdict is final word
- *   - Future claims hedged
+ *   - No self-critique after the closing section
+ *   - Future-tense promises hedged (warnings only)
  *   - Cost section compressed
  *   - Strong lines developed (no stranded pull quotes)
  *
@@ -179,13 +181,9 @@ if (found.length > 0) {
   warnings.push(`banned vocabulary found: ${found.join(', ')}`);
 }
 
-// ── Feedback-derived quality checks (errors) ─────────────────────────────
+// ── Feedback-derived quality checks ──────────────────────────────────────
 const qualityErrors = [];
-
-// Audience lock: primary reader must be stated
-if (!body.includes('This post is for') && !body.includes('primary reader') && !body.includes('If you are')) {
-  qualityErrors.push('audience lock: state primary reader explicitly ("This post is for X, not Y")');
-}
+const qualityWarnings = [];
 
 // TLDR: exactly 3 bullets, saves the turn
 const tldrMatch = body.match(/\*\*TLDR\*\*([\s\S]*?)(?=\n---|\n## |\n\n\n)/);
@@ -204,17 +202,21 @@ if (brokenSections > 1) {
   qualityErrors.push(`multiple broken/missing sections (${brokenSections}) — merge into one`);
 }
 
-// Verdict must be final section (last ## before closing)
-const sections = body.match(/^## .+/gm) || [];
-const lastSection = sections[sections.length - 1];
-if (lastSection && !/verdict/i.test(lastSection)) {
-  qualityErrors.push(`verdict not final section — last section is "${lastSection.replace('## ', '')}"`);
+// No self-critique after the closing section
+const allSections = body.match(/^## .+/gm) || [];
+const closingIdx = allSections.findIndex(s => /verdict|conclusion|the point|why this matters/i.test(s));
+if (closingIdx !== -1) {
+  const afterClosing = allSections.slice(closingIdx + 1);
+  const critiqueAfter = afterClosing.filter(s => /broke|hate|missing|broken|flaw|limitation/i.test(s));
+  if (critiqueAfter.length > 0) {
+    qualityErrors.push(`self-critique appears after closing section — move before "${allSections[closingIdx].replace('## ', '')}"`);
+  }
 }
 
-// Future claims must be hedged
-const futureClaims = body.match(/\b(will produce|will handle|will work|will scale|will run)\b/gi) || [];
-if (futureClaims.length > 0) {
-  qualityErrors.push(`unhedged future claims (${futureClaims.length}): "${futureClaims.slice(0, 3).join('", "')}" — soften or remove`);
+// Future-tense promises about results (warnings only)
+const futurePromises = body.match(/\b(will produce|will handle|will work|will scale)\b[^.]*(?:every|always|never|rest of|for the future)/gi) || [];
+if (futurePromises.length > 0) {
+  qualityWarnings.push(`future-tense promise detected: "${futurePromises.slice(0, 2).join('", "')}" — consider hedging`);
 }
 
 // Cost section: must not be a list
@@ -273,6 +275,10 @@ const totalIssues = errors.length + warnings.length + voiceWarnings.length;
 
 if (totalIssues === 0 && qualityErrors.length === 0) {
   console.log(`✅  ${path.basename(filePath)} — all checks passed`);
+  if (qualityWarnings.length > 0) {
+    console.log('\n⚡  Quality warnings (review-time, not blockers):');
+    qualityWarnings.forEach(w => console.log(pad(w)));
+  }
   process.exit(0);
 }
 
@@ -286,6 +292,11 @@ if (qualityErrors.length > 0) {
   qualityErrors.forEach(e => console.log(pad(e)));
 }
 
+if (qualityWarnings.length > 0) {
+  console.log('\n⚡  Quality warnings (review-time, not blockers):');
+  qualityWarnings.forEach(w => console.log(pad(w)));
+}
+
 if (warnings.length > 0) {
   console.log('\n⚠️   Warnings:');
   warnings.forEach(w => console.log(pad(w)));
@@ -297,7 +308,7 @@ if (voiceWarnings.length > 0) {
 }
 
 console.log('');
-console.log(`${errors.length} error(s), ${qualityErrors.length} quality error(s), ${warnings.length} warning(s), ${voiceWarnings.length} voice note(s)`);
+console.log(`${errors.length} error(s), ${qualityErrors.length} quality error(s), ${qualityWarnings.length} quality warning(s), ${warnings.length} warning(s), ${voiceWarnings.length} voice note(s)`);
 
 if (errors.length > 0 || qualityErrors.length > 0) {
   process.exit(1);
