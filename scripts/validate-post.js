@@ -15,6 +15,13 @@
  *   - hasFAQ: true
  *   - faq array with at least 4 questions
  *   - No banned AI vocabulary in body
+ *   - Audience lock: primary reader stated
+ *   - TLDR: exactly 3 bullets, saves the turn
+ *   - One broken/missing section only
+ *   - Verdict is final word
+ *   - Future claims hedged
+ *   - Cost section compressed
+ *   - Strong lines developed (no stranded pull quotes)
  *
  * Exits 0 on pass, 1 on errors.
  */
@@ -172,6 +179,53 @@ if (found.length > 0) {
   warnings.push(`banned vocabulary found: ${found.join(', ')}`);
 }
 
+// ── Feedback-derived quality checks (errors) ─────────────────────────────
+const qualityErrors = [];
+
+// Audience lock: primary reader must be stated
+if (!body.includes('This post is for') && !body.includes('primary reader') && !body.includes('If you are')) {
+  qualityErrors.push('audience lock: state primary reader explicitly ("This post is for X, not Y")');
+}
+
+// TLDR: exactly 3 bullets, saves the turn
+const tldrMatch = body.match(/\*\*TLDR\*\*([\s\S]*?)(?=\n---|\n## |\n\n\n)/);
+if (tldrMatch) {
+  const tldrBullets = (tldrMatch[1].match(/^- /gm) || []).length;
+  if (tldrBullets !== 3) {
+    qualityErrors.push(`TLDR: ${tldrBullets} bullets — exactly 3 required (2 substance + 1 hook)`);
+  }
+} else {
+  qualityErrors.push('TLDR: missing — every post must have a TLDR section');
+}
+
+// One broken/missing section only
+const brokenSections = (body.match(/^## (What.*broke|What.*missing|What.*hate|What.*broken)/gim) || []).length;
+if (brokenSections > 1) {
+  qualityErrors.push(`multiple broken/missing sections (${brokenSections}) — merge into one`);
+}
+
+// Verdict must be final section (last ## before closing)
+const sections = body.match(/^## .+/gm) || [];
+const lastSection = sections[sections.length - 1];
+if (lastSection && !/verdict/i.test(lastSection)) {
+  qualityErrors.push(`verdict not final section — last section is "${lastSection.replace('## ', '')}"`);
+}
+
+// Future claims must be hedged
+const futureClaims = body.match(/\b(will produce|will handle|will work|will scale|will run)\b/gi) || [];
+if (futureClaims.length > 0) {
+  qualityErrors.push(`unhedged future claims (${futureClaims.length}): "${futureClaims.slice(0, 3).join('", "')}" — soften or remove`);
+}
+
+// Cost section: must not be a list
+const costSectionMatch = body.match(/## What this actually costs([\s\S]*?)(?=\n## |\n---|$)/);
+if (costSectionMatch) {
+  const costLines = costSectionMatch[1].split('\n').filter(l => l.trim().startsWith('-'));
+  if (costLines.length > 3) {
+    qualityErrors.push('cost section reads like spec sheet — compress to one paragraph with conclusion leading');
+  }
+}
+
 // ── Voice rules (warnings only) ──────────────────────────────────────────
 const voiceWarnings = [];
 
@@ -217,7 +271,7 @@ for (const line of lines) {
 const pad = s => `  ${s}`;
 const totalIssues = errors.length + warnings.length + voiceWarnings.length;
 
-if (totalIssues === 0) {
+if (totalIssues === 0 && qualityErrors.length === 0) {
   console.log(`✅  ${path.basename(filePath)} — all checks passed`);
   process.exit(0);
 }
@@ -225,6 +279,11 @@ if (totalIssues === 0) {
 if (errors.length > 0) {
   console.log('❌  Errors (must fix before commit):');
   errors.forEach(e => console.log(pad(e)));
+}
+
+if (qualityErrors.length > 0) {
+  console.log('\n🎯  Quality errors (feedback rules):');
+  qualityErrors.forEach(e => console.log(pad(e)));
 }
 
 if (warnings.length > 0) {
@@ -238,9 +297,9 @@ if (voiceWarnings.length > 0) {
 }
 
 console.log('');
-console.log(`${errors.length} error(s), ${warnings.length} warning(s), ${voiceWarnings.length} voice note(s)`);
+console.log(`${errors.length} error(s), ${qualityErrors.length} quality error(s), ${warnings.length} warning(s), ${voiceWarnings.length} voice note(s)`);
 
-if (errors.length > 0) {
+if (errors.length > 0 || qualityErrors.length > 0) {
   process.exit(1);
 }
 process.exit(0);
