@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Review: Blog to Social Pipeline v1</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f0f;
+      color: #e5e5e5;
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    .header {
+      border-bottom: 1px solid #333;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .header h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .meta { color: #888; font-size: 0.875rem; }
+    .meta span { margin-right: 1.5rem; }
+    .content {
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .content h2 { font-size: 1.25rem; margin: 1.5rem 0 0.75rem; color: #fff; }
+    .content h3 { font-size: 1.1rem; margin: 1.25rem 0 0.5rem; color: #ccc; }
+    .content p { margin-bottom: 1rem; }
+    .content ul { margin: 0.75rem 0 1rem 1.5rem; }
+    .content li { margin-bottom: 0.5rem; }
+    .content a { color: #e07428; }
+    .content strong { color: #fff; }
+    .content em { color: #ccc; }
+    .actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #333;
+    }
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .btn-approve { background: #22c55e; color: #fff; }
+    .btn-revise { background: #f59e0b; color: #fff; }
+    .btn-delete { background: #ef4444; color: #fff; }
+    .feedback {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.75rem;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: #e5e5e5;
+      font-size: 1rem;
+      display: none;
+    }
+    .feedback.active { display: block; }
+    .status { margin-top: 1rem; padding: 1rem; border-radius: 6px; display: none; }
+    .status.success { background: #14532d; display: block; }
+    .status.error { background: #7f1d1d; display: block; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Blog to Social: The Pipeline That Actually Runs My Content</h1>
+      <div class="meta">
+        <span>Type: Blog Post</span>
+        <span>Pillar: Agentic Marketing</span>
+        <span>Created: May 14, 2026</span>
+      </div>
+    </div>
+
+    <div class="content">
+      <p><strong>TLDR</strong></p>
+      <ul>
+        <li>One blog post feeds every social platform through content atoms — distilled insights, not quotes.</li>
+        <li>The pipeline runs on OpenClaw, Gemini, Google Slides API, and Netlify functions. Tool cost: under $20 per month.</li>
+        <li>Five things broke during the build. Each one revealed a gap between API documentation and API reality.</li>
+        <li>The approval gate is not editing. It is a pass/fail check. If I am rewriting paragraphs, the generation failed.</li>
+        <li>Template variety is the current bottleneck. More templates, not abandoning the system, is the fix.</li>
+      </ul>
+
+      <p>The gap between having an idea and having a published post is where most content goes to die.</p>
+
+      <p>I have ideas. What I do not have is time to develop every one into a post, design the creative, write the caption, format for two platforms, and hit publish — all while running marketing for a <a href="https://www.altherr.de">watch retailer</a> doing eight figures in revenue. Something has to give.</p>
+
+      <p>Many people solve this by posting less. I solved it by building a pipeline.</p>
+
+      <p>This is what that pipeline actually looks like. Not the polished version. The version that runs right now, with its flaws and holes and the five things that broke along the way.</p>
+
+      <h2>What the pipeline actually does</h2>
+
+      <p>The agent I call Gary handles everything between "I have an idea" and "this is ready for your approval." That includes keyword research, structuring the content, writing the article, formatting for LinkedIn and Instagram, generating the carousel slides, and creating a review page where I can see both platform previews before anything goes live.</p>
+
+      <p>What Gary does not do is think. It does not have opinions, real experience, or skin in the game. That is where the interview step comes in.</p>
+
+      <p>Before Gary writes a single word, it asks me questions. Not generic ones. Targeted questions based on the keyword research it ran before the conversation. What was the specific frustration? What would I tell someone starting from zero? What surprised me about building this? My answers are what make the content worth reading. Gary's job is to turn those answers into something well-structured, properly formatted, and ready to ship.</p>
+
+      <p>The result is content that sounds like me, because the thinking is mine. The execution is automated.</p>
+
+      <h2>The architecture, plainly</h2>
+
+      <p>Here is what runs under the hood:</p>
+
+      <ol>
+        <li><strong>Brief</strong> — I describe the topic and core angle to Gary</li>
+        <li><strong>Research</strong> — Gary runs keyword analysis via <a href="https://dataforseo.com">DataForSEO</a> to find the right search terms and assess competition</li>
+        <li><strong>Interview</strong> — Gary asks 5–7 targeted questions; I answer in plain language</li>
+        <li><strong>Generation</strong> — Gary writes the blog post (full frontmatter, FAQs, proper structure) and drafts captions for both LinkedIn and Instagram</li>
+        <li><strong>Atom extraction</strong> — <a href="https://deepmind.google/technologies/gemini/flash/">Gemini 2.5 Flash</a> reads the published post and identifies 6–10 content atoms, each stored in a <a href="https://notion.so">Notion</a> database with metadata: source post, type (data point / provocation / decision / mechanism), platform fit, and status</li>
+        <li><strong>Social build</strong> — Gary picks an atom, reads the full source article for context, writes a carousel brief (hook, tension, proof, reframe, CTA), and generates five PNGs via the <a href="https://developers.google.com/workspace/slides/api/guides">Google Slides API</a></li>
+        <li><strong>Review</strong> — Gary commits everything to a private review page with native-style platform previews</li>
+        <li><strong>Approval</strong> — I read through, check for false claims and flow, hit Approve</li>
+        <li><strong>Publish</strong> — one function call: GitHub API flips the blog post from draft to live, Netlify rebuilds, Google Indexing API gets notified, and the social posts go out to LinkedIn and Instagram simultaneously. Telegram confirms it worked.</li>
+      </ol>
+
+      <p>The whole thing from approval to live post takes under 60 seconds.</p>
+
+      <h2>Where I actually sit in this process</h2>
+
+      <p>Not at a desk writing. Not in Canva designing slides. At an approval gate.</p>
+
+      <p>When I review a post, I am checking three things: does it make any false claims, does it flow well enough that I would actually read it, and would it genuinely interest someone in my audience. If the answer to all three is yes, I approve. If something is off, I hit Revise and write one sentence of feedback. Gary rewrites and resubmits.</p>
+
+      <p>That is the whole job. Everything else is automated.</p>
+
+      <p>The important thing to understand about this model: the approval gate is not where the content gets made. It is where bad content gets stopped. If I am rewriting paragraphs at the approval step, the generation step failed. The bar is either "this is good enough to publish as-is" or "this needs to be regenerated." There is no in-between state where I become a human editor.</p>
+
+      <h2>What actually broke</h2>
+
+      <p>Building this, I expected the technical parts to be the hard part. They were not.</p>
+
+      <p><strong>1. Google Slides API cannot change page size.</strong></p>
+      <p>I needed portrait 4:5 slides for LinkedIn carousels. The <code>pageSize</code> field exists in the Slides API data model. It does not exist in <code>batchUpdate</code>. You cannot set it programmatically. The workaround is embarrassingly simple: set the page size once, manually, in the Google Slides UI. Every clone inherits it. The template becomes the source of truth for anything the API cannot control.</p>
+
+      <p><strong>2. Emoji rendering fails in server-side exports.</strong></p>
+      <p>The thread emoji on carousel slides was set to white, confirmed white in the API data, correctly positioned. It did not appear in exports. The root cause: the Inter font has no emoji glyphs. The Google Slides server-side PNG renderer has no emoji fallback. If the font cannot render the character, the character disappears. The fix: paste the emoji as an image element directly into the template. Images always render. Text emoji never will in this pipeline.</p>
+
+      <p><strong>3. LinkedIn image uploads are separate from post creation.</strong></p>
+      <p>Most tutorials show a single API call to create a post with an image. That is not how it works. You initialise an image upload, get a URL, upload the binary, collect the resulting image URN, then create the post with a multiImage content block referencing those URNs. Three separate API calls. The documentation mentions this. Most tutorials do not.</p>
+
+      <p><strong>4. Instagram requires publicly accessible image URLs.</strong></p>
+      <p>Instagram's Graph API does not accept image uploads directly. You create a media container with a public URL, then publish it. The images must already be hosted somewhere Instagram's servers can fetch them. Local files or signed URLs do not work. This means the generation step must upload to a public CDN before the publish step can run.</p>
+
+      <p><strong>5. Template variety limits creative range.</strong></p>
+      <p>Templates are necessary for automation. Gary needs a consistent structure to work from. But templates limit variety. The carousels I can generate today follow two formats: photo header and X/Twitter screenshot style. That is a narrower creative range than I would choose if I were designing from scratch every time. The fix is more templates, not abandoning the system.</p>
+
+      <h2>The content atom layer</h2>
+
+      <p>This is the part most content teams get wrong.</p>
+
+      <p>They have a blog post. They want social content. So they extract a quote, post it on LinkedIn, screenshot it for Instagram, and call that repurposing. Each derivative loses a bit of the original argument. The Instagram post is a weaker version of the LinkedIn post, which is a weaker version of the article. Nobody notices because the audience differs on each platform. But the internal logic is gone.</p>
+
+      <p>I solved this by building what I call a content atom pipeline.</p>
+
+      <p>An atom is a distilled insight from a long-form piece — a specific claim, decision, or proof point that can stand alone. "At ALTHERR, we replaced two marketing roles with <a href="https://n8n.io">N8N</a> workflows in December. Headcount dropped. Output held." That is an atom. It contains a subject, a claim, and a proof. It is not a quote; it is a compressed argument.</p>
+
+      <p>Every blog post I publish now gets run through an extraction step. Gemini 2.5 Flash reads the article and identifies 6–10 atoms. Each atom lands in a Notion database. That database is the source of truth for all content planning.</p>
+
+      <p>When Gary picks an atom to build from, the first step is always reading the full source article. The atom is the entry point, not the brief. A good content brief without the surrounding context produces thin copy. The article carries the detail, the failure, the specific reasoning that makes a post worth reading.</p>
+
+      <h2>The double-click principle</h2>
+
+      <p>The rule I care most about: slides and caption are two different information layers.</p>
+
+      <p>Slides stand alone. Someone who never reads the caption gets the full idea. The hook stops the scroll, the tension frames the problem, the proof is specific and named, the reframe lands the insight.</p>
+
+      <p>The caption carries what the slides do not show. Not a written summary of what is already visible. The story behind the decision, the failure that preceded the success, the context that makes the proof meaningful. Someone who swipes through the carousel and then reads the caption should learn something new.</p>
+
+      <p>Many content teams do the opposite. They write the slides, then summarise them in the caption. The result is redundant — people who read captions stop reading because they already saw the point.</p>
+
+      <p>LinkedIn and Instagram also get separate copy. Different platform, different character range, different hashtag logic, different tone. The atom is the shared idea. The execution is platform-native.</p>
+
+      <h2>What this actually costs</h2>
+
+      <p>The tool stack is deliberately minimal:</p>
+
+      <ul>
+        <li>OpenClaw (agent orchestration) — free, self-hosted</li>
+        <li>Gemini 2.5 Flash (atom extraction) — ~$0.01 per post</li>
+        <li>Google Slides API (carousel generation) — free</li>
+        <li>GitHub API (publish trigger) — free</li>
+        <li>Netlify (hosting + serverless functions) — free tier</li>
+        <li>LinkedIn REST API + Instagram Graph API — free</li>
+        <li>DataForSEO (keyword research) — ~$0.05 per query</li>
+        <li>Notion (atom database) — free</li>
+      </ul>
+
+      <p>Total cost per blog post: under $0.50. Total cost per carousel: zero. The only real cost is the time to build the system — and that is a one-time investment.</p>
+
+      <h2>What I still have not fixed</h2>
+
+      <p>This is version one. It works. It is not complete.</p>
+
+      <p><strong>Video is missing.</strong> I have not automated YouTube shorts or Reels. The pipeline handles static images and text. Video requires a different generation layer — likely <a href="https://www.heygen.com">HeyGen</a> or similar — and I have not found one that clears my quality bar.</p>
+
+      <p><strong>Email is missing.</strong> The newsletter is still manual. I write it, or Gary drafts it and I rewrite it. The atom pipeline could feed email, but the format is different — longer, more narrative, less punchy. I have not built the bridge.</p>
+
+      <p><strong>Performance feedback is manual.</strong> I track LinkedIn impressions and Instagram saves, but the data does not flow back into the atom database automatically. I have to check each post and update the atom record by hand. The loop is closed in theory. In practice, it is open.</p>
+
+      <p><strong>Template variety is the real bottleneck.</strong> Two carousel templates is not enough. I need five or six to keep the feed from looking robotic. Each template requires design work in Google Slides, then testing in the generation pipeline. That is the work I am doing now.</p>
+
+      <h2>Why personal input is non-negotiable</h2>
+
+      <p>There is a version of this pipeline that skips the interview step entirely. Gary generates a brief from a topic keyword, writes the post, submits for approval. It is faster.</p>
+
+      <p>It also produces content that has no reason to exist.</p>
+
+      <p>There are already many articles about content automation. What it does not have is my specific experience building this at a company I have run marketing for since 2020, with the specific constraints of a bootstrapped operation, validated on my own setup before I trust it with a real business. That context is what makes a post original. That is what the interview extracts.</p>
+
+      <p>If the content is not lasting and original, there is no point publishing it. The pipeline exists to scale the output of ideas that are worth scaling, not to manufacture volume for its own sake.</p>
+
+      <h2>The verdict</h2>
+
+      <p>Most creators and marketers are stuck optimising process when they should be eliminating it. The difference between "I streamlined my workflow" and "I automated my pipeline" is not semantic. One still requires you in the chair. The other does not.</p>
+
+      <p>This pipeline took one working session to build. It will produce every piece of content I publish for the rest of the year. The marginal cost of the next post is two minutes of writing a brief and one click to approve. The marginal cost of the fiftieth post is the same.</p>
+
+      <p>And the five PNGs the script produces are not locked to LinkedIn. The same files go to Instagram, Facebook, anywhere that accepts images. Build the generation layer once, and distribution becomes a configuration problem, not a production problem.</p>
+
+      <p>The tools exist. The APIs are free. The only cost is the willingness to treat content creation as an engineering problem, not a creative ritual.</p>
+
+      <hr style="border: none; border-top: 1px solid #333; margin: 2rem 0;">
+
+      <p><em>This post was produced through the exact pipeline it describes. Gary interviewed me, wrote the draft based on my answers, and I approved it before it went live.</em></p>
+
+      <p><em>Want to understand where your marketing operation sits on the agentic curve? <a href="/autonomy-score/">Take the Autonomy Score →</a></em></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-approve" onclick="approve()">✅ Approve</button>
+      <button class="btn btn-revise" onclick="showFeedback()">🔄 Revise</button>
+      <button class="btn btn-delete" onclick="del()">🗑️ Delete</button>
+    </div>
+
+    <textarea class="feedback" id="feedback" placeholder="What needs to change? One sentence is enough."></textarea>
+    <button class="btn btn-revise" id="submit-revision" style="display:none; margin-top:0.5rem;" onclick="revise()">Submit Revision Request</button>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <script>
+    const slug = 'blog-to-social-pipeline-v1';
+
+    function showFeedback() {
+      document.getElementById('feedback').classList.add('active');
+      document.getElementById('submit-revision').style.display = 'inline-block';
+    }
+
+    async function approve() {
+      try {
+        const res = await fetch('/.netlify/functions/content-approval', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug, action: 'approve' })
+        });
+        const data = await res.json();
+        showStatus(data.message || 'Approved and published!', 'success');
+      } catch (e) {
+        showStatus('Error: ' + e.message, 'error');
+      }
+    }
+
+    async function revise() {
+      const feedback = document.getElementById('feedback').value;
+      if (!feedback.trim()) {
+        showStatus('Please enter feedback before submitting.', 'error');
+        return;
+      }
+      try {
+        const res = await fetch('/.netlify/functions/content-approval', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug, action: 'revise', feedback })
+        });
+        const data = await res.json();
+        showStatus(data.message || 'Revision requested.', 'success');
+      } catch (e) {
+        showStatus('Error: ' + e.message, 'error');
+      }
+    }
+
+    async function del() {
+      if (!confirm('Delete this content permanently?')) return;
+      try {
+        const res = await fetch('/.netlify/functions/content-approval', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug, action: 'delete' })
+        });
+        const data = await res.json();
+        showStatus(data.message || 'Deleted.', 'success');
+      } catch (e) {
+        showStatus('Error: ' + e.message, 'error');
+      }
+    }
+
+    function showStatus(msg, type) {
+      const el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = 'status ' + type;
+    }
+  </script>
+</body>
+</html>
