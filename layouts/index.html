@@ -153,41 +153,8 @@
   <div class="footer-copy">&copy; {{ now.Year }} Benedict Schweiger</div>
 </footer>
 
-<!-- Email form handlers -->
+<!-- Email form handler -->
 <script>
-async function handleHeroEmail(e) {
-  e.preventDefault();
-  const input = document.getElementById('hero-email');
-  const status = document.getElementById('hero-email-status');
-  const btn = e.target.querySelector('button');
-  const email = input.value.trim();
-
-  btn.disabled = true;
-  btn.textContent = '...';
-
-  try {
-    const res = await fetch('/.netlify/functions/brevo-subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, source: 'homepage-hero' })
-    });
-    if (res.ok) {
-      status.textContent = "You're in. First issue lands shortly.";
-      status.style.color = '#2a7a4e';
-      input.value = '';
-    } else {
-      throw new Error('HTTP ' + res.status);
-    }
-  } catch (err) {
-    status.textContent = 'Something went wrong. Please try again.';
-    status.style.color = '#c0392b';
-    btn.disabled = false;
-    btn.textContent = 'Get the Brief →';
-  }
-  status.style.display = 'block';
-  return false;
-}
-
 async function handleNlEmail(e) {
   e.preventDefault();
   const input = document.getElementById('nl-email');
