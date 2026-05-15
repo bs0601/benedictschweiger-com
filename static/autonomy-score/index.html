@@ -891,7 +891,7 @@ function submitOptin(){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())){err.classList.add('show');return;}
   err.classList.remove('show');
   const obstacle=(document.getElementById('oiobstacle')||{}).value||'';
-  const newsletterOptIn=document.getElementById('oinewsletter')?.checked||false;
+  const newsletterOptIn=document.getElementById('oinewsletter')?document.getElementById('oinewsletter').checked:false;
   const total=calcTotal();
   const pct=totalPct(total);
   const scores=calcDimScores();
