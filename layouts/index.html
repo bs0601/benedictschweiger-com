@@ -165,7 +165,7 @@ async function handleNlEmail(e) {
   btn.textContent = '...';
 
   try {
-    const res = await fetch('/.netlify/functions/brevo-subscribe', {
+    const res = await fetch('/.netlify/functions/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email, source: 'homepage-newsletter' })

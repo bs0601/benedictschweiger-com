@@ -72,7 +72,7 @@ exports.handler = async function(event) {
   let listIds = [8]; // Default: newsletter
   if (body.score !== undefined) {
     listIds = [8, 9]; // Diagnostic completions
-  } else if (source === "waitlist") {
+  } else if (body.source === "waitlist") {
     listIds = [10]; // Test Stand waitlist
   }
 
