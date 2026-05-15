@@ -46,6 +46,18 @@ exports.handler = async function(event) {
     if (body.q12_label)       attributes.Q12_LABEL       = body.q12_label;
     if (body.q14_label)       attributes.Q14_LABEL       = body.q14_label;
     if (body.biggest_obstacle) attributes.BIGGEST_OBSTACLE = body.biggest_obstacle;
+    if (body.magic_wand)      attributes.MAGIC_WAND      = body.magic_wand;
+    // Demographics
+    if (body.revenue)         attributes.REVENUE         = body.revenue;
+    if (body.adspend)         attributes.ADSPEND         = body.adspend;
+    if (body.aov)             attributes.AOV             = body.aov;
+    if (body.margin)          attributes.MARGIN          = body.margin;
+    // Benchmarks
+    if (body.mer)             attributes.MER             = body.mer;
+    if (body.adspend_share)   attributes.ADSPEND_SHARE   = body.adspend_share;
+    if (body.cost_per_order)  attributes.COST_PER_ORDER  = body.cost_per_order;
+    // Newsletter opt-in
+    if (body.newsletter_optin !== undefined) attributes.NEWSLETTER_OPTIN = body.newsletter_optin ? "Yes" : "No";
 
     // Compute weakest dimension for Brevo automation branching
     const dimScores = { CO: body.score_co, IE: body.score_ie, GA: body.score_ga };
