@@ -65,7 +65,7 @@ exports.handler = async function(event) {
     body: JSON.stringify({
       email,
       attributes,
-      listIds: [8],
+      listIds: body.score !== undefined ? [8, 9] : [8],
       updateEnabled: true
     })
   });
