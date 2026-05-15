@@ -107,13 +107,13 @@
 
     <!-- Description -->
     <p style="font-size:15px;line-height:1.7;color:var(--dg);margin:0 0 20px;">
-      A 5-email onboarding course — the exact moves that shifted me from operator to architect, including a kickoff video walkthrough. Then weekly dispatches from the field: what's working, what I tried that didn't, and the systems I'm building to make it repeatable.
+      Get the live training — the 5-email onboarding course that shifts you from operator to architect, plus instant access to the methodology preview with the full system breakdown.
     </p>
 
     <!-- Email form -->
     <form id="nl-email-form" style="display:flex;gap:8px;margin-bottom:12px;" onsubmit="return handleNlEmail(event)">
       <input type="email" id="nl-email" placeholder="your@email.com" required style="flex:1;border:2px solid var(--lg);border-radius:12px;padding:14px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:var(--blk);background:#fff;outline:none;" />
-      <button type="submit" style="background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Join the list →</button>
+      <button type="submit" style="background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Get the live training →</button>
     </form>
     <p id="nl-email-status" style="font-size:13px;color:var(--mg);margin:0;display:none;"></p>
 
@@ -171,9 +171,8 @@ async function handleNlEmail(e) {
       body: JSON.stringify({ email: email, source: 'homepage-newsletter' })
     });
     if (res.ok) {
-      status.textContent = "You're in. First issue lands shortly.";
-      status.style.color = '#2a7a4e';
-      input.value = '';
+      window.location.href = '/methodology-preview/';
+      return;
     } else {
       throw new Error('HTTP ' + res.status);
     }

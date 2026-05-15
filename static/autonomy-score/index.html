@@ -857,20 +857,13 @@ function buildResults(){
     <div class="optincard">
       <div class="optineyebrow">YOUR BREAKDOWN IS READY</div>
       <div class="optintitle">${founderName}, here is exactly where your score breaks down.</div>
-      <p class="optinsub">You'll receive the 5-email onboarding course — the exact moves that shifted me from operator to architect, including a kickoff video walkthrough. Then weekly dispatches from the field: what's working, what I tried that didn't, and the systems I'm building to make it repeatable.</p>
+      <p class="optinsub">Get the live training — the 5-email onboarding course that shifts you from operator to architect, plus instant access to the methodology preview with the full system breakdown.</p>
       <div id="optinform">
         <input class="optininput" type="email" id="oiemail" placeholder="Your best email" autocomplete="email"/>
         <div class="optinerr" id="oierr">Please enter a valid email address.</div>
         <textarea class="optininput" id="oiobstacle" placeholder="If you had a magic wand, which specific daily marketing task would you permanently delegate tomorrow? (optional)" style="height:88px;resize:none;line-height:1.55;padding-top:13px"></textarea>
-        <label style="display:flex;align-items:flex-start;gap:10px;margin:12px 0 16px;cursor:pointer;">
-          <input type="checkbox" id="oinewsletter" checked style="width:18px;height:18px;accent-color:var(--s);margin-top:2px;flex-shrink:0;">
-          <span style="font-size:13px;color:var(--dg);line-height:1.5;">Also send me <strong style="color:var(--blk)">The Autonomy Brief</strong> — weekly, under four minutes, what I'm building with AI and what's actually working.</span>
-        </label>
-        <button class="btnsend" onclick="submitOptin()">Start the course →</button>
+        <button class="btnsend" onclick="submitOptin()">Get the live training →</button>
         <p class="optinfine">No spam. No pitch. Unsubscribe anytime.</p>
-      </div>
-      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--lg);">
-        <p style="font-size:12px;color:var(--mg);line-height:1.5;margin:0;">After the course, here's what comes next — <a href="/methodology-preview/" style="color:var(--s);text-decoration:none;font-weight:600;">the full methodology →</a></p>
       </div>
     </div>`;
 
@@ -940,7 +933,7 @@ function submitOptin(){
       utm_content:_utmParams.utm_content,
     })
   }).catch(()=>{});
-  buildPlan();show('sp');
+  window.location.href = '/methodology-preview/';
 }
 
 function buildPlan(){
@@ -982,9 +975,9 @@ function buildPlan(){
       <div style="background:var(--bg);border-radius:var(--r);padding:18px 20px;margin-bottom:12px">
         <div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--s);margin-bottom:8px">Next Step</div>
         <div style="font-size:16px;font-weight:800;letter-spacing:-.02em;color:var(--blk);margin-bottom:6px">eComm Marketing Audit · Executive Briefing</div>
-        <div style="font-size:13px;line-height:1.6;color:var(--mg);margin-bottom:14px">30 minutes. We review your growth architecture, identify your biggest manual bottlenecks, and map out exactly what to build next. Zero agency pitches. Pure strategy.</div>
-        <button class="brk-btn" style="background:#1a1a1a;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,0.25);" onclick="window.location.href='https://benedictschweiger.com'">
-          Book your Executive Briefing →
+        <div style="font-size:13px;line-height:1.6;color:var(--mg);margin-bottom:14px">Get the live training — the 5-email onboarding course that shifts you from operator to architect, plus instant access to the methodology preview with the full system breakdown.</div>
+        <button class="brk-btn" style="background:#1a1a1a;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,0.25);" onclick="window.location.href='/methodology-preview/'">
+          Get the live training →
         </button>
       </div>
       <button class="btnrestart" style="margin-top: 0;" onclick="show('sr')">← Back to my score</button>
