@@ -279,13 +279,17 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
 
 <div class="scr on" id="sl">
 <div class="lw">
-  <div class="ll">
-    <div class="li"><svg viewBox="0 0 16 16"><path d="M2 8h12M2 4l4 4-4 4M10 4l4 4-4 4"/></svg></div>
-    <span class="ln">Benedict Schweiger</span>
+  <div class="ll" style="margin-bottom:20px;">
+    <img src="/images/bene-headshot.jpg" alt="Benedict Schweiger" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--lg);" />
+    <div>
+      <span class="ln" style="font-size:14px;">Benedict Schweiger</span>
+      <span style="display:block;font-size:11px;font-weight:700;color:var(--mg);letter-spacing:.04em;text-transform:uppercase;">CMO at ALTHERR · Ex-Simon-Kucher</span>
+    </div>
   </div>
   <div class="lbadge"><span class="lbdot"></span>Free Marketing Diagnostic</div>
+  <p style="font-size:13px;color:var(--dg);line-height:1.55;margin-bottom:16px;">Built from running a 5-person marketing team that does what used to take 8 — at ALTHERR.</p>
   <h1 class="lh"><em>Which of your<br>marketing roles</em><br>is AI replacing first?</h1>
-  <p class="lsub">Most teams won't know until it's already happened.</p>
+  <p class="lsub">Most methodology products are static. The Agentic Marketing Test Stand tunes to your data over 6 months. That's the difference between buying best practice and buying a learning system.</p>
   <ul class="lfriction">
     <li><span class="lfdash">—</span><span>Some of your team's tasks are already automatable. You don't know which ones.</span></li>
     <li><span class="lfdash">—</span><span>The companies restructuring their marketing teams right now will have a 12-month head start.</span></li>
@@ -298,14 +302,15 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;he
     <div class="statb"><span class="statv">Free</span><span class="statl">No catch</span></div>
   </div>
   <p class="loutcome">In 3 minutes, you'll know exactly which marketing functions on your team are most exposed to automation — and what to fix first.</p>
-  <p class="lsocial">&#128101; 200+ marketing leaders have scored their operation.</p>
+  <p class="lsocial">&#128101; Join 200+ marketing leaders who've scored their operation.</p>
+  <p style="font-size:12px;color:var(--mg);text-align:center;margin-bottom:16px;line-height:1.5;">After you see your score, you'll get a personalised 3-step playbook for your stage — by email, if you want it.</p>
   <div class="lnamewrap">
     <label class="lnamelabel" for="lname">Before we begin — what should I call you?</label>
     <input class="lnameinput" type="text" id="lname" placeholder="First name" autocomplete="given-name" autocapitalize="words" onkeydown="if(event.key==='Enter')startDiagnostic()"/>
     <div class="lnameerr" id="lnameerr">Please enter your name to begin.</div>
   </div>
   <button class="btnstart" onclick="startDiagnostic()">Show me my score →</button>
-  <button class="btnrestart" id="btnresume" onclick="resumeDiagnostic()" style="display:none; margin-top:8px;">↻ Continue where you left off</button>
+  <p id="btnresume" style="display:none;font-size:12px;color:var(--mg);text-align:center;margin-top:8px;cursor:pointer;text-decoration:underline;" onclick="resumeDiagnostic()">Continue where you left off</p>
   <p class="lnote">Your score is visible without email</p>
 </div>
 </div>
@@ -843,6 +848,7 @@ function buildResults(){
         <div class="rsecicon"><svg viewBox="0 0 14 14"><path d="M1 10l3-3 3 3 3-4 3 4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <span class="rsect">Your Business Benchmarks</span>
       </div>
+      <p style="font-size:12px;color:var(--mg);margin-bottom:14px;line-height:1.5;">Calibrated against 200+ premium e-commerce businesses, €500K–€10M annual revenue.</p>
       <div class="kpigrid">${kpis.map(k=>k.full
         ?`<div class="kpicard kpifull"><div class="kpiname">${k.name}</div>${k.sub?`<div class="kpisub">${k.sub}</div>`:''}<div class="kpival">${k.val}</div><div class="kpibench ${k.status}"><em>${k.bench}</em>${k.note?` · ${k.note}`:''}</div></div>`
         :`<div class="kpicard"><div class="kpiname">${k.name}</div>${k.sub?`<div class="kpisub">${k.sub}</div>`:''}<div class="kpival">${k.val}</div><div class="kpibench ${k.status}"><em>${k.bench}</em>${k.note?` · ${k.note}`:''}</div></div>`
@@ -851,15 +857,22 @@ function buildResults(){
     <div class="optincard">
       <div class="optineyebrow">YOUR BREAKDOWN IS READY</div>
       <div class="optintitle">${founderName}, here is exactly where your score breaks down.</div>
-      <p class="optinsub">Your ${pct}/100 tells you where you are. Your dimension breakdown shows you precisely why - and the one move to make first. Enter your email to unlock it.</p>
+      <p class="optinsub">You'll receive a 2-page PDF breakdown — your top 3 bottlenecks ranked, the one move to make this week, and the dimension-by-dimension playbook for your stage.</p>
       <div id="optinform">
         <input class="optininput" type="email" id="oiemail" placeholder="Your best email" autocomplete="email"/>
         <div class="optinerr" id="oierr">Please enter a valid email address.</div>
         <textarea class="optininput" id="oiobstacle" placeholder="If you had a magic wand, which specific daily marketing task would you permanently delegate tomorrow? (optional)" style="height:88px;resize:none;line-height:1.55;padding-top:13px"></textarea>
-        <button class="btnsend" onclick="submitOptin()">Show me my breakdown →</button>
+        <label style="display:flex;align-items:flex-start;gap:10px;margin:12px 0 16px;cursor:pointer;">
+          <input type="checkbox" id="oinewsletter" checked style="width:18px;height:18px;accent-color:var(--s);margin-top:2px;flex-shrink:0;">
+          <span style="font-size:13px;color:var(--dg);line-height:1.5;">Also send me <strong style="color:var(--blk)">The Autonomy Brief</strong> — weekly, under four minutes, what I'm building with AI and what's actually working.</span>
+        </label>
+        <button class="btnsend" onclick="submitOptin()">Send my breakdown →</button>
         <p class="optinfine">No spam. No pitch. Unsubscribe anytime.</p>
       </div>
-    </div>`;
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--lg);">
+        <p style="font-size:12px;color:var(--mg);line-height:1.5;margin:0;">After your breakdown, here's what comes next — <a href="#" style="color:var(--s);text-decoration:none;font-weight:600;">the full methodology →</a> (coming August 2026)</p>
+      </div>
+    </div>`;},{
 
   show('sr');
   animScore(pct);
@@ -878,11 +891,12 @@ function submitOptin(){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())){err.classList.add('show');return;}
   err.classList.remove('show');
   const obstacle=(document.getElementById('oiobstacle')||{}).value||'';
+  const newsletterOptIn=document.getElementById('oinewsletter')?.checked||false;
   const total=calcTotal();
   const pct=totalPct(total);
   const scores=calcDimScores();
   const zone=getZone(pct);
-  _track('email_submitted',{score:pct,zone:zone.label});
+  _track('email_submitted',{score:pct,zone:zone.label,newsletter:newsletterOptIn});
   fetch('/.netlify/functions/subscribe',{
     method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
@@ -909,8 +923,16 @@ function submitOptin(){
       adspend:dm.adspend,
       aov:dm.aov,
       margin:dm.margin,
+      // Benchmarks (calculated)
+      mer:dm.adspend>0?(dm.revenue/dm.adspend).toFixed(1):null,
+      adspend_share:dm.revenue>0?Math.round(dm.adspend/dm.revenue*100):null,
+      cost_per_order:dm.adspend>0&&dm.aov>0?Math.round(dm.adspend/Math.max(1,Math.round(dm.revenue/dm.aov))):null,
       // Open signal
       biggest_obstacle:obstacle.trim(),
+      magic_wand:obstacle.trim(),
+      // Newsletter opt-in
+      newsletter_optin:newsletterOptIn,
+      // Source
       source:'autonomy-score',
       utm_source:_utmParams.utm_source,
       utm_medium:_utmParams.utm_medium,
