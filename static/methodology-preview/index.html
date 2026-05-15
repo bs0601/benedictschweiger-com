@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#ffffff"/>
+<title>From Execution to System — Benedict Schweiger</title>
+<meta name="description" content="The 3 decisions that separate operators from architects. Free 5-part training on building agentic marketing systems."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--s:#C4622D;--slt:#F5EBE4;--blk:#1a1a1a;--dg:#484848;--mg:#717171;--lg:#e0e0e0;--bg:#f7f7f7;--w:#fff;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--blk);background:var(--w);line-height:1.6}
+.w{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* HERO */
+.hero{padding:60px 20px 40px;text-align:center;background:var(--w)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--slt);color:var(--s);font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:20px;text-transform:uppercase;letter-spacing:.05em}
+.hero-h{font-size:clamp(28px,6vw,44px);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:16px;max-width:600px;margin-left:auto;margin-right:auto}
+.hero-h em{color:var(--s);font-style:normal}
+.hero-sub{font-size:17px;color:var(--dg);max-width:520px;margin:0 auto 32px;line-height:1.6}
+
+/* VIDEO PLACEHOLDER */
+.video-wrap{max-width:640px;margin:0 auto 48px;background:var(--blk);border-radius:16px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative}
+.video-placeholder{text-align:center;color:var(--w);padding:20px}
+.video-placeholder svg{width:64px;height:64px;margin-bottom:16px;opacity:.6}
+.video-placeholder p{font-size:14px;color:var(--mg);margin:0}
+.video-placeholder .video-label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--s);margin-bottom:8px}
+
+/* MODULES */
+.modules{padding:0 20px 60px}
+.module{background:var(--bg);border-radius:16px;padding:32px;margin-bottom:16px}
+.module-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:var(--s);color:var(--w);font-size:14px;font-weight:700;border-radius:8px;margin-bottom:12px}
+.module-locked{opacity:.5}
+.module-locked .module-number{background:var(--lg);color:var(--mg)}
+.module h3{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-.02em}
+.module p{font-size:15px;color:var(--dg);line-height:1.7;margin-bottom:16px}
+.module-topics{list-style:none;display:flex;flex-direction:column;gap:8px}
+.module-topics li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--dg)}
+.module-topics li::before{content:"→";color:var(--s);font-weight:700;flex-shrink:0}
+.module-cta{display:inline-block;margin-top:16px;font-size:14px;font-weight:600;color:var(--s);text-decoration:none}
+
+/* CTA SECTION */
+.cta-section{background:var(--blk);color:var(--w);padding:60px 20px;text-align:center}
+.cta-section h2{font-size:clamp(24px,5vw,36px);font-weight:800;margin-bottom:16px;letter-spacing:-.02em}
+.cta-section p{font-size:16px;color:var(--mg);max-width:480px;margin:0 auto 24px;line-height:1.6}
+.cta-btn{display:inline-block;background:var(--s);color:var(--w);text-decoration:none;padding:16px 32px;border-radius:12px;font-size:15px;font-weight:700}
+
+/* FOOTER */
+footer{padding:32px 20px;text-align:center;border-top:1px solid var(--lg)}
+footer p{font-size:13px;color:var(--mg)}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Free Training</div>
+  <h1 class="hero-h">From Execution to System:<br>The 3 Decisions That Separate<br><em>Operators</em> from <em>Architects</em></h1>
+  <p class="hero-sub">Most methodology products are static. The Agentic Marketing Test Stand tunes to your data over 6 months. That's the difference between buying best practice and buying a learning system.</p>
+</div>
+
+<!-- VIDEO PLACEHOLDER -->
+<div class="w">
+  <div class="video-wrap">
+    <div class="video-placeholder">
+      <div class="video-label">Video Coming Soon</div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      <p>The OpenClaw Moment — How I Replaced 3 Marketing Roles with One Machine</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODULES -->
+<div class="modules">
+  <div class="w">
+
+    <div class="module">
+      <div class="module-number">1</div>
+      <h3>The OpenClaw Moment</h3>
+      <p>How a Mac Studio and a Telegram chat changed my marketing team forever. The day I stopped debugging workflows and started delegating to an agent.</p>
+      <ul class="module-topics">
+        <li>Why physical hardware beats cloud APIs for routine tasks</li>
+        <li>Data control and cost savings with local models</li>
+        <li>The interface revolution: terminal → chat → voice</li>
+        <li>First win: what the agent completed in 30 minutes that used to take 3 hours</li>
+      </ul>
+    </div>
+
+    <div class="module module-locked">
+      <div class="module-number">2</div>
+      <h3>The Interface Revolution</h3>
+      <p>You no longer need to be a programmer to talk to your computer. The barrier dissolved — and what that means for your marketing operation.</p>
+      <ul class="module-topics">
+        <li>Notion as your window into the machine</li>
+        <li>APIs without code: the new literacy</li>
+        <li>From technical skills to clear thinking</li>
+      </ul>
+      <a href="#" class="module-cta">Unlock after watching Module 1 →</a>
+    </div>
+
+    <div class="module module-locked">
+      <div class="module-number">3</div>
+      <h3>Intelligence on Tap</h3>
+      <p>The services that give you superpowers — and how to plug them into your agentic system.</p>
+      <ul class="module-topics">
+        <li>Anthropic Claude (Opus for reasoning, Sonnet for daily work)</li>
+        <li>Google Gemini Deep Research</li>
+        <li>Moonshot AI / Kimi for cost-efficient scale</li>
+        <li>DataforSEO, Granola, and the API economy</li>
+      </ul>
+      <a href="#" class="module-cta">Unlock after completing Module 2 →</a>
+    </div>
+
+    <div class="module module-locked">
+      <div class="module-number">4</div>
+      <h3>The Feedback Loop</h3>
+      <p>Why our system gets better while others break. The compounding secret that static methodologies can't replicate.</p>
+      <ul class="module-topics">
+        <li>Execute → Measure → Adjust → Improve</li>
+        <li>The audit principle: clarity of path = efficiency = success</li>
+        <li>6-month ALTHERR case: what compounded vs. what broke</li>
+      </ul>
+      <a href="#" class="module-cta">Unlock after completing Module 3 →</a>
+    </div>
+
+    <div class="module module-locked">
+      <div class="module-number">5</div>
+      <h3>The Architect's Path</h3>
+      <p>The marketing team of the future — and the 3 decisions that get you there.</p>
+      <ul class="module-topics">
+        <li>Decision 1: Build systems with feedback loops, not static workflows</li>
+        <li>Decision 2: Measure what matters (Marketing Scorecard)</li>
+        <li>Decision 3: Delegate to learning agents, not just people</li>
+        <li>The vision: only humans with expertise and passion remain</li>
+      </ul>
+      <a href="#" class="module-cta">Unlock after completing Module 4 →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="w">
+    <h2>Ready to become an architect?</h2>
+    <p>The Agentic Marketing Test Stand launches November 29. Join the waitlist for founding pricing.</p>
+    <a href="#" class="cta-btn">Join the Waitlist →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Benedict Schweiger · CMO at ALTHERR · Ex-Simon-Kucher</p>
+</footer>
+
+</body>
+</html>
