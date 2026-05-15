@@ -68,6 +68,14 @@ exports.handler = async function(event) {
     }
   }
 
+  // Determine list IDs based on source
+  let listIds = [8]; // Default: newsletter
+  if (body.score !== undefined) {
+    listIds = [8, 9]; // Diagnostic completions
+  } else if (source === "waitlist") {
+    listIds = [10]; // Test Stand waitlist
+  }
+
   const res = await fetch("https://api.brevo.com/v3/contacts", {
     method: "POST",
     headers: {
@@ -77,7 +85,7 @@ exports.handler = async function(event) {
     body: JSON.stringify({
       email,
       attributes,
-      listIds: body.score !== undefined ? [8, 9] : [8],
+      listIds,
       updateEnabled: true
     })
   });
@@ -90,9 +98,8 @@ exports.handler = async function(event) {
     }
   }
 
-  // Send welcome email for /resources signups (not diagnostic)
-  const source = (body.source || "").toLowerCase();
-  const isResourcesSignup = !body.score && source !== "autonomy-score";
+  // Send welcome email for /resources signups (not diagnostic or waitlist)
+  const isResourcesSignup = !body.score && source !== "autonomy-score" && source !== "waitlist";
   if (isResourcesSignup) {
     await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",

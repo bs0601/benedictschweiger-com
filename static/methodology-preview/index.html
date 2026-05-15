@@ -268,14 +268,36 @@ footer p{font-size:13px;color:var(--mg)}
 </footer>
 
 <script>
-function joinWaitlist() {
+async function joinWaitlist() {
   const email = document.getElementById('waitlist-email').value.trim();
+  const btn = document.querySelector('.waitlist-form button');
+  
   if (!email || !email.includes('@')) {
     alert('Please enter a valid email address.');
     return;
   }
-  // TODO: Connect to Brevo waitlist list
-  alert('You\'re on the list. We\'ll notify you when founding pricing opens.');
+  
+  btn.disabled = true;
+  btn.textContent = '...';
+  
+  try {
+    const res = await fetch('/.netlify/functions/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, source: 'waitlist' })
+    });
+    if (res.ok) {
+      btn.textContent = 'You\'re on the list ✓';
+      btn.style.background = '#2a7a4e';
+      document.getElementById('waitlist-email').value = '';
+    } else {
+      throw new Error('HTTP ' + res.status);
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'Join the Waitlist →';
+    alert('Something went wrong. Please try again.');
+  }
 }
 </script>
 
