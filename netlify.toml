@@ -21,6 +21,11 @@
   to = "/resources/"
   status = 301
 
+[[redirects]]
+  from = "/methodology-preview"
+  to = "/methodology-preview/"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
