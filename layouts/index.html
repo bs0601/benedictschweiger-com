@@ -4,10 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <meta name="theme-color" content="#ffffff"/>
-<title>{{ .Site.Title }}</title>
-<meta name="description" content="{{ .Site.Params.description }}"/>
-<meta property="og:title" content="{{ .Site.Title }}"/>
-<meta property="og:description" content="{{ .Site.Params.description }}"/>
+<title>Benedict Schweiger — Agentic Marketing</title>
+<meta name="description" content="The operator-to-architect shift: how marketing leaders build systems that outlast headcount. Real numbers from ALTHERR. CMO, ex-Simon-Kucher."/>
+<meta property="og:title" content="Benedict Schweiger — Agentic Marketing"/>
+<meta property="og:description" content="The operator-to-architect shift: how marketing leaders build systems that outlast headcount. Real numbers from ALTHERR."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="{{ .Site.BaseURL }}"/>
 {{ with (index .Site.Params.images 0) }}<meta property="og:image" content="{{ . }}"/>{{ end }}
@@ -61,63 +61,47 @@
 
   <!-- Headline -->
   <h1 class="hero-h" style="font-size:clamp(32px,7vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.035em;color:var(--blk);margin-bottom:18px;max-width:640px;">
-    From willing to innovative but stuck to building and leveraging AI in your business.
+    The shift from <em style="color:var(--s);font-style:normal;">operator</em> to architect is the defining transition for marketing leaders in 2026.
   </h1>
 
-  <!-- Subhead -->
+  <!-- Wedge sentence -->
   <p class="hero-sub" style="font-size:17px;line-height:1.65;color:var(--dg);max-width:540px;margin-bottom:32px;">
-    You are willing to transform the business. Individual productivity has already increased through AI tool use. You just don't know how to plan, build and scale this into an agentic system.
+    Most methodology products are static. The Agentic Marketing Test Stand tunes to your data over 6 months. That's the difference between buying best practice and buying a learning system.
   </p>
 
-  <p class="hero-sub" style="font-size:17px;line-height:1.65;color:var(--dg);max-width:540px;margin-bottom:32px;">
-    I will help you transform your marketing operations into an AI enabled system that drives sales while cutting costs — whether you are a free ChatGPT user or already manage your own AI agents.
-  </p>
+  <!-- Proof block -->
+  <div class="proof-block" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:0 0 2rem;max-width:600px;">
+    <div class="proof-item" style="text-align:center;">
+      <span style="display:block;font-size:2rem;font-weight:800;color:var(--s);line-height:1;letter-spacing:-.02em;">5</span>
+      <span style="display:block;font-size:.8125rem;color:var(--mg);margin-top:.25rem;line-height:1.4;">people at ALTHERR running what used to take 8</span>
+    </div>
+    <div class="proof-item" style="text-align:center;">
+      <span style="display:block;font-size:2rem;font-weight:800;color:var(--s);line-height:1;letter-spacing:-.02em;">6.1M</span>
+      <span style="display:block;font-size:.8125rem;color:var(--mg);margin-top:.25rem;line-height:1.4;">YouTube views in 12 months</span>
+    </div>
+    <div class="proof-item" style="text-align:center;">
+      <span style="display:block;font-size:2rem;font-weight:800;color:var(--s);line-height:1;letter-spacing:-.02em;">430K</span>
+      <span style="display:block;font-size:.8125rem;color:var(--mg);margin-top:.25rem;line-height:1.4;">email clicks from 12,000 subscribers</span>
+    </div>
+  </div>
 
-  <!-- Email signup -->
+  <!-- Primary CTA: Newsletter signup -->
   <div class="hero-cta-primary" style="max-width:480px;margin-bottom:12px;">
     <form id="hero-email-form" onsubmit="return handleHeroEmail(event)">
       <input type="email" id="hero-email" placeholder="your@email.com" required style="width:100%;border:2px solid var(--lg);border-radius:12px;padding:16px 18px;font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;color:var(--blk);background:#fff;outline:none;margin-bottom:10px;box-sizing:border-box;" />
-      <button type="submit" style="width:100%;background:var(--s);color:#fff;border:none;border-radius:12px;padding:16px 28px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-sizing:border-box;">Sign up and find out how to start →</button>
+      <button type="submit" style="width:100%;background:var(--s);color:#fff;border:none;border-radius:12px;padding:16px 28px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-sizing:border-box;">Get the Brief →</button>
     </form>
     <p id="hero-email-status" style="font-size:13px;color:var(--mg);margin-top:8px;display:none;"></p>
   </div>
+
+  <!-- Secondary CTA: Diagnostic -->
+  <p style="font-size:13px;color:var(--mg);margin-top:12px;">
+    Or <a href="/autonomy-score/" style="color:var(--s);text-decoration:none;font-weight:600;">take the 3-minute Autonomy Score →</a>
+  </p>
 </div>
 
-<!-- ========== BLOCK 2: PROOF ========== -->
-<div class="proof-section" style="background:var(--bg);padding:64px 20px;">
-  <div class="w" style="max-width:900px;margin:0 auto;">
-    <div class="proof-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;">
-
-      <!-- Proof card 1 -->
-      <div class="proof-card" style="background:#fff;border-radius:16px;padding:28px 24px;border:1.5px solid var(--lg);">
-        <div class="proof-number" style="font-size:36px;font-weight:800;color:var(--s);letter-spacing:-.02em;margin-bottom:8px;">5</div>
-        <p class="proof-text" style="font-size:15px;line-height:1.55;color:var(--dg);margin:0;">
-          <strong style="color:var(--blk);">People.</strong> Replaced 3 roles with AI systems. Output went up.
-        </p>
-      </div>
-
-      <!-- Proof card 2 -->
-      <div class="proof-card" style="background:#fff;border-radius:16px;padding:28px 24px;border:1.5px solid var(--lg);">
-        <div class="proof-number" style="font-size:36px;font-weight:800;color:var(--s);letter-spacing:-.02em;margin-bottom:8px;">6.1M</div>
-        <p class="proof-text" style="font-size:15px;line-height:1.55;color:var(--dg);margin:0;">
-          <strong style="color:var(--blk);">YouTube views</strong> in 12 months. Built a content engine that outlasts ad spend.
-        </p>
-      </div>
-
-      <!-- Proof card 3 -->
-      <div class="proof-card" style="background:#fff;border-radius:16px;padding:28px 24px;border:1.5px solid var(--lg);">
-        <div class="proof-number" style="font-size:36px;font-weight:800;color:var(--s);letter-spacing:-.02em;margin-bottom:8px;">430k</div>
-        <p class="proof-text" style="font-size:15px;line-height:1.55;color:var(--dg);margin:0;">
-          <strong style="color:var(--blk);">Organic clicks</strong> from Google. SEO traffic that compounds while you sleep.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ========== BLOCK 3: NEWSLETTER PREVIEW ========== -->
-<div class="newsletter-section" id="newsletter" style="padding:64px 20px;">
+<!-- ========== BLOCK 2: NEWSLETTER PREVIEW ========== -->
+<div class="newsletter-section" id="newsletter" style="padding:48px 20px;">
   <div class="w" style="max-width:640px;margin:0 auto;">
 
     <!-- Eyebrow -->
@@ -125,17 +109,12 @@
       The Autonomy Brief
     </div>
 
-    <!-- Excerpt (placeholder until first issue ships) -->
-    <div class="nl-excerpt" style="background:#fff;border:1.5px solid var(--lg);border-radius:16px;padding:28px 24px;margin-bottom:28px;">
-      <p style="font-size:15px;line-height:1.7;color:var(--dg);margin:0 0 16px;font-style:italic;">
-        "The first issue ships this month. One idea, fully developed. What shipped that week, what broke, and one thing worth your time. The practitioner's version — not the guru's."
-      </p>
-      <p style="font-size:13px;color:var(--mg);margin:0;">
-        Weekly. 5-minute read. No fluff.
-      </p>
-    </div>
+    <!-- Description -->
+    <p style="font-size:15px;line-height:1.7;color:var(--dg);margin:0 0 20px;">
+      One marketing system. One data point from the field. What I'm building with AI — and what's actually working. Under four minutes. No filler.
+    </p>
 
-    <!-- Email form (second appearance) -->
+    <!-- Email form -->
     <form id="nl-email-form" style="display:flex;gap:8px;margin-bottom:12px;" onsubmit="return handleNlEmail(event)">
       <input type="email" id="nl-email" placeholder="your@email.com" required style="flex:1;border:2px solid var(--lg);border-radius:12px;padding:14px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:var(--blk);background:#fff;outline:none;" />
       <button type="submit" style="background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Join the list →</button>
@@ -146,7 +125,7 @@
 </div>
 
 <!-- ========== EVIDENCE STRIP: RECENT POSTS ========== -->
-<div class="content-section" style="padding:0 20px 64px;">
+<div class="content-section" style="padding:0 20px 48px;">
   <div class="w" style="max-width:900px;margin:0 auto;">
     <p style="font-size:12px;font-weight:700;color:var(--mg);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;">Recent writing</p>
     <div class="post-strip" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
@@ -172,7 +151,7 @@
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/benedictschweiger" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://www.youtube.com/channel/UCoCNyB7omxposyGloac8cA" target="_blank" rel="noopener">YouTube</a>
-    <a href="mailto:benedictschweiger@gmail.com">Email</a>
+    <a href="mailto:info@benedictschweiger.com">Email</a>
   </div>
   <div class="footer-copy">&copy; {{ now.Year }} Benedict Schweiger</div>
 </footer>
