@@ -175,45 +175,13 @@ body.article-page nav{background:rgba(250,250,247,0.96)}
     {{ .Content }}
   </div>
 
-  <!-- MINI DIAGNOSTIC WIDGET -->
+  <!-- AUTONOMY SCORE CTA -->
   <div class="mq-widget" id="mqWidget">
-    <!-- State 0: Intro -->
     <div class="mq-state" id="mqs0">
-      <div class="mq-badge">2-min check · free · instant result</div>
-      <div class="mq-headline">AI ROI Curve Locator</div>
-      <p class="mq-sub">Is your AI investment paying off already? 3 questions. 30 seconds. See where you sit on the ROTS curve.</p>
-      <button class="mq-btn-start" onclick="mqStart()">Find my position →</button>
-    </div>
-
-    <!-- States 1–3: Questions (rendered by JS) -->
-    <div class="mq-state mq-hidden" id="mqs1">
-      <div class="mq-progress"><div class="mq-progress-fill" id="mqProgFill" style="width:0%"></div></div>
-      <div class="mq-qnum" id="mqQNum">1 / 3</div>
-      <div class="mq-stem" id="mqStem"></div>
-      <div class="mq-opts" id="mqOpts"></div>
-    </div>
-
-    <!-- State 4: Teaser result + email gate -->
-    <div class="mq-state mq-hidden" id="mqs4">
-      <div class="mq-result-eyebrow" id="mqEyebrow"></div>
-      <div class="mq-result-score" id="mqScoreNum"></div>
-      <div class="mq-result-label">/ 100</div>
-      <div class="mq-result-zone" id="mqZone"></div>
-      <p class="mq-result-sub" id="mqResultSub"></p>
-      <div class="mq-email-wrap">
-        <input class="mq-email-input" type="email" id="mqEmail" placeholder="Your best email" autocomplete="email"/>
-        <div class="mq-email-err mq-hidden" id="mqEmailErr">Enter a valid email address.</div>
-        <button class="mq-btn-submit" onclick="mqSubmit()">See my full breakdown →</button>
-        <p class="mq-fine">No spam. Unsubscribe anytime.</p>
-      </div>
-    </div>
-
-    <!-- State 5: Post-submit -->
-    <div class="mq-state mq-hidden" id="mqs5">
-      <div class="mq-done-icon">✓</div>
-      <div class="mq-done-title" id="mqDoneTitle"></div>
-      <p class="mq-done-sub">Your full breakdown is on its way. Want the complete picture across all 3 dimensions?</p>
-      <a class="mq-btn-full" id="mqFullLink" href="/ai-readiness/">Take the full assessment →</a>
+      <div class="mq-badge">Free Benchmark · 3 minutes · 200+ businesses</div>
+      <div class="mq-headline">Where does your marketing operation sit?</div>
+      <p class="mq-sub">7 questions. Calibrated against €500K–€10M e-commerce businesses. See which of your marketing roles is AI-ready — and which is drifting.</p>
+      <a href="/autonomy-score/?utm_source=blog&utm_medium=end-card&utm_campaign={{ .Slug }}" class="mq-btn-start" style="text-decoration:none;display:inline-block;text-align:center;">Benchmark my operation →</a>
     </div>
   </div>
 </article>
@@ -226,141 +194,15 @@ body.article-page nav{background:rgba(250,250,247,0.96)}
   var paras = prose.querySelectorAll('p');
   if (paras.length < 3) return;
   var cta = document.createElement('a');
-  cta.href = '/ai-readiness/?utm_source=blog&utm_medium=inline-cta&utm_campaign=mid-article';
+  cta.href = '/autonomy-score/?utm_source=blog&utm_medium=inline-cta&utm_campaign=mid-article';
   cta.className = 'diag-inline';
-  cta.innerHTML = '<div class="diag-inline-title">AI ROI Curve Locator</div>' +
-    '<div class="diag-inline-sub">Is your AI investment paying off already? 3 questions. 30 seconds.</div>' +
-    '<div class="diag-inline-btn">Find my position →</div>';
+  cta.innerHTML = '<div class="diag-inline-title">Autonomy Score</div>' +
+    '<div class="diag-inline-sub">7 questions. Calibrated against 200+ premium e-commerce businesses. See where your marketing operation sits.</div>' +
+    '<div class="diag-inline-btn">Benchmark my operation →</div>';
   paras[2].insertAdjacentElement('afterend', cta);
 })();
 
-// ── MINI DIAGNOSTIC WIDGET ──
-var MQ_QS = [
-  {stem:'How much are you spending on AI tools and APIs each month?',
-   opts:['Nothing. I use free tiers only.','Under $100. A few ChatGPT Plus seats.','$100–500. Multiple tools, some API usage.','$500+. Significant token spend across the team.'],
-   pts:[0,30,60,100]},
-  {stem:'What measurable output has AI produced for your business so far?',
-   opts:['None. Just experimentation.','Some saved hours, but no tracked ROI.','Clear time savings in specific workflows.','Revenue-attributable results or headcount reduction.'],
-   pts:[0,30,80,100]},
-  {stem:'How would you describe your current AI phase?',
-   opts:['Just starting — evaluating tools.','Quick wins — some tasks automated.','Deep integration — AI runs parts of my operation.','Flywheel — AI output compounds without more input.'],
-   pts:[0,30,80,100]}
-];
-var mqCur = 0, mqAns = [null, null, null];
 
-function mqShow(id) {
-  ['mqs0','mqs1','mqs4','mqs5'].forEach(function(s){ document.getElementById(s).classList.add('mq-hidden'); });
-  document.getElementById(id).classList.remove('mq-hidden');
-}
-
-function mqStart() {
-  mqCur = 0; mqAns = [null, null, null];
-  mqRenderQ();
-  mqShow('mqs1');
-}
-
-function mqRenderQ() {
-  var q = MQ_QS[mqCur];
-  document.getElementById('mqQNum').textContent = (mqCur + 1) + ' / 3';
-  document.getElementById('mqProgFill').style.width = ((mqCur / 3) * 100) + '%';
-  document.getElementById('mqStem').textContent = q.stem;
-  var optsEl = document.getElementById('mqOpts');
-  optsEl.innerHTML = '';
-  q.opts.forEach(function(opt, i) {
-    var btn = document.createElement('button');
-    btn.className = 'mq-opt';
-    btn.textContent = opt;
-    if (mqAns[mqCur] === i) btn.classList.add('selected');
-    btn.onclick = function() { mqSelect(i); };
-    optsEl.appendChild(btn);
-  });
-}
-
-function mqSelect(i) {
-  mqAns[mqCur] = i;
-  // highlight selection
-  document.querySelectorAll('.mq-opt').forEach(function(b, idx) {
-    b.classList.toggle('selected', idx === i);
-  });
-  // auto-advance after short delay
-  setTimeout(function() {
-    if (mqCur < 2) {
-      mqCur++;
-      mqRenderQ();
-    } else {
-      mqShowResult();
-    }
-  }, 280);
-}
-
-function mqScore() {
-  return mqAns.reduce(function(sum, a, i) {
-    return sum + (a !== null ? MQ_QS[i].pts[a] : 0);
-  }, 0);
-}
-
-function mqShowResult() {
-  var raw = mqScore();
-  var pct = Math.round(raw / 300 * 100);
-  document.getElementById('mqProgFill').style.width = '100%';
-
-  var zone, sub;
-  if (pct < 34) {
-    zone = 'Cost Position.';
-    sub = 'You\'re spending more than you\'re getting back. Most companies are here — the question is how long you stay.';
-  } else if (pct < 67) {
-    zone = 'Early ROTS.';
-    sub = 'You\'re starting to see returns, but the math is still fragile. The full assessment shows you where to push.';
-  } else {
-    zone = 'ROTS-Positive.';
-    sub = 'Your AI investment is compounding. The assessment identifies where to scale next.';
-  }
-
-  document.getElementById('mqEyebrow').textContent = 'YOUR SCORE';
-  document.getElementById('mqScoreNum').textContent = pct;
-  document.getElementById('mqZone').textContent = zone;
-  document.getElementById('mqResultSub').textContent = sub;
-  mqShow('mqs4');
-}
-
-function mqSubmit() {
-  var email = (document.getElementById('mqEmail').value || '').trim();
-  var err = document.getElementById('mqEmailErr');
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    err.classList.remove('mq-hidden');
-    return;
-  }
-  err.classList.add('mq-hidden');
-
-  var pct = Math.round(mqScore() / 300 * 100);
-  var slug = window.location.pathname.replace(/\//g, '-').replace(/^-|-$/g, '') || 'blog';
-
-  // fire GA4 event if available
-  if (typeof gtag === 'function') gtag('event', 'mini_diagnostic_submitted', {score: pct, source: slug});
-
-  fetch('/.netlify/functions/subscribe', {
-    method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      timestamp: new Date().toISOString(),
-      email: email,
-      score: pct,
-      zone: pct < 34 ? 'high-exposure' : pct < 67 ? 'in-transition' : 'well-positioned',
-      source: 'blog-mini-diagnostic',
-      utm_source: 'blog',
-      utm_medium: 'end-card',
-      utm_campaign: slug,
-      q1_label: mqAns[0] !== null ? MQ_QS[0].opts[mqAns[0]] : null,
-      q2_label: mqAns[1] !== null ? MQ_QS[1].opts[mqAns[1]] : null,
-      q3_label: mqAns[2] !== null ? MQ_QS[2].opts[mqAns[2]] : null,
-    })
-  }).catch(function(){});
-
-  var scoreEl = document.getElementById('mqDoneTitle');
-  scoreEl.textContent = 'You scored ' + pct + '/100. Check your inbox.';
-  var fullLink = document.getElementById('mqFullLink');
-  fullLink.href = '/ai-readiness/?utm_source=blog&utm_medium=mini-diagnostic&utm_campaign=' + slug;
-  mqShow('mqs5');
-}
 </script>
 
 <!-- FOOTER -->

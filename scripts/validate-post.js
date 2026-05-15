@@ -97,8 +97,9 @@ if (!slug) {
 
 // ── Draft ─────────────────────────────────────────────────────────────────
 const draft = get('draft');
-if (draft !== 'true') {
-  errors.push(`draft must be "true" before approval (found: "${draft || 'missing'}")`);
+// Allow draft: false for direct publishes (Bene approved via Telegram)
+if (draft !== 'true' && draft !== 'false') {
+  errors.push(`draft must be "true" or "false" (found: "${draft || 'missing'}")`);
 }
 
 // ── Author ────────────────────────────────────────────────────────────────
@@ -186,14 +187,15 @@ const qualityErrors = [];
 const qualityWarnings = [];
 
 // TLDR: exactly 3 bullets, saves the turn
-const tldrMatch = body.match(/\*\*TLDR\*\*([\s\S]*?)(?=\n---|\n## |\n\n\n)/);
+// Accepts ## TL;DR or ## TL;DR header format
+const tldrMatch = body.match(/## TL;?DR\*?\*?([\s\S]*?)(?=\n---|\n## |\n\n\n)/);
 if (tldrMatch) {
   const tldrBullets = (tldrMatch[1].match(/^- /gm) || []).length;
   if (tldrBullets !== 3) {
     qualityErrors.push(`TLDR: ${tldrBullets} bullets — exactly 3 required (2 substance + 1 hook)`);
   }
 } else {
-  qualityErrors.push('TLDR: missing — every post must have a TLDR section');
+  qualityErrors.push('TLDR: missing — every post must have a TL;DR section');
 }
 
 // One broken/missing section only
