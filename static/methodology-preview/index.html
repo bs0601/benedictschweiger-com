@@ -4,8 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <meta name="theme-color" content="#ffffff"/>
-<title>From Execution to System — Benedict Schweiger</title>
-<meta name="description" content="The 3 decisions that separate operators from architects. Free 5-part training on building agentic marketing systems."/>
+<title>The Agentic Marketing Test Stand — Coming November 2026</title>
+<meta name="description" content="A 6-month guided implementation to build an agentic marketing system that compounds. Preview the methodology and join the waitlist."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -21,32 +21,73 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--blk);background:var(
 .hero-h{font-size:clamp(28px,6vw,44px);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:16px;max-width:600px;margin-left:auto;margin-right:auto}
 .hero-h em{color:var(--s);font-style:normal}
 .hero-sub{font-size:17px;color:var(--dg);max-width:520px;margin:0 auto 32px;line-height:1.6}
+.hero-date{font-size:14px;color:var(--mg);margin-bottom:32px}
 
-/* VIDEO PLACEHOLDER */
+/* VIDEO */
 .video-wrap{max-width:640px;margin:0 auto 48px;background:var(--blk);border-radius:16px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative}
 .video-placeholder{text-align:center;color:var(--w);padding:20px}
 .video-placeholder svg{width:64px;height:64px;margin-bottom:16px;opacity:.6}
 .video-placeholder p{font-size:14px;color:var(--mg);margin:0}
 .video-placeholder .video-label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--s);margin-bottom:8px}
 
-/* MODULES */
-.modules{padding:0 20px 60px}
-.module{background:var(--bg);border-radius:16px;padding:32px;margin-bottom:16px}
-.module-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:var(--s);color:var(--w);font-size:14px;font-weight:700;border-radius:8px;margin-bottom:12px}
-.module-locked{opacity:.5}
-.module-locked .module-number{background:var(--lg);color:var(--mg)}
-.module h3{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-.02em}
-.module p{font-size:15px;color:var(--dg);line-height:1.7;margin-bottom:16px}
-.module-topics{list-style:none;display:flex;flex-direction:column;gap:8px}
-.module-topics li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--dg)}
-.module-topics li::before{content:"→";color:var(--s);font-weight:700;flex-shrink:0}
-.module-cta{display:inline-block;margin-top:16px;font-size:14px;font-weight:600;color:var(--s);text-decoration:none}
+/* WHAT IS IT */
+.what-is{padding:0 20px 48px}
+.what-is h2{font-size:24px;font-weight:800;margin-bottom:16px;letter-spacing:-.02em}
+.what-is p{font-size:15px;color:var(--dg);line-height:1.7;margin-bottom:16px}
+.what-is .highlight{background:var(--slt);border-left:3px solid var(--s);padding:16px 20px;border-radius:0 12px 12px 0;margin:20px 0}
+.what-is .highlight p{margin:0;font-size:14px;color:var(--dg)}
 
-/* CTA SECTION */
-.cta-section{background:var(--blk);color:var(--w);padding:60px 20px;text-align:center}
-.cta-section h2{font-size:clamp(24px,5vw,36px);font-weight:800;margin-bottom:16px;letter-spacing:-.02em}
-.cta-section p{font-size:16px;color:var(--mg);max-width:480px;margin:0 auto 24px;line-height:1.6}
-.cta-btn{display:inline-block;background:var(--s);color:var(--w);text-decoration:none;padding:16px 32px;border-radius:12px;font-size:15px;font-weight:700}
+/* MODULES */
+.modules{padding:0 20px 48px}
+.modules h2{font-size:24px;font-weight:800;margin-bottom:24px;letter-spacing:-.02em}
+.module{background:var(--bg);border-radius:16px;padding:28px;margin-bottom:16px}
+.module-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.module-number{display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:var(--s);color:var(--w);font-size:14px;font-weight:700;border-radius:8px;flex-shrink:0}
+.module h3{font-size:18px;font-weight:700;letter-spacing:-.02em}
+.module p{font-size:14px;color:var(--dg);line-height:1.65;margin-bottom:12px}
+.module-outcomes{list-style:none;display:flex;flex-direction:column;gap:6px}
+.module-outcomes li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--dg)}
+.module-outcomes li::before{content:"✓";color:var(--s);font-weight:700;flex-shrink:0}
+
+/* FEEDBACK LOOP */
+.feedback{padding:0 20px 48px}
+.feedback h2{font-size:24px;font-weight:800;margin-bottom:16px;letter-spacing:-.02em}
+.feedback-diagram{background:var(--bg);border-radius:16px;padding:28px;text-align:center}
+.feedback-steps{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.feedback-step{background:var(--w);padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--blk);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.feedback-arrow{color:var(--s);font-size:16px;font-weight:700}
+.feedback p{font-size:14px;color:var(--dg);margin:0}
+
+/* DELIVERABLES */
+.deliverables{padding:0 20px 48px}
+.deliverables h2{font-size:24px;font-weight:800;margin-bottom:24px;letter-spacing:-.02em}
+.deliverable-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.deliverable{background:var(--bg);border-radius:12px;padding:20px}
+.deliverable h4{font-size:14px;font-weight:700;margin-bottom:6px}
+.deliverable p{font-size:13px;color:var(--dg);line-height:1.5;margin:0}
+
+/* SUPPORT */
+.support{padding:0 20px 48px}
+.support h2{font-size:24px;font-weight:800;margin-bottom:16px;letter-spacing:-.02em}
+.support-items{display:flex;flex-direction:column;gap:10px}
+.support-item{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--dg)}
+.support-item::before{content:"→";color:var(--s);font-weight:700}
+
+/* PRICING */
+.pricing{background:var(--blk);color:var(--w);padding:48px 20px;text-align:center}
+.pricing h2{font-size:28px;font-weight:800;margin-bottom:8px}
+.pricing .price{font-size:48px;font-weight:800;color:var(--s);margin-bottom:8px}
+.pricing .price-note{font-size:14px;color:var(--mg);margin-bottom:24px}
+.pricing-features{list-style:none;max-width:400px;margin:0 auto 24px;text-align:left}
+.pricing-features li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mg);margin-bottom:8px}
+.pricing-features li::before{content:"✓";color:var(--s);font-weight:700}
+
+/* WAITLIST FORM */
+.waitlist-form{max-width:480px;margin:0 auto}
+.waitlist-form input{width:100%;border:2px solid var(--lg);border-radius:12px;padding:14px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:var(--blk);background:var(--w);outline:none;margin-bottom:10px;box-sizing:border-box}
+.waitlist-form input::placeholder{color:var(--mg)}
+.waitlist-form button{width:100%;background:var(--s);color:var(--w);border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer}
+.waitlist-form p{font-size:12px;color:var(--mg);margin-top:10px}
 
 /* FOOTER */
 footer{padding:32px 20px;text-align:center;border-top:1px solid var(--lg)}
@@ -57,18 +98,31 @@ footer p{font-size:13px;color:var(--mg)}
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">Free Training</div>
-  <h1 class="hero-h">From Execution to System:<br>The 3 Decisions That Separate<br><em>Operators</em> from <em>Architects</em></h1>
-  <p class="hero-sub">Most methodology products are static. The Agentic Marketing Test Stand tunes to your data over 6 months. That's the difference between buying best practice and buying a learning system.</p>
+  <div class="hero-eyebrow">Coming November 2026</div>
+  <h1 class="hero-h">The Agentic Marketing<br><em>Test Stand</em></h1>
+  <p class="hero-sub">A 6-month guided implementation to build a marketing system that runs, measures, and improves without your constant involvement.</p>
+  <p class="hero-date">Launching November 29, 2026</p>
 </div>
 
 <!-- VIDEO PLACEHOLDER -->
 <div class="w">
   <div class="video-wrap">
     <div class="video-placeholder">
-      <div class="video-label">Video Coming Soon</div>
+      <div class="video-label">Preview Video Coming Soon</div>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-      <p>The OpenClaw Moment — How I Replaced 3 Marketing Roles with One Machine</p>
+      <p>See inside the methodology and what you'll build</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT IS IT -->
+<div class="what-is">
+  <div class="w">
+    <h2>What is the Test Stand?</h2>
+    <p>Most methodology products are static. You buy best practices, implement them, and hope they work for your business.</p>
+    <p>The Test Stand is different. It's a learning system that tunes to your data over 6 months. Every 2 weeks: execute, measure, adjust, improve. The system gets smarter. You get freer.</p>
+    <div class="highlight">
+      <p><strong>The result:</strong> A marketing operation that runs without your constant involvement — with clear metrics, documented procedures, and agents handling execution while you focus on strategy.</p>
     </div>
   </div>
 </div>
@@ -76,78 +130,135 @@ footer p{font-size:13px;color:var(--mg)}
 <!-- MODULES -->
 <div class="modules">
   <div class="w">
+    <h2>What You'll Build</h2>
 
     <div class="module">
-      <div class="module-number">1</div>
-      <h3>The OpenClaw Moment</h3>
-      <p>How a Mac Studio and a Telegram chat changed my marketing team forever. The day I stopped debugging workflows and started delegating to an agent.</p>
-      <ul class="module-topics">
-        <li>Why physical hardware beats cloud APIs for routine tasks</li>
-        <li>Data control and cost savings with local models</li>
-        <li>The interface revolution: terminal → chat → voice</li>
-        <li>First win: what the agent completed in 30 minutes that used to take 3 hours</li>
+      <div class="module-header">
+        <div class="module-number">1</div>
+        <h3>Command & Operations</h3>
+      </div>
+      <p>Remove yourself as the bottleneck. Build systems that run without your constant direction.</p>
+      <ul class="module-outcomes">
+        <li>Decision matrix for team autonomy</li>
+        <li>Async-first communication system</li>
+        <li>Documented handoff procedures</li>
+        <li>Marketing runs 3 months without you</li>
       </ul>
     </div>
 
-    <div class="module module-locked">
-      <div class="module-number">2</div>
-      <h3>The Interface Revolution</h3>
-      <p>You no longer need to be a programmer to talk to your computer. The barrier dissolved — and what that means for your marketing operation.</p>
-      <ul class="module-topics">
-        <li>Notion as your window into the machine</li>
-        <li>APIs without code: the new literacy</li>
-        <li>From technical skills to clear thinking</li>
+    <div class="module">
+      <div class="module-header">
+        <div class="module-number">2</div>
+        <h3>Intelligence & Economics</h3>
+      </div>
+      <p>Know what's working and why. Make budget decisions with confidence, not gut feeling.</p>
+      <ul class="module-outcomes">
+        <li>Live Marketing Scorecard dashboard</li>
+        <li>Attribution model you actually trust</li>
+        <li>Creative testing system</li>
+        <li>Unit economics that drive decisions</li>
       </ul>
-      <a href="#" class="module-cta">Unlock after watching Module 1 →</a>
     </div>
 
-    <div class="module module-locked">
-      <div class="module-number">3</div>
-      <h3>Intelligence on Tap</h3>
-      <p>The services that give you superpowers — and how to plug them into your agentic system.</p>
-      <ul class="module-topics">
-        <li>Anthropic Claude (Opus for reasoning, Sonnet for daily work)</li>
-        <li>Google Gemini Deep Research</li>
-        <li>Moonshot AI / Kimi for cost-efficient scale</li>
-        <li>DataforSEO, Granola, and the API economy</li>
+    <div class="module">
+      <div class="module-header">
+        <div class="module-number">3</div>
+        <h3>Growth Architecture</h3>
+      </div>
+      <p>Build compounding growth, not just scaling. Reduce dependency on any single channel.</p>
+      <ul class="module-outcomes">
+        <li>Automated retention flows</li>
+        <li>Channel diversification playbook</li>
+        <li>Loyalty and win-back systems</li>
+        <li>No single point of failure</li>
       </ul>
-      <a href="#" class="module-cta">Unlock after completing Module 2 →</a>
     </div>
-
-    <div class="module module-locked">
-      <div class="module-number">4</div>
-      <h3>The Feedback Loop</h3>
-      <p>Why our system gets better while others break. The compounding secret that static methodologies can't replicate.</p>
-      <ul class="module-topics">
-        <li>Execute → Measure → Adjust → Improve</li>
-        <li>The audit principle: clarity of path = efficiency = success</li>
-        <li>6-month ALTHERR case: what compounded vs. what broke</li>
-      </ul>
-      <a href="#" class="module-cta">Unlock after completing Module 3 →</a>
-    </div>
-
-    <div class="module module-locked">
-      <div class="module-number">5</div>
-      <h3>The Architect's Path</h3>
-      <p>The marketing team of the future — and the 3 decisions that get you there.</p>
-      <ul class="module-topics">
-        <li>Decision 1: Build systems with feedback loops, not static workflows</li>
-        <li>Decision 2: Measure what matters (Marketing Scorecard)</li>
-        <li>Decision 3: Delegate to learning agents, not just people</li>
-        <li>The vision: only humans with expertise and passion remain</li>
-      </ul>
-      <a href="#" class="module-cta">Unlock after completing Module 4 →</a>
-    </div>
-
   </div>
 </div>
 
-<!-- CTA -->
-<div class="cta-section">
+<!-- FEEDBACK LOOP -->
+<div class="feedback">
   <div class="w">
-    <h2>Ready to become an architect?</h2>
-    <p>The Agentic Marketing Test Stand launches November 29. Join the waitlist for founding pricing.</p>
-    <a href="#" class="cta-btn">Join the Waitlist →</a>
+    <h2>The Feedback Loop</h2>
+    <div class="feedback-diagram">
+      <div class="feedback-steps">
+        <div class="feedback-step">Execute</div>
+        <div class="feedback-arrow">→</div>
+        <div class="feedback-step">Measure</div>
+        <div class="feedback-arrow">→</div>
+        <div class="feedback-step">Adjust</div>
+        <div class="feedback-arrow">→</div>
+        <div class="feedback-step">Improve</div>
+      </div>
+      <p>Every 2 weeks, the system tunes to your data. What worked gets amplified. What didn't gets replaced. The system compounds while you sleep.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DELIVERABLES -->
+<div class="deliverables">
+  <div class="w">
+    <h2>What You Get</h2>
+    <div class="deliverable-grid">
+      <div class="deliverable">
+        <h4>Marketing Scorecard</h4>
+        <p>Live dashboard tracking the metrics that actually matter</p>
+      </div>
+      <div class="deliverable">
+        <h4>Agent Operating Procedures</h4>
+        <p>Documented, tested procedures your team can execute</p>
+      </div>
+      <div class="deliverable">
+        <h4>Channel Playbooks</h4>
+        <p>SEO, social, email, paid — each with clear execution steps</p>
+      </div>
+      <div class="deliverable">
+        <h4>Retention Architecture</h4>
+        <p>Automated flows that turn acquisition cost into lifetime profit</p>
+      </div>
+      <div class="deliverable">
+        <h4>6-Month Performance Report</h4>
+        <p>Before/after analysis showing exactly what changed</p>
+      </div>
+      <div class="deliverable">
+        <h4>Private Community</h4>
+        <p>Operators becoming architects, sharing what's working</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPORT -->
+<div class="support">
+  <div class="w">
+    <h2>Support Included</h2>
+    <div class="support-items">
+      <div class="support-item">Weekly office hours with me</div>
+      <div class="support-item">Private community access</div>
+      <div class="support-item">Direct feedback on your Scorecard</div>
+      <div class="support-item">6-month implementation roadmap</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing">
+  <div class="w">
+    <h2>Join the Waitlist</h2>
+    <div class="price">€997</div>
+    <p class="price-note">Founding price for first 50 members. Public price: €1,997.</p>
+    <ul class="pricing-features">
+      <li>6-month guided implementation</li>
+      <li>All modules and deliverables</li>
+      <li>Weekly office hours</li>
+      <li>Private community</li>
+      <li>Lifetime access to materials</li>
+    </ul>
+    <div class="waitlist-form">
+      <input type="email" placeholder="your@email.com" id="waitlist-email"/>
+      <button onclick="joinWaitlist()">Join the Waitlist →</button>
+      <p>You'll be notified when founding pricing opens. No spam.</p>
+    </div>
   </div>
 </div>
 
@@ -155,6 +266,18 @@ footer p{font-size:13px;color:var(--mg)}
 <footer>
   <p>© 2026 Benedict Schweiger · CMO at ALTHERR · Ex-Simon-Kucher</p>
 </footer>
+
+<script>
+function joinWaitlist() {
+  const email = document.getElementById('waitlist-email').value.trim();
+  if (!email || !email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  // TODO: Connect to Brevo waitlist list
+  alert('You\'re on the list. We\'ll notify you when founding pricing opens.');
+}
+</script>
 
 </body>
 </html>
