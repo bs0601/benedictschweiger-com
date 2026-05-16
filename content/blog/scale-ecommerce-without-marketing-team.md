@@ -2,7 +2,7 @@
 title: "How to Scale Past $5M Without a Massive Marketing Team"
 date: 2026-05-16
 slug: "scale-ecommerce-without-marketing-team"
-draft: true
+draft: false
 description: "The $5M ecommerce trap: hiring more marketers feels like progress but becomes overhead you can't justify. Here's the third path nobody talks about."
 author: "Benedict Schweiger"
 tags:
