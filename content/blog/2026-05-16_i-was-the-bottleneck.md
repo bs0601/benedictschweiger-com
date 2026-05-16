@@ -2,7 +2,7 @@
 title: "I Was the Bottleneck: What It Actually Costs to Build Your Own Content System"
 date: 2026-05-16
 slug: "building-hugos-nervous-system"
-draft: false
+draft: true
 description: "I built a content pipeline that scouts, frames, and writes overnight. The hard part wasn't the code. It was accepting that nobody else was coming."
 author: "Benedict Schweiger"
 tags: ["agentic-marketing", "ai-operations", "content-systems", "openclaw"]
