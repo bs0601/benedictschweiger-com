@@ -1209,39 +1209,41 @@
 
         async function loadDashboard() {
             const btn = document.getElementById('refresh-btn');
-            btn.classList.add('spinning');
-            btn.disabled = true;
+            if (btn) {
+                btn.classList.add('spinning');
+                btn.disabled = true;
+            }
+
+            let data = null;
+            let errorMsg = '';
 
             try {
-                // Try local first, then fallback to main site
-                let data = null;
-                try {
-                    const res = await fetch(DASHBOARD_URL + '?t=' + Date.now());
-                    if (res.ok) data = await res.json();
-                } catch (e) {
-                    console.log('Local dashboard not found, trying fallback...');
-                }
-
-                if (!data) {
-                    try {
-                        const res = await fetch(FALLBACK_URL + '?t=' + Date.now());
-                        if (res.ok) data = await res.json();
-                    } catch (e) {
-                        console.log('Fallback also failed');
-                    }
-                }
-
-                if (data) {
-                    renderDashboard(data);
-                    document.getElementById('legacy-stats').style.display = 'none';
+                console.log('[Dashboard] Fetching from:', DASHBOARD_URL);
+                const res = await fetch(DASHBOARD_URL + '?t=' + Date.now());
+                console.log('[Dashboard] Response status:', res.status);
+                if (res.ok) {
+                    data = await res.json();
+                    console.log('[Dashboard] Data loaded:', data);
                 } else {
-                    showDashboardError('Could not load live data. Showing static fallback.');
-                    document.getElementById('legacy-stats').style.display = 'grid';
+                    errorMsg = 'HTTP ' + res.status;
+                    console.log('[Dashboard] Fetch failed:', errorMsg);
                 }
-            } catch (err) {
-                showDashboardError('Error: ' + err.message);
-                document.getElementById('legacy-stats').style.display = 'grid';
-            } finally {
+            } catch (e) {
+                errorMsg = e.message;
+                console.log('[Dashboard] Fetch error:', e);
+            }
+
+            if (data) {
+                renderDashboard(data);
+                const legacy = document.getElementById('legacy-stats');
+                if (legacy) legacy.style.display = 'none';
+            } else {
+                showDashboardError('Could not load live data: ' + errorMsg + '. Showing static fallback.');
+                const legacy = document.getElementById('legacy-stats');
+                if (legacy) legacy.style.display = 'grid';
+            }
+
+            if (btn) {
                 btn.classList.remove('spinning');
                 btn.disabled = false;
             }
