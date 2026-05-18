@@ -1206,7 +1206,6 @@
 
         // Live Dashboard Loader
         const DASHBOARD_URL = '/workflow/dashboard-metrics.json';
-        const FALLBACK_URL = 'https://benedictschweiger.com/workflow/dashboard-metrics.json';
 
         async function loadDashboard() {
             const btn = document.getElementById('refresh-btn');
@@ -1216,56 +1215,25 @@
             }
 
             let data = null;
-            let errorMsg = '';
-
-            // Visible debug output
             const debugDiv = document.getElementById('dashboard-debug');
-            if (debugDiv) debugDiv.textContent = 'Fetching...';
+            if (debugDiv) debugDiv.textContent = 'Loading...';
 
             try {
-                console.log('[Dashboard] Fetching from:', DASHBOARD_URL);
                 const res = await fetch(DASHBOARD_URL + '?t=' + Date.now());
-                console.log('[Dashboard] Response status:', res.status);
-                if (debugDiv) debugDiv.textContent = 'Status: ' + res.status;
                 if (res.ok) {
                     data = await res.json();
-                    console.log('[Dashboard] Data loaded:', data);
-                    if (debugDiv) debugDiv.textContent = 'Data loaded! Views: ' + data.blog.pageviews_28d;
+                    if (debugDiv) debugDiv.textContent = '';
                 } else {
-                    errorMsg = 'HTTP ' + res.status;
-                    console.log('[Dashboard] Fetch failed:', errorMsg);
-                    if (debugDiv) debugDiv.textContent = 'Failed: ' + errorMsg;
+                    if (debugDiv) debugDiv.textContent = 'Server returned ' + res.status;
                 }
             } catch (e) {
-                errorMsg = e.message;
-                console.log('[Dashboard] Fetch error:', e);
-                if (debugDiv) debugDiv.textContent = 'Error: ' + errorMsg;
-                
-                // Fallback to XMLHttpRequest
-                if (debugDiv) debugDiv.textContent = 'Fetch failed, trying XHR...';
-                try {
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('GET', DASHBOARD_URL + '?t=' + Date.now(), false);
-                    xhr.send();
-                    if (xhr.status === 200) {
-                        data = JSON.parse(xhr.responseText);
-                        if (debugDiv) debugDiv.textContent = 'XHR loaded! Views: ' + data.blog.pageviews_28d;
-                    } else {
-                        if (debugDiv) debugDiv.textContent = 'XHR failed: ' + xhr.status;
-                    }
-                } catch (xhrErr) {
-                    if (debugDiv) debugDiv.textContent = 'XHR error: ' + xhrErr.message;
-                }
+                if (debugDiv) debugDiv.textContent = 'Network error: ' + e.message;
             }
 
             if (data) {
                 renderDashboard(data);
                 const legacy = document.getElementById('legacy-stats');
                 if (legacy) legacy.style.display = 'none';
-            } else {
-                showDashboardError('Could not load live data: ' + errorMsg + '. Showing static fallback.');
-                const legacy = document.getElementById('legacy-stats');
-                if (legacy) legacy.style.display = 'grid';
             }
 
             if (btn) {
