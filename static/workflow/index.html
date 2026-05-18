@@ -441,6 +441,7 @@
                 <button class="refresh-btn" id="refresh-btn" onclick="loadDashboard()">↻ Refresh</button>
             </div>
 
+            <div id="dashboard-debug" style="font-size:12px;color:#888;margin-bottom:10px;">Initializing...</div>
             <div class="dashboard-grid" id="dashboard-grid">
                 <!-- Populated by JS -->
                 <div class="kpi-card">
@@ -1217,20 +1218,28 @@
             let data = null;
             let errorMsg = '';
 
+            // Visible debug output
+            const debugDiv = document.getElementById('dashboard-debug');
+            if (debugDiv) debugDiv.textContent = 'Fetching...';
+
             try {
                 console.log('[Dashboard] Fetching from:', DASHBOARD_URL);
                 const res = await fetch(DASHBOARD_URL + '?t=' + Date.now());
                 console.log('[Dashboard] Response status:', res.status);
+                if (debugDiv) debugDiv.textContent = 'Status: ' + res.status;
                 if (res.ok) {
                     data = await res.json();
                     console.log('[Dashboard] Data loaded:', data);
+                    if (debugDiv) debugDiv.textContent = 'Data loaded! Views: ' + data.blog.pageviews_28d;
                 } else {
                     errorMsg = 'HTTP ' + res.status;
                     console.log('[Dashboard] Fetch failed:', errorMsg);
+                    if (debugDiv) debugDiv.textContent = 'Failed: ' + errorMsg;
                 }
             } catch (e) {
                 errorMsg = e.message;
                 console.log('[Dashboard] Fetch error:', e);
+                if (debugDiv) debugDiv.textContent = 'Error: ' + errorMsg;
             }
 
             if (data) {
