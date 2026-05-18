@@ -56,6 +56,7 @@
         .dot-review { background: #fbbf24; }
         .dot-output { background: #f472b6; }
         .dot-auto { background: #a78bfa; }
+        .dot-warning { background: #f87171; }
 
         .workflow-section {
             margin-bottom: 50px;
@@ -130,12 +131,21 @@
             background: #1a1a2e;
             color: #888;
         }
+        .tag-warning {
+            background: rgba(248, 113, 113, 0.15);
+            color: #f87171;
+        }
+        .tag-target {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+        }
 
         .icon-input { background: rgba(74, 222, 128, 0.15); }
         .icon-process { background: rgba(96, 165, 250, 0.15); }
         .icon-review { background: rgba(251, 191, 36, 0.15); }
         .icon-output { background: rgba(244, 114, 182, 0.15); }
         .icon-auto { background: rgba(167, 139, 250, 0.15); }
+        .icon-warning { background: rgba(248, 113, 113, 0.15); }
 
         .arrow-connector {
             text-align: center;
@@ -210,6 +220,12 @@
             color: #888;
             margin-top: 5px;
         }
+        .stat-note {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
 
         .decision-box {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
@@ -221,6 +237,19 @@
         .decision-title {
             font-weight: 600;
             color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(248, 113, 113, 0.1) 0%, rgba(251, 191, 36, 0.1) 100%);
+            border: 1px solid #f87171;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        .warning-title {
+            font-weight: 600;
+            color: #f87171;
             margin-bottom: 10px;
         }
 
@@ -253,6 +282,18 @@
             font-size: 0.9rem;
         }
 
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .status-live { background: rgba(74, 222, 128, 0.15); color: #4ade80; }
+        .status-target { background: rgba(96, 165, 250, 0.15); color: #60a5fa; }
+        .status-blocked { background: rgba(248, 113, 113, 0.15); color: #f87171; }
+
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
             .flow-grid { grid-template-columns: 1fr; }
@@ -271,6 +312,7 @@
                 <div class="legend-item"><div class="legend-dot dot-review"></div> Human Review</div>
                 <div class="legend-item"><div class="legend-dot dot-output"></div> Output / Publish</div>
                 <div class="legend-item"><div class="legend-dot dot-auto"></div> Automated</div>
+                <div class="legend-item"><div class="legend-dot dot-warning"></div> Blocked / At Risk</div>
             </div>
         </header>
 
@@ -278,29 +320,34 @@
             <div class="stat-card">
                 <div class="stat-number">27</div>
                 <div class="stat-label">Scout Sources</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">7</div>
-                <div class="stat-label">Carousels / Week</div>
+                <div class="stat-note">8 RSS + 10 YouTube + 4 Reddit + 1 HN + 1 IG<br>3 blocked by Cloudflare</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">1</div>
-                <div class="stat-label">Blog Article / Week</div>
+                <div class="stat-label">Carousels Produced</div>
+                <div class="stat-note">Target: 7/week<br><span style="color: #f87171;">Never run end-to-end</span></div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">1</div>
-                <div class="stat-label">Newsletter / Week</div>
+                <div class="stat-number">2</div>
+                <div class="stat-label">Blog Articles Live</div>
+                <div class="stat-note">Target: 1/week<br>Last: 2026-05-16</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">100+</div>
-                <div class="stat-label">Scout Items / Night</div>
+                <div class="stat-number">0.5%</div>
+                <div class="stat-label">Scout Pass Rate</div>
+                <div class="stat-note">192 items → 1 card<br>Target: 4-6%</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">~30</div>
+                <div class="stat-label">YouTube Items / Night</div>
+                <div class="stat-note">3 videos/channel × 10 channels<br>3 comments/video</div>
             </div>
         </div>
 
         <!-- SCOUT SYSTEM -->
         <div class="workflow-section">
             <h2 class="section-title">1. Scout System (Intelligence)</h2>
-            <p style="color: #888; margin-bottom: 20px;">Automated nightly intelligence gathering from 27 sources. Runs at 02:00 GMT-3.</p>
+            <p style="color: #888; margin-bottom: 20px;">Automated nightly intelligence gathering. Runs at 02:00 GMT-3. <span class="status-badge status-blocked">BLOCKED</span> — waiting for Bene's ideal-card examples.</p>
             
             <div class="flow-grid">
                 <div class="node">
@@ -311,12 +358,13 @@
                             <div class="node-meta">nightly-scout.py</div>
                         </div>
                     </div>
-                    <div class="node-body">Fetches from 10 YouTube channels, 8 RSS feeds, 4 Reddit subs, HN front page, and Instagram. Uses cursors to avoid re-processing.</div>
+                    <div class="node-body">Fetches from 10 YouTube channels, 8 RSS feeds, 4 Reddit subs, HN front page, and Instagram. Uses cursors to avoid re-processing. 3 RSS feeds blocked by Cloudflare (Klaviyo, Shopify, Anthropic).</div>
                     <div class="node-tags">
                         <span class="tag">YouTube API</span>
                         <span class="tag">RSS</span>
                         <span class="tag">Reddit</span>
                         <span class="tag">HN</span>
+                        <span class="tag-warning">3 blocked</span>
                     </div>
                 </div>
 
@@ -328,11 +376,11 @@
                             <div class="node-meta">scout-framer.py</div>
                         </div>
                     </div>
-                    <div class="node-body">Qwen 3.5 27B (local) extracts transferable insights. Falls back to Gemini 2.5 Flash. Outputs structured JSON with confidence scores.</div>
+                    <div class="node-body">Qwen 3.5 27B (local) extracts transferable insights. Falls back to Gemini 2.5 Flash. Outputs structured JSON with confidence scores. <strong>Problem:</strong> 0.5% pass rate due to over-filtering prompt.</div>
                     <div class="node-tags">
                         <span class="tag">Qwen 3.5 27B</span>
                         <span class="tag">Gemini Flash</span>
-                        <span class="tag">JSON output</span>
+                        <span class="tag-warning">0.5% yield</span>
                     </div>
                 </div>
 
@@ -348,7 +396,6 @@
                     <div class="node-tags">
                         <span class="tag">nomic-embed-text</span>
                         <span class="tag">cosine similarity</span>
-                        <span class="tag">weighted scoring</span>
                     </div>
                 </div>
 
@@ -368,6 +415,16 @@
                 </div>
             </div>
 
+            <div class="warning-box">
+                <div class="warning-title">⚠️ Known Issues</div>
+                <ul style="margin-left: 20px; color: #aaa;">
+                    <li><strong>Over-filtering:</strong> Prompt's "connected to Bene's world" is too narrow. Fix: Bene writes 5-10 ideal-card examples → rewrite prompt with few-shot anchors.</li>
+                    <li><strong>Rejection logging:</strong> Deployed. Review after 7 days of data.</li>
+                    <li><strong>Transcript noise:</strong> YouTube transcripts include 95% filler. Needs summarization pre-pass.</li>
+                    <li><strong>Fallback chain:</strong> If Qwen fails → Gemini Flash. If both fail → item logged, skipped.</li>
+                </ul>
+            </div>
+
             <div class="decision-box">
                 <div class="decision-title">🎯 Human Decision Point</div>
                 <p>Bene reviews 3 cards every morning. Tapping 📝 Atom saves the insight to <code>state/scout-atoms.jsonl</code> for later content production. No card ships without human action.</p>
@@ -377,15 +434,15 @@
         <!-- CONTENT PRODUCTION -->
         <div class="workflow-section">
             <h2 class="section-title">2. Content Production (Gary)</h2>
-            <p style="color: #888; margin-bottom: 20px;">Weekly production cycle. Blog is the anchor; everything else derives from it.</p>
+            <p style="color: #888; margin-bottom: 20px;">Weekly production cycle. Blog is the anchor; everything else derives from it. <span class="status-badge status-target">TARGET STATE</span> — not yet operational at this cadence.</p>
 
             <div class="timeline">
-                <div class="timeline-title">Weekly Production Sequence</div>
+                <div class="timeline-title">Weekly Production Sequence (Target)</div>
                 
                 <div class="timeline-row">
                     <div class="time-badge">Monday</div>
                     <div class="time-desc">
-                        <strong>Keyword Research</strong> — Query DataForSEO against 4 content pillars. Target: 5-7 keyword opportunities. Cross-reference with Carl's strategic priority and Granola transcripts.
+                        <strong>Keyword Research</strong> — Query DataForSEO against 4 content pillars. Target: 5-7 keyword opportunities. Cross-reference with strategic priority.
                     </div>
                     <div class="time-actor">Gary</div>
                 </div>
@@ -393,7 +450,7 @@
                 <div class="timeline-row">
                     <div class="time-badge">Monday</div>
                     <div class="time-desc">
-                        <strong>Interview Questions</strong> — 5-7 targeted questions based on keyword data + Granola + strategic priority. Sent to Bene via Telegram.
+                        <strong>Interview Questions</strong> — 5-7 targeted questions based on keyword data + strategic priority. Sent to Bene via Telegram.
                     </div>
                     <div class="time-actor">Gary → Bene</div>
                 </div>
@@ -423,20 +480,32 @@
                 </div>
             </div>
 
+            <div class="warning-box">
+                <div class="warning-title">⚠️ Current Reality vs Target</div>
+                <ul style="margin-left: 20px; color: #aaa;">
+                    <li><strong>Blog:</strong> 2 posts in ~2 weeks (target: 1/week). Production is ad-hoc, not scheduled.</li>
+                    <li><strong>Carousels:</strong> 1 produced ever. Daily trigger exists but has never fired end-to-end.</li>
+                    <li><strong>Newsletter:</strong> No skill, script, or pipeline exists. Listed as target only.</li>
+                    <li><strong>YouTube:</strong> No scripts produced. Triggered manually when Bene decides to record.</li>
+                    <li><strong>Interview step:</strong> Has happened for some posts, not systematically.</li>
+                </ul>
+            </div>
+
             <div class="flow-grid">
                 <div class="node">
                     <div class="node-header">
                         <div class="node-icon icon-input">📝</div>
                         <div>
                             <div class="node-title">Blog Article</div>
-                            <div class="node-meta">1 per week | SEO-targeted</div>
+                            <div class="node-meta">Target: 1/week | SEO-targeted</div>
                         </div>
                     </div>
-                    <div class="node-body">The anchor content. 1,500-2,500 words. Research-backed + Bene's specific experience. Target: Mon/Wed/Fri publish.</div>
+                    <div class="node-body">The anchor content. 1,500-2,500 words. Research-backed + Bene's specific experience. Currently ad-hoc, not on the Mon-Fri schedule.</div>
                     <div class="node-tags">
                         <span class="tag">Hugo + PaperMod</span>
                         <span class="tag">SEO</span>
                         <span class="tag">Netlify</span>
+                        <span class="tag-target">2 live</span>
                     </div>
                 </div>
 
@@ -445,14 +514,14 @@
                         <div class="node-icon icon-process">🎠</div>
                         <div>
                             <div class="node-title">Carousel Production</div>
-                            <div class="node-meta">7 per week | 5 slides each</div>
+                            <div class="node-meta">Target: 7/week | 5 slides each</div>
                         </div>
                     </div>
-                    <div class="node-body">5-slide LinkedIn/Instagram carousels from content atoms. Two templates: v1 (personal CI) and v2 (X-screenshot style).</div>
+                    <div class="node-body">5-slide LinkedIn/Instagram carousels from content atoms. Two templates: v1 (personal CI) and v2 (X-screenshot style). <strong>Only 1 carousel ever produced.</strong></div>
                     <div class="node-tags">
                         <span class="tag">Google Slides API</span>
                         <span class="tag">PNG + PDF</span>
-                        <span class="tag">v1 / v2</span>
+                        <span class="tag-warning">1 produced</span>
                     </div>
                 </div>
 
@@ -461,13 +530,13 @@
                         <div class="node-icon icon-output">📧</div>
                         <div>
                             <div class="node-title">Newsletter</div>
-                            <div class="node-meta">1 per week | Brevo</div>
+                            <div class="node-meta">Target: 1/week | Brevo</div>
                         </div>
                     </div>
-                    <div class="node-body">Long-form dispatch. Bridges blog depth and carousel brevity. Sent via Brevo API.</div>
+                    <div class="node-body">Long-form dispatch. Bridges blog depth and carousel brevity. <strong>No pipeline exists yet.</strong> Listed in calendar as target only.</div>
                     <div class="node-tags">
                         <span class="tag">Brevo</span>
-                        <span class="tag">Email</span>
+                        <span class="tag-warning">Not built</span>
                     </div>
                 </div>
 
@@ -479,11 +548,98 @@
                             <div class="node-meta">When Bene records</div>
                         </div>
                     </div>
-                    <div class="node-body">Full script + title + description + tags + thumbnail brief. Slide deck (PPTX → PDF). Expands strongest angle into long-form.</div>
+                    <div class="node-body">Full script + title + description + tags + thumbnail brief. Slide deck (PPTX → PDF). <strong>Triggered manually, not automated.</strong></div>
                     <div class="node-tags">
                         <span class="tag">Script</span>
                         <span class="tag">Slide Deck</span>
-                        <span class="tag">Metadata</span>
+                        <span class="tag-warning">Manual</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCOUT → BLOG → SOCIAL FLOW -->
+        <div class="workflow-section">
+            <h2 class="section-title">3. Content Flow: Scout → Blog → Social</h2>
+            <p style="color: #888; margin-bottom: 20px;">How atoms move through the system. Scout feeds blog, blog feeds social.</p>
+
+            <div class="flow-grid">
+                <div class="node">
+                    <div class="node-header">
+                        <div class="node-icon icon-input">📡</div>
+                        <div>
+                            <div class="node-title">Scout Atoms</div>
+                            <div class="node-meta">state/scout-atoms.jsonl</div>
+                        </div>
+                    </div>
+                    <div class="node-body">Insights from 27 sources. Saved when Bene taps 📝 Atom in Telegram. <strong>Primary use:</strong> feed blog article ideas. <strong>Secondary:</strong> become social carousels.</div>
+                    <div class="node-tags">
+                        <span class="tag">JSONL</span>
+                        <span class="tag">Manual save</span>
+                    </div>
+                </div>
+
+                <div class="node">
+                    <div class="node-header">
+                        <div class="node-icon icon-process">📝</div>
+                        <div>
+                            <div class="node-title">Blog Article</div>
+                            <div class="node-meta">content/blog/[slug].md</div>
+                        </div>
+                    </div>
+                    <div class="node-body">Anchor content. Research + Bene's experience. Sources from scout atoms, keyword research, or direct interview.</div>
+                    <div class="node-tags">
+                        <span class="tag">Hugo</span>
+                        <span class="tag">SEO</span>
+                    </div>
+                </div>
+
+                <div class="node">
+                    <div class="node-header">
+                        <div class="node-icon icon-process">⚡</div>
+                        <div>
+                            <div class="node-title">Extract Atoms</div>
+                            <div class="node-meta">extract-atoms.js</div>
+                        </div>
+                    </div>
+                    <div class="node-body">Post-publish: Gemini API extracts 5-10 standalone insights from blog. Writes to Notion Content Atoms DB.</div>
+                    <div class="node-tags">
+                        <span class="tag">Gemini API</span>
+                        <span class="tag">Notion</span>
+                    </div>
+                </div>
+
+                <div class="node">
+                    <div class="node-header">
+                        <div class="node-icon icon-output">🗄️</div>
+                        <div>
+                            <div class="node-title">Notion Atoms DB</div>
+                            <div class="node-meta">Content Atoms Database</div>
+                        </div>
+                    </div>
+                    <div class="node-body">Priority queue for carousel production. Gary queries: starred → unused → LRU. Also receives scout atoms manually.</div>
+                    <div class="node-tags">
+                        <span class="tag">Notion API</span>
+                        <span class="tag">Priority Queue</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow-connector">↓</div>
+
+            <div class="flow-grid">
+                <div class="node">
+                    <div class="node-header">
+                        <div class="node-icon icon-process">🎠</div>
+                        <div>
+                            <div class="node-title">Carousel Production</div>
+                            <div class="node-meta">Daily trigger @ 08:00</div>
+                        </div>
+                    </div>
+                    <div class="node-body">Atom → brief JSON → validation → Google Slides generation → 5 PNGs + PDF. Dual captions (LinkedIn + Instagram).</div>
+                    <div class="node-tags">
+                        <span class="tag">Google Slides API</span>
+                        <span class="tag">PNG + PDF</span>
                     </div>
                 </div>
             </div>
@@ -491,8 +647,8 @@
 
         <!-- CAROUSEL PIPELINE -->
         <div class="workflow-section">
-            <h2 class="section-title">3. Carousel Pipeline (Daily)</h2>
-            <p style="color: #888; margin-bottom: 20px;">Automated daily trigger at 08:00. 7 carousels per week, 1 per day.</p>
+            <h2 class="section-title">4. Carousel Pipeline (Daily)</h2>
+            <p style="color: #888; margin-bottom: 20px;">Automated daily trigger at 08:00. <span class="status-badge status-target">TARGET</span> — has never run end-to-end.</p>
 
             <div class="flow-grid">
                 <div class="node">
@@ -518,7 +674,7 @@
                             <div class="node-meta">Notion Content Atoms DB</div>
                         </div>
                     </div>
-                    <div class="node-body">Gary queries Notion for highest-priority unused atom. Priority: starred by Bene → unused (Times Used = 0) → least-recently-used.</div>
+                    <div class="node-body">Gary queries Notion for highest-priority unused atom. Fallback: scout-atoms.jsonl if Notion fails.</div>
                     <div class="node-tags">
                         <span class="tag">Notion API</span>
                         <span class="tag">Priority Queue</span>
@@ -537,7 +693,6 @@
                     <div class="node-tags">
                         <span class="tag">JSON</span>
                         <span class="tag">Validation</span>
-                        <span class="tag">Limits</span>
                     </div>
                 </div>
 
@@ -549,11 +704,12 @@
                             <div class="node-meta">generate-carousel.py</div>
                         </div>
                     </div>
-                    <div class="node-body">Clones Google Slides template, fills placeholders, exports 5 PNGs + 1 PDF. Templates: v1 (personal CI) or v2 (X-screenshot).</div>
+                    <div class="node-body">Clones Google Slides template, fills placeholders, exports 5 PNGs + 1 PDF. <strong>Failure mode:</strong> API rate limits, template not found.</div>
                     <div class="node-tags">
                         <span class="tag">Google Slides API</span>
                         <span class="tag">PNG</span>
                         <span class="tag">PDF</span>
+                        <span class="tag-warning">Rate limits</span>
                     </div>
                 </div>
             </div>
@@ -584,7 +740,7 @@
                             <div class="node-meta">Telegram PDF + buttons</div>
                         </div>
                     </div>
-                    <div class="node-body">PDF sent to Bene via Telegram. Inline buttons: ✅ Approve → auto-posts to LinkedIn + Instagram. 🔄 Revise → feedback loop.</div>
+                    <div class="node-body">PDF sent to Bene via Telegram. Inline buttons: ✅ Approve → triggers publish scripts. 🔄 Revise → feedback loop.</div>
                     <div class="node-tags">
                         <span class="tag">PDF</span>
                         <span class="tag">Telegram</span>
@@ -596,23 +752,35 @@
                     <div class="node-header">
                         <div class="node-icon icon-output">🚀</div>
                         <div>
-                            <div class="node-title">Auto-Publish</div>
+                            <div class="node-title">Publish on Approval</div>
                             <div class="node-meta">LinkedIn + Instagram</div>
                         </div>
                     </div>
-                    <div class="node-body">On approval: LinkedIn gets PDF document carousel. Instagram gets 5 PNG multi-image carousel. Both scripts run simultaneously.</div>
+                    <div class="node-body">On Bene's ✅ tap: LinkedIn gets PDF document carousel. Instagram gets 5 PNG multi-image carousel. Both scripts run simultaneously.</div>
                     <div class="node-tags">
                         <span class="tag">LinkedIn API</span>
                         <span class="tag">Instagram Graph API</span>
+                        <span class="tag-warning">IG needs public URLs</span>
                     </div>
                 </div>
+            </div>
+
+            <div class="warning-box">
+                <div class="warning-title">⚠️ Failure Modes</div>
+                <ul style="margin-left: 20px; color: #aaa;">
+                    <li><strong>Google Slides API:</strong> Rate limits (100 requests/100 seconds). If hit, retry with exponential backoff.</li>
+                    <li><strong>Template not found:</strong> Falls back to default template ID from config.</li>
+                    <li><strong>Instagram images:</strong> Requires public URLs. Current workaround: ngrok. Production needs S3/CDN.</li>
+                    <li><strong>LinkedIn token:</strong> Expires July 7, 2026. No refresh automation built yet.</li>
+                    <li><strong>Notion API down:</strong> Falls back to local scout-atoms.jsonl for atom selection.</li>
+                </ul>
             </div>
         </div>
 
         <!-- REVIEW PIPELINE -->
         <div class="workflow-section">
-            <h2 class="section-title">4. Review Pipeline (Human Gate)</h2>
-            <p style="color: #888; margin-bottom: 20px;">Every piece of content passes through Bene before publishing. No exceptions. No auto-publish.</p>
+            <h2 class="section-title">5. Review Pipeline (Human Gate)</h2>
+            <p style="color: #888; margin-bottom: 20px;">Every piece of content passes through Bene before publishing. No exceptions.</p>
 
             <div class="timeline">
                 <div class="timeline-title">Review Flow</div>
@@ -679,55 +847,6 @@
             </div>
         </div>
 
-        <!-- ATOM EXTRACTION -->
-        <div class="workflow-section">
-            <h2 class="section-title">5. Atom Extraction (Repurposing)</h2>
-            <p style="color: #888; margin-bottom: 20px;">After blog publish: extract 5-10 standalone insights for social repurposing.</p>
-
-            <div class="flow-grid">
-                <div class="node">
-                    <div class="node-header">
-                        <div class="node-icon icon-input">📄</div>
-                        <div>
-                            <div class="node-title">Published Blog</div>
-                            <div class="node-meta">content/blog/[slug].md</div>
-                        </div>
-                    </div>
-                    <div class="node-body">The anchor content. Full argument with research, stories, and data.</div>
-                </div>
-
-                <div class="node">
-                    <div class="node-header">
-                        <div class="node-icon icon-process">⚡</div>
-                        <div>
-                            <div class="node-title">Extract Atoms</div>
-                            <div class="node-meta">extract-atoms.js</div>
-                        </div>
-                    </div>
-                    <div class="node-body">Gemini API extracts 5-10 standalone insights. Each atom: specific, provocative, platform-agnostic, 1-3 sentences.</div>
-                    <div class="node-tags">
-                        <span class="tag">Gemini API</span>
-                        <span class="tag">5-10 atoms</span>
-                    </div>
-                </div>
-
-                <div class="node">
-                    <div class="node-header">
-                        <div class="node-icon icon-output">🗄️</div>
-                        <div>
-                            <div class="node-title">Notion Atoms DB</div>
-                            <div class="node-meta">Content Atoms Database</div>
-                        </div>
-                    </div>
-                    <div class="node-body">Atoms stored with: Name, Source Slug, Times Used, Status, Starred. Gary queries this for carousel production.</div>
-                    <div class="node-tags">
-                        <span class="tag">Notion API</span>
-                        <span class="tag">Priority Queue</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- SYSTEM ARCHITECTURE -->
         <div class="workflow-section">
             <h2 class="section-title">6. System Architecture</h2>
@@ -738,7 +857,9 @@
 <span class="tree-file">│   ├── scouting-sources.json</span>    <span class="tree-comment"># 27 sources, weights, tags</span>
 <span class="tree-file">│   ├── review-pipeline.json</span>     <span class="tree-comment"># Approval flow, delivery methods</span>
 <span class="tree-file">│   ├── carousel-templates.json</span>  <span class="tree-comment"># Google Slides template IDs</span>
-<span class="tree-file">│   └── carousel-limits.json</span>     <span class="tree-comment"># Character limits per slide</span>
+<span class="tree-file">│   ├── carousel-limits.json</span>     <span class="tree-comment"># Character limits per slide</span>
+<span class="tree-file">│   ├── brand-benedict-schweiger.json</span> <span class="tree-comment"># Voice rules, banned words, ICP</span>
+<span class="tree-file">│   └── notion.json</span>              <span class="tree-comment"># Notion DB IDs</span>
 <span class="tree-dir">├── hugo/scripts/</span>                <span class="tree-comment"># Automation scripts</span>
 <span class="tree-file">│   ├── nightly-scout.py</span>         <span class="tree-comment"># 02:00 — fetch + frame + rank</span>
 <span class="tree-file">│   ├── scout-framer.py</span>          <span class="tree-comment"># Qwen 3.5 27B → structured JSON</span>
@@ -746,6 +867,11 @@
 <span class="tree-file">│   ├── daily-carousel-trigger.py</span> <span class="tree-comment"># 08:00 — trigger Gary</span>
 <span class="tree-file">│   ├── telegram-webhook.py</span>      <span class="tree-comment"># Handle ✅/🔄 buttons</span>
 <span class="tree-file">│   └── scout-reminder.py</span>        <span class="tree-comment"># Weekly reminder for ideal cards</span>
+<span class="tree-dir">├── hugo/daemons/</span>                <span class="tree-comment"># launchd plists</span>
+<span class="tree-file">│   ├── com.benedictschweiger.nightly-scout.plist</span>
+<span class="tree-file">│   ├── com.benedictschweiger.morning-delivery.plist</span>
+<span class="tree-file">│   ├── com.benedictschweiger.daily-carousel.plist</span>
+<span class="tree-file">│   └── com.benedictschweiger.scout-reminder.plist</span>
 <span class="tree-dir">├── scripts/</span>                   <span class="tree-comment"># Publish scripts</span>
 <span class="tree-file">│   ├── publish-blog.py</span>          <span class="tree-comment"># Flip draft, commit, push</span>
 <span class="tree-file">│   ├── publish-carousel-linkedin.py</span>
@@ -756,6 +882,11 @@
 <span class="tree-file">│   ├── blog-post/SKILL.md</span>       <span class="tree-comment"># Blog writing</span>
 <span class="tree-file">│   ├── atom-extraction/SKILL.md</span> <span class="tree-comment"># Post-publish atom extraction</span>
 <span class="tree-file">│   └── review-pipeline/SKILL.md</span> <span class="tree-comment"># Approval workflow</span>
+<span class="tree-dir">├── memory/</span>                    <span class="tree-comment"># Writing system + story bank</span>
+<span class="tree-file">│   ├── hugo-style-guide.md</span>      <span class="tree-comment"># Voice, citation, argumentation</span>
+<span class="tree-file">│   ├── story-elicitation-protocol.md</span>
+<span class="tree-file">│   ├── story-bank.md</span>          <span class="tree-comment"># Recently used anchor stories</span>
+<span class="tree-file">│   └── 2026-05-17.md</span>          <span class="tree-comment"># Today's log</span>
 <span class="tree-dir">├── gary/</span>                      <span class="tree-comment"># Content production workspace</span>
 <span class="tree-file">│   ├── carousels/briefs/</span>        <span class="tree-comment"># Brief JSON files</span>
 <span class="tree-file">│   ├── carousels/[slug]/</span>        <span class="tree-comment"># Generated PNGs + PDF</span>
@@ -764,7 +895,8 @@
 <span class="tree-dir">└── state/</span>                     <span class="tree-comment"># Runtime state</span>
     <span class="tree-file">├── reaction-queue.json</span>        <span class="tree-comment"># Scout cards for morning delivery</span>
     <span class="tree-file">├── scout-cursors.json</span>         <span class="tree-comment"># Last-seen timestamps per source</span>
-    <span class="tree-file">└── scout-rejections.jsonl</span>     <span class="tree-comment"># Rejection logs (new)</span>
+    <span class="tree-file">├── scout-atoms.jsonl</span>          <span class="tree-comment"># Saved scout insights</span>
+    <span class="tree-file">└── scout-rejections.jsonl</span>     <span class="tree-comment"># Rejection logs</span>
             </div>
         </div>
 
@@ -841,10 +973,48 @@
             </div>
         </div>
 
+        <!-- CURRENT BLOCKERS -->
+        <div class="workflow-section">
+            <h2 class="section-title">8. Current Blockers & Next Steps</h2>
+
+            <div class="warning-box">
+                <div class="warning-title">🚧 Blocked Now</div>
+                <ul style="margin-left: 20px; color: #aaa;">
+                    <li><strong>Scout yield:</strong> Waiting for Bene to write 5-10 ideal-card examples → <code>scout/examples/ideal-cards.md</code></li>
+                    <li><strong>Carousel pipeline:</strong> Has never run end-to-end (trigger → generation → review → approval → publish).</li>
+                    <li><strong>Instagram images:</strong> Requires public URLs. ngrok workaround in place; needs S3/CDN for production.</li>
+                    <li><strong>LinkedIn token:</strong> Expires July 7, 2026. No refresh automation built.</li>
+                </ul>
+            </div>
+
+            <div class="decision-box">
+                <div class="decision-title">📋 This Week</div>
+                <ul style="margin-left: 20px; color: #aaa;">
+                    <li>Bene writes ideal-card examples from rejection pile</li>
+                    <li>Review 7 days of rejection logs</li>
+                    <li>First end-to-end carousel test (trigger → publish)</li>
+                </ul>
+            </div>
+
+            <div class="decision-box">
+                <div class="decision-title">📋 Next Week</div>
+                <ul style="margin-left: 20px; color: #aaa;">
+                    <li>Rewrite framer prompt with few-shot anchors</li>
+                    <li>Measure yield (target: 4-6 cards/night)</li>
+                    <li>Set up S3/CDN for Instagram image hosting</li>
+                </ul>
+            </div>
+        </div>
+
         <footer>
-            <p>Generated 2026-05-17 · Benedict Schweiger Content Workflow · Agentic Marketing System</p>
+            <p>Benedict Schweiger Content Workflow · Agentic Marketing System</p>
             <p style="margin-top: 10px; font-size: 0.8rem;">Qwen 3.5 27B · Gemini 2.5 Flash · Google Slides API · LinkedIn API · Instagram Graph API · Notion API · Brevo</p>
+            <p style="margin-top: 5px; font-size: 0.75rem; color: #444;">Last updated: <span id="last-updated"></span></p>
         </footer>
     </div>
+
+    <script>
+        document.getElementById('last-updated').textContent = new Date().toISOString().split('T')[0];
+    </script>
 </body>
 </html>
