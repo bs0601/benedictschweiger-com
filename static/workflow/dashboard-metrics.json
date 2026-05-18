@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-18T08:50:24.896925",
+  "generated_at": "2026-05-18T09:09:35.727387",
   "blog": {
     "pageviews_28d": 142,
     "users_28d": 47,
@@ -17,8 +17,8 @@
     "stale": true
   },
   "brevo": {
-    "total_contacts": 43,
-    "newsletter_subscribers": 38,
+    "total_contacts": 10,
+    "newsletter_subscribers": 5,
     "diagnostic_completions": 1,
     "lists": [
       {
@@ -34,7 +34,7 @@
       {
         "id": 8,
         "name": "The Autonomy Brief",
-        "count": 38
+        "count": 5
       },
       {
         "id": 7,
