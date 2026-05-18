@@ -1201,7 +1201,13 @@
         </footer>
     </div>
 
-    <script src="dashboard-loader.js"></script>
+    <script>
+        window.onerror = function(msg, url, line) {
+            document.getElementById('dashboard-debug').textContent = 'JS Error: ' + msg + ' at line ' + line;
+            return false;
+        };
+    </script>
+    <script src="dashboard-loader.js?v=2"></script>
     <script>
         document.getElementById('last-updated').textContent = new Date().toISOString().split('T')[0];
     </script>
