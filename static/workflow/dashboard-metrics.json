@@ -1,0 +1,173 @@
+{
+  "generated_at": "2026-05-18T08:50:24.896925",
+  "blog": {
+    "pageviews_28d": 142,
+    "users_28d": 47,
+    "posts_with_traffic": 18,
+    "period": "2026-04-20 \u2192 2026-05-18"
+  },
+  "linkedin": {
+    "impressions_28d": 1020,
+    "reach_28d": 553,
+    "engagements_28d": 13,
+    "engagement_rate": 1.27,
+    "followers_total": 1447,
+    "followers_new": 3,
+    "last_updated": "2026-05-15",
+    "stale": true
+  },
+  "brevo": {
+    "total_contacts": 43,
+    "newsletter_subscribers": 38,
+    "diagnostic_completions": 1,
+    "lists": [
+      {
+        "id": 10,
+        "name": "Test Stand 26 Waitlist",
+        "count": 0
+      },
+      {
+        "id": 9,
+        "name": "Diagnostic Completions",
+        "count": 1
+      },
+      {
+        "id": 8,
+        "name": "The Autonomy Brief",
+        "count": 38
+      },
+      {
+        "id": 7,
+        "name": "Leader-Sequenz",
+        "count": 0
+      },
+      {
+        "id": 6,
+        "name": "Entwickler-Sequenz",
+        "count": 2
+      },
+      {
+        "id": 5,
+        "name": "Einsteiger-Sequenz",
+        "count": 2
+      }
+    ]
+  },
+  "scout": {
+    "cards_last_night": 0,
+    "sources": 27,
+    "yield_pct": 0
+  },
+  "_blogPosts": [
+    {
+      "slug": "return-on-token-spend",
+      "title": "Return on Token Spend: The Only AI Metric in 2026 \u2014 Benedict Schweiger \u2014 Agentic Marketing",
+      "page_path": "/blog/return-on-token-spend/",
+      "first_seen": "2026-05-14T22:48:47.209084",
+      "last_updated": "2026-05-18T08:42:16.156962",
+      "pageviews": 28,
+      "users": 2,
+      "avg_session_duration": 398.6943267142857,
+      "bounce_rate": 0.14285714285714285
+    },
+    {
+      "slug": "value-based-pricing-transparent-market",
+      "title": "Value-Based Pricing: What Works When Prices Are Public \u2014 Benedict Schweiger \u2014 Agentic Marketing",
+      "page_path": "/blog/value-based-pricing-transparent-market/",
+      "first_seen": "2026-05-14T22:48:47.209185",
+      "last_updated": "2026-05-14T22:50:57.680058",
+      "pageviews": 11,
+      "users": 3,
+      "avg_session_duration": 244.06018020000002,
+      "bounce_rate": 0.4
+    },
+    {
+      "slug": "i-audited-my-ai-agent-system",
+      "title": "I Audited My AI Agent System. Now It Audits Itself. \u2014 Benedict Schweiger \u2014 Agentic Marketing",
+      "page_path": "/blog/i-audited-my-ai-agent-system/",
+      "first_seen": "2026-05-17T22:41:58.458425",
+      "last_updated": "2026-05-18T08:42:16.157000",
+      "pageviews": 5,
+      "users": 2,
+      "avg_session_duration": 124.006691,
+      "bounce_rate": 0.0
+    },
+    {
+      "slug": "ai-marketing-automation-2026",
+      "title": "AI marketing automation in 2026: what actually works \u2014 Benedict Schweiger \u2014 Agentic Marketing",
+      "page_path": "/blog/ai-marketing-automation-2026/",
+      "first_seen": "2026-05-14T22:48:47.209258",
+      "last_updated": "2026-05-18T08:42:16.157026",
+      "pageviews": 4,
+      "users": 2,
+      "avg_session_duration": 88.94722425,
+      "bounce_rate": 0.25
+    },
+    {
+      "slug": "blog-to-social-pipeline-v1",
+      "title": "Blog to Social: The Pipeline That Actually Runs My Content \u2014 Benedict Schweiger \u2014 Agentic Marketing",
+      "page_path": "/blog/blog-to-social-pipeline-v1/",
+      "first_seen": "2026-05-17T22:41:58.458482",
+      "last_updated": "2026-05-18T08:42:16.157050",
+      "pageviews": 3,
+      "users": 1,
+      "avg_session_duration": 24.674819,
+      "bounce_rate": 0.0
+    },
+    {
+      "slug": "building-hugos-nervous-system",
+      "title": "I Was the Bottleneck: What It Actually Costs to Build Your Own Content System \u2014 Benedict Schweiger \u2014 Agentic Marketing",
+      "page_path": "/blog/building-hugos-nervous-system/",
+      "first_seen": "2026-05-17T22:41:58.458504",
+      "last_updated": "2026-05-18T08:42:16.157070",
+      "pageviews": 3,
+      "users": 2,
+      "avg_session_duration": 69.28631800000001,
+      "bounce_rate": 0.3333333333333333
+    },
+    {
+      "slug": "agentic-content-pipeline",
+      "title": "I Built an Agentic Content Pipeline. Here's What It Actually Takes. \u2014 Benedict Schweiger \u2014 Agentic Marketing",
+      "page_path": "/blog/agentic-content-pipeline/",
+      "first_seen": "2026-05-14T22:48:47.209211",
+      "last_updated": "2026-05-17T22:41:58.458529",
+      "pageviews": 2,
+      "users": 1,
+      "avg_session_duration": 317.50361,
+      "bounce_rate": 0.0
+    },
+    {
+      "slug": "selling-house-with-ai",
+      "title": "Selling a House Without an Agent: A Live AI Experiment \u2014 Benedict Schweiger \u2014 Agentic Marketing",
+      "page_path": "/blog/selling-house-with-ai/",
+      "first_seen": "2026-05-14T22:48:47.209308",
+      "last_updated": "2026-05-18T08:42:16.157104",
+      "pageviews": 2,
+      "users": 1,
+      "avg_session_duration": 100.022733,
+      "bounce_rate": 0.25
+    },
+    {
+      "slug": "will-ai-replace-marketing-jobs",
+      "title": "Will AI Replace Marketing Jobs? I've Already Made the Cuts \u2014 Benedict Schweiger \u2014 Agentic Marketing",
+      "page_path": "/blog/will-ai-replace-marketing-jobs/",
+      "first_seen": "2026-05-14T22:48:47.209328",
+      "last_updated": "2026-05-14T22:50:57.680178",
+      "pageviews": 2,
+      "users": 1,
+      "avg_session_duration": 620.0378965,
+      "bounce_rate": 0.5
+    },
+    {
+      "slug": "how-much-does-a-marketing-agency-actually-cost-in-2026",
+      "title": "How Much Does a Marketing Agency Actually Cost in 2026? \u2014 Benedict Schweiger \u2014 Agentic Marketing",
+      "page_path": "/blog/how-much-does-a-marketing-agency-actually-cost-in-2026/",
+      "first_seen": "2026-05-17T22:41:58.458542",
+      "last_updated": "2026-05-18T08:42:16.157088",
+      "pageviews": 2,
+      "users": 2,
+      "avg_session_duration": 5.2495395,
+      "bounce_rate": 0.0
+    }
+  ]
+}

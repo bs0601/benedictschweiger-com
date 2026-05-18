@@ -197,6 +197,121 @@
             border-radius: 4px;
         }
 
+        /* Dashboard KPI Cards */
+        .dashboard-section {
+            margin-bottom: 40px;
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .dashboard-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+        .dashboard-meta {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .kpi-card {
+            background: #13131f;
+            border: 1px solid #1e1e2e;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .kpi-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        .kpi-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .kpi-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .kpi-status.green { background: #4ade80; box-shadow: 0 0 6px rgba(74, 222, 128, 0.4); }
+        .kpi-status.yellow { background: #fbbf24; box-shadow: 0 0 6px rgba(251, 191, 36, 0.4); }
+        .kpi-status.red { background: #f87171; box-shadow: 0 0 6px rgba(248, 113, 113, 0.4); }
+        .kpi-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #888;
+        }
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #e0e0e0;
+            margin-bottom: 4px;
+        }
+        .kpi-delta {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        .kpi-delta.up { color: #4ade80; }
+        .kpi-delta.down { color: #f87171; }
+        .kpi-note {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        .kpi-note.stale { color: #fbbf24; }
+        .kpi-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+            margin-top: 20px;
+        }
+        .kpi-table th, .kpi-table td {
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid #1a1a2e;
+        }
+        .kpi-table th {
+            color: #888;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+        }
+        .kpi-table td { color: #aaa; }
+        .refresh-btn {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            color: #888;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .refresh-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+        .refresh-btn.spinning {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* Legacy stats grid (kept for fallback) */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -316,7 +431,79 @@
             </div>
         </header>
 
-        <div class="stats-grid">
+        <!-- LIVE KPI DASHBOARD -->
+        <div class="dashboard-section" id="kpi-dashboard">
+            <div class="dashboard-header">
+                <div>
+                    <div class="dashboard-title">📊 Live KPI Dashboard</div>
+                    <div class="dashboard-meta" id="dashboard-timestamp">Loading...</div>
+                </div>
+                <button class="refresh-btn" id="refresh-btn" onclick="loadDashboard()">↻ Refresh</button>
+            </div>
+
+            <div class="dashboard-grid" id="dashboard-grid">
+                <!-- Populated by JS -->
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-status green"></span>
+                        <span class="kpi-label">Blog (28d)</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-blog-views">—</div>
+                    <div class="kpi-delta" id="kpi-blog-users">—</div>
+                    <div class="kpi-note" id="kpi-blog-note">—</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-status yellow" id="kpi-li-status"></span>
+                        <span class="kpi-label">LinkedIn (28d)</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-li-impressions">—</div>
+                    <div class="kpi-delta" id="kpi-li-reach">—</div>
+                    <div class="kpi-note" id="kpi-li-note">—</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-status green"></span>
+                        <span class="kpi-label">Newsletter</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-newsletter">—</div>
+                    <div class="kpi-delta" id="kpi-newsletter-total">—</div>
+                    <div class="kpi-note">The Autonomy Brief</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-status red"></span>
+                        <span class="kpi-label">Scout Yield</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-scout-cards">—</div>
+                    <div class="kpi-delta down" id="kpi-scout-yield">—</div>
+                    <div class="kpi-note">Target: 8–12 cards/night</div>
+                </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table class="kpi-table" id="content-table">
+                    <thead>
+                        <tr>
+                            <th>Post</th>
+                            <th>Views</th>
+                            <th>Users</th>
+                            <th>Avg Time</th>
+                            <th>Bounce</th>
+                        </tr>
+                    </thead>
+                    <tbody id="content-tbody">
+                        <tr><td colspan="5" style="text-align:center; color:#666;">Loading content data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- LEGACY STATIC STATS (HIDDEN WHEN LIVE DATA LOADS) -->
+        <div class="stats-grid" id="legacy-stats" style="display: none;">
             <div class="stat-card">
                 <div class="stat-number">27</div>
                 <div class="stat-label">Scout Sources</div>
@@ -1015,6 +1202,124 @@
 
     <script>
         document.getElementById('last-updated').textContent = new Date().toISOString().split('T')[0];
+
+        // Live Dashboard Loader
+        const DASHBOARD_URL = '/dashboard-metrics.json';
+        const FALLBACK_URL = 'https://benedictschweiger.com/dashboard-metrics.json';
+
+        async function loadDashboard() {
+            const btn = document.getElementById('refresh-btn');
+            btn.classList.add('spinning');
+            btn.disabled = true;
+
+            try {
+                // Try local first, then fallback to main site
+                let data = null;
+                try {
+                    const res = await fetch(DASHBOARD_URL + '?t=' + Date.now());
+                    if (res.ok) data = await res.json();
+                } catch (e) {
+                    console.log('Local dashboard not found, trying fallback...');
+                }
+
+                if (!data) {
+                    try {
+                        const res = await fetch(FALLBACK_URL + '?t=' + Date.now());
+                        if (res.ok) data = await res.json();
+                    } catch (e) {
+                        console.log('Fallback also failed');
+                    }
+                }
+
+                if (data) {
+                    renderDashboard(data);
+                    document.getElementById('legacy-stats').style.display = 'none';
+                } else {
+                    showDashboardError('Could not load live data. Showing static fallback.');
+                    document.getElementById('legacy-stats').style.display = 'grid';
+                }
+            } catch (err) {
+                showDashboardError('Error: ' + err.message);
+                document.getElementById('legacy-stats').style.display = 'grid';
+            } finally {
+                btn.classList.remove('spinning');
+                btn.disabled = false;
+            }
+        }
+
+        function renderDashboard(data) {
+            const blog = data.blog || {};
+            const linkedin = data.linkedin || {};
+            const brevo = data.brevo || {};
+            const scout = data.scout || {};
+
+            // Blog
+            document.getElementById('kpi-blog-views').textContent = (blog.pageviews_28d || 0).toLocaleString();
+            document.getElementById('kpi-blog-users').textContent = (blog.users_28d || 0).toLocaleString() + ' unique users · ' + (blog.posts_with_traffic || 0) + ' posts';
+            document.getElementById('kpi-blog-note').textContent = blog.period || '28-day rolling';
+
+            // LinkedIn
+            const liStale = linkedin.stale;
+            document.getElementById('kpi-li-impressions').textContent = (linkedin.impressions_28d || 0).toLocaleString();
+            document.getElementById('kpi-li-reach').textContent = (linkedin.reach_28d || 0).toLocaleString() + ' reach · ' + (linkedin.engagement_rate || 0) + '% engagement';
+            document.getElementById('kpi-li-status').className = 'kpi-status ' + (liStale ? 'yellow' : 'green');
+            const liNote = document.getElementById('kpi-li-note');
+            if (liStale) {
+                liNote.textContent = '⚠ Stale — last update: ' + (linkedin.last_updated || 'unknown');
+                liNote.classList.add('stale');
+            } else {
+                liNote.textContent = (linkedin.followers_total || 0).toLocaleString() + ' followers (+' + (linkedin.followers_new || 0) + ')';
+                liNote.classList.remove('stale');
+            }
+
+            // Newsletter
+            document.getElementById('kpi-newsletter').textContent = (brevo.newsletter_subscribers || 0).toLocaleString();
+            document.getElementById('kpi-newsletter-total').textContent = (brevo.total_contacts || 0).toLocaleString() + ' total contacts';
+
+            // Scout
+            document.getElementById('kpi-scout-cards').textContent = scout.cards_last_night || 0;
+            document.getElementById('kpi-scout-yield').textContent = (scout.yield_pct || 0) + '% yield · ' + (scout.sources || 0) + ' sources';
+
+            // Timestamp
+            const generated = data.generated_at ? new Date(data.generated_at) : new Date();
+            document.getElementById('dashboard-timestamp').textContent = 'Last updated: ' + generated.toLocaleString('en-US', {
+                month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+            }) + ' GMT-3';
+
+            // Content table
+            renderContentTable(data._blogPosts || []);
+        }
+
+        function renderContentTable(posts) {
+            const tbody = document.getElementById('content-tbody');
+            if (!posts || posts.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#666;">No content data available</td></tr>';
+                return;
+            }
+            tbody.innerHTML = posts.map(p => `
+                <tr>
+                    <td>${escapeHtml(p.slug || 'unknown')}</td>
+                    <td>${p.pageviews || 0}</td>
+                    <td>${p.users || 0}</td>
+                    <td>${Math.round(p.avg_session_duration || 0)}s</td>
+                    <td>${Math.round((p.bounce_rate || 0) * 100)}%</td>
+                </tr>
+            `).join('');
+        }
+
+        function showDashboardError(msg) {
+            document.getElementById('dashboard-timestamp').textContent = msg;
+            document.getElementById('dashboard-timestamp').style.color = '#f87171';
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load on page load
+        loadDashboard();
     </script>
 </body>
 </html>
