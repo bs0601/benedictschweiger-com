@@ -441,7 +441,7 @@
                 <button class="refresh-btn" id="refresh-btn" onclick="loadDashboard()">↻ Refresh</button>
             </div>
 
-            <div id="dashboard-debug" style="font-size:12px;color:#888;margin-bottom:10px;">Initializing...</div>
+            <div id="dashboard-debug" style="font-size:12px;color:#888;margin-bottom:10px;">JS loaded, waiting for fetch...</div>
             <div class="dashboard-grid" id="dashboard-grid">
                 <!-- Populated by JS -->
                 <div class="kpi-card">
@@ -1314,9 +1314,14 @@
         }
 
         // Load on page load
+        console.log('[Dashboard] Script loaded, readyState:', document.readyState);
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadDashboard);
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('[Dashboard] DOMContentLoaded fired');
+                loadDashboard();
+            });
         } else {
+            console.log('[Dashboard] Document already loaded, calling loadDashboard');
             loadDashboard();
         }
     </script>
