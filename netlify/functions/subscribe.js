@@ -10,7 +10,41 @@ exports.handler = async function(event) {
     return { statusCode: 400, body: JSON.stringify({ error: "Invalid JSON" }) };
   }
 
-  // Support both homepage form {email, firstName} and diagnostic {email, name}
+  // ── HONEYPOT CHECK ──
+  // Bots fill hidden fields; humans don't. Reject silently (200 OK) so bots don't retry.
+  if (body.website || body.url || body.company || body.phone) {
+    return { statusCode: 200, body: JSON.stringify({ success: true }) };
+  }
+
+  // ── SIMPLE RATE LIMITING ──
+  // Use Netlify's request IP. In production this is in event.headers['x-nf-client-connection-ip']
+  // or event.headers['client-ip']. Fall back to a hash of the email if no IP.
+  const clientIp = event.headers['x-nf-client-connection-ip'] ||
+                   event.headers['client-ip'] ||
+                   event.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
+                   'unknown';
+  const rateLimitKey = `rate_limit_${clientIp}`;
+  const now = Date.now();
+
+  // In-memory rate limit (resets on cold start, good enough for basic bot protection)
+  if (!global.rateLimitStore) global.rateLimitStore = {};
+  const store = global.rateLimitStore;
+
+  if (store[rateLimitKey]) {
+    const { count, windowStart } = store[rateLimitKey];
+    if (now - windowStart < 3600000) { // 1 hour window
+      if (count >= 3) {
+        return { statusCode: 429, body: JSON.stringify({ error: "Too many requests. Try again later." }) };
+      }
+      store[rateLimitKey].count = count + 1;
+    } else {
+      store[rateLimitKey] = { count: 1, windowStart: now };
+    }
+  } else {
+    store[rateLimitKey] = { count: 1, windowStart: now };
+  }
+
+  // ── EMAIL VALIDATION ──
   const email = (body.email || "").trim();
   let firstName = body.firstName || body.name || "";
   if (firstName.includes(" ")) firstName = firstName.split(" ")[0];
@@ -19,7 +53,17 @@ exports.handler = async function(event) {
     return { statusCode: 400, body: JSON.stringify({ error: "Invalid email" }) };
   }
 
-  // Base attributes
+  // Block obvious disposable/bot domains
+  const blockedDomains = [
+    'tempmail.com', 'throwaway.com', 'guerrillamail.com',
+    'mailinator.com', 'yopmail.com', 'sharklasers.com'
+  ];
+  const domain = email.split('@')[1]?.toLowerCase();
+  if (blockedDomains.includes(domain)) {
+    return { statusCode: 400, body: JSON.stringify({ error: "Invalid email" }) };
+  }
+
+  // ── ATTRIBUTES ──
   const attributes = { FIRSTNAME: firstName };
   if (body.source) attributes.SOURCE = body.source;
   if (body.utm_source)   attributes.UTM_SOURCE   = body.utm_source;
@@ -34,7 +78,6 @@ exports.handler = async function(event) {
     attributes.SCORE_CO   = body.score_co   ?? "";
     attributes.SCORE_IE   = body.score_ie   ?? "";
     attributes.SCORE_GA   = body.score_ga   ?? "";
-    // Q labels — support both old (q1/q4/q8/q12/q14) and new (q1–q7) indices
     if (body.q1_label)        attributes.Q1_LABEL        = body.q1_label;
     if (body.q2_label)        attributes.Q2_LABEL        = body.q2_label;
     if (body.q3_label)        attributes.Q3_LABEL        = body.q3_label;
@@ -47,28 +90,24 @@ exports.handler = async function(event) {
     if (body.q14_label)       attributes.Q14_LABEL       = body.q14_label;
     if (body.biggest_obstacle) attributes.BIGGEST_OBSTACLE = body.biggest_obstacle;
     if (body.magic_wand)      attributes.MAGIC_WAND      = body.magic_wand;
-    // Demographics
     if (body.revenue)         attributes.REVENUE         = body.revenue;
     if (body.adspend)         attributes.ADSPEND         = body.adspend;
     if (body.aov)             attributes.AOV             = body.aov;
     if (body.margin)          attributes.MARGIN          = body.margin;
-    // Benchmarks
     if (body.mer)             attributes.MER             = body.mer;
     if (body.adspend_share)   attributes.ADSPEND_SHARE   = body.adspend_share;
     if (body.cost_per_order)  attributes.COST_PER_ORDER  = body.cost_per_order;
-    // Newsletter opt-in
     if (body.newsletter_optin !== undefined) attributes.NEWSLETTER_OPTIN = body.newsletter_optin ? "Yes" : "No";
 
-    // Compute weakest dimension for Brevo automation branching
     const dimScores = { CO: body.score_co, IE: body.score_ie, GA: body.score_ga };
     const defined = Object.entries(dimScores).filter(([,v]) => v !== undefined && v !== null && v !== "");
     if (defined.length > 0) {
       const weakest = defined.reduce((a, b) => Number(a[1]) <= Number(b[1]) ? a : b);
-      attributes.WEAKEST_DIM = weakest[0]; // 'CO', 'IE', or 'GA'
+      attributes.WEAKEST_DIM = weakest[0];
     }
   }
 
-  // Determine list IDs based on source
+  // ── LIST ASSIGNMENT ──
   let listIds = [8]; // Default: newsletter
   if (body.score !== undefined) {
     listIds = [8, 9]; // Diagnostic completions
@@ -99,6 +138,7 @@ exports.handler = async function(event) {
   }
 
   // Send welcome email for /resources signups (not diagnostic or waitlist)
+  const source = body.source || "";
   const isResourcesSignup = !body.score && source !== "autonomy-score" && source !== "waitlist";
   if (isResourcesSignup) {
     await fetch("https://api.brevo.com/v3/smtp/email", {
@@ -111,7 +151,7 @@ exports.handler = async function(event) {
         templateId: 45,
         to: [{ email, name: firstName || email }]
       })
-    }).catch(() => {}); // fire-and-forget, don't fail the signup if email fails
+    }).catch(() => {});
   }
 
   return { statusCode: 200, body: JSON.stringify({ success: true }) };

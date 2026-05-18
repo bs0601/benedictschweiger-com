@@ -113,6 +113,8 @@
     <!-- Email form -->
     <form id="nl-email-form" style="display:flex;gap:8px;margin-bottom:12px;" onsubmit="return handleNlEmail(event)">
       <input type="email" id="nl-email" placeholder="your@email.com" required style="flex:1;border:2px solid var(--lg);border-radius:12px;padding:14px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:var(--blk);background:#fff;outline:none;" />
+      <!-- Honeypot: hidden from humans, bots fill it -->
+      <input type="text" id="nl-website" name="website" style="position:absolute;left:-9999px;opacity:0;" tabindex="-1" autocomplete="off" />
       <button type="submit" style="background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Get the live training →</button>
     </form>
     <p id="nl-email-status" style="font-size:13px;color:var(--mg);margin:0;display:none;"></p>
@@ -157,9 +159,15 @@
 async function handleNlEmail(e) {
   e.preventDefault();
   const input = document.getElementById('nl-email');
+  const honeypot = document.getElementById('nl-website');
   const status = document.getElementById('nl-email-status');
   const btn = e.target.querySelector('button');
   const email = input.value.trim();
+
+  // Honeypot check (client-side, also checked server-side)
+  if (honeypot.value) {
+    return false;
+  }
 
   btn.disabled = true;
   btn.textContent = '...';
@@ -168,7 +176,7 @@ async function handleNlEmail(e) {
     const res = await fetch('/.netlify/functions/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, source: 'homepage-newsletter' })
+      body: JSON.stringify({ email: email, source: 'homepage-newsletter', website: honeypot.value })
     });
     if (res.ok) {
       window.location.href = '/methodology-preview/';
