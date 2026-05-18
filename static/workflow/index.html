@@ -1240,6 +1240,22 @@
                 errorMsg = e.message;
                 console.log('[Dashboard] Fetch error:', e);
                 if (debugDiv) debugDiv.textContent = 'Error: ' + errorMsg;
+                
+                // Fallback to XMLHttpRequest
+                if (debugDiv) debugDiv.textContent = 'Fetch failed, trying XHR...';
+                try {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', DASHBOARD_URL + '?t=' + Date.now(), false);
+                    xhr.send();
+                    if (xhr.status === 200) {
+                        data = JSON.parse(xhr.responseText);
+                        if (debugDiv) debugDiv.textContent = 'XHR loaded! Views: ' + data.blog.pageviews_28d;
+                    } else {
+                        if (debugDiv) debugDiv.textContent = 'XHR failed: ' + xhr.status;
+                    }
+                } catch (xhrErr) {
+                    if (debugDiv) debugDiv.textContent = 'XHR error: ' + xhrErr.message;
+                }
             }
 
             if (data) {
