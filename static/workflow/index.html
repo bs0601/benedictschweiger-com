@@ -1204,8 +1204,8 @@
         document.getElementById('last-updated').textContent = new Date().toISOString().split('T')[0];
 
         // Live Dashboard Loader
-        const DASHBOARD_URL = '/dashboard-metrics.json';
-        const FALLBACK_URL = 'https://benedictschweiger.com/dashboard-metrics.json';
+        const DASHBOARD_URL = '/workflow/dashboard-metrics.json';
+        const FALLBACK_URL = 'https://benedictschweiger.com/workflow/dashboard-metrics.json';
 
         async function loadDashboard() {
             const btn = document.getElementById('refresh-btn');
