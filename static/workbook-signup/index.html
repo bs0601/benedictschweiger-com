@@ -183,7 +183,7 @@ async function handleWorkbookSignup(e) {
     });
 
     if (res.ok) {
-      window.location.href = '/workbook/';
+      window.location.href = '/workbook-welcome/';
       return;
     } else {
       const data = await res.json().catch(() => ({}));

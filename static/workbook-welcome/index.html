@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#ffffff"/>
+<title>Welcome — Your Workbook is Ready</title>
+<meta name="description" content="Your Founder's Workbook is on its way. Watch this first."/>
+<link rel="canonical" href="https://benedictschweiger.com/workbook-welcome/"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:#fff}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:root{
+  --s:#C4622D;--slt:#F5EBE4;--smd:#E8D0C2;
+  --blk:#1a1a1a;--dg:#484848;--mg:#717171;--lg:#e0e0e0;--bg:#f7f7f7;--w:#fff;
+  --sh:0 2px 8px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --r:16px;--rs:12px;
+  --st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);
+  --max:640px;
+}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--lg);padding:calc(var(--st) + 14px) 20px 14px;display:flex;justify-content:space-between;align-items:center;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-icon{width:32px;height:32px;border-radius:8px;background:var(--s);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-icon svg{width:16px;height:16px;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.nav-name{font-size:15px;font-weight:800;color:var(--blk)}
+
+main{max-width:var(--max);margin:0 auto;padding:40px 20px calc(var(--sb) + 40px)}
+
+/* ── CONFIRMATION ── */
+.confirm{text-align:center;margin-bottom:40px}
+.confirm-check{width:56px;height:56px;border-radius:50%;background:var(--signal-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.confirm-check svg{width:28px;height:28px;stroke:var(--signal);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.confirm-title{font-size:clamp(24px,5vw,32px);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--blk);margin-bottom:12px}
+.confirm-sub{font-size:15px;line-height:1.6;color:var(--dg);max-width:480px;margin:0 auto}
+
+/* ── VIDEO ── */
+.video-block{background:var(--blk);border-radius:var(--r);overflow:hidden;margin-bottom:40px;position:relative}
+.video-placeholder{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;flex-direction:gap:16px;color:var(--bg)}
+.video-placeholder svg{width:48px;height:48px;stroke:var(--bg);stroke-width:2;fill:none}
+.video-placeholder p{font-size:14px;color:var(--mg);margin-top:12px}
+.video-caption{text-align:center;padding:16px;font-size:13px;color:var(--mg)}
+
+/* ── WORKBOOK ACCESS ── */
+.access-block{background:var(--bg);border-radius:var(--r);padding:28px 24px;margin-bottom:40px;text-align:center}
+.access-title{font-size:18px;font-weight:700;color:var(--blk);margin-bottom:8px}
+.access-desc{font-size:14px;line-height:1.6;color:var(--dg);margin-bottom:20px}
+.btn-primary{display:inline-block;background:var(--s);color:#fff;border:none;border-radius:var(--rs);padding:14px 28px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none}
+.btn-primary:active{background:#a84f24}
+
+/* ── UPSELL ── */
+.upsell-block{border:2px solid var(--s);border-radius:var(--r);padding:32px 24px;margin-bottom:40px}
+.upsell-eyebrow{font-size:11px;font-weight:700;color:var(--s);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.upsell-title{font-size:clamp(20px,4vw,26px);font-weight:800;line-height:1.15;letter-spacing:-.01em;color:var(--blk);margin-bottom:16px}
+.upsell-title em{color:var(--s);font-style:normal}
+.upsell-desc{font-size:15px;line-height:1.7;color:var(--dg);margin-bottom:24px}
+.upsell-price{font-size:36px;font-weight:800;color:var(--s);letter-spacing:-.02em;margin-bottom:8px}
+.upsell-price-note{font-size:13px;color:var(--mg);margin-bottom:24px}
+.upsell-features{margin-bottom:24px}
+.upsell-feature{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.upsell-feature-check{width:20px;height:20px;border-radius:50%;background:var(--slt);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.upsell-feature-check svg{width:10px;height:10px;stroke:var(--s);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.upsell-feature-text{font-size:14px;line-height:1.5;color:var(--dg)}
+.upsell-feature-text strong{color:var(--blk);font-weight:600}
+
+/* ── FOOTER ── */
+.footer{margin-top:40px;padding-top:24px;border-top:1px solid var(--lg);text-align:center}
+.footer-text{font-size:12px;color:var(--mg);line-height:1.6}
+.footer-text a{color:var(--s);text-decoration:none;font-weight:600}
+
+/* ── SIGNAL COLOR ── */
+:root{--signal:#2d6a4f;--signal-soft:#d4e7dc}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    </div>
+    <span class="nav-name">Benedict Schweiger</span>
+  </a>
+</nav>
+
+<main>
+
+  <!-- CONFIRMATION -->
+  <div class="confirm">
+    <div class="confirm-check">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h1 class="confirm-title">You're in. Check your inbox.</h1>
+    <p class="confirm-sub">The Founder's Workbook is on its way to your email. While you wait, watch this — it'll save you an hour of figuring things out on your own.</p>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="video-block">
+    <div class="video-placeholder">
+      <div style="text-align:center;">
+        <svg viewBox="0 0 24 24" style="margin:0 auto 12px;"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--bg)"/></svg>
+        <p style="font-size:14px;color:var(--mg);">Welcome video — coming soon</p>
+        <p style="font-size:12px;color:var(--mg);margin-top:4px;">Replace this with your embed (YouTube/Vimeo) or MP4</p>
+      </div>
+    </div>
+    <!-- 
+      VIDEO EMBED INSTRUCTIONS:
+      Option 1: YouTube iframe
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen style="position:absolute;inset:0;"></iframe>
+      
+      Option 2: Vimeo iframe  
+      <iframe src="https://player.vimeo.com/video/VIDEO_ID" width="100%" height="100%" frameborder="0" allowfullscreen style="position:absolute;inset:0;"></iframe>
+      
+      Option 3: Self-hosted MP4
+      <video controls style="width:100%;height:100%;object-fit:cover;">
+        <source src="/videos/welcome.mp4" type="video/mp4">
+      </video>
+    -->
+  </div>
+
+  <!-- WORKBOOK ACCESS -->
+  <div class="access-block">
+    <div class="access-title">Your workbook is ready</div>
+    <p class="access-desc">If you already confirmed your email, you can access the workbook now. Otherwise, check your inbox first — the link is in there.</p>
+    <a href="/workbook/" class="btn-primary">Open the workbook →</a>
+  </div>
+
+  <!-- UPSELL -->
+  <div class="upsell-block">
+    <div class="upsell-eyebrow">Ready to go faster?</div>
+    <h2 class="upsell-title">Get the <em>done-with-you</em> version.</h2>
+    <p class="upsell-desc">
+      The workbook gives you the map. But if you want me to walk through it with you — review your Customer Truth, audit your scorecard, and build your first campaign plan together — this is how.
+    </p>
+
+    <div class="upsell-price">€997</div>
+    <div class="upsell-price-note">One-time. 90-minute session + 30 days async follow-up.</div>
+
+    <div class="upsell-features">
+      <div class="upsell-feature">
+        <div class="upsell-feature-check">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="upsell-feature-text"><strong>90-minute strategy call</strong> — we work through your Listen phase together and I review your Customer Truth document</div>
+      </div>
+      <div class="upsell-feature">
+        <div class="upsell-feature-check">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="upsell-feature-text"><strong>Scorecard audit</strong> — I review your six numbers and tell you which lever to pull first</div>
+      </div>
+      <div class="upsell-feature">
+        <div class="upsell-feature-check">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="upsell-feature-text"><strong>Campaign plan</strong> — we pick your first 6-month campaign and build the convergence plan</div>
+      </div>
+      <div class="upsell-feature">
+        <div class="upsell-feature-check">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="upsell-feature-text"><strong>30 days async follow-up</strong> — Slack access, feedback on your work, course corrections</div>
+      </div>
+    </div>
+
+    <a href="#" class="btn-primary" style="width:100%;text-align:center;display:block;">Book your session →</a>
+    <p style="font-size:12px;color:var(--mg);text-align:center;margin-top:12px;">Limited to 4 spots per month. Next availability: July 2026.</p>
+  </div>
+
+  <div class="footer">
+    <p class="footer-text">
+      Questions? Reply to any email or <a href="mailto:info@benedictschweiger.com">info@benedictschweiger.com</a>
+    </p>
+  </div>
+
+</main>
+
+</body>
+</html>
