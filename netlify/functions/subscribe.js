@@ -111,6 +111,8 @@ exports.handler = async function(event) {
   let listIds = [8]; // Default: newsletter
   if (body.score !== undefined) {
     listIds = [8, 9]; // Diagnostic completions
+  } else if (body.source === "workbook-signup") {
+    listIds = [11]; // Workbook — Margin Method
   } else if (body.source === "waitlist") {
     listIds = [10]; // Test Stand waitlist
   }
@@ -139,7 +141,7 @@ exports.handler = async function(event) {
 
   // Send welcome email for /resources signups (not diagnostic or waitlist)
   const source = body.source || "";
-  const isResourcesSignup = !body.score && source !== "autonomy-score" && source !== "waitlist";
+  const isResourcesSignup = !body.score && source !== "autonomy-score" && source !== "waitlist" && source !== "workbook-signup";
   if (isResourcesSignup) {
     await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",

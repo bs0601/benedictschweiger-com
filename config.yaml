@@ -1,19 +1,20 @@
 baseURL: "https://benedictschweiger.com/"
 languageCode: "en"
-title: "Benedict Schweiger — Agentic Marketing"
+title: "Benedict Schweiger — The Margin Method"
 theme: "PaperMod"
 
 # SEO defaults
 params:
-  description: "Building the Agentic Marketing OS in public. Real systems, real numbers, what actually compounds. CMO, ex-Simon-Kucher."
+  description: "Build the system that lets you charge more — and keep the margin. The Margin Method: a five-phase loop that turns customer truth into higher value per customer. CMO at ALTHERR, ex-Simon-Kucher."
   author: "Benedict Schweiger"
   images:
     - "/images/og-default.png"
   keywords:
-    - "agentic marketing"
-    - "marketing automation AI"
+    - "margin method"
+    - "charge more keep margin"
+    - "customer truth marketing"
     - "marketing systems"
-    - "AI marketing team"
+    - "AI marketing"
     - "Benedict Schweiger"
 
   # Site stats — updated by website_flow.py update_stats()
@@ -56,8 +57,11 @@ menu:
     - name: Blog
       url: /blog/
       weight: 10
-    - name: Free Diagnostic
-      url: "#diagnostics"
+    - name: Workbook
+      url: /workbook-signup/
+      weight: 15
+    - name: Diagnostic
+      url: /autonomy-score/
       weight: 20
 
 # Blog content lives in content/blog/

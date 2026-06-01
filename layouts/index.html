@@ -4,10 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <meta name="theme-color" content="#ffffff"/>
-<title>Benedict Schweiger — Agentic Marketing</title>
-<meta name="description" content="The operator-to-architect shift: how marketing leaders build systems that outlast headcount. Real numbers from ALTHERR. CMO, ex-Simon-Kucher."/>
-<meta property="og:title" content="Benedict Schweiger — Agentic Marketing"/>
-<meta property="og:description" content="The operator-to-architect shift: how marketing leaders build systems that outlast headcount. Real numbers from ALTHERR."/>
+<title>Benedict Schweiger — The Margin Method</title>
+<meta name="description" content="Build the system that lets you charge more — and keep the margin. The Margin Method: a five-phase loop that turns customer truth into higher value per customer."/>
+<meta property="og:title" content="Benedict Schweiger — The Margin Method"/>
+<meta property="og:description" content="Build the system that lets you charge more — and keep the margin."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="{{ .Site.BaseURL }}"/>
 {{ with (index .Site.Params.images 0) }}<meta property="og:image" content="{{ . }}"/>{{ end }}
@@ -44,11 +44,26 @@
     "https://www.youtube.com/channel/UCoCNyB7omxposyGloac8cA"
   ],
   "jobTitle": "CMO",
-  "knowsAbout": ["Agentic Marketing", "Marketing Systems", "AI Marketing", "Marketing Automation"]
+  "knowsAbout": ["The Margin Method", "Marketing Systems", "AI Marketing", "Customer-Centric Marketing", "Premium E-Commerce"]
 }
 </script>
 </head>
 <body>
+
+<!-- ========== NAV ========== -->
+<nav style="position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--lg);padding:calc(env(safe-area-inset-top,0px) + 14px) 20px 14px;display:flex;justify-content:space-between;align-items:center;">
+  <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+    <div style="width:32px;height:32px;border-radius:8px;background:var(--s);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="16" height="16" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    </div>
+    <span style="font-size:15px;font-weight:800;color:var(--blk);">Benedict Schweiger</span>
+  </a>
+  <div style="display:flex;gap:20px;align-items:center;">
+    <a href="/blog/" style="font-size:13px;font-weight:600;color:var(--dg);text-decoration:none;">Blog</a>
+    <a href="/workbook-signup/" style="font-size:13px;font-weight:600;color:var(--s);text-decoration:none;">Workbook</a>
+    <a href="/autonomy-score/" style="font-size:13px;font-weight:600;color:var(--dg);text-decoration:none;">Diagnostic</a>
+  </div>
+</nav>
 
 <!-- ========== BLOCK 1: HERO ========== -->
 <div class="hero" id="hero" style="padding-top:48px;">
@@ -61,19 +76,23 @@
 
   <!-- Headline -->
   <h1 class="hero-h" style="font-size:clamp(32px,7vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.035em;color:var(--blk);margin-bottom:18px;max-width:640px;">
-    The shift from <em style="color:var(--s);font-style:normal;">operator</em> to architect is the defining transition for marketing leaders in 2026.
+    Build the system that lets you <em style="color:var(--s);font-style:normal;">charge more</em> — and keep the margin.
   </h1>
 
-  <!-- Wedge sentence -->
+  <!-- Subhead -->
   <p class="hero-sub" style="font-size:17px;line-height:1.65;color:var(--dg);max-width:540px;margin-bottom:32px;">
-    Most methodology products are static. The Agentic Marketing Test Stand tunes to your data over 6 months. That's the difference between buying best practice and buying a learning system.
+    The Margin Method is a five-phase loop — Listen, Reach, Capture, Convert, Measure — that turns customer truth into higher value per customer. AI agents are how you run it without a team you can't afford.
   </p>
 
   <!-- Proof block -->
-  <div class="proof-block" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:0 0 2rem;max-width:600px;">
+  <div class="proof-block" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin:0 0 2rem;max-width:600px;">
     <div class="proof-item" style="text-align:center;">
       <span style="display:block;font-size:2rem;font-weight:800;color:var(--s);line-height:1;letter-spacing:-.02em;">5</span>
       <span style="display:block;font-size:.8125rem;color:var(--mg);margin-top:.25rem;line-height:1.4;">people at ALTHERR running what used to take 8</span>
+    </div>
+    <div class="proof-item" style="text-align:center;">
+      <span style="display:block;font-size:2rem;font-weight:800;color:var(--s);line-height:1;letter-spacing:-.02em;">€1,900 → €3,800</span>
+      <span style="display:block;font-size:.8125rem;color:var(--mg);margin-top:.25rem;line-height:1.4;">AOV, 2019→2025. Moving upmarket.</span>
     </div>
     <div class="proof-item" style="text-align:center;">
       <span style="display:block;font-size:2rem;font-weight:800;color:var(--s);line-height:1;letter-spacing:-.02em;">6.1M</span>
@@ -85,18 +104,48 @@
     </div>
   </div>
 
-  <!-- Primary CTA: Diagnostic -->
+  <!-- Primary CTA: Workbook -->
   <div class="hero-cta-primary" style="max-width:480px;margin-bottom:12px;">
-    <a href="/autonomy-score/" style="display:block;width:100%;background:var(--s);color:#fff;border:none;border-radius:12px;padding:16px 28px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-sizing:border-box;text-align:center;text-decoration:none;">Benchmark my operation →</a>
+    <a href="/workbook-signup/" style="display:block;width:100%;background:var(--s);color:#fff;border:none;border-radius:12px;padding:16px 28px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-sizing:border-box;text-align:center;text-decoration:none;">Get the Founder's Workbook →</a>
   </div>
 
   <!-- Secondary CTA: Newsletter -->
   <p style="font-size:13px;color:var(--mg);margin-top:12px;">
     Or <a href="#newsletter" style="color:var(--s);text-decoration:none;font-weight:600;">get The Autonomy Brief, weekly →</a>
   </p>
+
+  <!-- Tertiary CTA: Diagnostic -->
+  <p style="font-size:12px;color:var(--mg);margin-top:16px;">
+    <a href="/autonomy-score/" style="color:var(--mg);text-decoration:underline;">Benchmark my operation →</a> (free diagnostic)
+  </p>
 </div>
 
-<!-- ========== BLOCK 2: NEWSLETTER PREVIEW ========== -->
+<!-- ========== BLOCK 2: WORKBOOK SECTION ========== -->
+<div class="workbook-section" id="workbook" style="padding:48px 20px;background:var(--bg);">
+  <div class="w" style="max-width:640px;margin:0 auto;">
+
+    <!-- Eyebrow -->
+    <div style="display:inline-flex;align-items:center;gap:6px;background:var(--slt);color:var(--s);font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:20px;text-transform:uppercase;letter-spacing:.05em;">
+      The Margin Method
+    </div>
+
+    <!-- Heading -->
+    <h2 style="font-size:clamp(24px,5vw,32px);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--blk);margin-bottom:16px;">
+      A Founder's Workbook
+    </h2>
+
+    <!-- Body -->
+    <p style="font-size:15px;line-height:1.7;color:var(--dg);margin:0 0 20px;">
+      An interactive workbook that walks you through the five-phase loop and builds your plan as you go — then hands you ready-to-run Claude prompts. Plus a short email course on how to actually use it.
+    </p>
+
+    <!-- CTA -->
+    <a href="/workbook-signup/" style="display:inline-block;background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;">Get the workbook →</a>
+
+  </div>
+</div>
+
+<!-- ========== BLOCK 3: NEWSLETTER PREVIEW ========== -->
 <div class="newsletter-section" id="newsletter" style="padding:48px 20px;">
   <div class="w" style="max-width:640px;margin:0 auto;">
 
@@ -107,7 +156,7 @@
 
     <!-- Description -->
     <p style="font-size:15px;line-height:1.7;color:var(--dg);margin:0 0 20px;">
-      Get the live training — the 5-email onboarding course that shifts you from operator to architect, plus instant access to the methodology preview with the full system breakdown.
+      Weekly notes on building marketing systems that compound. What I'm testing, what's breaking, and what's actually working — from the workbench, not the mountaintop.
     </p>
 
     <!-- Email form -->
@@ -115,7 +164,7 @@
       <input type="email" id="nl-email" placeholder="your@email.com" required style="flex:1;border:2px solid var(--lg);border-radius:12px;padding:14px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:var(--blk);background:#fff;outline:none;" />
       <!-- Honeypot: hidden from humans, bots fill it -->
       <input type="text" id="nl-website" name="website" style="position:absolute;left:-9999px;opacity:0;" tabindex="-1" autocomplete="off" />
-      <button type="submit" style="background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Get the live training →</button>
+      <button type="submit" style="background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Get The Autonomy Brief →</button>
     </form>
     <p id="nl-email-status" style="font-size:13px;color:var(--mg);margin:0;display:none;"></p>
 
@@ -147,6 +196,9 @@
 <!-- ========== FOOTER ========== -->
 <footer>
   <div class="footer-links">
+    <a href="/blog/">Blog</a>
+    <a href="/workbook-signup/">Workbook</a>
+    <a href="/autonomy-score/">Diagnostic</a>
     <a href="https://www.linkedin.com/in/benedictschweiger" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://www.youtube.com/channel/UCoCNyB7omxposyGloac8cA" target="_blank" rel="noopener">YouTube</a>
     <a href="mailto:info@benedictschweiger.com">Email</a>
@@ -179,7 +231,10 @@ async function handleNlEmail(e) {
       body: JSON.stringify({ email: email, source: 'homepage-newsletter', website: honeypot.value })
     });
     if (res.ok) {
-      window.location.href = '/methodology-preview/';
+      status.textContent = 'You\'re in. Check your inbox.';
+      status.style.color = 'var(--signal)';
+      status.style.display = 'block';
+      input.value = '';
       return;
     } else {
       throw new Error('HTTP ' + res.status);
@@ -187,10 +242,10 @@ async function handleNlEmail(e) {
   } catch (err) {
     status.textContent = 'Something went wrong. Please try again.';
     status.style.color = '#c0392b';
+    status.style.display = 'block';
     btn.disabled = false;
-    btn.textContent = 'Join the list →';
+    btn.textContent = 'Get The Autonomy Brief →';
   }
-  status.style.display = 'block';
   return false;
 }
 </script>
