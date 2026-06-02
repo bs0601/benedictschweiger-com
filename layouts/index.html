@@ -61,7 +61,6 @@
   <div style="display:flex;gap:20px;align-items:center;">
     <a href="/blog/" style="font-size:13px;font-weight:600;color:var(--dg);text-decoration:none;">Blog</a>
     <a href="/workbook-signup/" style="font-size:13px;font-weight:600;color:var(--s);text-decoration:none;">Workbook</a>
-
   </div>
 </nav>
 
@@ -74,6 +73,9 @@
     </p>
   </div>
 
+  <!-- Kicker -->
+  <p style="font-size:13px;font-weight:700;color:var(--s);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;">Skip the shiny objects.</p>
+
   <!-- Headline -->
   <h1 class="hero-h" style="font-size:clamp(32px,7vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.035em;color:var(--blk);margin-bottom:18px;max-width:640px;">
     Build the system that lets you <em style="color:var(--s);font-style:normal;">charge more</em>, and keep the margin.
@@ -84,7 +86,7 @@
     The Margin Method is a five-phase loop (Listen, Reach, Capture, Convert, Measure) that turns customer truth into higher value per customer. AI agents are how you run it without a team you can't afford.
   </p>
 
-  <!-- Is this you -->  <div class="icp-band" style="max-width:540px;margin:0 0 2.5rem;padding:20px;background:var(--bg);border-radius:12px;">    <p style="font-size:14px;line-height:1.7;color:var(--dg);margin:0;">      This is for you if you run marketing for an established consumer brand doing roughly €1M to €20M, mostly on your own, and the business keeps growing while your profit barely moves. You suspect the fix is structural. You do not have the time or the team to build it. That is exactly what the Margin Method is for.    </p>  </div>  <!-- Proof block -->
+  <!-- Proof block -->
   <div class="proof-block" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin:0 0 2rem;max-width:600px;">
     <div class="proof-item" style="text-align:center;">
       <span style="display:block;font-size:2rem;font-weight:800;color:var(--s);line-height:1;letter-spacing:-.02em;">€1,900 → €3,800</span>
@@ -104,6 +106,13 @@
     </div>
   </div>
 
+  <!-- Is this you -->
+  <div class="icp-band" style="max-width:540px;margin:0 0 2.5rem;padding:20px;background:var(--bg);border-radius:12px;">
+    <p style="font-size:14px;line-height:1.7;color:var(--dg);margin:0;">
+      This is for you if you run marketing for an established consumer brand doing roughly €1M to €20M, mostly on your own, and the business keeps growing while your profit barely moves. You suspect the fix is structural. You do not have the time or the team to build it. That is exactly what the Margin Method is for.
+    </p>
+  </div>
+
   <!-- Primary CTA: Workbook -->
   <div class="hero-cta-primary" style="max-width:480px;margin-bottom:12px;">
     <a href="/workbook-signup/" style="display:block;width:100%;background:var(--s);color:#fff;border:none;border-radius:12px;padding:16px 28px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-sizing:border-box;text-align:center;text-decoration:none;">Get the Margin Workbook →</a>
@@ -115,8 +124,34 @@
   </p>
 </div>
 
-<!-- ========== BLOCK 2: WORKBOOK SECTION ========== -->
-<div class="workbook-section" id="workbook" style="padding:48px 20px;background:var(--bg);">
+<!-- ========== BLOCK 2: FOUNDER + BELIEF SHIFT ========== -->
+<div class="founder-block" style="padding:64px 20px;background:var(--bg);">
+  <div style="max-width:640px;margin:0 auto;">
+    <div style="display:flex;gap:20px;align-items:flex-start;margin-bottom:24px;">
+      <img src="/images/bene-headshot.jpg" alt="Benedict Schweiger" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--lg);flex-shrink:0;" />
+      <div>
+        <h2 style="font-size:clamp(22px,4.5vw,28px);font-weight:800;line-height:1.15;letter-spacing:-.02em;color:var(--blk);margin-bottom:16px;">
+          You can build this yourself now.
+        </h2>
+      </div>
+    </div>
+
+    <div style="font-size:15px;line-height:1.75;color:var(--dg);">
+      <p style="margin-bottom:16px;">
+        I'm Bene. I spent years scaling a European watch brand from €4M to €20M as Head of Digital, then CMO, while moving it upmarket and growing the margin. I came out of pricing consulting before that. I built the marketing system, the data warehouse, and the agentic stack myself, with plenty of failures along the way.
+      </p>
+      <p style="margin-bottom:16px;">
+        Here is what I learned. The work was never about chasing whatever was loud that week. There was too much noise in 2020, and AI has made it deafening. The demos make it look like magic, then you paste in a prompt and get generic slop with your logo on it. A chat window is not a system.
+      </p>
+      <p style="margin:0;">
+        What closes the gap is unglamorous and durable: knowing what your customers actually value, building on that, owning the channel, pricing for the value you create, and running the whole thing on a few honest numbers every Monday. That is the Margin Method. AI agents are how you run it without the team you cannot afford. You can build it yourself, and the workbook is where you start.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== BLOCK 3: THE MARGIN WORKBOOK ========== -->
+<div class="workbook-section" id="workbook" style="padding:48px 20px;">
   <div class="w" style="max-width:640px;margin:0 auto;">
 
     <!-- Eyebrow -->
@@ -135,13 +170,65 @@
     </p>
 
     <!-- CTA -->
-    <a href="/workbook-signup/" style="display:inline-block;background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;">Get the workbook →</a>
+    <a href="/workbook-signup/" style="display:inline-block;background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;">Get the Margin Workbook →</a>
 
   </div>
 </div>
 
-<!-- ========== BLOCK 3: NEWSLETTER PREVIEW ========== -->
-<div class="newsletter-section" id="newsletter" style="padding:48px 20px;">
+<!-- ========== BLOCK 4: RESOURCES HUB ========== -->
+<div class="resources-hub" style="padding:48px 20px;background:var(--bg);">
+  <div style="max-width:900px;margin:0 auto;">
+    <p style="font-size:12px;font-weight:700;color:var(--mg);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px;">Where to go from here</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+      <!-- Newsletter -->
+      <div style="background:#fff;border:1.5px solid var(--lg);border-radius:12px;padding:24px;">
+        <h3 style="font-size:16px;font-weight:700;color:var(--blk);margin-bottom:8px;">The newsletter</h3>
+        <p style="font-size:14px;line-height:1.6;color:var(--dg);margin-bottom:16px;">Weekly notes on building marketing systems that compound: what I'm testing, what's breaking, and what's actually working, from the workbench. Free.</p>
+        <a href="#newsletter" style="font-size:14px;font-weight:600;color:var(--s);text-decoration:none;">Subscribe →</a>
+      </div>
+
+      <!-- Writing -->
+      <div style="background:#fff;border:1.5px solid var(--lg);border-radius:12px;padding:24px;">
+        <h3 style="font-size:16px;font-weight:700;color:var(--blk);margin-bottom:8px;">The writing</h3>
+        <p style="font-size:14px;line-height:1.6;color:var(--dg);margin-bottom:16px;">Essays on margin, owned channels, and running a brand agentically. Real numbers, including the unflattering ones.</p>
+        <a href="/blog/" style="font-size:14px;font-weight:600;color:var(--s);text-decoration:none;">Read the blog →</a>
+      </div>
+
+      <!-- YouTube -->
+      <div style="background:#fff;border:1.5px solid var(--lg);border-radius:12px;padding:24px;">
+        <h3 style="font-size:16px;font-weight:700;color:var(--blk);margin-bottom:8px;">YouTube</h3>
+        <p style="font-size:14px;line-height:1.6;color:var(--dg);margin-bottom:16px;">Founder videos and deep dives, the kind competitors won't make.</p>
+        <a href="https://www.youtube.com/channel/UCoCNyB7omxposyGloac8cA" target="_blank" rel="noopener" style="font-size:14px;font-weight:600;color:var(--s);text-decoration:none;">Watch on YouTube →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== BLOCK 5: RECENT WRITING ========== -->
+<div class="content-section" style="padding:0 20px 48px;">
+  <div class="w" style="max-width:900px;margin:0 auto;">
+    <p style="font-size:12px;font-weight:700;color:var(--mg);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;">Recent writing</p>
+    <div class="post-strip" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+      {{ $posts := where .Site.RegularPages "Section" "blog" }}
+      {{ range first 3 $posts }}
+      <a href="{{ .RelPermalink }}" style="text-decoration:none;color:inherit;">
+        <div style="background:#fff;border:1.5px solid var(--lg);border-radius:12px;padding:20px;transition:border-color .15s;">
+          <div style="font-size:12px;color:var(--mg);margin-bottom:8px;">{{ .Date.Format "Jan 2006" }}</div>
+          <div style="font-size:15px;font-weight:700;color:var(--blk);line-height:1.35;margin-bottom:8px;">{{ .Title }}</div>
+          <div style="font-size:13px;color:var(--dg);line-height:1.5;">{{ .Params.excerpt | default .Params.description | default .Summary | truncate 80 }}</div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+    {{ if gt (len $posts) 0 }}
+    <a href="/blog/" style="display:inline-block;margin-top:20px;font-size:14px;font-weight:600;color:var(--s);text-decoration:none;">All articles →</a>
+    {{ end }}
+  </div>
+</div>
+
+<!-- ========== BLOCK 6: NEWSLETTER (ANCHORED) ========== -->
+<div class="newsletter-section" id="newsletter" style="padding:48px 20px;background:var(--bg);">
   <div class="w" style="max-width:640px;margin:0 auto;">
 
     <!-- Eyebrow -->
@@ -166,30 +253,8 @@
   </div>
 </div>
 
-<!-- ========== EVIDENCE STRIP: RECENT POSTS ========== -->
-<div class="content-section" style="padding:0 20px 48px;">
-  <div class="w" style="max-width:900px;margin:0 auto;">
-    <p style="font-size:12px;font-weight:700;color:var(--mg);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;">Recent writing</p>
-    <div class="post-strip" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
-      {{ $posts := where .Site.RegularPages "Section" "blog" }}
-      {{ range first 3 $posts }}
-      <a href="{{ .RelPermalink }}" style="text-decoration:none;color:inherit;">
-        <div style="background:#fff;border:1.5px solid var(--lg);border-radius:12px;padding:20px;transition:border-color .15s;">
-          <div style="font-size:12px;color:var(--mg);margin-bottom:8px;">{{ .Date.Format "Jan 2006" }}</div>
-          <div style="font-size:15px;font-weight:700;color:var(--blk);line-height:1.35;margin-bottom:8px;">{{ .Title }}</div>
-          <div style="font-size:13px;color:var(--dg);line-height:1.5;">{{ .Params.excerpt | default .Params.description | default .Summary | truncate 80 }}</div>
-        </div>
-      </a>
-      {{ end }}
-    </div>
-    {{ if gt (len $posts) 0 }}
-    <a href="/blog/" style="display:inline-block;margin-top:20px;font-size:14px;font-weight:600;color:var(--s);text-decoration:none;">All articles →</a>
-    {{ end }}
-  </div>
-</div>
-
-<!-- ========== CLOSING CTA BAND ========== -->
-<div class="closing-cta" style="padding:48px 20px;background:var(--bg);text-align:center;">
+<!-- ========== BLOCK 7: CLOSING CTA ========== -->
+<div class="closing-cta" style="padding:48px 20px;text-align:center;">
   <div style="max-width:640px;margin:0 auto;">
     <p style="font-size:18px;font-weight:700;color:var(--blk);margin-bottom:20px;">Start where it starts: the workbook.</p>
     <a href="/workbook-signup/" style="display:inline-block;background:var(--s);color:#fff;border:none;border-radius:12px;padding:16px 28px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;">Get the Margin Workbook →</a>
