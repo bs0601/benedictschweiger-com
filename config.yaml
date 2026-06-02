@@ -60,9 +60,6 @@ menu:
     - name: Workbook
       url: /workbook-signup/
       weight: 15
-    - name: Diagnostic
-      url: /autonomy-score/
-      weight: 20
 
 # Blog content lives in content/blog/
 permalinks:

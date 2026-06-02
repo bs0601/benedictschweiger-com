@@ -46,12 +46,18 @@ main{max-width:var(--max);margin:0 auto;padding:40px 20px calc(var(--sb) + 40px)
 
 /* ── HERO ── */
 .hero-eyebrow{font-size:12px;font-weight:700;color:var(--s);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
-.hero-title{font-size:clamp(28px,7vw,40px);font-weight:800;line-height:1.08;letter-spacing:-.03em;color:var(--blk);margin-bottom:16px}
+.hero-title{font-size:clamp(28px,7vw,40px);font-weight:800;line-height:1.08;letter-spacing:-.03em;color:var(--blk);margin-bottom:12px}
 .hero-title em{color:var(--s);font-style:normal}
-.hero-sub{font-size:15px;line-height:1.7;color:var(--dg);margin-bottom:32px}
+.hero-resonance{font-size:15px;line-height:1.6;color:var(--dg);margin-bottom:24px;font-weight:500}
+.hero-sub{font-size:15px;line-height:1.7;color:var(--dg);margin-bottom:28px}
+
+/* ── THE DEAL ── */
+.deal-band{background:var(--bg);border-radius:var(--r);padding:24px 20px;margin-bottom:28px}
+.deal-band p{font-size:14px;line-height:1.7;color:var(--dg);margin:0}
+.deal-band p strong{color:var(--blk);font-weight:600}
 
 /* ── FORM ── */
-.form-card{background:var(--bg);border-radius:var(--r);padding:28px 24px}
+.form-card{background:var(--bg);border-radius:var(--r);padding:28px 24px;margin-bottom:28px}
 .form-group{margin-bottom:20px}
 .form-label{display:block;font-size:13px;font-weight:700;color:var(--blk);margin-bottom:6px}
 .form-input{width:100%;padding:14px 16px;border:2px solid var(--lg);border-radius:var(--rs);font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;color:var(--blk);background:#fff;outline:none;transition:border-color .15s}
@@ -62,18 +68,27 @@ main{max-width:var(--max);margin:0 auto;padding:40px 20px calc(var(--sb) + 40px)
 .btn-primary:active{background:#a84f24}
 .btn-primary:disabled{opacity:.6;cursor:not-allowed}
 
+.form-microcopy{font-size:12px;color:var(--mg);margin-top:12px;text-align:center;line-height:1.5}
+
 .status-msg{font-size:13px;margin-top:12px;text-align:center;min-height:20px}
 .status-msg.error{color:#c0392b}
 .status-msg.success{color:var(--signal)}
 
 /* ── WHAT YOU GET ── */
-.benefits{margin-top:32px}
+.benefits{margin-bottom:32px}
 .benefits-title{font-size:14px;font-weight:700;color:var(--mg);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
 .benefit{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
 .benefit-check{width:22px;height:22px;border-radius:50%;background:var(--slt);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
 .benefit-check svg{width:12px;height:12px;stroke:var(--s);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .benefit-text{font-size:14px;line-height:1.6;color:var(--dg)}
 .benefit-text strong{color:var(--blk);font-weight:600}
+
+/* ── FOUNDER PRESENCE ── */
+.founder-band{display:flex;gap:16px;align-items:flex-start;margin-bottom:32px;padding:20px;background:var(--bg);border-radius:var(--r)}
+.founder-headshot{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--lg);flex-shrink:0}
+.founder-note{font-size:14px;line-height:1.7;color:var(--dg)}
+.founder-note strong{color:var(--blk);font-weight:600}
+.founder-name{font-size:13px;font-weight:700;color:var(--blk);margin-top:8px}
 
 /* ── FOOTER ── */
 .footer{margin-top:40px;padding-top:24px;border-top:1px solid var(--lg);text-align:center}
@@ -98,8 +113,9 @@ main{max-width:var(--max);margin:0 auto;padding:40px 20px calc(var(--sb) + 40px)
 <main>
   <div class="hero-eyebrow">The Margin Method</div>
   <h1 class="hero-title">Get the <em>Founder's Workbook</em></h1>
+  <p class="hero-resonance">If the business keeps growing while your profit barely moves, this is where you start.</p>
   <p class="hero-sub">
-    A self-paced, interactive workbook that walks you through the five-phase loop — Listen, Reach, Capture, Convert, Measure — and builds your plan as you go. Plus ready-to-run Claude prompts and a short email course on how to actually use it.
+    A self-paced, interactive workbook that walks you through the five-phase loop (Listen, Reach, Capture, Convert, Measure) and builds your plan as you go. It hands you ready-to-run Claude prompts pre-loaded with what you wrote. Alongside it, a 14-day email course: one short email a day, about three minutes each.
   </p>
 
   <div class="form-card">
@@ -114,9 +130,14 @@ main{max-width:var(--max);margin:0 auto;padding:40px 20px calc(var(--sb) + 40px)
       </div>
       <!-- Honeypot -->
       <input type="text" id="wb-website" class="hp" tabindex="-1" autocomplete="off"/>
-      <button type="submit" class="btn-primary" id="wb-submit">Get the workbook →</button>
+      <button type="submit" class="btn-primary" id="wb-submit">Send me the workbook →</button>
+      <p class="form-microcopy">Instant access. One email a day for two weeks, then the newsletter only if you want it. Unsubscribe in one click.</p>
       <p class="status-msg" id="wb-status"></p>
     </form>
+  </div>
+
+  <div class="deal-band">
+    <p>Here is the deal. The workbook is yours the moment you confirm your email. Then for 14 days I send one short email a day, about three minutes each, no essays, because I would delete those too. Each one kills a belief that is quietly costing you, hands you the one move that matters, and names the trap most people fall into. By the end you will have run a marketing system on your own business, not just read about one.</p>
   </div>
 
   <div class="benefits">
@@ -125,25 +146,33 @@ main{max-width:var(--max);margin:0 auto;padding:40px 20px calc(var(--sb) + 40px)
       <div class="benefit-check">
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <div class="benefit-text"><strong>The interactive workbook</strong> — five phases, fillable workspaces, checklists, and agent prompts tailored to your business.</div>
+      <div class="benefit-text"><strong>The interactive workbook.</strong> Five phases, fillable workspaces, checklists, and Claude prompts tailored to your business.</div>
     </div>
     <div class="benefit">
       <div class="benefit-check">
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <div class="benefit-text"><strong>Ready-to-run Claude prompts</strong> — copy-paste agents for pattern extraction, content generation, and scorecard building.</div>
+      <div class="benefit-text"><strong>Ready-to-run Claude prompts.</strong> Pre-loaded with what you wrote, for customer-truth pattern extraction, content, and building your scorecard.</div>
     </div>
     <div class="benefit">
       <div class="benefit-check">
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <div class="benefit-text"><strong>Short email course</strong> — how to actually use the workbook, delivered over your first week.</div>
+      <div class="benefit-text"><strong>A 14-day email course.</strong> One short email a day for two weeks: the point of each phase, the one move that matters, the trap to avoid.</div>
     </div>
     <div class="benefit">
       <div class="benefit-check">
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <div class="benefit-text"><strong>Instant access</strong> — no waiting. The workbook opens the moment you confirm your email.</div>
+      <div class="benefit-text"><strong>Instant access.</strong> The workbook opens the moment you confirm your email. No waiting.</div>
+    </div>
+  </div>
+
+  <div class="founder-band">
+    <img src="/images/bene-headshot.jpg" alt="Benedict Schweiger" class="founder-headshot"/>
+    <div>
+      <p class="founder-note">I built this as the thing I wish I had when I was scaling a brand meant to last. Fill it in as you go, do not just read it. If you get stuck, hit reply. I read every one.</p>
+      <p class="founder-name">Bene</p>
     </div>
   </div>
 
@@ -193,7 +222,7 @@ async function handleWorkbookSignup(e) {
     status.textContent = err.message || 'Something went wrong. Please try again.';
     status.className = 'status-msg error';
     btn.disabled = false;
-    btn.textContent = 'Get the workbook →';
+    btn.textContent = 'Send me the workbook →';
   }
   return false;
 }
