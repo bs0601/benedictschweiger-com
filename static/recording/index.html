@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#FFFFFF"/>
+<meta name="robots" content="noindex"/>
+<title>Margin OS · Build your company brain · Benedict Schweiger</title>
+<meta name="description" content="Margin OS: a recorded, step-by-step build. Set up Claude as the interface to your business, connect your tools, build your company brain, and have a morning briefing running by tomorrow. $27."/>
+<link rel="canonical" href="https://benedictschweiger.com/recording/"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ── The Margin Method · brand tokens (brand-design-system.md) ── */
+:root{
+  --paper:#FFFFFF; --mist:#F5F5F7; --ink:#1D1D1F; --sub:#6E6E73; --hair:#D2D2D7;
+  --accent:#B8593A; --accent-text:#A8502F;
+  --r-card:16px;
+  --ease:cubic-bezier(0.2,0.8,0.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--paper)}
+body{font-family:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.45}
+a{color:var(--accent-text)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--hair);padding:calc(env(safe-area-inset-top,0px) + 16px) 24px 16px}
+.nav-name{font-size:16px;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+main{max-width:760px;margin:0 auto;padding:64px 24px calc(env(safe-area-inset-bottom,0px) + 64px)}
+.eyebrow{font-size:13px;font-weight:500;color:var(--sub);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px;text-align:center}
+h1{font-size:clamp(32px,6vw,44px);font-weight:600;line-height:1.1;letter-spacing:-.022em;margin-bottom:16px;text-align:center}
+.lead{font-size:19px;line-height:1.55;letter-spacing:-.01em;color:var(--sub);margin-bottom:32px;text-align:center;max-width:60ch;margin-left:auto;margin-right:auto}
+.hero-cta{text-align:center;margin-bottom:12px}
+.hero-micro{font-size:13px;color:var(--sub);text-align:center;margin-bottom:64px}
+.section{margin-bottom:64px}
+.section h2{font-size:clamp(24px,4.5vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.12;margin-bottom:20px}
+.section p{font-size:17px;line-height:1.6;color:var(--ink);max-width:62ch;margin-bottom:16px}
+.section p.muted{color:var(--sub)}
+.steps{list-style:none;counter-reset:s;margin-top:8px}
+.steps li{counter-increment:s;position:relative;padding-left:48px;margin-bottom:24px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:980px;
+  background:var(--mist);color:var(--accent-text);font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center}
+.steps h3{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
+.steps p{font-size:16px;line-height:1.55;color:var(--sub);margin:0;max-width:58ch}
+.included{list-style:none;border:1px solid var(--hair);border-radius:var(--r-card);overflow:hidden}
+.included li{padding:24px;border-bottom:1px solid var(--hair)}
+.included li:last-child{border-bottom:none}
+.included h3{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
+.included p{font-size:16px;line-height:1.55;color:var(--sub);margin:0}
+.proof-row{display:flex;flex-wrap:wrap;gap:32px;justify-content:center;text-align:center;margin-top:8px}
+.proof-item{flex:1;min-width:200px}
+.proof-num{font-size:40px;font-weight:600;letter-spacing:-.022em;color:var(--accent);line-height:1.05;margin-bottom:8px}
+.proof-label{font-size:15px;line-height:1.5;color:var(--sub)}
+.founder{width:100%;height:auto;border-radius:18px;display:block;margin:0 0 64px;border:1px solid var(--hair)}
+.founder.in-section{margin:0 0 32px}
+.offer{background:var(--mist);border-radius:var(--r-card);padding:48px 32px;margin-bottom:48px;text-align:center}
+.offer h2{font-size:32px;font-weight:600;letter-spacing:-.02em;line-height:1.12;margin-bottom:16px}
+.price{font-size:44px;font-weight:600;letter-spacing:-.022em;margin-bottom:8px}
+.anchor{font-size:16px;line-height:1.55;color:var(--sub);max-width:48ch;margin:0 auto 32px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;min-width:240px;
+  background:var(--accent);color:#fff;border:none;border-radius:980px;padding:14px 32px;
+  font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;
+  transition:transform 150ms var(--ease),background 150ms var(--ease)}
+.btn:hover{background:#A8502F}
+.btn:active{transform:scale(.98)}
+.offer .microcopy{font-size:13px;color:var(--sub);margin-top:16px}
+.guarantee{font-size:15px;line-height:1.55;color:var(--sub);max-width:52ch;margin:24px auto 0}
+.faq h2{margin-bottom:8px}
+.faq details{border-bottom:1px solid var(--hair);padding:20px 0}
+.faq summary{font-size:17px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--accent-text);font-size:22px;font-weight:400;line-height:1}
+.faq details[open] summary::after{content:"\2013"}
+.faq details p{font-size:16px;line-height:1.6;color:var(--sub);margin-top:12px;max-width:60ch}
+footer{border-top:1px solid var(--hair);padding-top:24px;text-align:center}
+footer p{font-size:13px;color:var(--sub);line-height:1.6}
+footer a{color:var(--sub);text-decoration:underline}
+.consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:200;background:var(--ink);color:var(--mist);
+  border-radius:var(--r-card);padding:16px 24px;display:none;gap:16px;align-items:center;flex-wrap:wrap;
+  box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.consent.show{display:flex}
+.consent p{font-size:13px;line-height:1.5;flex:1;min-width:220px}
+.consent button{min-height:44px;border-radius:980px;padding:10px 20px;font-family:inherit;font-size:13px;
+  font-weight:600;cursor:pointer;border:1px solid var(--sub);background:transparent;color:var(--mist)}
+.consent button.yes{background:var(--mist);color:var(--ink);border-color:var(--mist)}
+@media (prefers-reduced-motion: reduce){*{transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<nav><a class="nav-name" href="/">Benedict Schweiger</a></nav>
+<main>
+  <p class="eyebrow">For owners of 7-figure ecommerce brands</p>
+  <h1>Build the company brain your business runs on. In an afternoon.</h1>
+  <p class="lead">A recorded, step-by-step build. You set up Claude as the interface to your whole business, connect your tools, build your company brain with the plugin I made, and have a morning briefing running by tomorrow. You stop being the operator and start being the architect.</p>
+  <div class="hero-cta"><a class="btn" href="#offer">Get Margin OS, $27</a></div>
+  <p class="hero-micro">Includes the Brand Builder plugin and the company-brain starter kit. Lifetime access.</p>
+  <img class="founder" src="img/founder-hero.jpg" alt="Benedict Schweiger at his desk"/>
+  <section class="section">
+    <h2>You already know where this is going.</h2>
+    <p>AI is going to run a lot of how your company operates. Your team has dabbled, the output was generic, and nothing about how the business actually runs has changed.</p>
+    <p>So you are still growing the only way you know how: more spend, more headcount, more hours. The business gets bigger and the margin gets thinner.</p>
+    <p class="muted">The thing that breaks that pattern is not another tool or another hire. It is a system: a company brain your AI works inside, so it knows your business and runs the execution you used to pay people for. That is what you build here.</p>
+  </section>
+  <section class="section">
+    <h2>What you build, in five steps.</h2>
+    <ol class="steps">
+      <li><h3>Your AI workspace.</h3><p>Claude becomes your interface to the whole business. You stop digging through dashboards. You will not open HubSpot to check your AOV or which channel is winning. You will just ask.</p></li>
+      <li><h3>Connect your tools.</h3><p>Shopify, HubSpot, Klaviyo, Granola, Gmail, Notion. Each connection unlocks a workflow, and I show you the kind you can run.</p></li>
+      <li><h3>Build your company brain.</h3><p>With the plugin, in a handful of commands: your customer truth, your voice, your brand, and your rules. This is what stops the slop. Then you push it to your Drive so your whole team works from the same brain.</p></li>
+      <li><h3>Set up your morning briefing.</h3><p>Yesterday's numbers, your inbox, your calendar, what actually needs you, in one short brief every morning, so you stay on the few things that move the business.</p></li>
+      <li><h3>Use it, and let it compound.</h3><p>You develop it, share it with your team, and let Claude write what it learns back into the brain, so it knows your business a little better every day.</p></li>
+    </ol>
+  </section>
+  <section class="section">
+    <h2>What's included.</h2>
+    <ul class="included">
+      <li><h3>The recorded Margin OS workshop.</h3><p>The full build, start to finish, that you follow at your own pace. Pause after any step, do it on your business, pick back up. Lifetime access.</p></li>
+      <li><h3>The Brand Builder plugin.</h3><p>The tool that builds your company brain with you: a guide and six wizards for your customer truth, voice, brand, instructions, and a quality gate. The part that took me months of late nights runs here in an afternoon.</p></li>
+      <li><h3>The company-brain starter kit.</h3><p>The folder structure, the starting templates, and the scheduled-task recipes, including the morning briefing, so what you build is reusable, not a one-off.</p></li>
+    </ul>
+  </section>
+  <section class="section">
+    <h2>I built this, then made it lean.</h2>
+    <p class="muted">I ran marketing for a European watch brand and grew it the expensive way first, before AI let me run it lean. This is the system that came out of it.</p>
+    <img class="founder in-section" src="img/founder-building.jpg" alt="Benedict Schweiger building the system at his desk"/>
+    <div class="proof-row">
+      <div class="proof-item"><div class="proof-num">&euro;4.7M&nbsp;&rarr;&nbsp;&euro;20M</div><div class="proof-label">Revenue, 2019 to 2025, while moving the brand upmarket.</div></div>
+      <div class="proof-item"><div class="proof-num">8&nbsp;&rarr;&nbsp;5</div><div class="proof-label">In 2025 I cut 3 people, about &euro;10,000 a month off payroll, and revenue still climbed.</div></div>
+      <div class="proof-item"><div class="proof-num">10,000&nbsp;km</div><div class="proof-label">I ran the whole operation from Brazil, on a six-number scorecard.</div></div>
+    </div>
+  </section>
+  <section class="offer" id="offer">
+    <h2>Get Margin OS.</h2>
+    <p class="price">$27</p>
+    <p class="anchor">Done one-on-one, a build like this is a four-figure engagement. The recording is $27 so cost is never the reason you don't start. Set it against one system running quietly in your business, every day, forever.</p>
+    <a class="btn" id="buy-btn" href="#">Get Margin OS, $27</a>
+    <p class="microcopy">Instant access after checkout. The plugin and starter kit included. Yours to keep.</p>
+    <p class="guarantee">Watch the whole thing and build alongside it. If you do not walk away with a company brain worth far more than 27 dollars, email me and I will refund you. No forms, no hoops.</p>
+  </section>
+  <section class="section faq">
+    <h2>Questions.</h2>
+    <details><summary>Do I need to be technical?</summary><p>No. The first night I built mine, I did not know what a terminal was, and I hit 47 errors in two hours. You direct the system the way you direct a team member. You never write code.</p></details>
+    <details><summary>How long does it take?</summary><p>You can do the core build in an afternoon. You pause and do each step on your own business, then pick back up.</p></details>
+    <details><summary>What tools do I need?</summary><p>Whatever you already run on: Shopify, HubSpot, Klaviyo, Granola, Gmail, Notion, Google or Microsoft. You need admin access to at least one to connect it.</p></details>
+    <details><summary>Is my data safe?</summary><p>The connectors are mostly read-only and permission-gated. Nothing goes rogue and emails your list or edits your store. You stay in control.</p></details>
+    <details><summary>Do I need the workbook?</summary><p>No. The workbook is the free marketing method. This workshop is the system that runs it. They fit together, but you can start here.</p></details>
+  </section>
+  <footer><p>Benedict Schweiger · <a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a></p></footer>
+</main>
+<div class="consent" id="consent">
+  <p>I use Meta and Google measurement on this page to see whether it works. No tracking before you say yes.</p>
+  <button class="yes" id="consent-yes">That's fine</button>
+  <button id="consent-no">No thanks</button>
+</div>
+<script>
+const MM = { metaPixelId:"REPLACE_META_PIXEL_ID", ga4Id:"REPLACE_GA4_ID", capiEndpoint:"/.netlify/functions/capi", stripeRecordingUrl:"REPLACE_STRIPE_27_LINK" };
+function consentState(){ return localStorage.getItem("mm-consent"); }
+document.getElementById("consent-yes").addEventListener("click",()=>{localStorage.setItem("mm-consent","yes");document.getElementById("consent").classList.remove("show");initTracking();trackViewContent();});
+document.getElementById("consent-no").addEventListener("click",()=>{localStorage.setItem("mm-consent","no");document.getElementById("consent").classList.remove("show");});
+let trackingReady=false;
+function initTracking(){if(trackingReady||consentState()!=="yes")return;if(!MM.metaPixelId.startsWith("REPLACE")){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init",MM.metaPixelId);fbq("track","PageView");}if(!MM.ga4Id.startsWith("REPLACE")){const s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id="+MM.ga4Id;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag("js",new Date());gtag("config",MM.ga4Id);}trackingReady=true;}
+function newEventId(){return (crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2));}
+function track(metaName,ga4Name,params,custom){if(consentState()!=="yes")return;const eventId=newEventId();if(window.fbq){custom?fbq("trackCustom",metaName,params||{},{eventID:eventId}):fbq("track",metaName,params||{},{eventID:eventId});}if(window.gtag)gtag("event",ga4Name,params||{});fetch(MM.capiEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({event_name:metaName,event_id:eventId,event_source_url:location.href,...(params||{})})}).catch(()=>{});}
+let vcFired=false;
+function trackViewContent(){if(vcFired)return;vcFired=true;track("ViewContent","view_item",{content_name:"margin-os-recording",value:27,currency:"USD"});}
+const buyBtn=document.getElementById("buy-btn");
+if(!MM.stripeRecordingUrl.startsWith("REPLACE"))buyBtn.href=MM.stripeRecordingUrl;
+buyBtn.addEventListener("click",function(ev){if(MM.stripeRecordingUrl.startsWith("REPLACE")){ev.preventDefault();return;}track("InitiateCheckout","begin_checkout",{value:27,currency:"USD",content_name:"margin-os-recording"});});
+if(!consentState())document.getElementById("consent").classList.add("show");
+else if(consentState()==="yes"){initTracking();trackViewContent();}
+</script>
+</body>
+</html>

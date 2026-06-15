@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#FFFFFF"/>
+<meta name="robots" content="noindex"/>
+<title>The free training · Benedict Schweiger</title>
+<meta name="description" content="The free training: build a company brain your AI runs on, so one operator can direct work that used to need a team."/>
+<link rel="canonical" href="https://benedictschweiger.com/training/"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ── The Margin Method · brand tokens (brand-design-system.md) ── */
+:root{
+  --paper:#FFFFFF; --mist:#F5F5F7; --ink:#1D1D1F; --sub:#6E6E73; --hair:#D2D2D7;
+  --accent:#B8593A; --accent-text:#A8502F;
+  --r-card:16px;
+  --ease:cubic-bezier(0.2,0.8,0.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--paper)}
+body{font-family:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.45}
+a{color:var(--accent-text)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--hair);padding:calc(env(safe-area-inset-top,0px) + 16px) 24px 16px}
+.nav-name{font-size:16px;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+
+main{max-width:760px;margin:0 auto;padding:64px 24px calc(env(safe-area-inset-bottom,0px) + 64px)}
+
+.eyebrow{font-size:13px;font-weight:500;color:var(--sub);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px;text-align:center}
+h1{font-size:clamp(32px,6vw,44px);font-weight:600;line-height:1.1;letter-spacing:-.022em;margin-bottom:16px;text-align:center}
+.lead{font-size:19px;line-height:1.55;letter-spacing:-.01em;color:var(--sub);margin-bottom:48px;text-align:center;max-width:60ch;margin-left:auto;margin-right:auto}
+
+/* video — aspect set by MM.videoAspect */
+.video-wrap{border-radius:var(--r-card);overflow:hidden;background:#000;margin-bottom:64px}
+.video-inner{position:relative;width:100%;padding-top:56.25%}             /* 16:9 default */
+.video-wrap.vertical{max-width:420px;margin-left:auto;margin-right:auto}
+.video-wrap.vertical .video-inner{padding-top:177.78%}                     /* 9:16 */
+.video-inner iframe,.video-inner #yt-player{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:#A1A1A6;font-size:16px;padding:24px;text-align:center}
+
+/* offer */
+.offer{background:var(--mist);border-radius:var(--r-card);padding:48px 32px;margin-bottom:48px;text-align:center}
+.offer h2{font-size:32px;font-weight:600;letter-spacing:-.02em;line-height:1.12;margin-bottom:16px}
+.offer .body{font-size:16px;line-height:1.55;color:var(--sub);max-width:60ch;margin:0 auto 32px}
+.price{font-size:44px;font-weight:600;letter-spacing:-.022em;margin-bottom:8px}
+.anchor{font-size:16px;line-height:1.55;color:var(--sub);max-width:48ch;margin:0 auto 32px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;min-width:240px;
+  background:var(--accent);color:#fff;border:none;border-radius:980px;padding:14px 32px;
+  font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;
+  transition:transform 150ms var(--ease),background 150ms var(--ease)}
+.btn:hover{background:#A8502F}
+.btn:active{transform:scale(.98)}
+.offer .microcopy{font-size:13px;color:var(--sub);margin-top:16px}
+
+/* workbook secondary */
+.workbook{border:1px solid var(--hair);border-radius:var(--r-card);padding:32px 24px;margin-bottom:48px}
+.workbook h3{font-size:24px;font-weight:600;letter-spacing:-.015em;margin-bottom:8px}
+.workbook p{font-size:16px;line-height:1.55;color:var(--sub);margin-bottom:16px}
+.quiet-link{font-size:16px;font-weight:600;color:var(--accent-text);text-decoration:none}
+.quiet-link:hover{text-decoration:underline}
+
+footer{border-top:1px solid var(--hair);padding-top:24px;text-align:center}
+footer p{font-size:13px;color:var(--sub);line-height:1.6}
+footer a{color:var(--sub);text-decoration:underline}
+
+/* consent bar */
+.consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:200;background:var(--ink);color:var(--mist);
+  border-radius:var(--r-card);padding:16px 24px;display:none;gap:16px;align-items:center;flex-wrap:wrap;
+  box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.consent.show{display:flex}
+.consent p{font-size:13px;line-height:1.5;flex:1;min-width:220px}
+.consent button{min-height:44px;border-radius:980px;padding:10px 20px;font-family:inherit;font-size:13px;
+  font-weight:600;cursor:pointer;border:1px solid var(--sub);background:transparent;color:var(--mist)}
+.consent button.yes{background:var(--mist);color:var(--ink);border-color:var(--mist)}
+
+@media (prefers-reduced-motion: reduce){*{transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<nav><a class="nav-name" href="/">Benedict Schweiger</a></nav>
+
+<main>
+  <p class="eyebrow">The free training</p>
+  <h1>Your training is ready.</h1>
+  <p class="lead">About 30 minutes, best watched in one sitting. The next step is at the end of the video, and it's also right below it.</p>
+
+  <div class="video-wrap" id="video-wrap">
+    <div class="video-inner">
+      <div id="yt-player"></div>
+      <div class="video-placeholder" id="video-placeholder">The training video appears here once it's published.</div>
+    </div>
+  </div>
+
+  <section class="offer" id="offer">
+    <h2>Start working the new way today.</h2>
+    <p class="body">The training showed you the shift to lead; the recording is where you make it yourself, before you involve anyone. The complete 90-minute session, from a blank screen to your own morning briefing firing: watch once, build along, keep it forever. Step 2 of the path, done before the day is over.</p>
+    <p class="price">$27</p>
+    <p class="anchor">Done one-on-one, this is a four-figure engagement. The recording costs $27 so cost is never the reason you don't start.</p>
+    <a class="btn" id="buy-btn" href="#">Get the recording</a>
+    <p class="microcopy">Instant access after checkout. Yours to keep.</p>
+  </section>
+
+  <section class="workbook">
+    <h3>Rather start by hand?</h3>
+    <p>The Margin Workbook is free and walks the same five-phase loop on your own business. You already have access; no second signup.</p>
+    <a class="quiet-link" href="/workbook/">Open the workbook</a>
+  </section>
+
+  <footer>
+    <p>Benedict Schweiger · <a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a></p>
+  </footer>
+</main>
+
+<div class="consent" id="consent">
+  <p>I use Meta and Google measurement on this page to see whether it works. No tracking before you say yes.</p>
+  <button class="yes" id="consent-yes">That's fine</button>
+  <button id="consent-no">No thanks</button>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   CONFIG — OpenClaw: replace before launch.
+   videoAspect: "16:9" or "9:16" depending on the final master.
+   ───────────────────────────────────────────────────────────── */
+const MM = {
+  metaPixelId: "REPLACE_META_PIXEL_ID",
+  ga4Id:       "REPLACE_GA4_ID",
+  capiEndpoint:"/.netlify/functions/capi",
+  youtubeId:   "REPLACE_YOUTUBE_ID",       // unlisted training video
+  videoAspect: "16:9",
+  stripeRecordingUrl: "REPLACE_STRIPE_27_LINK"
+};
+
+/* ── consent (same minimal stopgap as /start/) ── */
+function consentState(){ return localStorage.getItem("mm-consent"); }
+document.getElementById("consent-yes").addEventListener("click",()=>{
+  localStorage.setItem("mm-consent","yes");
+  document.getElementById("consent").classList.remove("show");
+  initTracking(); trackViewContent();
+});
+document.getElementById("consent-no").addEventListener("click",()=>{
+  localStorage.setItem("mm-consent","no");
+  document.getElementById("consent").classList.remove("show");
+});
+
+let trackingReady=false;
+function initTracking(){
+  if (trackingReady || consentState()!=="yes") return;
+  if (!MM.metaPixelId.startsWith("REPLACE")){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", MM.metaPixelId);
+    fbq("track","PageView");
+  }
+  if (!MM.ga4Id.startsWith("REPLACE")){
+    const s=document.createElement("script");s.async=true;
+    s.src="https://www.googletagmanager.com/gtag/js?id="+MM.ga4Id;document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
+    gtag("js",new Date());gtag("config",MM.ga4Id);
+  }
+  trackingReady=true;
+}
+function newEventId(){
+  return (crypto.randomUUID ? crypto.randomUUID() : Date.now()+"-"+Math.random().toString(36).slice(2));
+}
+function track(metaName, ga4Name, params, custom){
+  if (consentState()!=="yes") return;
+  const eventId=newEventId();
+  if (window.fbq){ custom ? fbq("trackCustom",metaName,params||{},{eventID:eventId})
+                          : fbq("track",metaName,params||{},{eventID:eventId}); }
+  if (window.gtag) gtag("event", ga4Name, params||{});
+  fetch(MM.capiEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({event_name:metaName,event_id:eventId,event_source_url:location.href,...(params||{})})
+  }).catch(()=>{});
+}
+let vcFired=false;
+function trackViewContent(){
+  if (vcFired) return; vcFired=true;
+  track("ViewContent","view_item",{content_name:"free-training"});
+}
+
+/* ── video: YouTube unlisted via privacy-enhanced embed + IFrame API ── */
+if (MM.videoAspect==="9:16") document.getElementById("video-wrap").classList.add("vertical");
+
+let player, fired={};
+function onYouTubeIframeAPIReady(){
+  if (MM.youtubeId.startsWith("REPLACE")) return;
+  document.getElementById("video-placeholder").style.display="none";
+  player=new YT.Player("yt-player",{
+    host:"https://www.youtube-nocookie.com",
+    videoId:MM.youtubeId,
+    playerVars:{rel:0,modestbranding:1,playsinline:1},
+    events:{onStateChange:onPlayerStateChange}
+  });
+}
+let progressTimer=null;
+function onPlayerStateChange(e){
+  if (e.data===YT.PlayerState.PLAYING && !progressTimer){
+    progressTimer=setInterval(checkProgress,5000);
+  }
+}
+function checkProgress(){
+  if (!player || !player.getDuration) return;
+  const d=player.getDuration(); if(!d) return;
+  const pct=(player.getCurrentTime()/d)*100;
+  [25,50,75,95].forEach(t=>{
+    if (pct>=t && !fired[t]){
+      fired[t]=true;
+      track("VideoProgress","video_progress",{percent:t,content_name:"free-training"},true);
+    }
+  });
+}
+(function loadYT(){
+  const tag=document.createElement("script");
+  tag.src="https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
+})();
+
+/* ── offer CTA → Stripe (hosted checkout) ── */
+const buyBtn=document.getElementById("buy-btn");
+if (!MM.stripeRecordingUrl.startsWith("REPLACE")) buyBtn.href=MM.stripeRecordingUrl;
+buyBtn.addEventListener("click",function(ev){
+  if (MM.stripeRecordingUrl.startsWith("REPLACE")){ ev.preventDefault(); return; }
+  track("InitiateCheckout","begin_checkout",{value:27,currency:"USD",content_name:"margin-os-recording"});
+});
+
+/* ── boot ── */
+if (!consentState()) document.getElementById("consent").classList.add("show");
+else if (consentState()==="yes"){ initTracking(); trackViewContent(); }
+</script>
+</body>
+</html>

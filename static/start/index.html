@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#FFFFFF"/>
+<title>Free training: lead your brand into the agentic era · Benedict Schweiger</title>
+<meta name="description" content="For owners of 7-figure ecommerce brands. Bottom-up AI never compounds; the shift is yours to lead. A free 30-minute training with the numbers it produced: 5 people doing the work of 10."/>
+<meta property="og:title" content="Lead your company into the agentic era, and come out with more profit per hour."/>
+<meta property="og:description" content="A free 30-minute training for 7-figure ecommerce owners: the top-down shift, the proof behind it, and your first build."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://benedictschweiger.com/start/"/>
+<meta property="og:image" content="https://benedictschweiger.com/images/og-default.png"/>
+<link rel="canonical" href="https://benedictschweiger.com/start/"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ── The Margin Method · brand tokens (brand-design-system.md) ── */
+:root{
+  --paper:#FFFFFF; --mist:#F5F5F7; --ink:#1D1D1F; --sub:#6E6E73; --hair:#D2D2D7;
+  --accent:#B8593A; --accent-text:#A8502F;
+  --r-card:16px; --r-input:12px;
+  --ease:cubic-bezier(0.2,0.8,0.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--paper)}
+body{font-family:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.45}
+a{color:var(--accent-text)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--hair);padding:calc(env(safe-area-inset-top,0px) + 16px) 24px 16px}
+.nav-name{font-size:16px;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+
+main{max-width:640px;margin:0 auto;padding:64px 24px calc(env(safe-area-inset-bottom,0px) + 64px)}
+
+.eyebrow{font-size:13px;font-weight:500;color:var(--sub);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+h1{font-size:clamp(32px,6vw,44px);font-weight:600;line-height:1.1;letter-spacing:-.022em;margin-bottom:16px}
+.lead{font-size:19px;line-height:1.55;letter-spacing:-.01em;color:var(--sub);margin-bottom:24px;max-width:60ch}
+.prose{font-size:16px;line-height:1.6;color:var(--ink);margin-bottom:24px;max-width:62ch}
+.prose:last-of-type{margin-bottom:48px}
+.urgency{font-size:19px;line-height:1.55;letter-spacing:-.01em;color:var(--ink);margin-bottom:48px;max-width:56ch}
+.quote{background:var(--mist);border-radius:var(--r-card);padding:24px;font-size:19px;line-height:1.55;letter-spacing:-.01em;color:var(--ink);margin-bottom:24px}
+
+.form-card{background:var(--mist);border-radius:var(--r-card);padding:32px 24px;margin-bottom:48px}
+.form-group{margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:600;margin-bottom:8px}
+.input{width:100%;min-height:48px;padding:12px 16px;border:1px solid var(--hair);border-radius:var(--r-input);
+  font-family:inherit;font-size:16px;color:var(--ink);background:var(--paper);outline:none;
+  transition:border-color 150ms var(--ease)}
+.input:focus{border-color:var(--accent)}
+.input::placeholder{color:var(--sub)}
+
+.btn{width:100%;min-height:52px;background:var(--accent);color:#fff;border:none;border-radius:980px;
+  padding:14px 24px;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;
+  transition:transform 150ms var(--ease),background 150ms var(--ease);margin-top:8px}
+.btn:hover{background:#A8502F}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+.microcopy{font-size:13px;color:var(--sub);margin-top:16px;text-align:center;line-height:1.5}
+.status{font-size:13px;margin-top:12px;text-align:center;min-height:20px}
+.status.error{color:#B3261E}
+
+.covers-title{font-size:13px;font-weight:600;color:var(--sub);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+.proof{border:1px solid var(--hair);border-radius:var(--r-card);overflow:hidden;background:var(--hair);display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:16px}
+.proof-cell{background:var(--paper);padding:24px}
+.proof-num{font-size:32px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.proof-label{font-size:13px;color:var(--sub);margin-top:8px;line-height:1.5}
+.proof-source{font-size:13px;color:var(--sub);margin-bottom:48px;line-height:1.5}
+@media (max-width:480px){.proof{grid-template-columns:1fr}}
+.covers{border:1px solid var(--hair);border-radius:var(--r-card);overflow:hidden;margin-bottom:48px}
+.cover-item{padding:24px;font-size:16px;line-height:1.55;color:var(--sub)}
+.cover-item + .cover-item{border-top:1px solid var(--hair)}
+.cover-item strong{color:var(--ink);font-weight:600;display:block;margin-bottom:4px}
+
+.founder{display:flex;gap:16px;align-items:flex-start;background:var(--mist);border-radius:var(--r-card);padding:24px;margin-bottom:48px}
+.founder img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.founder p{font-size:16px;line-height:1.55;color:var(--sub)}
+.founder .name{font-size:13px;font-weight:600;color:var(--ink);margin-top:8px}
+
+footer{border-top:1px solid var(--hair);padding-top:24px;text-align:center}
+footer p{font-size:13px;color:var(--sub);line-height:1.6}
+footer a{color:var(--sub);text-decoration:underline}
+
+.hp{position:absolute;left:-9999px;opacity:0}
+
+/* consent bar */
+.consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:200;background:var(--ink);color:var(--mist);
+  border-radius:var(--r-card);padding:16px 24px;display:none;gap:16px;align-items:center;flex-wrap:wrap;
+  box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.consent.show{display:flex}
+.consent p{font-size:13px;line-height:1.5;flex:1;min-width:220px}
+.consent button{min-height:44px;border-radius:980px;padding:10px 20px;font-family:inherit;font-size:13px;
+  font-weight:600;cursor:pointer;border:1px solid var(--sub);background:transparent;color:var(--mist)}
+.consent button.yes{background:var(--mist);color:var(--ink);border-color:var(--mist)}
+
+@media (prefers-reduced-motion: reduce){*{transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<nav><a class="nav-name" href="/">Benedict Schweiger</a></nav>
+
+<main>
+  <p class="eyebrow">Free training for owners of 7-figure ecommerce brands</p>
+  <h1>Lead your company into the agentic era, and come out with more profit per hour.</h1>
+  <p class="lead">A free 30-minute training on the shift an owner makes from the top: why bottom-up AI never compounds, what changes when you lead it, and what it did to one brand's numbers. You can watch it today.</p>
+
+  <div class="form-card">
+    <form id="optin-form">
+      <div class="form-group">
+        <label for="firstname">First name</label>
+        <input class="input" type="text" id="firstname" placeholder="Your first name" required autocomplete="given-name"/>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input class="input" type="email" id="email" placeholder="you@company.com" required autocomplete="email"/>
+      </div>
+      <input type="text" id="website" class="hp" tabindex="-1" autocomplete="off"/>
+      <button type="submit" class="btn" id="submit-btn">Send me the training</button>
+      <p class="microcopy">You'll get one confirmation email. Click it and the training opens. If the first 10 minutes are not about your business, close it and unsubscribe in one click.</p>
+      <p class="status" id="status" role="status"></p>
+    </form>
+  </div>
+
+  <p class="quote">"Everyone keeps telling me AI changes everything, my team plays with ChatGPT, and nothing about how we actually run the company has changed."</p>
+  <p class="prose">That is the state of AI in most 7-figure brands: it happens bottom-up or not at all. A few people dabble in a chatbot, the output is generic, nothing is shared, nothing compounds. Meanwhile the team grows, the tools multiply, every new cost gets justified as an investment, and profit stays flat while revenue climbs.</p>
+  <p class="prose">You can feel the era arriving, and handing it to a junior or an agency feels like abdicating it. The quiet worry underneath is the real one: a change this deep is yours to lead, and you are too buried to lead it.</p>
+  <p class="prose">Here is what resolves it. You set how the company operates, so you are the only person who can install a new way of operating. The financial version of the same sentence: everyone you pay earns more when you add. Meta earns your CAC, the agency earns your spend, the software earns per seat. The only person paid for your margin is you, and the number that proves the shift is working is profit per hour of your own time.</p>
+
+  <p class="prose">I led exactly this shift in my own company, from the top, with real failures along the way. I know what it feels like to sense the change coming and not have the time to lead it.</p>
+  <p class="covers-title">What the shift did to one brand's numbers</p>
+  <div class="proof">
+    <div class="proof-cell"><div class="proof-num">8 → 5</div><div class="proof-label">marketing team, now doing the work of 10</div></div>
+    <div class="proof-cell"><div class="proof-num">€10,000</div><div class="proof-label">monthly payroll removed, output held</div></div>
+    <div class="proof-cell"><div class="proof-num">+20%</div><div class="proof-label">all relevant marketing KPIs, year over year</div></div>
+    <div class="proof-cell"><div class="proof-num">€4M → €20M</div><div class="proof-label">brand revenue, while moving upmarket</div></div>
+  </div>
+  <p class="proof-source">My own results as CMO of a European luxury watch brand. Exact figures, no composites.</p>
+
+  <p class="covers-title">The path, in 3 steps</p>
+  <div class="covers">
+    <div class="cover-item"><strong>1. Watch the training.</strong> 30 minutes, free, today. The reframe that makes the whole shift visible and hands you your first build.</div>
+    <div class="cover-item"><strong>2. Start working the new way yourself.</strong> Your own setup, hands-on, before you involve anyone. You cannot install a way of working you have not run yourself.</div>
+    <div class="cover-item"><strong>3. Build the brain your team runs on.</strong> One shared foundation, installed from the top, so the work compounds instead of scattering.</div>
+  </div>
+
+  <p class="covers-title">What you'll walk away with</p>
+  <div class="covers">
+    <div class="cover-item"><strong>A test for every cost you're about to add.</strong> From the architect's side, each hire and tool gets one question: does this need judgment, or just hours? You'll run your next hire and your current stack through it the same day.</div>
+    <div class="cover-item"><strong>A number for your own week.</strong> Profit per hour of your time: how to read it from figures you already have, why it falls at exactly your stage, and the two levers that move it.</div>
+    <div class="cover-item"><strong>The reason your AI sounded generic, named.</strong> The order was wrong: clean inputs before automation, customer truth before content. You'll know exactly which input your setup is missing.</div>
+    <div class="cover-item"><strong>Footage of the real thing.</strong> My morning briefing firing on an ordinary Monday, unstaged: revenue, campaigns, inbox, calendar, assembled before I sat down. What "the system carries it" actually looks like.</div>
+    <div class="cover-item"><strong>A data stance you can defend.</strong> What an EU brand connects, what it never connects, and the failure modes the hype skips.</div>
+    <div class="cover-item"><strong>Your first build, named.</strong> The one thing to build before anything else, and the fastest way to have it running the same day.</div>
+  </div>
+
+  <p class="prose"><strong>If nothing changes,</strong> the year goes to scattered dabbling: generic output, tools nobody shares, costs that harden into structure you'll carry for years, and a competitor's owner leading the shift first while you stay the bottleneck the business cannot grow past.</p>
+  <p class="urgency"><strong>Lead it instead,</strong> and the after-state is concrete: you are the executive who made the call, your team works inside one brain that sounds like your brand, and your profit per hour rises because the business runs on the system instead of your hours.</p>
+
+  <div class="founder">
+    <img src="/images/bene-headshot.jpg" alt="Benedict Schweiger"/>
+    <div>
+      <p>I'm Bene. I lived your exact stage at €4M, adding team and tools and calling it investment, and I led this shift inside the brand I still run marketing for today, expensive mistakes included (€30,000 on influencer deals with close to zero attributable sales). The training is the shift itself, reflected on and made digestible, from an operator with no stake in your spending.</p>
+      <p class="name">Bene</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Benedict Schweiger · <a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a></p>
+  </footer>
+</main>
+
+<div class="consent" id="consent">
+  <p>I use Meta and Google measurement on this page to see whether it works. No tracking before you say yes.</p>
+  <button class="yes" id="consent-yes">That's fine</button>
+  <button id="consent-no">No thanks</button>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   CONFIG — OpenClaw: replace before launch. Pages run fine with
+   placeholders; tracking simply stays off until IDs are real.
+   ───────────────────────────────────────────────────────────── */
+const MM = {
+  metaPixelId: "REPLACE_META_PIXEL_ID",
+  ga4Id:       "REPLACE_GA4_ID",          // e.g. G-XXXXXXX
+  capiEndpoint:"/.netlify/functions/capi" // server-side relay; fails silently until built
+};
+
+/* ── consent (minimal stopgap until a site-wide CMP) ── */
+function consentState(){ return localStorage.getItem("mm-consent"); }
+function showConsentIfNeeded(){
+  if (!consentState()) document.getElementById("consent").classList.add("show");
+  else if (consentState()==="yes") initTracking();
+}
+document.getElementById("consent-yes").addEventListener("click",()=>{
+  localStorage.setItem("mm-consent","yes");
+  document.getElementById("consent").classList.remove("show");
+  initTracking();
+});
+document.getElementById("consent-no").addEventListener("click",()=>{
+  localStorage.setItem("mm-consent","no");
+  document.getElementById("consent").classList.remove("show");
+});
+
+/* ── tracking ── */
+let trackingReady=false;
+function initTracking(){
+  if (trackingReady) return;
+  if (consentState()!=="yes") return;
+  if (!MM.metaPixelId.startsWith("REPLACE")){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", MM.metaPixelId);
+    fbq("track","PageView");
+  }
+  if (!MM.ga4Id.startsWith("REPLACE")){
+    const s=document.createElement("script");s.async=true;
+    s.src="https://www.googletagmanager.com/gtag/js?id="+MM.ga4Id;document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
+    gtag("js",new Date());gtag("config",MM.ga4Id);
+  }
+  trackingReady=true;
+}
+function newEventId(){
+  return (crypto.randomUUID ? crypto.randomUUID() : Date.now()+"-"+Math.random().toString(36).slice(2));
+}
+function track(metaName, ga4Name, params){
+  if (consentState()!=="yes") return;
+  const eventId=newEventId();
+  if (window.fbq) fbq("track", metaName, params||{}, {eventID:eventId});
+  if (window.gtag) gtag("event", ga4Name, params||{});
+  // server-side mirror (dedup via shared event_id) — silent until the function exists
+  fetch(MM.capiEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({event_name:metaName,event_id:eventId,event_source_url:location.href,...(params||{})})
+  }).catch(()=>{});
+}
+
+/* ── form: contract preserved — POST subscribe {email, firstName, source, website} ── */
+document.getElementById("optin-form").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const firstName=document.getElementById("firstname").value.trim();
+  const email=document.getElementById("email").value.trim();
+  const honeypot=document.getElementById("website").value;
+  const status=document.getElementById("status");
+  const btn=document.getElementById("submit-btn");
+  if (honeypot) return;
+
+  btn.disabled=true; btn.textContent="One moment";
+  status.textContent=""; status.className="status";
+
+  try{
+    const res=await fetch("/.netlify/functions/subscribe",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({email:email,firstName:firstName,source:"training-optin",website:honeypot})
+    });
+    if(res.ok){
+      track("Lead","generate_lead",{});
+      try{ sessionStorage.setItem("mm-optin-email", email); }catch(_){}
+      // brief pause so the Lead beacon leaves before navigation
+      setTimeout(()=>{ window.location.href="/start/check-inbox/"; },300);
+      return;
+    }
+    const data=await res.json().catch(()=>({}));
+    throw new Error(data.error||"Something went wrong");
+  }catch(err){
+    status.textContent=err.message||"Something went wrong. Please try again.";
+    status.className="status error";
+    btn.disabled=false; btn.textContent="Send me the training";
+  }
+});
+
+showConsentIfNeeded();
+</script>
+</body>
+</html>

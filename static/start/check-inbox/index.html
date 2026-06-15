@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#FFFFFF"/>
+<meta name="robots" content="noindex"/>
+<title>One click left · Benedict Schweiger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--paper:#FFFFFF;--mist:#F5F5F7;--ink:#1D1D1F;--sub:#6E6E73;--hair:#D2D2D7;--accent:#B8593A;--accent-text:#A8502F}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--paper)}
+body{font-family:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.45}
+a{color:var(--accent-text)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+nav{border-bottom:1px solid var(--hair);padding:calc(env(safe-area-inset-top,0px) + 16px) 24px 16px}
+.nav-name{font-size:16px;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+main{max-width:640px;margin:0 auto;padding:96px 24px 64px;text-align:center}
+h1{font-size:clamp(32px,6vw,44px);font-weight:600;line-height:1.1;letter-spacing:-.022em;margin-bottom:16px}
+.lead{font-size:19px;line-height:1.55;color:var(--sub);margin-bottom:48px}
+.lead strong{color:var(--ink);font-weight:600}
+.steps{background:var(--mist);border-radius:16px;padding:32px 24px;text-align:left;margin-bottom:48px}
+.step{display:flex;gap:16px;align-items:flex-start}
+.step + .step{margin-top:16px}
+.step-num{width:24px;height:24px;border-radius:50%;background:var(--paper);border:1px solid var(--hair);
+  font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step p{font-size:16px;line-height:1.55;color:var(--sub)}
+.fine{font-size:13px;color:var(--sub);line-height:1.6}
+</style>
+</head>
+<body>
+<nav><a class="nav-name" href="/">Benedict Schweiger</a></nav>
+<main>
+  <h1>One click left.</h1>
+  <p class="lead" id="lead">I just sent you a confirmation email. Click the button in it and the training opens.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><p>Open your inbox and find the email from Benedict Schweiger.</p></div>
+    <div class="step"><div class="step-num">2</div><p>Click the confirmation button inside it.</p></div>
+    <div class="step"><div class="step-num">3</div><p>The training opens right away. About 30 minutes, best watched in one sitting.</p></div>
+  </div>
+  <p class="fine">Nothing there after 2 minutes? Check spam or the promotions tab, and drag the email to your primary inbox so the rest arrives where you'll see it.</p>
+</main>
+<script>
+try{
+  const e=sessionStorage.getItem("mm-optin-email");
+  if(e){document.getElementById("lead").innerHTML=
+    "I just sent a confirmation email to <strong>"+e.replace(/[<>&]/g,"")+"</strong>. Click the button in it and the training opens.";}
+}catch(_){}
+</script>
+</body>
+</html>
