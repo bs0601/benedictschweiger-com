@@ -4,29 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
 <meta name="color-scheme" content="light only">
-<meta name="theme-color" content="#f5f1ea">
+<meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>The Margin Method — A Founder's Workbook</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
   :root {
     color-scheme: light only;
-    --bg: #f5f1ea;
-    --bg-card: #fbf8f3;
-    --ink: #1a1814;
-    --ink-soft: #4a453d;
-    --ink-muted: #8a8378;
-    --rule: #d9d2c5;
-    --accent: #b8593a;
-    --accent-soft: #e8d4c8;
-    --signal: #2d6a4f;
-    --signal-soft: #d4e7dc;
-    --serif: 'Fraunces', Georgia, serif;
-    --sans: 'Inter Tight', system-ui, sans-serif;
-    --mono: 'JetBrains Mono', monospace;
+    --bg: #ffffff;
+    --bg-card: #f7f7f7;
+    --ink: #1a1a1a;
+    --ink-soft: #484848;
+    --ink-muted: #717171;
+    --rule: #e0e0e0;
+    --accent: #C4622D;
+    --accent-soft: #F5EBE4;
+    --signal: #2a7a4e;
+    --signal-soft: #e8f5ee;
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 
   /* Hard override: force light rendering regardless of system or container dark mode */
@@ -58,12 +57,12 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    background-color: #f5f1ea !important;
+    background-color: #ffffff !important;
     color-scheme: light only !important;
   }
 
   body {
-    background-color: #f5f1ea !important;
+    background-color: #ffffff !important;
     color: #1a1814 !important;
     font-family: var(--sans);
     line-height: 1.55;
@@ -86,7 +85,7 @@
 
   /* === LAYOUT === */
   .container {
-    max-width: 720px;
+    max-width: 680px;
     margin: 0 auto;
     padding: 0 20px;
   }
@@ -100,14 +99,14 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(245, 241, 234, 0.92);
+    background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--rule);
   }
 
   .nav-inner {
-    max-width: 720px;
+    max-width: 680px;
     margin: 0 auto;
     padding: 10px 20px;
     display: flex;
@@ -121,7 +120,7 @@
   }
 
   .nav-brand {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 14px;
     letter-spacing: -0.01em;
@@ -134,7 +133,6 @@
   }
 
   .nav-brand em {
-    font-style: italic;
     color: var(--accent);
   }
 
@@ -186,7 +184,7 @@
   }
 
   .hero-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: clamp(32px, 9vw, 64px);
     line-height: 1.08;
     font-weight: 400;
@@ -203,12 +201,11 @@
   }
 
   .hero-title em {
-    font-style: italic;
     color: var(--accent);
   }
 
   .hero-lede {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: clamp(17px, 4.2vw, 22px);
     line-height: 1.5;
     color: var(--ink-soft);
@@ -270,7 +267,7 @@
   }
 
   .promise-headline {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: clamp(24px, 4.5vw, 32px);
     line-height: 1.2;
     font-weight: 400;
@@ -280,7 +277,6 @@
   }
 
   .promise-headline em {
-    font-style: italic;
     color: var(--accent);
   }
 
@@ -298,15 +294,14 @@
   }
 
   .chapter-num {
-    font-family: var(--serif);
-    font-style: italic;
+    font-family: var(--sans);
     font-size: 14px;
     color: var(--ink-muted);
     margin-bottom: 8px;
   }
 
   .chapter-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: clamp(28px, 5.5vw, 40px);
     line-height: 1.15;
     font-weight: 400;
@@ -335,10 +330,9 @@
     margin: 40px -8px;
     padding: 24px 0 24px 24px;
     border-left: 2px solid var(--accent);
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: clamp(20px, 4vw, 26px);
     line-height: 1.35;
-    font-style: italic;
     color: var(--ink);
     font-weight: 300;
   }
@@ -375,7 +369,7 @@
   }
 
   .stat-value {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 36px;
     font-weight: 500;
     color: var(--accent);
@@ -422,7 +416,7 @@
   }
 
   .phase-pill-num {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-style: italic;
     font-size: 32px;
     color: var(--accent);
@@ -435,7 +429,7 @@
   }
 
   .phase-pill-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 22px;
     font-weight: 500;
     color: var(--ink);
@@ -460,7 +454,7 @@
   }
 
   .phase-num {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-style: italic;
     font-size: 80px;
     line-height: 1;
@@ -470,7 +464,7 @@
   }
 
   .phase-name {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: clamp(36px, 7vw, 56px);
     line-height: 1.05;
     font-weight: 400;
@@ -479,7 +473,7 @@
   }
 
   .phase-tagline {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: clamp(18px, 3.2vw, 22px);
     line-height: 1.5;
     color: var(--ink-soft);
@@ -493,7 +487,7 @@
   }
 
   .subsection-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 24px;
     font-weight: 500;
     margin-bottom: 16px;
@@ -502,7 +496,6 @@
   }
 
   .subsection-title em {
-    font-style: italic;
     color: var(--accent);
   }
 
@@ -561,7 +554,7 @@
   }
 
   .do-next-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 22px;
     font-weight: 400;
     color: var(--bg);
@@ -585,7 +578,7 @@
   }
 
   .checklist-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 16px;
@@ -656,40 +649,6 @@
     flex: 1;
   }
 
-  /* === TEMPLATE PLACEHOLDER === */
-  .template {
-    background: transparent;
-    border: 1px dashed var(--ink-muted);
-    border-radius: 4px;
-    padding: 24px;
-    margin: 32px 0;
-    text-align: center;
-  }
-
-  .template-label {
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-
-  .template-title {
-    font-family: var(--serif);
-    font-size: 18px;
-    font-style: italic;
-    color: var(--ink-soft);
-    margin-bottom: 4px;
-  }
-
-  .template-meta {
-    font-size: 13px;
-    color: var(--ink-muted);
-    font-style: italic;
-  }
-
   /* === BENCHMARK === */
   .benchmark {
     background: var(--signal-soft);
@@ -722,7 +681,7 @@
   }
 
   .footer-quote {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-style: italic;
     font-size: clamp(22px, 4.5vw, 32px);
     line-height: 1.3;
@@ -758,7 +717,7 @@
   .ornament {
     text-align: center;
     margin: 48px 0;
-    font-family: var(--serif);
+    font-family: var(--sans);
     color: var(--ink-muted);
     font-size: 24px;
     letter-spacing: 1em;
@@ -784,7 +743,7 @@
   }
 
   .loop-back-icon {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 48px;
     color: var(--accent);
     line-height: 1;
@@ -815,7 +774,7 @@
   }
 
   .loop-back-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 24px;
     font-weight: 500;
     margin-bottom: 16px;
@@ -825,7 +784,6 @@
   }
 
   .loop-back-title em {
-    font-style: italic;
     color: var(--accent);
   }
 
@@ -869,7 +827,7 @@
   }
 
   .workspace-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: clamp(24px, 4.5vw, 32px);
     line-height: 1.2;
     font-weight: 500;
@@ -879,7 +837,6 @@
   }
 
   .workspace-title em {
-    font-style: italic;
     color: var(--accent);
   }
 
@@ -894,7 +851,7 @@
   }
 
   .field-label {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 18px;
     font-weight: 500;
     color: var(--ink);
@@ -1102,7 +1059,7 @@
   }
 
   .prompt-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 20px;
     font-weight: 500;
     color: var(--ink);
@@ -1160,7 +1117,6 @@
     text-align: center;
     padding: 32px 16px;
     color: var(--ink-muted);
-    font-style: italic;
     font-size: 14px;
   }
 
@@ -1212,7 +1168,7 @@
   }
 
   .commitment-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: clamp(22px, 4vw, 28px);
     font-weight: 400;
     line-height: 1.25;
@@ -1289,7 +1245,7 @@
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid rgba(255,255,255,0.15);
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-style: italic;
     font-size: 17px;
     line-height: 1.5;
@@ -1310,7 +1266,7 @@
   }
 
   .commitment-countdown-display strong {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 22px;
     font-weight: 500;
     color: var(--accent-soft);
@@ -1400,7 +1356,7 @@
   }
 
   .track-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 17px;
     font-weight: 500;
     color: var(--ink);
@@ -1429,7 +1385,7 @@
   }
 
   .repeat-loop-icon {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-style: italic;
     font-size: 48px;
     color: var(--accent);
@@ -1438,7 +1394,7 @@
   }
 
   .repeat-loop-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 24px;
     font-weight: 500;
     margin-bottom: 12px;
@@ -1701,7 +1657,7 @@
 
     <div class="proof">
       <div class="proof-label">Proof Point — ALTHERR's Customer Truth</div>
-      <div class="proof-body">We've run our customer feedback survey continuously since 2024 — <strong>1,978 responses across two years</strong>. Four words dominate how customers describe ALTHERR: <strong>friendly (84%), competent (72%), professional (72%), personal (61%)</strong>. Notably, "good value/preiswert" sits at only 23–28% and is declining. The brand is no longer perceived as a discount destination — and we know this because customers told us, in their own words, at scale.</div>
+      <div class="proof-body">We've run our customer feedback survey continuously since 2024 — <strong>1,978 responses across two years</strong>. Four words dominate how customers describe ALTHERR: <strong>friendly (84%), competent (72%), professional (72%), personal (61%)</strong>. "Good value/preiswert" sits at only 23–28% and is declining. The brand is no longer perceived as a discount destination — and we know this because customers told us, in their own words, at scale.</div>
     </div>
 
     <div class="subsection">
@@ -1766,29 +1722,13 @@
       </div>
     </div>
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Customer Feedback Survey Template</div>
-      <div class="template-meta">A proven survey structure (~12 questions) you can adapt to your business, based on ALTHERR's running survey</div>
-    </div>
+    
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Customer Data Capture Schema</div>
-      <div class="template-meta">The customer-specific data points to capture during Listen that fuel personalization in Convert (e.g., pet name, breed, birthday; or watch reference, occasion, preference)</div>
-    </div>
+    
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Pattern Extraction Agent</div>
-      <div class="template-meta">Claude Project for processing open-ended survey responses into themes, language patterns, and segment signals</div>
-    </div>
+    
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Customer Truth Document Template</div>
-      <div class="template-meta">The living artifact that captures what Listen reveals — referenced by every subsequent phase</div>
-    </div>
+    
 
     <div class="checklist">
       <div class="checklist-title">Listen — Your work this phase</div>
@@ -1976,7 +1916,7 @@
       <h3 class="subsection-title">The third content type — <em>social proof</em></h3>
       <div class="prose">
         <p>Underneath both audience streams sits a third content type that quietly powers everything: <strong>your customers' own words about you</strong>. Testimonials, reviews, customer stories, survey quotes — distributed across every surface where prospects and existing customers encounter your brand.</p>
-        <p>Social proof matters because it does what your own marketing can't. You can say "we're trustworthy"; only your customers can prove it. Most marketing courses teach social proof as a tactic (collect reviews, slap them on a landing page). The high-leverage version is different:</p>
+        <p>Social proof matters because it does what your own marketing can't. You can say "we're trustworthy"; only your customers can prove it. Most marketing courses teach social proof as a tactic (collect reviews, slap them on a landing page). The high-use version is different:</p>
         <ul>
           <li><strong>It comes from Listen.</strong> The best testimonials aren't solicited as testimonials. They're extracted from the open-ended responses in your customer survey, where customers were already telling you in their own words why they bought.</li>
           <li><strong>It's specific, not generic.</strong> "Great service" is worthless. The specific story — what they were nervous about, what changed their mind, who helped, what they noticed — is what converts.</li>
@@ -2001,17 +1941,9 @@
       <div class="proof-body">Over six years, ALTHERR spent approximately <strong>€30,000 on paid influencer campaigns</strong> across Instagram and YouTube partnerships. The returns: essentially zero attributable sales. We salvaged some video footage that we still use today, but the commercial intent never converted. <strong>The pattern we discovered:</strong> when we approached influencers <em>commercially</em>, it bombed. When we approached the same influencers <em>organically</em> — appearing on their channels as a knowledge source, lending products for them to shoot with, positioning ourselves as the brand that brings authority to their content — the partnership compounded over years. The lesson: influencers respond to relationships, not transactions. If you're going to invest in influencers, invest in the long game. Pay-per-post is almost always a write-off.</div>
     </div>
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Topic Battery Template</div>
-      <div class="template-meta">A worksheet for identifying your first 16 high-intent topics</div>
-    </div>
+    
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Brand Voice Configuration</div>
-      <div class="template-meta">Claude Project setup with your brand voice, customer language, and editorial rules</div>
-    </div>
+    
 
     <div class="checklist">
       <div class="checklist-title">Reach — Your work this phase</div>
@@ -2116,17 +2048,9 @@
       <div class="benchmark-body">A well-executed content gate can convert <strong>2–5% of qualified blog visitors</strong> into email subscribers. A discount popup might convert higher, but the subscribers are worth less. Optimize for AOV of the list, not size of the list.</div>
     </div>
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Capture Mechanism Selector</div>
-      <div class="template-meta">A decision tree for picking the right capture mechanic for your market</div>
-    </div>
+    
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">List Segmentation Schema</div>
-      <div class="template-meta">How to segment from day one so personalization scales later</div>
-    </div>
+    
 
     <div class="checklist">
       <div class="checklist-title">Capture — Your work this phase</div>
@@ -2178,7 +2102,7 @@
 
       <p><strong>This is where the customer-specific data you captured in Listen becomes operational.</strong> The pet's birthday becomes a birthday message. The watch reference becomes a "Speedmaster Professional is back in stock" notification. The car model becomes a service-anniversary reminder. Generic messages get ignored. Specific, personal messages get opened — and acted on.</p>
 
-      <p><strong>And this is where social proof does its heaviest lifting.</strong> The single highest-leverage addition to any converting message is a relevant, specific quote from a customer who already bought what you're selling. A product page with three sharp customer stories outconverts one without them by margins so large it's almost embarrassing. Place social proof inside abandoned cart messages, post-purchase upsells, and product recommendations — not just on a testimonials page nobody reads.</p>
+      <p><strong>And this is where social proof does its heaviest lifting.</strong> The single highest-use addition to any converting message is a relevant, specific quote from a customer who already bought what you're selling. A product page with three sharp customer stories outconverts one without them by margins so large it's almost embarrassing. Place social proof inside abandoned cart messages, post-purchase upsells, and product recommendations — not just on a testimonials page nobody reads.</p>
     </div>
 
     <div class="pullquote">
@@ -2244,23 +2168,11 @@
       <div class="benchmark-body">AI-personalized messages typically convert <strong>2–4x</strong> what static automation does. Cost per message via Claude API: roughly the price of a Brazilian centavo. The economics are absurd in your favor — if you implement it.</div>
     </div>
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Welcome Series Template</div>
-      <div class="template-meta">3-message welcome series with brand voice variables</div>
-    </div>
+    
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Abandoned Cart Flow</div>
-      <div class="template-meta">WhatsApp + email versions, with AI personalization layer</div>
-    </div>
+    
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Inbound Response Agent</div>
-      <div class="template-meta">Claude Project for classifying and drafting responses to customer inbound</div>
-    </div>
+    
 
     <div class="checklist">
       <div class="checklist-title">Convert — Your work this phase</div>
@@ -2378,21 +2290,13 @@
       <h3 class="subsection-title">Making the scorecard <em>agentic</em></h3>
       <div class="prose">
         <p>The scorecard itself is a Google Sheet. The agentic layer sits on top: every Monday morning, an agent reads the scorecard and tells you what changed, what to investigate, and what to do this week.</p>
-        <p>This is the highest-leverage agent in your entire stack. It transforms data into action without you having to interpret raw numbers every week.</p>
+        <p>This is the highest-use agent in your entire stack. It transforms data into action without you having to interpret raw numbers every week.</p>
       </div>
     </div>
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Scorecard Template</div>
-      <div class="template-meta">Google Sheets template with the six numbers and data source mappings</div>
-    </div>
+    
 
-    <div class="template">
-      <div class="template-label">Placeholder</div>
-      <div class="template-title">Monday Briefing Agent</div>
-      <div class="template-meta">Claude Project that reads your scorecard and tells you what to do this week</div>
-    </div>
+    
 
     <div class="benchmark">
       <div class="benchmark-label">Benchmark</div>
@@ -2413,7 +2317,7 @@
     <div class="do-next">
       <div class="do-next-label">Do This Next</div>
       <div class="do-next-title">Open a Google Sheet and write your six numbers.</div>
-      <div class="do-next-desc">Don't worry about data connections yet. Just write the six numbers down with placeholders. Make it real. The scorecard exists the moment you write it — everything after that is refinement.</div>
+      <div class="do-next-desc">Don't worry about data connections yet. Just write the six numbers down with example values. Make it real. The scorecard exists the moment you write it — everything after that is refinement.</div>
     </div>
   </div>
 </section>
