@@ -3,321 +3,167 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<meta name="theme-color" content="#ffffff"/>
-<title>Benedict Schweiger — The Margin Method</title>
-<meta name="description" content="Build the system that lets you charge more and keep the margin. The Margin Method is a five-phase loop that turns customer truth into higher value per customer."/>
-<meta property="og:title" content="Benedict Schweiger — The Margin Method"/>
-<meta property="og:description" content="Build the system that lets you charge more and keep the margin."/>
+<meta name="theme-color" content="#FFFFFF"/>
+<title>Benedict Schweiger — Grow to 8 figures without scaling your overhead</title>
+<meta name="description" content="For owners of 7-figure ecommerce brands. The system that decouples growth from headcount and capital."/>
+<meta property="og:title" content="Grow to 8 figures. Without scaling your overhead."/>
+<meta property="og:description" content="The Margin Method: a free training and workbook for 7-figure ecommerce owners who want to grow without adding people, spend, or hours."/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="{{ .Site.BaseURL }}"/>
-{{ with (index .Site.Params.images 0) }}<meta property="og:image" content="{{ . }}"/>{{ end }}
-<link rel="canonical" href="{{ .Site.BaseURL }}"/>
-<meta name="google-site-verification" content="7RnS4tjpQeypda85lNiyDy5uhDeJUuTLmvVpIPxNsRE"/>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BE73N9F42M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-BE73N9F42M');
-</script>
+<meta property="og:url" content="https://benedictschweiger.com/"/>
+<meta property="og:image" content="https://benedictschweiger.com/images/og-default.png"/>
+<link rel="canonical" href="https://benedictschweiger.com/"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/css/style.css"/>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Benedict Schweiger",
-  "url": "https://benedictschweiger.com"
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ── The Margin Method · brand tokens ── */
+:root{
+  --paper:#FFFFFF; --mist:#F5F5F7; --ink:#1D1D1F; --sub:#6E6E73; --hair:#D2D2D7;
+  --accent:#B8593A; --accent-text:#A8502F;
+  --r-card:16px; --r-input:12px;
+  --ease:cubic-bezier(0.2,0.8,0.2,1);
 }
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Benedict Schweiger",
-  "url": "https://benedictschweiger.com",
-  "sameAs": [
-    "https://www.linkedin.com/in/benedictschweiger",
-    "https://www.youtube.com/channel/UCoCNyB7omxposyGloac8cA"
-  ],
-  "jobTitle": "CMO",
-  "knowsAbout": ["The Margin Method", "Marketing Systems", "AI Marketing", "Customer-Centric Marketing", "Premium E-Commerce"]
-}
-</script>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--paper)}
+body{font-family:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.45}
+a{color:var(--accent-text)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--hair);padding:calc(env(safe-area-inset-top,0px) + 16px) 24px 16px}
+.nav-name{font-size:16px;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+
+main{max-width:640px;margin:0 auto;padding:64px 24px calc(env(safe-area-inset-bottom,0px) + 64px)}
+
+.eyebrow{font-size:13px;font-weight:500;color:var(--sub);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+h1{font-size:clamp(32px,6vw,44px);font-weight:600;line-height:1.1;letter-spacing:-.022em;margin-bottom:16px}
+.lead{font-size:19px;line-height:1.55;letter-spacing:-.01em;color:var(--sub);margin-bottom:24px;max-width:60ch}
+.prose{font-size:16px;line-height:1.6;color:var(--ink);margin-bottom:24px;max-width:62ch}
+.prose:last-of-type{margin-bottom:48px}
+.quote{background:var(--mist);border-radius:var(--r-card);padding:24px;font-size:19px;line-height:1.55;letter-spacing:-.01em;color:var(--ink);margin-bottom:24px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;min-width:240px;
+  background:var(--accent);color:#fff;border:none;border-radius:980px;padding:14px 32px;
+  font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;
+  transition:transform 150ms var(--ease),background 150ms var(--ease)}
+.btn:hover{background:#A8502F}
+.btn:active{transform:scale(.98)}
+
+.microcopy{font-size:13px;color:var(--sub);margin-top:16px;text-align:center;line-height:1.5}
+
+.covers-title{font-size:13px;font-weight:600;color:var(--sub);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+.proof{border:1px solid var(--hair);border-radius:var(--r-card);overflow:hidden;background:var(--hair);display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:16px}
+.proof-cell{background:var(--paper);padding:24px}
+.proof-num{font-size:32px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.proof-label{font-size:13px;color:var(--sub);margin-top:8px;line-height:1.5}
+.proof-source{font-size:13px;color:var(--sub);margin-bottom:48px;line-height:1.5}
+@media (max-width:480px){.proof{grid-template-columns:1fr}}
+
+.package{background:var(--mist);border-radius:var(--r-card);padding:32px 24px;margin-bottom:48px}
+.package-item{display:flex;gap:16px;margin-bottom:20px}
+.package-item:last-child{margin-bottom:0}
+.package-num{flex-shrink:0;width:32px;height:32px;background:var(--accent);color:#fff;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600}
+.package-text{font-size:16px;line-height:1.55;color:var(--ink)}
+.package-text strong{display:block;margin-bottom:2px}
+
+.founder{display:flex;gap:16px;align-items:flex-start;background:var(--mist);border-radius:var(--r-card);padding:24px;margin-bottom:48px}
+.founder img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.founder p{font-size:16px;line-height:1.55;color:var(--sub)}
+.founder .name{font-size:13px;font-weight:600;color:var(--ink);margin-top:8px}
+
+.cost-of-waiting{background:var(--ink);color:var(--paper);border-radius:var(--r-card);padding:32px 24px;margin-bottom:48px}
+.cost-of-waiting p{font-size:16px;line-height:1.6;margin-bottom:16px}
+.cost-of-waiting p:last-child{margin-bottom:0}
+.cost-of-waiting strong{color:#fff}
+
+.covers{border:1px solid var(--hair);border-radius:var(--r-card);overflow:hidden;margin-bottom:48px}
+.cover-item{padding:24px;font-size:16px;line-height:1.55;color:var(--sub)}
+.cover-item + .cover-item{border-top:1px solid var(--hair)}
+.cover-item strong{color:var(--ink);font-weight:600;display:block;margin-bottom:4px}
+
+footer{border-top:1px solid var(--hair);padding-top:24px;text-align:center}
+footer p{font-size:13px;color:var(--sub);line-height:1.6}
+footer a{color:var(--sub);text-decoration:underline}
+
+@media (prefers-reduced-motion: reduce){*{transition-duration:.01ms!important}}
+</style>
 </head>
 <body>
 
-<!-- ========== NAV ========== -->
-<nav style="position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--lg);padding:calc(env(safe-area-inset-top,0px) + 14px) 20px 14px;display:flex;justify-content:space-between;align-items:center;">
-  <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-    <div style="width:32px;height:32px;border-radius:8px;background:var(--s);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-      <svg width="16" height="16" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-    </div>
-    <span style="font-size:15px;font-weight:800;color:var(--blk);">Benedict Schweiger</span>
-  </a>
-  <div style="display:flex;gap:20px;align-items:center;">
-    <a href="/blog/" style="font-size:13px;font-weight:600;color:var(--dg);text-decoration:none;">Blog</a>
-    <a href="/workbook-signup/" style="font-size:13px;font-weight:600;color:var(--s);text-decoration:none;">Workbook</a>
+<nav><a class="nav-name" href="/">Benedict Schweiger</a></nav>
+
+<main>
+  <p class="eyebrow">For owners of 7-figure ecommerce brands</p>
+  <h1>Grow to 8 figures. Without scaling your overhead.</h1>
+  <p class="lead">The Margin Method is the system that decouples growth from headcount and capital. A free 30-minute training on what it looks like when one operator directs work that used to need a team, and what it did to one brand's numbers.</p>
+
+  <a href="/start/" class="btn">Get the free training + workbook</a>
+  <p class="microcopy">You'll get one confirmation email. Click it and the training opens. If the first 10 minutes are not about your business, close it and unsubscribe in one click.</p>
+
+  <p class="quote">"Everyone keeps telling me to hire more and spend more to grow, and I'm working harder than ever for margin that stays flat."</p>
+  <p class="prose">That is the state of growth in most 7-figure brands. More headcount, more spend, more tools, every new cost justified as investment. Revenue climbs. Margin does not follow.</p>
+  <p class="prose">The quiet worry underneath is the real one: the only path you know to the next level adds overhead you do not want and cannot sustain. And you are too buried building the business to build the system that would change it.</p>
+
+  <p class="prose">Growth does not have to cost proportional headcount anymore. That coupling is a relic of the old era, and most owners are still paying it out of habit. The lever that breaks it is a system, not another hire.</p>
+
+  <p class="prose">I grew a brand from €4.7M to €20M the expensive way first. Then I built a system that ran the execution, and the lean followed. I know what it is to grow by adding cost, and I know the move that finally broke that pattern.</p>
+
+  <p class="covers-title">What the decoupling did to one brand's numbers</p>
+  <div class="proof">
+    <div class="proof-cell"><div class="proof-num">8 → 5</div><div class="proof-label">people directing the system, output held</div></div>
+    <div class="proof-cell"><div class="proof-num">€10,000</div><div class="proof-label">monthly payroll removed while revenue still grew</div></div>
+    <div class="proof-cell"><div class="proof-num">NPS 63</div><div class="proof-label">from 2,000 survey responses, luxury benchmark 30–50</div></div>
+    <div class="proof-cell"><div class="proof-num">€4.7M → €20M</div><div class="proof-label">revenue, while moving upmarket and expanding margin</div></div>
   </div>
-</nav>
+  <p class="proof-source">My own results as CMO of a European watch brand. Exact figures, never rounded.</p>
 
-<!-- ========== BLOCK 1: HERO ========== -->
-<div class="hero" id="hero" style="padding-top:48px;">
-  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
-    <img src="/images/bene-headshot.jpg" alt="Benedict Schweiger" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--lg);" />
-    <p class="hero-cred" style="font-size:13px;font-weight:700;color:var(--s);letter-spacing:.06em;text-transform:uppercase;margin:0;">
-      CMO at ALTHERR · Ex-Simon-Kucher
-    </p>
-  </div>
-
-  <!-- Kicker -->
-  <p style="font-size:13px;font-weight:700;color:var(--s);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;">Skip the shiny objects.</p>
-
-  <!-- Headline -->
-  <h1 class="hero-h" style="font-size:clamp(32px,7vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.035em;color:var(--blk);margin-bottom:18px;max-width:640px;">
-    Build the system that lets you <em style="color:var(--s);font-style:normal;">charge more</em>, and keep the margin.
-  </h1>
-
-  <!-- Subhead -->
-  <p class="hero-sub" style="font-size:17px;line-height:1.65;color:var(--dg);max-width:540px;margin-bottom:32px;">
-    The Margin Method is a five-phase loop (Listen, Reach, Capture, Convert, Measure) that turns customer truth into higher value per customer. AI agents are how you run it without a team you can't afford.
-  </p>
-
-  <!-- Proof block -->
-  <div class="proof-block" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin:0 0 2rem;max-width:600px;">
-    <div class="proof-item" style="text-align:center;">
-      <span style="display:block;font-size:2rem;font-weight:800;color:var(--s);line-height:1;letter-spacing:-.02em;">€1,900 → €3,800</span>
-      <span style="display:block;font-size:.8125rem;color:var(--mg);margin-top:.25rem;line-height:1.4;">AOV (2019 to 2025), moving upmarket.</span>
+  <p class="covers-title">What you get</p>
+  <div class="package">
+    <div class="package-item">
+      <div class="package-num">1</div>
+      <div class="package-text"><strong>The 30-minute training.</strong> The reframe that makes decoupling visible, with footage of the real system running on an ordinary Monday.</div>
     </div>
-    <div class="proof-item" style="text-align:center;">
-      <span style="display:block;font-size:2rem;font-weight:800;color:var(--s);line-height:1;letter-spacing:-.02em;">NPS 63</span>
-      <span style="display:block;font-size:.8125rem;color:var(--mg);margin-top:.25rem;line-height:1.4;">from ~2,000 customer responses (luxury benchmark is 30 to 50).</span>
+    <div class="package-item">
+      <div class="package-num">2</div>
+      <div class="package-text"><strong>The Margin Workbook.</strong> Free. The same five-phase loop, built to run on your own business. Fill it as you watch.</div>
     </div>
-    <div class="proof-item" style="text-align:center;">
-      <span style="display:block;font-size:2rem;font-weight:800;color:var(--s);line-height:1;letter-spacing:-.02em;">5</span>
-      <span style="display:block;font-size:.8125rem;color:var(--mg);margin-top:.25rem;line-height:1.4;">people at ALTHERR running what used to take 8.</span>
-    </div>
-    <div class="proof-item" style="text-align:center;">
-      <span style="display:block;font-size:2rem;font-weight:800;color:var(--s);line-height:1;letter-spacing:-.02em;">6.1M</span>
-      <span style="display:block;font-size:.8125rem;color:var(--mg);margin-top:.25rem;line-height:1.4;">YouTube views in 12 months.</span>
+    <div class="package-item">
+      <div class="package-num">3</div>
+      <div class="package-text"><strong>The 14-day email course.</strong> One email per day. Three minutes each. Kills one belief, hands you one move, names one trap. By the end you've run the system, not just read about it.</div>
     </div>
   </div>
 
-  <!-- Is this you -->
-  <div class="icp-band" style="max-width:540px;margin:0 0 2.5rem;padding:20px;background:var(--bg);border-radius:12px;">
-    <p style="font-size:14px;line-height:1.7;color:var(--dg);margin:0;">
-      This is for you if you run marketing for an established consumer brand doing roughly €1M to €20M, mostly on your own, and the business keeps growing while your profit barely moves. You suspect the fix is structural. You do not have the time or the team to build it. That is exactly what the Margin Method is for.
-    </p>
+  <p class="covers-title">What you'll walk away with</p>
+  <div class="covers">
+    <div class="cover-item"><strong>A test for every cost you're about to add.</strong> Each hire and tool gets one question: does this need judgment, or just hours? You'll run your next decision through it the same day.</div>
+    <div class="cover-item"><strong>Your profit-per-hour number.</strong> How to read it from figures you already have, and the two levers that move it.</div>
+    <div class="cover-item"><strong>The reason your automated output reads like slop, named.</strong> The order was wrong: clean inputs before automation, customer truth before content. You'll know exactly which input your setup is missing.</div>
+    <div class="cover-item"><strong>Footage of the real thing.</strong> My morning briefing firing before I sat down. What "the system carries it" actually looks like.</div>
+    <div class="cover-item"><strong>A data stance you can defend.</strong> What to connect, what to never connect, and the failure modes the hype skips.</div>
+    <div class="cover-item"><strong>Your first build, named.</strong> The one thing to build before anything else, and the fastest way to have it running today.</div>
   </div>
 
-  <!-- Primary CTA: Workbook -->
-  <div class="hero-cta-primary" style="max-width:480px;margin-bottom:12px;">
-    <a href="/workbook-signup/" style="display:block;width:100%;background:var(--s);color:#fff;border:none;border-radius:12px;padding:16px 28px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-sizing:border-box;text-align:center;text-decoration:none;">Get the Margin Workbook →</a>
+  <div class="cost-of-waiting">
+    <p><strong>If nothing changes,</strong> the year goes to more of the same: hiring to grow, spending to acquire, margin that stays flat while revenue climbs. And a competitor's owner decoupling first while you stay the bottleneck the business cannot grow past.</p>
+    <p><strong>Build the system instead,</strong> and the after-state is concrete: you grow toward 8 figures without scaling your overhead, your team works inside one brain that sounds like your brand, and your profit per hour rises because the business runs on the system instead of your hours.</p>
   </div>
 
-  <!-- Secondary CTA: Blog -->
-  <p style="font-size:13px;color:var(--mg);margin-top:12px;">
-    Or <a href="/blog/" style="color:var(--s);text-decoration:none;font-weight:600;">read the blog first →</a>
-  </p>
-</div>
-
-<!-- ========== BLOCK 2: FOUNDER + BELIEF SHIFT ========== -->
-<div class="founder-block" style="padding:64px 20px;background:var(--bg);">
-  <div style="max-width:640px;margin:0 auto;">
-    <div style="display:flex;gap:20px;align-items:flex-start;margin-bottom:24px;">
-      <img src="/images/bene-headshot.jpg" alt="Benedict Schweiger" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--lg);flex-shrink:0;" />
-      <div>
-        <h2 style="font-size:clamp(22px,4.5vw,28px);font-weight:800;line-height:1.15;letter-spacing:-.02em;color:var(--blk);margin-bottom:16px;">
-          You can build this yourself now.
-        </h2>
-      </div>
-    </div>
-
-    <div style="font-size:15px;line-height:1.75;color:var(--dg);">
-      <p style="margin-bottom:16px;">
-        I'm Bene. I spent years scaling a European watch brand from €4M to €20M as Head of Digital, then CMO, while moving it upmarket and growing the margin. I came out of pricing consulting before that. I built the marketing system, the data warehouse, and the agentic stack myself, with plenty of failures along the way.
-      </p>
-      <p style="margin-bottom:16px;">
-        Here is what I learned. The work was never about chasing whatever was loud that week. There was too much noise in 2020, and AI has made it deafening. The demos make it look like magic, then you paste in a prompt and get generic slop with your logo on it. A chat window is not a system.
-      </p>
-      <p style="margin:0;">
-        What closes the gap is unglamorous and durable: knowing what your customers actually value, building on that, owning the channel, pricing for the value you create, and running the whole thing on a few honest numbers every Monday. That is the Margin Method. AI agents are how you run it without the team you cannot afford. You can build it yourself, and the workbook is where you start.
-      </p>
+  <div class="founder">
+    <img src="/images/bene-headshot.jpg" alt="Benedict Schweiger"/>
+    <div>
+      <p>I'm Bene. I lived your exact stage at 4.7M euros, adding team and tools and calling it investment, and I led this shift inside the brand I still run marketing for today. Expensive mistakes included (€30,000 on influencer deals with close to zero attributable sales). The training is the decoupling itself, reflected on and made digestible, from an operator with no stake in your spending.</p>
+      <p class="name">Bene</p>
     </div>
   </div>
-</div>
 
-<!-- ========== BLOCK 3: THE MARGIN WORKBOOK ========== -->
-<div class="workbook-section" id="workbook" style="padding:48px 20px;">
-  <div class="w" style="max-width:640px;margin:0 auto;">
+  <a href="/start/" class="btn" style="width:100%;margin-bottom:48px;">Get the free training + workbook</a>
 
-    <!-- Eyebrow -->
-    <div style="display:inline-flex;align-items:center;gap:6px;background:var(--slt);color:var(--s);font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:20px;text-transform:uppercase;letter-spacing:.05em;">
-      The Margin Method
-    </div>
+  <footer>
+    <p>Benedict Schweiger · Av Juriti 307, Apt 09 · Vila Uberabinha, São Paulo - SP, 04.520-000 · Brasil · <a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a></p>
+  </footer>
+</main>
 
-    <!-- Heading -->
-    <h2 style="font-size:clamp(24px,5vw,32px);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--blk);margin-bottom:16px;">
-      The Margin Workbook
-    </h2>
-
-    <!-- Body -->
-    <p style="font-size:15px;line-height:1.7;color:var(--dg);margin:0 0 20px;">
-      An interactive workbook that walks you through the five-phase loop and builds your plan as you go, then hands you ready-to-run Claude prompts pre-loaded with what you wrote. You finish having run the loop on your own business, not just read about one. A 14-day email course walks beside you: one short email a day, about three minutes each.
-    </p>
-
-    <!-- CTA -->
-    <a href="/workbook-signup/" style="display:inline-block;background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;">Get the Margin Workbook →</a>
-
-  </div>
-</div>
-
-<!-- ========== BLOCK 4: RESOURCES HUB ========== -->
-<div class="resources-hub" style="padding:48px 20px;background:var(--bg);">
-  <div style="max-width:900px;margin:0 auto;">
-    <p style="font-size:12px;font-weight:700;color:var(--mg);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px;">Where to go from here</p>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
-      <!-- Newsletter -->
-      <div style="background:#fff;border:1.5px solid var(--lg);border-radius:12px;padding:24px;">
-        <h3 style="font-size:16px;font-weight:700;color:var(--blk);margin-bottom:8px;">The newsletter</h3>
-        <p style="font-size:14px;line-height:1.6;color:var(--dg);margin-bottom:16px;">Weekly notes on building marketing systems that compound: what I'm testing, what's breaking, and what's actually working, from the workbench. Free.</p>
-        <a href="#newsletter" style="font-size:14px;font-weight:600;color:var(--s);text-decoration:none;">Subscribe →</a>
-      </div>
-
-      <!-- Writing -->
-      <div style="background:#fff;border:1.5px solid var(--lg);border-radius:12px;padding:24px;">
-        <h3 style="font-size:16px;font-weight:700;color:var(--blk);margin-bottom:8px;">The writing</h3>
-        <p style="font-size:14px;line-height:1.6;color:var(--dg);margin-bottom:16px;">Essays on margin, owned channels, and running a brand agentically. Real numbers, including the unflattering ones.</p>
-        <a href="/blog/" style="font-size:14px;font-weight:600;color:var(--s);text-decoration:none;">Read the blog →</a>
-      </div>
-
-      <!-- YouTube -->
-      <div style="background:#fff;border:1.5px solid var(--lg);border-radius:12px;padding:24px;">
-        <h3 style="font-size:16px;font-weight:700;color:var(--blk);margin-bottom:8px;">YouTube</h3>
-        <p style="font-size:14px;line-height:1.6;color:var(--dg);margin-bottom:16px;">Founder videos and deep dives, the kind competitors won't make.</p>
-        <a href="https://www.youtube.com/channel/UCoCNyB7omxposyGloac8cA" target="_blank" rel="noopener" style="font-size:14px;font-weight:600;color:var(--s);text-decoration:none;">Watch on YouTube →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ========== BLOCK 5: RECENT WRITING ========== -->
-<div class="content-section" style="padding:0 20px 48px;">
-  <div class="w" style="max-width:900px;margin:0 auto;">
-    <p style="font-size:12px;font-weight:700;color:var(--mg);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;">Recent writing</p>
-    <div class="post-strip" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
-      {{ $posts := where .Site.RegularPages "Section" "blog" }}
-      {{ range first 3 $posts }}
-      <a href="{{ .RelPermalink }}" style="text-decoration:none;color:inherit;">
-        <div style="background:#fff;border:1.5px solid var(--lg);border-radius:12px;padding:20px;transition:border-color .15s;">
-          <div style="font-size:12px;color:var(--mg);margin-bottom:8px;">{{ .Date.Format "Jan 2006" }}</div>
-          <div style="font-size:15px;font-weight:700;color:var(--blk);line-height:1.35;margin-bottom:8px;">{{ .Title }}</div>
-          <div style="font-size:13px;color:var(--dg);line-height:1.5;">{{ .Params.excerpt | default .Params.description | default .Summary | truncate 80 }}</div>
-        </div>
-      </a>
-      {{ end }}
-    </div>
-    {{ if gt (len $posts) 0 }}
-    <a href="/blog/" style="display:inline-block;margin-top:20px;font-size:14px;font-weight:600;color:var(--s);text-decoration:none;">All articles →</a>
-    {{ end }}
-  </div>
-</div>
-
-<!-- ========== BLOCK 6: NEWSLETTER (ANCHORED) ========== -->
-<div class="newsletter-section" id="newsletter" style="padding:48px 20px;background:var(--bg);">
-  <div class="w" style="max-width:640px;margin:0 auto;">
-
-    <!-- Eyebrow -->
-    <div style="display:inline-flex;align-items:center;gap:6px;background:var(--slt);color:var(--s);font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:20px;text-transform:uppercase;letter-spacing:.05em;">
-      The Autonomy Brief
-    </div>
-
-    <!-- Description -->
-    <p style="font-size:15px;line-height:1.7;color:var(--dg);margin:0 0 20px;">
-      Weekly notes on building marketing systems that compound. What I'm testing, what's breaking, and what's actually working — from the workbench, not the mountaintop.
-    </p>
-
-    <!-- Email form -->
-    <form id="nl-email-form" style="display:flex;gap:8px;margin-bottom:12px;" onsubmit="return handleNlEmail(event)">
-      <input type="email" id="nl-email" placeholder="your@email.com" required style="flex:1;border:2px solid var(--lg);border-radius:12px;padding:14px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:var(--blk);background:#fff;outline:none;" />
-      <!-- Honeypot: hidden from humans, bots fill it -->
-      <input type="text" id="nl-website" name="website" style="position:absolute;left:-9999px;opacity:0;" tabindex="-1" autocomplete="off" />
-      <button type="submit" style="background:var(--s);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Get The Autonomy Brief →</button>
-    </form>
-    <p id="nl-email-status" style="font-size:13px;color:var(--mg);margin:0;display:none;"></p>
-
-  </div>
-</div>
-
-<!-- ========== BLOCK 7: CLOSING CTA ========== -->
-<div class="closing-cta" style="padding:48px 20px;text-align:center;">
-  <div style="max-width:640px;margin:0 auto;">
-    <p style="font-size:18px;font-weight:700;color:var(--blk);margin-bottom:20px;">Start where it starts: the workbook.</p>
-    <a href="/workbook-signup/" style="display:inline-block;background:var(--s);color:#fff;border:none;border-radius:12px;padding:16px 28px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;">Get the Margin Workbook →</a>
-  </div>
-</div>
-
-<!-- ========== FOOTER ========== -->
-<footer>
-  <div class="footer-links">
-    <a href="/blog/">Blog</a>
-    <a href="/workbook-signup/">Workbook</a>
-    <a href="/autonomy-score/">Diagnostic</a>
-    <a href="https://www.linkedin.com/in/benedictschweiger" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://www.youtube.com/channel/UCoCNyB7omxposyGloac8cA" target="_blank" rel="noopener">YouTube</a>
-    <a href="mailto:info@benedictschweiger.com">Email</a>
-  </div>
-  <div class="footer-copy">&copy; {{ now.Year }} Benedict Schweiger</div>
-</footer>
-
-<!-- Email form handler -->
-<script>
-async function handleNlEmail(e) {
-  e.preventDefault();
-  const input = document.getElementById('nl-email');
-  const honeypot = document.getElementById('nl-website');
-  const status = document.getElementById('nl-email-status');
-  const btn = e.target.querySelector('button');
-  const email = input.value.trim();
-
-  // Honeypot check (client-side, also checked server-side)
-  if (honeypot.value) {
-    return false;
-  }
-
-  btn.disabled = true;
-  btn.textContent = '...';
-
-  try {
-    const res = await fetch('/.netlify/functions/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, source: 'homepage-newsletter', website: honeypot.value })
-    });
-    if (res.ok) {
-      status.textContent = 'You\'re in. Check your inbox.';
-      status.style.color = 'var(--signal)';
-      status.style.display = 'block';
-      input.value = '';
-      return;
-    } else {
-      throw new Error('HTTP ' + res.status);
-    }
-  } catch (err) {
-    status.textContent = 'Something went wrong. Please try again.';
-    status.style.color = '#c0392b';
-    status.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = 'Get The Autonomy Brief →';
-  }
-  return false;
-}
-</script>
-
-{{ partial "analytics.html" . }}
 </body>
 </html>
